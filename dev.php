@@ -24,23 +24,56 @@ include 'components/inset.php';
             <li id="asset_detail">Asset detail</li>
         </ul>
     </section>
-    <section class="asset_r active">
-        <div class="title_h">
-            <h1>Asset Record</h1>
+    <section class="asset_l">
+        <div>
+            <h1>Asset Loan</h1>
         </div>
         <div class="form_i">
             <form method="post" enctype="multipart/form-data">
-                <label for="" class="input_n">Item Code</label>
-                <input type="text" placeholder="Enter Item Code" name="item_code" class="input_t">
                 <label for="" class="input_n">Item Name</label>
-                <input type="text" placeholder="Enter Item Name" name="item_name" class="input_t"> <br>
+                <select name="item_code" class="input_t">
+                    <?php
+
+
+
+                    // Retrieve all records from the asset_record table
+                    $sql = "SELECT item_code, item_name FROM asset_record";
+                    $result = mysqli_query($con, $sql);
+
+                    // Check if query was successful
+                    if ($result) {
+                        // Loop through each row of the result set and output the item_name value as an option in the select dropdown
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            echo "<option value='" . $row["item_code"] . "'>" . $row["item_name"] . "</option>";
+                        }
+                    }
+                    ?>
+                </select>
+                <label for="" class="input_n">Employee Name</label>
+                <select name="employee_id" class="input_t">
+                    <?php
+
+
+                    // Retrieve all records from the asset_record table
+                    $sql = "SELECT employee_id, full_name FROM employee";
+                    $result = mysqli_query($con, $sql);
+
+                    // Check if query was successful
+                    if ($result) {
+                        // Loop through each row of the result set and output the item_name value as an option in the select dropdown
+                        while ($row = mysqli_fetch_assoc($result)) {
+                            echo "<option value='" . $row["employee_id"] . "'>" . $row["full_name"] . "</option>";
+                        }
+                    }
+                    ?>
+                </select>
                 <label for="" class="input_n">Quantity</label>
                 <input type="number" placeholder="Enter Item Quantity" name="qty" class="input_t">
                 <label for="" class="input_n">Document Date</label>
                 <input type="date" name="doc_date" class="input_t"> <br>
                 <label for="" class="input_n">Description</label>
                 <input type="taxetarea" name="description" class="input_t"> <br>
-                <button type="submit" class="button_s" name="submit" required>Send Message</button>
+                <button type="submit" class="button_s" name="submit_l" required>Send Message</button>
             </form>
         </div>
     </section>

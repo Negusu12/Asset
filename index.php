@@ -1,3 +1,6 @@
+<?php
+include 'components/inset.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,6 +22,7 @@
             <li id="asset_loan">Asset Loan</li>
             <li id="asset_return">Asset Return</li>
             <li id="asset_detail">Asset detail</li>
+            <li id="asset_employee">Asset employee</li>
         </ul>
     </section>
     <section class="asset_r active">
@@ -54,6 +58,21 @@
     <section class="asset_d">
         <div>
             <h1>Asset Detail</h1>
+        </div>
+    </section>
+    <section class="asset_e">
+        <div class="title_h">
+            <h1>Employee</h1>
+        </div>
+        <div class="form_i">
+            <form method="post" enctype="multipart/form-data">
+                <label for="" class="input_n">full name</label>
+                <input type="text" placeholder="Enter Item Code" name="full_name" class="input_t">
+                <label for="" class="input_n">Department</label>
+                <input type="text" placeholder="Enter Item Name" name="department" class="input_t"> <br>
+
+                <button type="submit" class="button_s" name="submit_e" required>Send Message</button>
+            </form>
         </div>
     </section>
 

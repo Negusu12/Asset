@@ -52,7 +52,8 @@ li:hover {
 .asset_r,
 .asset_l,
 .asset_re,
-.asset_d {
+.asset_d,
+.asset_e {
     margin-left: 350px;
 }
 
