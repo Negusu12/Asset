@@ -1,6 +1,7 @@
 <?php
 include 'components/inset.php';
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +10,6 @@ include 'components/inset.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="asset/css/style.css">
-
 </head>
 
 <body>
@@ -24,45 +24,66 @@ include 'components/inset.php';
             <li id="asset_detail">Asset detail</li>
         </ul>
     </section>
-    <section class="asset_l">
+    <section class="asset_r">
         <div>
-            <h1>Asset Loan</h1>
+            <h1>Asset Return </h1>
         </div>
         <div class="form_i">
             <form method="post" enctype="multipart/form-data">
-                <label for="" class="input_n">Item Name</label>
-                <select name="item_code" class="input_t">
+                <label for="" class="input_n">Loan ID</label>
+                <select name="loan_id" class="input_t" onchange="this.form.submit()">
+                    <option value=""> Select Loan ID</option>
                     <?php
-
-
-
-                    // Retrieve all records from the asset_record table
-                    $sql = "SELECT item_code, item_name FROM asset_record";
+                    $sql = "SELECT DISTINCT loan_id FROM asset_loan where qty > 0";
                     $result = mysqli_query($con, $sql);
 
-                    // Check if query was successful
                     if ($result) {
-                        // Loop through each row of the result set and output the item_name value as an option in the select dropdown
                         while ($row = mysqli_fetch_assoc($result)) {
-                            echo "<option value='" . $row["item_code"] . "'>" . $row["item_name"] . "</option>";
+                            $selected = "";
+                            if (isset($_POST['loan_id']) && $_POST['loan_id'] == $row["loan_id"]) {
+                                $selected = "selected";
+                            }
+                            echo "<option value='" . $row["loan_id"] . "' " . $selected . ">" . $row["loan_id"] . "</option>";
                         }
                     }
                     ?>
                 </select>
-                <label for="" class="input_n">Employee Name</label>
-                <select name="employee_id" class="input_t">
+                <label for="" class="input_n">Employee ID</label>
+                <select name="employee_id" class="input_t" onchange="this.form.submit()">
                     <?php
+                    if (isset($_POST['loan_id'])) {
+                        $loan_id = $_POST['loan_id'];
 
+                        $sql = "SELECT DISTINCT employee_id FROM asset_loan WHERE loan_id = ?";
+                        $stmt = mysqli_prepare($con, $sql);
+                        mysqli_stmt_bind_param($stmt, "s", $loan_id);
+                        mysqli_stmt_execute($stmt);
+                        $result = mysqli_stmt_get_result($stmt);
 
-                    // Retrieve all records from the asset_record table
-                    $sql = "SELECT employee_id, full_name FROM employee";
-                    $result = mysqli_query($con, $sql);
+                        if ($result) {
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                echo "<option value='" . $row["employee_id"] . "'>" . $row["employee_id"] . "</option>";
+                            }
+                        }
+                    }
+                    ?>
+                </select>
+                <label for="" class="input_n">Item Code</label>
+                <select name="item_code" class="input_t">
+                    <?php
+                    if (isset($_POST['loan_id'])) {
+                        $loan_id = $_POST['loan_id'];
 
-                    // Check if query was successful
-                    if ($result) {
-                        // Loop through each row of the result set and output the item_name value as an option in the select dropdown
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            echo "<option value='" . $row["employee_id"] . "'>" . $row["full_name"] . "</option>";
+                        $sql = "SELECT DISTINCT item_code FROM asset_loan WHERE loan_id = ?";
+                        $stmt = mysqli_prepare($con, $sql);
+                        mysqli_stmt_bind_param($stmt, "s", $loan_id);
+                        mysqli_stmt_execute($stmt);
+                        $result = mysqli_stmt_get_result($stmt);
+
+                        if ($result) {
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                echo "<option value='" . $row["item_code"] . "'>" . $row["item_code"] . "</option>";
+                            }
                         }
                     }
                     ?>
@@ -72,12 +93,11 @@ include 'components/inset.php';
                 <label for="" class="input_n">Document Date</label>
                 <input type="date" name="doc_date" class="input_t"> <br>
                 <label for="" class="input_n">Description</label>
-                <input type="taxetarea" name="description" class="input_t"> <br>
-                <button type="submit" class="button_s" name="submit_l" required>Send Message</button>
+                <input type="text" name="description" class="input_t"> <br>
+                <button type="submit" class="button_s" name="submit_r">Send Message</button>
             </form>
         </div>
     </section>
-
 
     <script src="asset/js/js.js"></script>
     <script src="components/inset.js"></script>

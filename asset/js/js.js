@@ -4,6 +4,7 @@
  const assetReturnSection = document.querySelector('.asset_re');
  const assetDetailSection = document.querySelector('.asset_d');
  const assetEmployeeSection = document.querySelector('.asset_e');
+ const assetBuySection = document.querySelector('.asset_b');
 
  // Get the li elements to add event listeners to
  const assetRecordLi = document.querySelector('#asset_record');
@@ -11,6 +12,7 @@
  const assetReturnLi = document.querySelector('#asset_return');
  const assetDetailLi = document.querySelector('#asset_detail');
  const assetEmployeeLi = document.querySelector('#asset_employee');
+ const assetBuyLi = document.querySelector('#asset_buy');
 
  // Add click event listeners to the li elements
  assetRecordLi.addEventListener('click', () => {
@@ -19,6 +21,7 @@
      assetReturnSection.style.display = 'none';
      assetDetailSection.style.display = 'none';
      assetEmployeeSection.style.display = 'none';
+     assetBuySection.style.display = 'none';
  });
 
  assetLoanLi.addEventListener('click', () => {
@@ -27,6 +30,7 @@
      assetReturnSection.style.display = 'none';
      assetDetailSection.style.display = 'none';
      assetEmployeeSection.style.display = 'none';
+     assetBuySection.style.display = 'none';
  });
  assetReturnLi.addEventListener('click', () => {
     assetRecordSection.style.display = 'none';
@@ -34,6 +38,7 @@
     assetReturnSection.style.display = 'block';
      assetDetailSection.style.display = 'none';
      assetEmployeeSection.style.display = 'none';
+     assetBuySection.style.display = 'none';
 });
 assetDetailLi.addEventListener('click', () => {
     assetRecordSection.style.display = 'none';
@@ -41,6 +46,7 @@ assetDetailLi.addEventListener('click', () => {
     assetReturnSection.style.display = 'none';
     assetDetailSection.style.display = 'block';
     assetEmployeeSection.style.display = 'none';
+    assetBuySection.style.display = 'none';
 });
 assetEmployeeLi.addEventListener('click', () => {
     assetRecordSection.style.display = 'none';
@@ -48,4 +54,13 @@ assetEmployeeLi.addEventListener('click', () => {
     assetReturnSection.style.display = 'none';
     assetDetailSection.style.display = 'none';
     assetEmployeeSection.style.display = 'block';
+    assetBuySection.style.display = 'none';
+});
+assetBuyLi.addEventListener('click', () => {
+    assetRecordSection.style.display = 'none';
+    assetLoanSection.style.display = 'none';
+    assetReturnSection.style.display = 'none';
+    assetDetailSection.style.display = 'none';
+    assetEmployeeSection.style.display = 'none';
+    assetBuySection.style.display = 'block';
 });
