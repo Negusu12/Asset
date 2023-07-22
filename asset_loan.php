@@ -13,65 +13,93 @@ include 'components/inset.php';
 </head>
 
 <body>
-    <section class="side-menu">
+    <section class="">
         <?php include 'side_menu.php'; ?>
     </section>
-    <section class="asset_l">
-        <div>
-            <h1>Asset Loan</h1>
-        </div>
-        <div class="form_i">
+    <div class="container">
+        <section class="asset_l">
+            <div class="text">
+                Asset Loan
+            </div>
             <form method="post" enctype="multipart/form-data">
-                <label for="" class="input_n">Item Name</label>
-                <select name="item_code" class="input_t">
-                    <option value="">--Select Item Name--</option>
-                    <?php
+                <div class="form-row">
+                    <div class="input-data">
+                        <select name="item_code">
+                            <option value="">--Select Item Name--</option>
+                            <?php
 
-                    // Retrieve all records from the asset_record table
-                    $sql = "SELECT item_code, item_name FROM asset_record";
-                    $result = mysqli_query($con, $sql);
+                            // Retrieve all records from the asset_record table
+                            $sql = "SELECT item_code, item_name FROM asset_record";
+                            $result = mysqli_query($con, $sql);
 
-                    // Check if query was successful
-                    if ($result) {
-                        // Loop through each row of the result set and output the item_name value as an option in the select dropdown
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            echo "<option value='" . $row["item_code"] . "'>" . $row["item_name"] . "</option>";
-                        }
-                    }
-                    ?>
-                </select>
-                <label for="" class="input_n">Employee Name</label>
-                <select name="employee_id" class="input_t">
-                    <option value="">--Select Loaner Name--</option>
-                    <?php
+                            // Check if query was successful
+                            if ($result) {
+                                // Loop through each row of the result set and output the item_name value as an option in the select dropdown
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    echo "<option value='" . $row["item_code"] . "'>" . $row["item_name"] . "</option>";
+                                }
+                            }
+                            ?>
+                        </select>
+                        <div class="underline"></div>
+                    </div>
+                    <div class="input-data">
+                        <select name="employee_id">
+                            <option value="">--Select Loaner Name--</option>
+                            <?php
 
 
-                    // Retrieve all records from the asset_record table
-                    $sql = "SELECT employee_id, full_name FROM employee";
-                    $result = mysqli_query($con, $sql);
+                            // Retrieve all records from the asset_record table
+                            $sql = "SELECT employee_id, full_name FROM employee";
+                            $result = mysqli_query($con, $sql);
 
-                    // Check if query was successful
-                    if ($result) {
-                        // Loop through each row of the result set and output the item_name value as an option in the select dropdown
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            echo "<option value='" . $row["employee_id"] . "'>" . $row["full_name"] . "</option>";
-                        }
-                    }
-                    ?>
-                </select>
-                <label for="" class="input_n">Quantity</label>
-                <input type="number" placeholder="Enter Item Quantity" name="qty" class="input_t">
-                <label for="" class="input_n">Document Date</label>
-                <input type="date" name="doc_date" class="input_t"> <br>
-                <label for="" class="input_n">Description</label>
-                <input type="taxetarea" name="description" class="input_t"> <br>
-                <button type="submit" class="button_s" name="submit_l" required>Send Message</button>
+                            // Check if query was successful
+                            if ($result) {
+                                // Loop through each row of the result set and output the item_name value as an option in the select dropdown
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    echo "<option value='" . $row["employee_id"] . "'>" . $row["full_name"] . "</option>";
+                                }
+                            }
+                            ?>
+                        </select>
+                        <div class="underline"></div>
+                    </div>
+                </div>
+                <div class="form-row">
+
+                    <div class="input-data">
+                        <input type="number" name="qty">
+                        <div class="underline"></div>
+                        <label for="">Quantity</label>
+                    </div>
+                    <div class="input-data">
+                        <input type="date" name="doc_date">
+                        <div class="underline"></div>
+                        <label for="">Document Date</label>
+
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="input-data textarea">
+                        <input type="textarea" rows="8" cols="80" name="description"> <br />
+                        <div class="underline"></div>
+                        <label for="">Discription</label>
+                    </div>
+                </div>
+                <br>
+                <div class="form-row submit-btn">
+                    <div class="input-data">
+                        <div class="inner"></div>
+                        <input type="submit" name="submit_l">
+                    </div>
+                </div>
             </form>
-        </div>
-    </section>
 
-    <script src="asset/js/js.js"></script>
-    <script src="components/inset.js"></script>
+        </section>
+
+
+        <script src="asset/js/js.js"></script>
+        <script src="components/inset.js"></script>
 </body>
 
 </html>

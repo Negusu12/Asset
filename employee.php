@@ -13,31 +13,44 @@ include 'components/inset.php';
 </head>
 
 <body>
-    <section class="side-menu">
+    <section class="">
         <?php include 'side_menu.php'; ?>
     </section>
-    <section class="asset_e">
-        <div class="title_h">
-            <h1>Employee</h1>
-        </div>
-        <div class="form_i">
+    <div class="container">
+        <section class="asset_e">
+            <div class="text">
+                Registed Employee
+            </div>
             <form method="post" enctype="multipart/form-data">
-                <label for="" class="input_n">full name</label>
-                <input type="text" placeholder="Enter Item Code" name="full_name" class="input_t">
-                <label for="" class="input_n">Department</label>
-                <select type="text" name="department" class="input_t">
-                    <option value="">--Select Department Here--</option>
-                    <option value="it">IT</option>
-                    <option value="Operation">Operation</option>
-                    <option value="hr">HR</option>
-                    <option value="hr">Technical Department</option>
-                </select>
+                <div class="form-row">
+                    <div class="input-data">
+                        <input type="text" name="full_name">
+                        <div class="underline"></div>
+                        <label for="">Employee Name</label>
+                    </div>
+                    <div class="input-data">
+                        <select type="text" name="department">
+                            <option value="">--Select Department Here--</option>
+                            <option value="it">IT</option>
+                            <option value="Operation">Operation</option>
+                            <option value="hr">HR</option>
+                            <option value="hr">Technical Department</option>
+                            <option value="Finance">Finance Department</option>
+                        </select>
+                        <div class="underline"></div>
+                    </div>
+                </div>
 
-                <button type="submit" class="button_s" name="submit_e" required>Send Message</button>
+                <div class="form-row submit-btn">
+                    <div class="input-data">
+                        <div class="inner"></div>
+                        <input type="submit" name="submit_e">
+                    </div>
+                </div>
             </form>
-        </div>
+    </div>
     </section>
-
+    </div>
     <script src="asset/js/js.js"></script>
     <script src="components/inset.js"></script>
 </body>

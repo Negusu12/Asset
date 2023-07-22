@@ -13,7 +13,7 @@ if (isset($_POST['submit'])) {
     values ('$item_code','$item_name', '$qty', '$doc_date', '$description')";
     $result = mysqli_query($con, $sql);
     if ($result) {
-        header('Location: index.php');
+        header('Location: asset_record.php');
         exit();
     } else {
         // Display an error message
@@ -33,7 +33,7 @@ if (isset($_POST['submit_e'])) {
     values ('$full_name','$department')";
     $result = mysqli_query($con, $sql);
     if ($result) {
-        header('Location: index.php');
+        header('Location: employee.php');
         exit();
     } else {
         // Display an error message
@@ -79,7 +79,7 @@ if (isset($_POST['submit_l'])) {
 
             if ($insert_result) {
                 // Redirect the user to another page
-                header('Location: index.php');
+                header('Location: asset_loan.php');
                 exit();
             } else {
                 // Display an error message
