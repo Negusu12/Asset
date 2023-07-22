@@ -13,7 +13,11 @@ if (isset($_POST['submit'])) {
     values ('$item_code','$item_name', '$qty', '$doc_date', '$description')";
     $result = mysqli_query($con, $sql);
     if ($result) {
-        echo "sucess";
+        header('Location: index.php');
+        exit();
+    } else {
+        // Display an error message
+        $error_message = "Error: Failed to add Record.";
     }
 }
 
@@ -29,9 +33,14 @@ if (isset($_POST['submit_e'])) {
     values ('$full_name','$department')";
     $result = mysqli_query($con, $sql);
     if ($result) {
-        echo "sucess";
+        header('Location: index.php');
+        exit();
+    } else {
+        // Display an error message
+        $error_message = "Error: Failed to add employee.";
     }
 }
+
 
 // End Register Employee
 
@@ -118,7 +127,7 @@ if (isset($_POST['submit_b'])) {
 
         if ($insert_result) {
             // Redirect the user to another page
-            header('Location: index.php');
+            header('Location: asset_buy.php');
             exit();
         } else {
             // Display an error message
@@ -185,7 +194,7 @@ if (isset($_POST['submit_r'])) {
 
             if ($insert_result) {
                 // Redirect the user to another page
-                header('Location: dev.php');
+                header('Location: asset_return.php');
                 exit();
             } else {
                 // Display an error message
