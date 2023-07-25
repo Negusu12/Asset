@@ -14,7 +14,6 @@ include("connect.php");
     <link rel="stylesheet" href="lib/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="asset/css/style.css">
 
-
 </head>
 
 <body class="body">
@@ -27,46 +26,37 @@ include("connect.php");
     <section class="report_table">
 
         <div class="text">
-            Assets on Loan
+            Assets on Hand
         </div>
         <div class="table-responsive" id="no-more-tables">
             <table class="table bg-white table-bordered mydatatable" id="mydatatable">
                 <thead class="tbll text-dark">
                     <tr>
-                        <th scope="col">Loan ID</th>
+                        <th scope="col">Item Code</th>
                         <th scope="col">Item Name</th>
-                        <th scope="col">Full Name</th>
-                        <th scope="col">Quantity</th>
+                        <th scope="col">Quantity/th>
                         <th scope="col">Document Date</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Action</th>
+                        <th scope="col">Discription</th>
                     </tr>
                 </thead>
 
                 <?php
                 include "connect.php";
-                $sql = "select * from asset_loan_v where qty > 0";
+                $sql = "select * from asset_record";
                 $result = $con->query($sql);
                 if (!$result) {
                     die("Invalid query!");
                 }
                 while ($row = $result->fetch_assoc()) {
-                    $id = $row['loan_id'];
-                    echo '<tr>
-          <td>' . $row['loan_id'] . '</td>
-          <td>' . $row['item_name'] . '</td>
-          <td>' . $row['full_name'] . '</td>
-          <td>' . $row['qty'] . '</td>
-          <td>' . $row['doc_date'] . '</td>
-          <td>' . $row['description'] . '</td>
-          <td>
-            <ul class="action_list">
-              <li class="action_item action_view" title="View">
-                <a href="components/print_loan1.php?loan_id=' . $row['loan_id'] . '" target="_blank"><i class="fa fa-eye"></i></a>
-              </li>
-            </ul>
-          </td>
-        </tr>';
+                    echo "
+      <tr>
+      <td>$row[item_code]</td>
+        <td>$row[item_name]</td>
+        <td>$row[qty]</td>
+        <td>$row[doc_date]</td>
+        <td>$row[description]</td>
+      </tr>
+      ";
                 }
                 ?>
 

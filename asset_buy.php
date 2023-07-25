@@ -26,6 +26,7 @@ include 'components/inset.php';
                 <div class="form-row">
                     <div class="input-data">
                         <select name="item_code" placeholder="Item Name">
+                            <option value="">--Select Itm Name--</option>
                             <?php
 
 

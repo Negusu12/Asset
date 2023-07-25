@@ -24,7 +24,10 @@
             <li><a href="asset_loan.php"><i class="fas fa-solid fa-landmark"></i>Asset Loan</a></li>
             <li><a href="asset_return.php"><i class="fas fa-regular fa-thumbs-up"></i>Asset Return</a></li>
             <li><a href="employee.php"><i class=" fas fa-solid fa-plus"></i>Add Employee</a></li>
-            <li><a href="#"><i class="far fa-envelope"></i>Contact</a></li>
+            <li><a href="report_asset_onhand.php"><i class="far fa-envelope"></i>Asset On Hand</a></li>
+            <li><a href="report_loan.php"><i class="far fa-envelope"></i>Asset On Loan</a></li>
+            <li><a href="report_return.php"><i class="far fa-envelope"></i>Asset Return</a></li>
+
         </ul>
     </div>
 </body>

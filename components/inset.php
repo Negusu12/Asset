@@ -176,7 +176,7 @@ if (isset($_POST['submit_r'])) {
     // Check if the new quantity is less than 0
     if ($new_qty < 0) {
         // Display an error message
-        $error_message = "Error: The selected item is out of stock.";
+        $error_message = "Error: The Quantity you are returning is more than you took.";
     } else {
         // Update the qty column in the asset_loan table with the new quantity
         $update_sql = "UPDATE asset_loan SET qty='$new_qty' WHERE loan_id='$loan_id'";

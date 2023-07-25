@@ -62,7 +62,7 @@ include("connect.php");
           <td>
             <ul class="action_list">
               <li class="action_item action_view" title="View">
-                <a href="components/print_loan1.php?loan_id=' . $row['loan_id'] . '" target="_blank"><i class="fa fa-eye"></i></a>
+                <a href="components/print_loan.php?loan_id=' . $row['loan_id'] . '" target="_blank"><i class="fa fa-eye"></i></a>
               </li>
             </ul>
           </td>
