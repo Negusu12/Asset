@@ -11,6 +11,9 @@ include 'components/inset.php';
     <title>Document</title>
     <link rel="stylesheet" href="asset/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel="stylesheet" href="asset/css/sweetalert2.min.css">
+
+
 </head>
 
 <body>
@@ -134,6 +137,7 @@ include 'components/inset.php';
 
     <script src="asset/js/js.js"></script>
     <script src="components/inset.js"></script>
+    <script src="asset/js/sweetalert2.min.js"></script>
 </body>
 
 </html>

@@ -1,5 +1,12 @@
 <?php
 include 'components/inset.php';
+if (isset($_GET['success_message'])) {
+    // Escape the message to prevent XSS attacks
+    $success_message = htmlspecialchars($_GET['success_message']);
+    // Display the message using JavaScript
+    echo '<script>alert("' . $success_message . '"); window.location.href = "asset_record.php";</script>';
+    exit(); // Exit to prevent the rest of the page from loading
+}
 ?>
 
 <!DOCTYPE html>
@@ -11,6 +18,7 @@ include 'components/inset.php';
     <title>Document</title>
     <link rel="stylesheet" href="asset/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel="stylesheet" href="asset/css/sweetalert2.min.css">
 </head>
 
 <body>
@@ -19,6 +27,13 @@ include 'components/inset.php';
     </section>
     <div class="container">
         <section class="asset_r">
+            <?php
+            /* Add the success message here */
+            if (isset($_SESSION['success_message'])) {
+                echo '<div class="alert alert-success">' . $_SESSION['success_message'] . '</div>';
+                unset($_SESSION['success_message']);
+            }
+            ?>
             <div class="text">
                 Asset Register
             </div>
@@ -26,7 +41,7 @@ include 'components/inset.php';
             <form method="post" enctype="multipart/form-data">
                 <div class="form-row">
                     <div class="input-data">
-                        <input type="text" name="item_code">
+                        <input type="text" oninvalid="this.setCustomValidity('Enter Item Code Here')" oninput="setCustomValidity('')" required name="item_c">
                         <div class="underline"></div>
                         <label for="">Item Code</label>
                     </div>
@@ -63,10 +78,12 @@ include 'components/inset.php';
                     </div>
                 </div>
             </form>
+        </section>
     </div>
-    </section>
     <script src="asset/js/js.js"></script>
     <script src="components/inset.js"></script>
+    <script src="asset/js/sweetalert2.min.js"></script>
+
 </body>
 
 </html>

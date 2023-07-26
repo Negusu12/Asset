@@ -173,6 +173,9 @@ select,
     bottom: 10px;
     font-size: 16px;
     transition: all 0.3s ease;
+    transform: translateY(-20px);
+    font-size: 14px;
+    color: #3498db;
 }
 
 .textarea label {
@@ -297,7 +300,6 @@ body {
 }
 
 .sidebar ul a {
-    display: block;
     height: 100%;
     width: 100%;
     line-height: 65px;
@@ -305,8 +307,6 @@ body {
     color: white;
     padding-left: 40px;
     box-sizing: border-box;
-    border-bottom: 1px solid black;
-    border-top: 1px solid rgba(255, 255, 255, .1);
     transition: .4s;
 }
 
@@ -431,4 +431,28 @@ section {
     #no-more-tables tr {
         border-bottom: 1px solid #ccc;
     }
+}
+
+.action_list {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    width: 100px;
+}
+
+.action_item {
+    display: inline-block;
+    margin: 0 5px;
+    font-size: 18px;
+    color: #007bff;
+    cursor: pointer;
+    transition: color 0.2s ease-out;
+}
+
+.action_item:hover {
+    color: #0062cc;
+    margin-left: -45px;
 }

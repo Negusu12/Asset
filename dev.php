@@ -1,125 +1,85 @@
 <?php
-
-include("connect.php");
-
+include 'components/inset.php';
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <title>Asset Management System</title>
-    <link rel="icon" href="images/logo.png" type="image">
-    <link rel="stylesheet" href="lib/css/bootstrap.css">
-    <link rel="stylesheet" href="lib/css/dataTables.bootstrap4.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
     <link rel="stylesheet" href="asset/css/style.css">
-
-
+    <link rel="stylesheet" href="asset/css/sweetalert2.min.css">
 </head>
 
-<body class="body">
-
-
+<body>
     <section class="">
         <?php include 'side_menu.php'; ?>
     </section>
+    <div class="container">
+        <section class="asset_b">
+            <div class="text">
+                Buy Asset
+            </div>
 
-    <section class="report_table">
-
-        <div class="text">
-            Assets on Loan
-        </div>
-        <div class="table-responsive" id="no-more-tables">
-            <table class="table bg-white table-bordered mydatatable" id="mydatatable">
-                <thead class="tbll text-dark">
-                    <tr>
-                        <th scope="col">Loan ID</th>
-                        <th scope="col">Item Name</th>
-                        <th scope="col">Full Name</th>
-                        <th scope="col">Quantity</th>
-                        <th scope="col">Document Date</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-
-                <?php
-                include "connect.php";
-                $sql = "select * from asset_loan_v where qty > 0";
-                $result = $con->query($sql);
-                if (!$result) {
-                    die("Invalid query!");
-                }
-                while ($row = $result->fetch_assoc()) {
-                    $id = $row['loan_id'];
-                    echo '<tr>
-          <td>' . $row['loan_id'] . '</td>
-          <td>' . $row['item_name'] . '</td>
-          <td>' . $row['full_name'] . '</td>
-          <td>' . $row['qty'] . '</td>
-          <td>' . $row['doc_date'] . '</td>
-          <td>' . $row['description'] . '</td>
-          <td>
-            <ul class="action_list">
-              <li class="action_item action_view" title="View">
-                <a href="components/print_loan1.php?loan_id=' . $row['loan_id'] . '" target="_blank"><i class="fa fa-eye"></i></a>
-              </li>
-            </ul>
-          </td>
-        </tr>';
-                }
-                ?>
-
-                </tbody>
-            </table>
-        </div>
-    </section>
-
-    <script src="lib/jquery-3.3.1.min.js"></script>
-    <script src="lib/popper.min.js"></script>
-    <script src="lib/jquery.dataTables.min.js"></script>
-    <script src="lib/dataTables.bootstrap4.min.js"></script>
-    <script src="lib/dataTables.buttons.min.js"></script>
-    <script src="lib/buttons.bootstrap4.min.js"></script>
-    <script src="lib/jszip.min.js"></script>
-    <script src="lib/pdfmake.min.js"></script>
-    <script src="lib/vfs_fonts.js"></script>
-    <script src="lib/buttons.html5.min.js"></script>
-    <script src="lib/buttons.print.min.js"></script>
-    <script src="lib/buttons.colVis.min.js"></script>
-    <script src="lib/dataTables.responsive.min.js"></script>
-    <script src="lib/responsive.bootstrap4.min.js"></script>
+            <form method="post" enctype="multipart/form-data">
+                <div class="form-row">
+                    <div class="input-data">
+                        <select name="item_code" placeholder="Item Name">
+                            <option value="">--Select Itm Name--</option>
+                            <?php
 
 
-    <script>
-        $(document).ready(function() {
-            var table = $('#mydatatable').DataTable({
-                ordering: true,
-                buttons: ['excel', 'pdf', 'colvis'],
-                pagingType: 'full_numbers',
-                lengthMenu: [
-                    [10, 25, 50, -1],
-                    [10, 25, 50, "All"]
-                ]
-            });
+                            // Retrieve all records from the asset_record table
+                            $sql = "SELECT item_code, item_name FROM asset_record";
+                            $result = mysqli_query($con, $sql);
 
+                            // Check if query was successful
+                            if ($result) {
+                                // Loop through each row of the result set and output the item_name value as an option in the select dropdown
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    echo "<option value='" . $row["item_code"] . "'>" . $row["item_name"] . "</option>";
+                                }
+                            }
+                            ?>
+                        </select>
+                        <div class="underline"></div>
+                    </div>
+                    <div class="input-data">
+                        <input type="number" name="qty">
+                        <div class="underline"></div>
+                        <label for="">Quantity</label>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="input-data">
+                        <input type="date" name="doc_date">
+                        <div class="underline"></div>
+                        <label for="">Document Date</label>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="input-data textarea">
+                        <input type="textarea" rows="8" cols="80" name="description"> <br />
+                        <div class="underline"></div>
+                        <label for="">Discription</label>
+                    </div>
+                </div>
+                <br>
+                <div class="form-row submit-btn">
+                    <div class="input-data">
+                        <div class="inner"></div>
+                        <input type="submit" name="submit_b">
+                    </div>
+                </div>
+            </form>
 
-            table.columns().every(function() {
-                var that = this;
-                $('input', this.header()).on('keyup change', function() {
-                    if (that.search() !== this.value) {
-                        that.search(this.value).draw();
-                    }
-                });
-            });
-
-            table.buttons().container()
-                .appendTo('#mydatatable_wrapper .col-md-6:eq(0)');
-        });
-    </script>
-
-
-
+        </section>
+    </div>
+    <script src="asset/js/sweetalert2.min.js"></script>
+    <script src="asset/js/js.js"></script>
+    <script src="components/inset.js"></script>
 </body>
 
 </html>

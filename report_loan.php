@@ -36,7 +36,8 @@ include("connect.php");
                         <th scope="col">Loan ID</th>
                         <th scope="col">Item Name</th>
                         <th scope="col">Full Name</th>
-                        <th scope="col">Quantity</th>
+                        <th scope="col">Loaned Quantity</th>
+                        <th scope="col">Quantity on Loan</th>
                         <th scope="col">Document Date</th>
                         <th scope="col">Description</th>
                         <th scope="col">Action</th>
@@ -56,6 +57,7 @@ include("connect.php");
           <td>' . $row['loan_id'] . '</td>
           <td>' . $row['item_name'] . '</td>
           <td>' . $row['full_name'] . '</td>
+          <td>' . $row['qty_taken'] . '</td>
           <td>' . $row['qty'] . '</td>
           <td>' . $row['doc_date'] . '</td>
           <td>' . $row['description'] . '</td>

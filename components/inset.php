@@ -3,21 +3,41 @@ include 'connect.php';
 
 //Register Asset
 if (isset($_POST['submit'])) {
-    $item_code = /*addlashes so it accept commas and sympols*/ addslashes($_POST['item_code']);
+    $item_c = /*addlashes so it accept commas and sympols*/ addslashes($_POST['item_c']);
     $item_name = addslashes($_POST['item_name']);
     $qty = addslashes($_POST['qty']);
     $doc_date = addslashes($_POST['doc_date']);
     $description = addslashes($_POST['description']);
 
-    $sql = "insert into `asset_record`(item_code,item_name,qty,doc_date,description)
-    values ('$item_code','$item_name', '$qty', '$doc_date', '$description')";
+    $sql = "insert into `asset_record`(item_c,item_name,qty,doc_date,description)
+    values ('$item_c','$item_name', '$qty', '$doc_date', '$description')";
     $result = mysqli_query($con, $sql);
     if ($result) {
-        header('Location: asset_record.php');
-        exit();
+        echo "<script>
+        window.onload = function() {
+            // Display a success message using SweetAlert
+            Swal.fire({
+                icon: 'success',
+                title: 'Item Has been Sucessfully Added',
+                showConfirmButton: true,
+                confirmButtonText: 'OK',
+                timer: 2000
+            });
+        }
+     </script>";
     } else {
-        // Display an error message
-        $error_message = "Error: Failed to add Record.";
+        echo "<script>
+        window.onload = function() {
+            // Display a success message using SweetAlert
+            Swal.fire({
+                icon: 'error',
+                title: 'faild to record item.',
+                showConfirmButton: false,
+                showDenyButton: true,
+                denyButtonText: 'OK'
+            });
+        }
+     </script>";
     }
 }
 
@@ -33,11 +53,31 @@ if (isset($_POST['submit_e'])) {
     values ('$full_name','$department')";
     $result = mysqli_query($con, $sql);
     if ($result) {
-        header('Location: employee.php');
-        exit();
+        echo "<script>
+                window.onload = function() {
+                    // Display a success message using SweetAlert
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Employee has bee registered successfully',
+                        showConfirmButton: true,
+                        confirmButtonText: 'OK',
+                        timer: 2000
+                    });
+                }
+             </script>";
     } else {
-        // Display an error message
-        $error_message = "Error: Failed to add employee.";
+        echo "<script>
+                window.onload = function() {
+                    // Display a success message using SweetAlert
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'faild to add employee.',
+                        showConfirmButton: false,
+                        showDenyButton: true,
+                        denyButtonText: 'OK'
+                    });
+                }
+             </script>";
     }
 }
 
@@ -50,6 +90,7 @@ if (isset($_POST['submit_l'])) {
     $item_code = /*addslashes so it accept commas and symbols*/ addslashes($_POST['item_code']);
     $employee_id = addslashes($_POST['employee_id']);
     $qty = addslashes($_POST['qty']);
+    $qty_taken = addslashes($_POST['qty']);
     $doc_date = addslashes($_POST['doc_date']);
     $description = addslashes($_POST['description']);
 
@@ -64,8 +105,18 @@ if (isset($_POST['submit_l'])) {
 
     // Check if the new quantity is less than 0
     if ($new_qty < 0) {
-        // Display an error message
-        $error_message = "Error: The selected item is out of stock.";
+        echo "<script>
+                window.onload = function() {
+                    // Display a success message using SweetAlert
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'The selected item is out of stock.',
+                        showConfirmButton: false,
+                        showDenyButton: true,
+                        denyButtonText: 'OK'
+                    });
+                }
+             </script>";
     } else {
         // Update the qty column in the asset_record table with the new quantity
         $update_sql = "UPDATE asset_record SET qty='$new_qty' WHERE item_code='$item_code'";
@@ -73,21 +124,50 @@ if (isset($_POST['submit_l'])) {
 
         if ($update_result) {
             // Insert the data into the asset_loan table
-            $insert_sql = "INSERT INTO asset_loan (item_code, employee_id, qty, doc_date, description)
-                           VALUES ('$item_code', '$employee_id', '$qty', '$doc_date', '$description')";
+            $insert_sql = "INSERT INTO asset_loan (item_code, employee_id, qty, qty_taken,doc_date, description)
+            VALUES ('$item_code', '$employee_id', '$qty', '$qty_taken', '$doc_date', '$description')";
             $insert_result = mysqli_query($con, $insert_sql);
 
             if ($insert_result) {
-                // Redirect the user to another page
-                header('Location: asset_loan.php');
-                exit();
+                echo "<script>
+                window.onload = function() {
+                    // Display a success message using SweetAlert
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Loan submited successfully',
+                        showConfirmButton: true,
+                        confirmButtonText: 'OK',
+                        timer: 2000
+                    });
+                }
+             </script>";
             } else {
-                // Display an error message
-                $error_message = "Error: Failed to insert data into the asset_loan table.";
+                echo "<script>
+                window.onload = function() {
+                    // Display a success message using SweetAlert
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Failed to insert data into the asset_loan table.',
+                        showConfirmButton: false,
+                        showDenyButton: true,
+                        denyButtonText: 'OK'
+                    });
+                }
+             </script>";
             }
         } else {
-            // Display an error message
-            $error_message = "Error: Failed to update the asset_record table.";
+            echo "<script>
+            window.onload = function() {
+                // Display a success message using SweetAlert
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Failed to update the asset_record table.',
+                    showConfirmButton: false,
+                    showDenyButton: true,
+                    denyButtonText: 'OK'
+                });
+            }
+         </script>";
         }
     }
 
@@ -96,6 +176,8 @@ if (isset($_POST['submit_l'])) {
         echo $error_message;
     }
 }
+
+
 
 // End Asset Loan
 
@@ -126,21 +208,33 @@ if (isset($_POST['submit_b'])) {
         $insert_result = mysqli_query($con, $insert_sql);
 
         if ($insert_result) {
-            // Redirect the user to another page
-            header('Location: asset_buy.php');
-            exit();
-        } else {
-            // Display an error message
-            $error_message = "Error: Failed to insert data into the buy_asset table.";
-        }
-    } else {
-        // Display an error message
-        $error_message = "Error: Failed to update the asset_record table.";
+            // Display a success message using SweetAlert
+            echo "<script>
+    window.onload = function() {
+        // Display a success message using SweetAlert
+        Swal.fire({
+            icon: 'success',
+            title: 'item updated successfully',
+            showConfirmButton: true,
+            confirmButtonText: 'OK',
+            timer: 2000
+        });
     }
-
-    // Display the error message, if any
-    if (isset($error_message)) {
-        echo $error_message;
+ </script>";
+        } else {
+            echo "<script>
+            window.onload = function() {
+                // Display a success message using SweetAlert
+                Swal.fire({
+                    icon: 'error',
+                    title: 'faild to insert data to buy asset table.',
+                    showConfirmButton: false,
+                    showDenyButton: true,
+                    denyButtonText: 'OK'
+                });
+            }
+         </script>";
+        }
     }
 }
 // End Buy A new Asset
@@ -175,8 +269,18 @@ if (isset($_POST['submit_r'])) {
 
     // Check if the new quantity is less than 0
     if ($new_qty < 0) {
-        // Display an error message
-        $error_message = "Error: The Quantity you are returning is more than you took.";
+        echo "<script>
+        window.onload = function() {
+            // Display a success message using SweetAlert
+            Swal.fire({
+                icon: 'error',
+                title: 'The Quantity you are returning is more than you took.',
+                showConfirmButton: false,
+                showDenyButton: true,
+                denyButtonText: 'OK'
+            });
+        }
+     </script>";
     } else {
         // Update the qty column in the asset_loan table with the new quantity
         $update_sql = "UPDATE asset_loan SET qty='$new_qty' WHERE loan_id='$loan_id'";
@@ -193,16 +297,45 @@ if (isset($_POST['submit_r'])) {
             $insert_result = mysqli_query($con, $insert_sql);
 
             if ($insert_result) {
-                // Redirect the user to another page
-                header('Location: asset_return.php');
-                exit();
+                echo "<script>
+                window.onload = function() {
+                    // Display a success message using SweetAlert
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Item Returned Sucessfuly',
+                        showConfirmButton: true,
+                        confirmButtonText: 'OK',
+                        timer: 2000
+                    });
+                }
+             </script>";
             } else {
-                // Display an error message
-                $error_message = "Error: Failed to insert data into the asset_loan table.";
+                echo "<script>
+                window.onload = function() {
+                    // Display a success message using SweetAlert
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Failed to insert data into the asset_loan table.',
+                        showConfirmButton: false,
+                        showDenyButton: true,
+                        denyButtonText: 'OK'
+                    });
+                }
+             </script>";
             }
         } else {
-            // Display an error message
-            $error_message = "Error: Failed to update the asset_loan or asset_record table.";
+            echo "<script>
+                window.onload = function() {
+                    // Display a success message using SweetAlert
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Failed to update the asset_loan or asset_record table.',
+                        showConfirmButton: false,
+                        showDenyButton: true,
+                        denyButtonText: 'OK'
+                    });
+                }
+             </script>";
         }
     }
 

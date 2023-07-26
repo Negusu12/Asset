@@ -10,6 +10,7 @@ include 'components/inset.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="asset/css/style.css">
+    <link rel="stylesheet" href="asset/css/sweetalert2.min.css">
 </head>
 
 <body>
@@ -100,6 +101,7 @@ include 'components/inset.php';
 
         <script src="asset/js/js.js"></script>
         <script src="components/inset.js"></script>
+        <script src="asset/js/sweetalert2.min.js"></script>
 </body>
 
 </html>

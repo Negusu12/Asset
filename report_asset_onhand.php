@@ -34,7 +34,7 @@ include("connect.php");
                     <tr>
                         <th scope="col">Item Code</th>
                         <th scope="col">Item Name</th>
-                        <th scope="col">Quantity/th>
+                        <th scope="col">Quantity</th>
                         <th scope="col">Document Date</th>
                         <th scope="col">Discription</th>
                     </tr>
@@ -50,7 +50,7 @@ include("connect.php");
                 while ($row = $result->fetch_assoc()) {
                     echo "
       <tr>
-      <td>$row[item_code]</td>
+      <td>$row[item_c]</td>
         <td>$row[item_name]</td>
         <td>$row[qty]</td>
         <td>$row[doc_date]</td>
