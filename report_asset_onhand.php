@@ -1,6 +1,11 @@
 <?php
 
+session_start();
+include 'components/inset.php';
 include("connect.php");
+include("components/functions.php");
+
+$user_data = check_login($con);
 
 ?>
 <!DOCTYPE html>
@@ -48,12 +53,14 @@ include("connect.php");
                     die("Invalid query!");
                 }
                 while ($row = $result->fetch_assoc()) {
+                    // Format the doc_date column as "dd month yyyy"
+                    $doc_date = date("d F Y", strtotime($row['doc_date']));
                     echo "
       <tr>
       <td>$row[item_c]</td>
         <td>$row[item_name]</td>
         <td>$row[qty]</td>
-        <td>$row[doc_date]</td>
+        <td>$doc_date</td>
         <td>$row[description]</td>
       </tr>
       ";

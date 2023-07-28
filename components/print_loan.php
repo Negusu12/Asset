@@ -13,6 +13,7 @@ echo '<!DOCTYPE html>
 <head>
     <meta charset="utf-8">
     <title>Asset Management System - Print Record</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <style>
         /* Add your print styles here */
         body {
@@ -45,7 +46,9 @@ echo '<!DOCTYPE html>
         @media print {
             .print-button {
                 display: none;
+                
             }
+            
         }
         /* Style the signature section */
         .signature-section {
@@ -85,7 +88,10 @@ echo '<!DOCTYPE html>
             font-family:sans-serif;
             
         }
-        
+        button.print-button {
+            height: 50px;
+            weidth: 50px;
+        }
 
     </style>
 </head>
@@ -136,7 +142,7 @@ echo '<!DOCTYPE html>
                 </label>
             </form>
         </div>
-        <button class="print-button" onclick="window.print()"><img src="printer_icon.png" alt="Print"></button>
+        <button class="print-button" onclick="window.print()"><i class="fa-solid fa-print fa-2xl"></i></button>
     </div>
 </body>
 </html>';

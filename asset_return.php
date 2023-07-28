@@ -1,5 +1,10 @@
 <?php
+session_start();
 include 'components/inset.php';
+include("connect.php");
+include("components/functions.php");
+
+$user_data = check_login($con);
 ?>
 
 <!DOCTYPE html>
@@ -12,8 +17,6 @@ include 'components/inset.php';
     <link rel="stylesheet" href="asset/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
     <link rel="stylesheet" href="asset/css/sweetalert2.min.css">
-
-
 </head>
 
 <body>
@@ -31,8 +34,8 @@ include 'components/inset.php';
             <form method="post" enctype="multipart/form-data">
                 <div class="form-row">
                     <div class="input-data">
-                        <select name="loan_id" placeholder="Name" class="form__input" onchange="this.form.submit()">
-                            <option value=""> Select Loan ID</option>
+                        <select name="loan_id" placeholder="Name" class="form__input" onchange="this.form.submit()" oninvalid="this.setCustomValidity('Select Loan ID Here')" oninput="setCustomValidity('')" required>
+                            <option value=""></option>
                             <?php
                             $sql = "SELECT DISTINCT loan_id FROM asset_loan where qty > 0";
                             $result = mysqli_query($con, $sql);
@@ -103,17 +106,22 @@ include 'components/inset.php';
                         <div class="underline"></div>
                     </div>
                     <div class="input-data">
-                        <input type="number" name="qty">
+                        <input type="number" name="qty" oninvalid="this.setCustomValidity('Enter Quantity Here')" oninput="setCustomValidity('')" required>
                         <div class="underline"></div>
                         <label for="">Quantity</label>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="input-data">
-                        <input type="date" name="doc_date">
+                        <input type="date" name="doc_date" id="doc_date" oninvalid="this.setCustomValidity('Enter Date Here')" oninput="setCustomValidity('')" required>
                         <div class="underline"></div>
-                        <label for="">Document Date</label>
+                        <label for="doc_date">Document Date</label>
                     </div>
+                </div>
+                <div class="username_s">
+                    <input type="text" name="user_name" value="<?php echo $user_data['user_name']; ?>">
+                    <div class="underline"></div>
+                    <label for="">qwert</label>
                 </div>
                 <div class="form-row">
                     <div class="input-data textarea">

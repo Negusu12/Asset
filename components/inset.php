@@ -1,5 +1,5 @@
 <?php
-include 'connect.php';
+include('connect.php');
 
 //Register Asset
 if (isset($_POST['submit'])) {
@@ -8,9 +8,10 @@ if (isset($_POST['submit'])) {
     $qty = addslashes($_POST['qty']);
     $doc_date = addslashes($_POST['doc_date']);
     $description = addslashes($_POST['description']);
+    $user_name = addslashes($_POST['user_name']);
 
-    $sql = "insert into `asset_record`(item_c,item_name,qty,doc_date,description)
-    values ('$item_c','$item_name', '$qty', '$doc_date', '$description')";
+    $sql = "insert into `asset_record`(item_c,item_name,qty,doc_date,description,user_name)
+    values ('$item_c','$item_name', '$qty', '$doc_date', '$description', '$user_name')";
     $result = mysqli_query($con, $sql);
     if ($result) {
         echo "<script>
@@ -93,6 +94,7 @@ if (isset($_POST['submit_l'])) {
     $qty_taken = addslashes($_POST['qty']);
     $doc_date = addslashes($_POST['doc_date']);
     $description = addslashes($_POST['description']);
+    $user_name = addslashes($_POST['user_name']);
 
     // Retrieve the current quantity for the selected item_code from the asset_record table
     $sql = "SELECT qty FROM asset_record WHERE item_code='$item_code'";
@@ -124,8 +126,8 @@ if (isset($_POST['submit_l'])) {
 
         if ($update_result) {
             // Insert the data into the asset_loan table
-            $insert_sql = "INSERT INTO asset_loan (item_code, employee_id, qty, qty_taken,doc_date, description)
-            VALUES ('$item_code', '$employee_id', '$qty', '$qty_taken', '$doc_date', '$description')";
+            $insert_sql = "INSERT INTO asset_loan (item_code, employee_id, qty, qty_taken,doc_date, user_name, description)
+                           VALUES ('$item_code', '$employee_id', '$qty', '$qty_taken', '$doc_date', '$user_name', '$description')";
             $insert_result = mysqli_query($con, $insert_sql);
 
             if ($insert_result) {
@@ -189,7 +191,7 @@ if (isset($_POST['submit_b'])) {
     $qty = addslashes($_POST['qty']);
     $doc_date = addslashes($_POST['doc_date']);
     $description = addslashes($_POST['description']);
-
+    $user_name = addslashes($_POST['user_name']);
     // Retrieve the current quantity for the selected item_code from the asset_record table
     $sql = "SELECT qty FROM asset_record WHERE item_code='$item_code'";
     $result = mysqli_query($con, $sql);
@@ -203,8 +205,8 @@ if (isset($_POST['submit_b'])) {
 
     if ($update_result) {
         // Insert the data into the asset_loan table
-        $insert_sql = "INSERT INTO buy_asset (item_code, qty, doc_date, description)
-                           VALUES ('$item_code', '$qty', '$doc_date', '$description')";
+        $insert_sql = "INSERT INTO buy_asset (item_code, qty, doc_date, description, user_name)
+                           VALUES ('$item_code', '$qty', '$doc_date', '$description', '$user_name')";
         $insert_result = mysqli_query($con, $insert_sql);
 
         if ($insert_result) {
@@ -248,6 +250,7 @@ if (isset($_POST['submit_r'])) {
     $qty = addslashes($_POST['qty']);
     $doc_date = addslashes($_POST['doc_date']);
     $description = addslashes($_POST['description']);
+    $user_name = addslashes($_POST['user_name']);
 
     // Retrieve the current quantity for the selected item_code from the asset_loan table
     $sql = "SELECT qty FROM asset_loan WHERE loan_id='$loan_id'";
@@ -292,8 +295,8 @@ if (isset($_POST['submit_r'])) {
 
         if ($update_result && $update_result_r) {
             // Insert the data into the asset_return table
-            $insert_sql = "INSERT INTO asset_return (loan_id, employee_id, item_code, qty, doc_date, description)
-                           VALUES ('$loan_id', '$employee_id', '$item_code', '$qty', '$doc_date', '$description')";
+            $insert_sql = "INSERT INTO asset_return (loan_id, employee_id, item_code, qty, doc_date, description, user_name)
+                           VALUES ('$loan_id', '$employee_id', '$item_code', '$qty', '$doc_date', '$description', '$user_name')";
             $insert_result = mysqli_query($con, $insert_sql);
 
             if ($insert_result) {
@@ -344,3 +347,82 @@ if (isset($_POST['submit_r'])) {
         echo $error_message;
     }
 }
+
+// End Asset Return
+
+// Change Password
+if (isset($_POST['submitp'])) {
+    $id = addslashes($_POST['id']);
+    $current_passwordd = addslashes($_POST['current_passwordd']);
+    $new_password = addslashes($_POST['new_password']);
+    $confirm_password = addslashes($_POST['confirm_password']);
+
+    // Retrieve the current quantity for the selected item_code from the asset_loan table
+    $sql = "SELECT password FROM users WHERE id='$id'";
+    $result = mysqli_query($con, $sql);
+    $row = mysqli_fetch_assoc($result);
+    $current_password = $row['password'];
+
+    // Check if the new password and confirm password fields match
+    if ($new_password !== $confirm_password) {
+        echo "<script>
+        window.onload = function() {
+            // Display an error message using SweetAlert
+            Swal.fire({
+                icon: 'error',
+                title: 'New Passwords and Confirm Password do not match.',
+                showConfirmButton: false,
+                showDenyButton: true,
+                denyButtonText: 'OK'
+            });
+        }
+     </script>";
+    } else if ($current_password !== $current_passwordd) {
+        // Check if the current password entered by the user is correct
+        echo "<script>
+        window.onload = function() {
+            // Display an error message using SweetAlert
+            Swal.fire({
+                icon: 'error',
+                title: 'Current password is incorrect.',
+                showConfirmButton: false,
+                showDenyButton: true,
+                denyButtonText: 'OK'
+            });
+        }
+     </script>";
+    } else {
+        // Update the password in the database
+        $update_sql = "UPDATE users SET password='$new_password' WHERE id='$id'";
+        $update_result = mysqli_query($con, $update_sql);
+
+        if ($update_result) {
+            echo "<script>
+                window.onload = function() {
+                    // Display a success message using SweetAlert
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Password updated successfully',
+                        showConfirmButton: true,
+                        confirmButtonText: 'OK',
+                        timer: 2000
+                    });
+                }
+             </script>";
+        } else {
+            echo "<script>
+                window.onload = function() {
+                    // Display an error message using SweetAlert
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Password not changed.',
+                        showConfirmButton: false,
+                        showDenyButton: true,
+                        denyButtonText: 'OK'
+                    });
+                }
+             </script>";
+        }
+    }
+}
+// End Change Password

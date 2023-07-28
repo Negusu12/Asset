@@ -1,6 +1,11 @@
 <?php
 
+session_start();
+include 'components/inset.php';
 include("connect.php");
+include("components/functions.php");
+
+$user_data = check_login($con);
 
 ?>
 <!DOCTYPE html>
@@ -40,6 +45,7 @@ include("connect.php");
                         <th scope="col">Quantity on Loan</th>
                         <th scope="col">Document Date</th>
                         <th scope="col">Description</th>
+                        <th scope="col">Prepared By</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -61,6 +67,7 @@ include("connect.php");
           <td>' . $row['qty'] . '</td>
           <td>' . $row['doc_date'] . '</td>
           <td>' . $row['description'] . '</td>
+          <td>' . $row['user_name'] . '</td>
           <td>
             <ul class="action_list">
               <li class="action_item action_view" title="View">

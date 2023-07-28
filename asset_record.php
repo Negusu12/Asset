@@ -1,13 +1,12 @@
 <?php
+session_start();
 include 'components/inset.php';
-if (isset($_GET['success_message'])) {
-    // Escape the message to prevent XSS attacks
-    $success_message = htmlspecialchars($_GET['success_message']);
-    // Display the message using JavaScript
-    echo '<script>alert("' . $success_message . '"); window.location.href = "asset_record.php";</script>';
-    exit(); // Exit to prevent the rest of the page from loading
-}
+include("connect.php");
+include("components/functions.php");
+
+$user_data = check_login($con);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,6 +18,7 @@ if (isset($_GET['success_message'])) {
     <link rel="stylesheet" href="asset/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
     <link rel="stylesheet" href="asset/css/sweetalert2.min.css">
+
 </head>
 
 <body>
@@ -27,13 +27,7 @@ if (isset($_GET['success_message'])) {
     </section>
     <div class="container">
         <section class="asset_r">
-            <?php
-            /* Add the success message here */
-            if (isset($_SESSION['success_message'])) {
-                echo '<div class="alert alert-success">' . $_SESSION['success_message'] . '</div>';
-                unset($_SESSION['success_message']);
-            }
-            ?>
+
             <div class="text">
                 Asset Register
             </div>
@@ -46,21 +40,21 @@ if (isset($_GET['success_message'])) {
                         <label for="">Item Code</label>
                     </div>
                     <div class="input-data">
-                        <input type="text" name="item_name"> <br>
+                        <input type="text" name="item_name" oninvalid="this.setCustomValidity('Enter Item Name Here')" oninput="setCustomValidity('')" required> <br>
                         <div class="underline"></div>
                         <label for="">Item Name</label>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="input-data">
-                        <input type="number" name="qty">
+                        <input type="number" name="qty" oninvalid="this.setCustomValidity('Enter Quantity Here')" oninput="setCustomValidity('')" required>
                         <div class="underline"></div>
                         <label for="">Quantity</label>
                     </div>
                     <div class="input-data">
-                        <input type="date" name="doc_date">
+                        <input type="date" name="doc_date" id="doc_date" oninvalid="this.setCustomValidity('Enter Date Here')" oninput="setCustomValidity('')" required>
                         <div class="underline"></div>
-                        <label for="">Document Date</label>
+                        <label for="doc_date">Document Date</label>
                     </div>
                 </div>
                 <div class="form-row">
@@ -69,6 +63,11 @@ if (isset($_GET['success_message'])) {
                         <div class="underline"></div>
                         <label for="">Discription</label>
                     </div>
+                </div>
+                <div class="username_s">
+                    <input type="text" name="user_name" value="<?php echo $user_data['user_name']; ?>">
+                    <div class="underline"></div>
+                    <label for="">qwert</label>
                 </div>
                 <br>
                 <div class="form-row submit-btn">

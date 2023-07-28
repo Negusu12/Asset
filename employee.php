@@ -1,5 +1,10 @@
 <?php
+session_start();
 include 'components/inset.php';
+include("connect.php");
+include("components/functions.php");
+
+$user_data = check_login($con);
 ?>
 
 <!DOCTYPE html>
@@ -40,6 +45,11 @@ include 'components/inset.php';
                         </select>
                         <div class="underline"></div>
                     </div>
+                    <div class="username_s">
+                        <input type="text" name="user_name" value="<?php echo $user_data['user_name']; ?>">
+                        <div class="underline"></div>
+                        <label for="">qwert</label>
+                    </div>
                 </div>
 
                 <div class="form-row submit-btn">
@@ -55,7 +65,6 @@ include 'components/inset.php';
     <script src="asset/js/js.js"></script>
     <script src="components/inset.js"></script>
     <script src="asset/js/sweetalert2.min.js"></script>
-
 </body>
 
 </html>

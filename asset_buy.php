@@ -1,5 +1,10 @@
 <?php
+session_start();
 include 'components/inset.php';
+include("connect.php");
+include("components/functions.php");
+
+$user_data = check_login($con);
 ?>
 
 <!DOCTYPE html>
@@ -26,8 +31,8 @@ include 'components/inset.php';
             <form method="post" enctype="multipart/form-data">
                 <div class="form-row">
                     <div class="input-data">
-                        <select name="item_code" placeholder="Item Name">
-                            <option value="">--Select Itm Name--</option>
+                        <select name="item_code" placeholder="Item Name" oninvalid="this.setCustomValidity('Select Here')" oninput="setCustomValidity('')" required>
+                            <option value=""></option>
                             <?php
 
 
@@ -47,16 +52,16 @@ include 'components/inset.php';
                         <div class="underline"></div>
                     </div>
                     <div class="input-data">
-                        <input type="number" name="qty">
+                        <input type="number" name="qty" oninvalid="this.setCustomValidity('Enter Quantity Here')" oninput="setCustomValidity('')" required>
                         <div class="underline"></div>
                         <label for="">Quantity</label>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="input-data">
-                        <input type="date" name="doc_date">
+                        <input type="date" name="doc_date" id="doc_date" oninvalid="this.setCustomValidity('Enter Date Here')" oninput="setCustomValidity('')" required>
                         <div class="underline"></div>
-                        <label for="">Document Date</label>
+                        <label for="doc_date">Document Date</label>
                     </div>
                 </div>
                 <div class="form-row">
@@ -65,6 +70,11 @@ include 'components/inset.php';
                         <div class="underline"></div>
                         <label for="">Discription</label>
                     </div>
+                </div>
+                <div class="username_s">
+                    <input type="text" name="user_name" value="<?php echo $user_data['user_name']; ?>">
+                    <div class="underline"></div>
+                    <label for="">qwert</label>
                 </div>
                 <br>
                 <div class="form-row submit-btn">
@@ -81,6 +91,7 @@ include 'components/inset.php';
     <script src="asset/js/js.js"></script>
     <script src="components/inset.js"></script>
     <script src="asset/js/sweetalert2.min.js"></script>
+
 </body>
 
 </html>

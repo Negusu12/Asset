@@ -1,5 +1,10 @@
 <?php
+session_start();
 include 'components/inset.php';
+include("connect.php");
+include("components/functions.php");
+
+$user_data = check_login($con);
 ?>
 
 <!DOCTYPE html>
@@ -25,12 +30,12 @@ include 'components/inset.php';
             <form method="post" enctype="multipart/form-data">
                 <div class="form-row">
                     <div class="input-data">
-                        <select name="item_code">
-                            <option value="">--Select Item Name--</option>
+                        <select name="item_code" oninvalid="this.setCustomValidity('Select item Here')" oninput="setCustomValidity('')" required>
+                            <option value=""></option>
                             <?php
 
                             // Retrieve all records from the asset_record table
-                            $sql = "SELECT item_code, item_name FROM asset_record";
+                            $sql = "SELECT item_code, item_name FROM asset_record order by item_name";
                             $result = mysqli_query($con, $sql);
 
                             // Check if query was successful
@@ -45,8 +50,8 @@ include 'components/inset.php';
                         <div class="underline"></div>
                     </div>
                     <div class="input-data">
-                        <select name="employee_id">
-                            <option value="">--Select Loaner Name--</option>
+                        <select name="employee_id" oninvalid="this.setCustomValidity('Select Employee Here')" oninput="setCustomValidity('')" required>
+                            <option value=""></option>
                             <?php
 
 
@@ -69,15 +74,19 @@ include 'components/inset.php';
                 <div class="form-row">
 
                     <div class="input-data">
-                        <input type="number" name="qty">
+                        <input type="number" name="qty" oninvalid="this.setCustomValidity('Enter Quantity Here')" oninput="setCustomValidity('')" required>
                         <div class="underline"></div>
                         <label for="">Quantity</label>
                     </div>
-                    <div class="input-data">
-                        <input type="date" name="doc_date">
+                    <div class="username_s">
+                        <input type="text" name="user_name" value="<?php echo $user_data['user_name']; ?>">
                         <div class="underline"></div>
-                        <label for="">Document Date</label>
-
+                        <label for="">qwert</label>
+                    </div>
+                    <div class="input-data">
+                        <input type="date" name="doc_date" id="doc_date" oninvalid="this.setCustomValidity('Enter Date Here')" oninput="setCustomValidity('')" required>
+                        <div class="underline"></div>
+                        <label for="doc_date">Document Date</label>
                     </div>
                 </div>
                 <div class="form-row">
@@ -102,6 +111,7 @@ include 'components/inset.php';
         <script src="asset/js/js.js"></script>
         <script src="components/inset.js"></script>
         <script src="asset/js/sweetalert2.min.js"></script>
+
 </body>
 
 </html>
