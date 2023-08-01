@@ -35,6 +35,11 @@ $user_data = check_login($con);
             <form method="post" enctype="multipart/form-data">
                 <div class="form-row">
                     <div class="input-data">
+                        <input readonly style="text-transform: capitalize;" value="<?php echo $user_data['user_name']; ?>">
+                        <div class="underline"></div>
+                        <label for="">Username</label>
+                    </div>
+                    <div class="username_s">
                         <input type="text" readonly name="id" value="<?php echo $user_data['id']; ?>">
                         <div class="underline"></div>
                         <label for="">User id</label>
