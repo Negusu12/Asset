@@ -33,43 +33,85 @@ $user_data = check_login($con);
         <div class="text">
             Assets on Hand
         </div>
-        <div class="table-responsive" id="no-more-tables">
-            <table class="table bg-white table-bordered mydatatable" id="mydatatable">
-                <thead class="tbll text-dark">
-                    <tr>
-                        <th scope="col">Item Code</th>
-                        <th scope="col">Item Name</th>
-                        <th scope="col">Quantity</th>
-                        <th scope="col">Document Date</th>
-                        <th scope="col">Discription</th>
-                    </tr>
-                </thead>
+        <form method="post" action="">
+            <div class="filterr">
+                <div class="form-group">
+                    <label class="labela1 row-2" for="item_condition">item_condition:</label>
+                    <select class="form-control selecta1 row-2" name="item_condition" id="item_condition">
+                        <option value=""></option>
+                        <option value="Functional">Functional</option>
+                        <option value="Damaged but Functional">Damaged but Functional</option>
+                        <option value="Non Functional">Non Functional</option>
+                        <option value="Damaged">Damaged</option>
+                        <option value="Damaged and Non-Functional">Damaged and Non-Functional</option>
+                        <option value="Damaged or Non-Functional">Damaged or Non-Functional</option>
+                    </select>
+                </div>
 
-                <?php
-                include "connect.php";
-                $sql = "select * from asset_record";
-                $result = $con->query($sql);
-                if (!$result) {
-                    die("Invalid query!");
-                }
-                while ($row = $result->fetch_assoc()) {
-                    // Format the doc_date column as "dd month yyyy"
-                    $doc_date = date("d F Y", strtotime($row['doc_date']));
-                    echo "
+
+                <button item_condition="submit" class="btn btn-primary submita1">Submit</button>
+                <!-- rest of the form goes here -->
+            </div>
+            <div class="table-responsive" id="no-more-tables">
+                <table class="table bg-white table-bordered mydatatable" id="mydatatable">
+                    <thead class="tbll text-dark">
+                        <tr>
+                            <th scope="col">Item Code</th>
+                            <th scope="col">Item Name</th>
+                            <th scope="col">Item Condition</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Document Date</th>
+                            <th scope="col">Discription</th>
+                        </tr>
+                    </thead>
+
+                    <?php
+                    include "connect.php";
+                    if (isset($_POST['item_condition'])) {
+                        $item_condition = $_POST['item_condition'];
+
+                        if ($item_condition == 'Functional') {
+                            $sql = "SELECT * FROM asset_record WHERE item_condition = 'Functional' ";
+                        } else if ($item_condition == 'Damaged but Functional') {
+                            $sql = "SELECT * FROM asset_record where item_condition = 'Damaged but Functional'";
+                        } else if ($item_condition == 'Non Functional') {
+                            $sql = "SELECT * FROM asset_record where item_condition = 'Non Functional'";
+                        } else if ($item_condition == 'Damaged') {
+                            $sql = "SELECT * FROM asset_record where item_condition = 'Damaged'";
+                        } else if ($item_condition == 'Damaged and Non-Functional') {
+                            $sql = "SELECT * FROM asset_record where item_condition = 'Damaged and Non-Functional'";
+                        } else if ($item_condition == 'Damaged or Non-Functional') {
+                            $sql = "SELECT * FROM asset_record where item_condition = 'Damaged or Non-Functional'";
+                        } else {
+                            $sql = "select * from asset_record";
+                        }
+                    } else {
+                        $sql = "select * from asset_record";
+                    }
+                    $result = $con->query($sql);
+                    if (!$result) {
+                        die("Invalid query!");
+                    }
+                    while ($row = $result->fetch_assoc()) {
+                        // Format the doc_date column as "dd month yyyy"
+                        $doc_date = date("d F Y", strtotime($row['doc_date']));
+                        echo "
       <tr>
       <td>$row[item_c]</td>
         <td>$row[item_name]</td>
+        <td>$row[item_condition]</td>
         <td>$row[qty]</td>
         <td>$doc_date</td>
         <td>$row[description]</td>
       </tr>
       ";
-                }
-                ?>
+                    }
+                    ?>
 
-                </tbody>
-            </table>
-        </div>
+                    </tbody>
+                </table>
+            </div>
+        </form>
     </section>
 
     <script src="lib/jquery-3.3.1.min.js"></script>

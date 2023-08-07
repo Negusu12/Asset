@@ -40,14 +40,27 @@ $user_data = check_login($con);
                         <label for="">Item Code</label>
                     </div>
                     <div class="input-data">
-                        <input type="text" name="item_name" oninvalid="this.setCustomValidity('Enter Item Name Here')" oninput="setCustomValidity('')" required> <br>
+                        <input type="text" name="item_name" oninvalid="this.setCustomValidity('Enter Item Name Here')" oninput="setCustomValidity('')" required>
                         <div class="underline"></div>
                         <label for="">Item Name</label>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="input-data">
-                        <input type="number" name="qty" oninvalid="this.setCustomValidity('Enter Quantity Here')" oninput="setCustomValidity('')" required>
+                        <select type="text" name="item_condition" oninvalid="this.setCustomValidity('Select Item Condition')" oninput="setCustomValidity('')" required>
+                            <option value=""></option>
+                            <option value="Functional">Functional</option>
+                            <option value="Damaged but Functional">Damaged but Functional</option>
+                            <option value="Non Functional">Non Functional</option>
+                            <option value="Damaged">Damaged</option>
+                            <option value="Damaged and Non-Functional">Damaged and Non-Functional</option>
+                            <option value="Damaged or Non-Functional">Damaged or Non-Functional</option>
+                        </select>
+                        <div class="underline"></div>
+                        <label for="">Item Condition</label>
+                    </div>
+                    <div class="username_s">
+                        <input type="number" name="qty" value="0">
                         <div class="underline"></div>
                         <label for="">Quantity</label>
                     </div>

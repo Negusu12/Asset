@@ -52,6 +52,7 @@ $user_data = check_login($con);
                             ?>
                         </select>
                         <div class="underline"></div>
+                        <label for="">Loan ID</label>
                     </div>
                     <div class="input-data">
                         <select name="employee_id" placeholder="Employee" class="form__input" onchange="this.form.submit()">
@@ -77,6 +78,7 @@ $user_data = check_login($con);
                             ?>
                         </select>
                         <div class="underline"></div>
+                        <label for="">Loaner Name</label>
                     </div>
                 </div>
                 <div class="form-row">
@@ -86,9 +88,9 @@ $user_data = check_login($con);
                             if (isset($_POST['loan_id'])) {
                                 $loan_id = $_POST['loan_id'];
 
-                                $sql = "SELECT al.item_code, ar.item_name
-                FROM asset_loan al
-                LEFT JOIN asset_record ar ON al.item_code = ar.item_code
+                                $sql = "SELECT al.item_code, CONCAT(ar.item_name, IFNULL(CONCAT(' - ', item_condition), '')) AS Item_Name
+                                FROM asset_loan al
+                                LEFT JOIN asset_record ar ON al.item_code = ar.item_code
                 WHERE al.loan_id = ?";
                                 $stmt = mysqli_prepare($con, $sql);
                                 mysqli_stmt_bind_param($stmt, "s", $loan_id);
@@ -97,13 +99,14 @@ $user_data = check_login($con);
 
                                 if ($result) {
                                     while ($row = mysqli_fetch_assoc($result)) {
-                                        echo "<option value='" . $row["item_code"] . "'>" . $row["item_name"] . "</option>";
+                                        echo "<option value='" . $row["item_code"] . "'>" . $row["Item_Name"] . "</option>";
                                     }
                                 }
                             }
                             ?>
                         </select>
                         <div class="underline"></div>
+                        <label for="">Item Name</label>
                     </div>
                     <div class="input-data">
                         <input type="number" name="qty" oninvalid="this.setCustomValidity('Enter Quantity Here')" oninput="setCustomValidity('')" required>

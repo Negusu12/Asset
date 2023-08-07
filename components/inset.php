@@ -5,13 +5,14 @@ include('connect.php');
 if (isset($_POST['submit'])) {
     $item_c = /*addlashes so it accept commas and sympols*/ addslashes($_POST['item_c']);
     $item_name = addslashes($_POST['item_name']);
+    $item_condition = addslashes($_POST['item_condition']);
     $qty = addslashes($_POST['qty']);
     $doc_date = addslashes($_POST['doc_date']);
     $description = addslashes($_POST['description']);
     $user_name = addslashes($_POST['user_name']);
 
-    $sql = "insert into `asset_record`(item_c,item_name,qty,doc_date,description,user_name)
-    values ('$item_c','$item_name', '$qty', '$doc_date', '$description', '$user_name')";
+    $sql = "insert into `asset_record`(item_c,item_name,qty,item_condition,doc_date,description,user_name)
+    values ('$item_c','$item_name', '$qty','$item_condition', '$doc_date', '$description', '$user_name')";
     $result = mysqli_query($con, $sql);
     if ($result) {
         echo "<script>

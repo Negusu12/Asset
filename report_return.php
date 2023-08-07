@@ -39,6 +39,7 @@ $user_data = check_login($con);
                     <tr>
                         <th scope="col">loan ID</th>
                         <th scope="col">Item Name</th>
+                        <th scope="col">Item Condition</th>
                         <th scope="col">Loaner Name</th>
                         <th scope="col">Quantity</th>
                         <th scope="col">Document Date</th>
@@ -59,6 +60,7 @@ $user_data = check_login($con);
       <tr>
       <td>$row[loan_id]</td>
         <td>$row[item_name]</td>
+        <td>$row[item_condition]</td>
         <td>$row[full_name]</td>
         <td>$row[qty]</td>
         <td>$row[doc_date]</td>

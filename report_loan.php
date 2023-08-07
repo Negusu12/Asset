@@ -40,6 +40,7 @@ $user_data = check_login($con);
                     <tr>
                         <th scope="col">Loan ID</th>
                         <th scope="col">Item Name</th>
+                        <th scope="col">Item Condition</th>
                         <th scope="col">Full Name</th>
                         <th scope="col">Loaned Quantity</th>
                         <th scope="col">Quantity on Loan</th>
@@ -62,6 +63,7 @@ $user_data = check_login($con);
                     echo '<tr>
           <td>' . $row['loan_id'] . '</td>
           <td>' . $row['item_name'] . '</td>
+          <td>' . $row['item_condition'] . '</td>
           <td>' . $row['full_name'] . '</td>
           <td>' . $row['qty_taken'] . '</td>
           <td>' . $row['qty'] . '</td>

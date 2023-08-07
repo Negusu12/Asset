@@ -562,14 +562,21 @@ input[readonly] {
 }
 
 #loanChart {
-    width: 600px;
+    width: 700px;
     height: 450px;
     max-width: 100%;
     margin: 0 auto;
 }
 
 #returnChart {
-    width: 600px;
+    width: 700px;
+    height: 450px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+#assetChart {
+    width: 700px;
     height: 450px;
     max-width: 100%;
     margin: 0 auto;
@@ -603,4 +610,16 @@ input[readonly] {
     columns: 2;
     gap: 10px;
 
+}
+.card-title {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 31px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    background: -webkit-linear-gradient(right, #B2B435, #03949B, #4D7DBF, #26225B);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }

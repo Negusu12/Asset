@@ -45,6 +45,7 @@ $user_data = check_login($con);
                             <option value="Pharma">Pharma Department</option>
                         </select>
                         <div class="underline"></div>
+                        <label for="">Department Name</label>
                     </div>
                     <div class="username_s">
                         <input type="text" name="user_name" value="<?php echo $user_data['user_name']; ?>">

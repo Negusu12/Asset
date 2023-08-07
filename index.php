@@ -38,7 +38,7 @@ $user_data = check_login($con);
                     </div>
                     <div class="info-box-row">
                         <span class="info-box-number">
-                            <?php echo $con->query("SELECT * FROM asset_record")->num_rows; ?>
+                            <?php echo $con->query("SELECT * FROM asset_record GROUP BY item_c")->num_rows; ?>
                         </span>
                     </div>
                 </div>
@@ -194,7 +194,12 @@ $user_data = check_login($con);
         $asset_name[] = $row['item_name'];
         $asset_quantities[] = $row['items_record'];
     }
-    $barColors = array("#414142", "#03949B", "#26225B", "#4D7DBF", "#B2B435", "#ff9800", "#795548");
+    $barColors = array(
+        "#414142", "#03949B", "#26225B", "#4D7DBF", "#B2B435", "#ff9800", "#795548", "#aa00ff", "#5bc0de", "#d9534f",
+        "#007bff", "#28a745", "#ffc107", "#dc3545", "#17a2b8", "#6610f2", "#f012be", "#ff4136", "#2ecc40", "#ff851b", "#7fdbff", "#3d9970",
+        "#01ff70", "#ffdc00", "#85144b", "#39cccc", "#ff7f50", "#2c3e50", "#b10dc9", "#2aa198", "#c0392b", "#00bfff", "#8e44ad", "#2d3c4d",
+        "#e67e22", "#2e8b57", "#f1c40f", "#e74c3c", "#9b59b6", "#3498db"
+    );
     ?>
 
     <script>

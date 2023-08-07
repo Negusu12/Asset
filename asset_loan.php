@@ -35,19 +35,20 @@ $user_data = check_login($con);
                             <?php
 
                             // Retrieve all records from the asset_record table
-                            $sql = "SELECT item_code, item_name FROM asset_record order by item_name";
+                            $sql = "SELECT item_code, CONCAT(item_name, IFNULL(CONCAT(' - ', item_condition), '')) AS Item_Name FROM asset_record order by Item_Name";
                             $result = mysqli_query($con, $sql);
 
                             // Check if query was successful
                             if ($result) {
                                 // Loop through each row of the result set and output the item_name value as an option in the select dropdown
                                 while ($row = mysqli_fetch_assoc($result)) {
-                                    echo "<option value='" . $row["item_code"] . "'>" . $row["item_name"] . "</option>";
+                                    echo "<option value='" . $row["item_code"] . "'>" . $row["Item_Name"] . "</option>";
                                 }
                             }
                             ?>
                         </select>
                         <div class="underline"></div>
+                        <label for="">Item Name</label>
                     </div>
                     <div class="input-data">
                         <select name="employee_id" oninvalid="this.setCustomValidity('Select Employee Here')" oninput="setCustomValidity('')" required>
@@ -69,6 +70,7 @@ $user_data = check_login($con);
                             ?>
                         </select>
                         <div class="underline"></div>
+                        <label for="">Loaner Name</label>
                     </div>
                 </div>
                 <div class="form-row">
