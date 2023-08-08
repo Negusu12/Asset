@@ -38,6 +38,7 @@
                 <li><a href="report_asset_onhand.php"><i class="fa-regular fa-address-book"></i>Asset On Hand</a></li>
                 <li><a href="report_loan.php"><i class="fa-regular fa-address-book"></i>Asset On Loan</a></li>
                 <li><a href="report_return.php"><i class="fa-regular fa-address-book"></i>Asset Return</a></li>
+                <li><a href="report_buy.php"><i class="fa-regular fa-address-book"></i>Asset Buy</a></li>
             </ul>
             <li><a href="change_password.php"><i class="fa-solid fa-user"></i>Change Password</a></li>
             <li><a href="logout.php"><i class="fa-solid fa-arrow-right-from-bracket"></i>Log Out</a></li>
