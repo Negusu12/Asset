@@ -30,6 +30,7 @@
             <li><a href="index.php"><i class="fas fa-qrcode"></i>Dashboard</a></li>
             <li><a href="asset_record.php"><i class=" fas fa-solid fa-plus"></i>Asset Registor</a></li>
             <li><a href="asset_buy.php"><i class=" fas fa-solid fa-cart-arrow-down"></i>Asset Buy</a></li>
+            <li><a href="asset_use.php"><i class=" fas fa-solid fa-cart-arrow-down"></i>Asset Use</a></li>
             <li><a href="asset_loan.php"><i class="fas fa-solid fa-landmark"></i>Asset Loan</a></li>
             <li><a href="asset_return.php"><i class="fas fa-regular fa-thumbs-up"></i>Asset Return</a></li>
             <li><a href="employee.php"><i class=" fas fa-solid fa-plus"></i>Add Employee</a></li>
@@ -39,6 +40,7 @@
                 <li><a href="report_loan.php"><i class="fa-regular fa-address-book"></i>Asset On Loan</a></li>
                 <li><a href="report_return.php"><i class="fa-regular fa-address-book"></i>Asset Return</a></li>
                 <li><a href="report_buy.php"><i class="fa-regular fa-address-book"></i>Asset Buy</a></li>
+                <li><a href="report_use.php"><i class="fa-regular fa-address-book"></i>Asset Used</a></li>
             </ul>
             <li><a href="change_password.php"><i class="fa-solid fa-user"></i>Change Password</a></li>
             <li><a href="logout.php"><i class="fa-solid fa-arrow-right-from-bracket"></i>Log Out</a></li>
