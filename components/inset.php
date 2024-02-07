@@ -24,6 +24,8 @@ if (isset($_POST['submit'])) {
                 showConfirmButton: true,
                 confirmButtonText: 'OK',
                 timer: 2000
+            }).then(function() {
+                window.location.href = 'asset_record.php';
             });
         }
      </script>";
@@ -64,6 +66,8 @@ if (isset($_POST['submit_e'])) {
                         showConfirmButton: true,
                         confirmButtonText: 'OK',
                         timer: 2000
+                    }).then(function() {
+                        window.location.href = 'employee.php';
                     });
                 }
              </script>";
@@ -141,6 +145,8 @@ if (isset($_POST['submit_l'])) {
                         showConfirmButton: true,
                         confirmButtonText: 'OK',
                         timer: 2000
+                    }).then(function() {
+                        window.location.href = 'asset_loan.php';
                     });
                 }
              </script>";
@@ -221,6 +227,8 @@ if (isset($_POST['submit_b'])) {
             showConfirmButton: true,
             confirmButtonText: 'OK',
             timer: 2000
+        }).then(function() {
+            window.location.href = 'asset_buy.php';
         });
     }
  </script>";
@@ -278,6 +286,8 @@ if (isset($_POST['submit_u'])) {
             showConfirmButton: true,
             confirmButtonText: 'OK',
             timer: 2000
+        }).then(function() {
+            window.location.href = 'asset_use.php';
         });
     }
  </script>";
@@ -367,6 +377,8 @@ if (isset($_POST['submit_r'])) {
                         showConfirmButton: true,
                         confirmButtonText: 'OK',
                         timer: 2000
+                    }).then(function() {
+                        window.location.href = 'asset_return.php';
                     });
                 }
              </script>";

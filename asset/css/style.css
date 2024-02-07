@@ -28,6 +28,8 @@ h1 {
 
 ul {
     list-style: none;
+    margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 li:hover {
@@ -286,12 +288,13 @@ select,
 
 .sidebar {
     position: fixed;
-    left: -250px;
-    width: 250px;
+    left: -265px;
+    width: 265px;
     height: 100%;
     background: linear-gradient(115deg, #4D7DBF 20%, #4D7DBF 70%, #03949B 10%);
     transition: all .5s ease;
     top: 0px;
+    overflow-y: overlay;
 }
 
 .sidebar header {
