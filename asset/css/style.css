@@ -291,6 +291,7 @@ select,
     height: 100%;
     background: linear-gradient(115deg, #4D7DBF 20%, #4D7DBF 70%, #03949B 10%);
     transition: all .5s ease;
+    top: 0px;
 }
 
 .sidebar header {
@@ -611,6 +612,7 @@ input[readonly] {
     gap: 10px;
 
 }
+
 .card-title {
     text-align: center;
     display: flex;
@@ -622,4 +624,8 @@ input[readonly] {
     background: -webkit-linear-gradient(right, #B2B435, #03949B, #4D7DBF, #26225B);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+.table-responsive {
+    margin-left: 10%;
 }
