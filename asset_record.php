@@ -69,6 +69,16 @@ $user_data = check_login($con);
                         <div class="underline"></div>
                         <label for="doc_date">Document Date</label>
                     </div>
+                    <div class="input-data">
+                        <select type="text" name="uom" oninvalid="this.setCustomValidity('Select UOM')" oninput="setCustomValidity('')" required>
+                            <option value=""></option>
+                            <option value="Meter">Meter</option>
+                            <option value="Each">Each</option>
+                            <option value="Piece">Piece</option>
+                        </select>
+                        <div class="underline"></div>
+                        <label for="">UOM</label>
+                    </div>
                 </div>
                 <div class="form-row">
                     <div class="input-data textarea">

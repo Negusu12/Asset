@@ -10,9 +10,10 @@ if (isset($_POST['submit'])) {
     $doc_date = addslashes($_POST['doc_date']);
     $description = addslashes($_POST['description']);
     $user_name = addslashes($_POST['user_name']);
+    $uom = addslashes($_POST['uom']);
 
-    $sql = "insert into `asset_record`(item_c,item_name,qty,item_condition,doc_date,description,user_name)
-    values ('$item_c','$item_name', '$qty','$item_condition', '$doc_date', '$description', '$user_name')";
+    $sql = "insert into `asset_record`(item_c,item_name,qty,item_condition,doc_date,description,user_name,uom)
+    values ('$item_c','$item_name', '$qty','$item_condition', '$doc_date', '$description', '$user_name', '$uom')";
     $result = mysqli_query($con, $sql);
     if ($result) {
         echo "<script>

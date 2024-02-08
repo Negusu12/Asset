@@ -31,20 +31,18 @@ $user_data = check_login($con);
             <form method="post" enctype="multipart/form-data">
                 <div class="form-row">
                     <div class="input-data">
-                        <select name="item_code" placeholder="Item Name" oninvalid="this.setCustomValidity('Select Here')" oninput="setCustomValidity('')" required>
+                        <select name="item_code" id="item_code" placeholder="Item Name" oninvalid="this.setCustomValidity('Select Here')" oninput="setCustomValidity('')" required>
                             <option value=""></option>
                             <?php
-
-
                             // Retrieve all records from the asset_record table
-                            $sql = "SELECT item_code, CONCAT(item_name, IFNULL(CONCAT(' - ', item_condition), '')) AS Item_Name FROM asset_record";
+                            $sql = "SELECT item_code, CONCAT(item_name, IFNULL(CONCAT(' - ', item_condition), '')) AS Item_Name, uom FROM asset_record";
                             $result = mysqli_query($con, $sql);
 
                             // Check if query was successful
                             if ($result) {
                                 // Loop through each row of the result set and output the item_name value as an option in the select dropdown
                                 while ($row = mysqli_fetch_assoc($result)) {
-                                    echo "<option value='" . $row["item_code"] . "'>" . $row["Item_Name"] . "</option>";
+                                    echo "<option value='" . $row["item_code"] . "' data-uom='" . $row["uom"] . "'>" . $row["Item_Name"] . "</option>";
                                 }
                             }
                             ?>
@@ -52,13 +50,21 @@ $user_data = check_login($con);
                         <div class="underline"></div>
                         <label for="">Item Name</label>
                     </div>
+                    
                     <div class="input-data">
+                        <select name="uom" id="uom" placeholder="UOM" class="form__input" onchange="this.form.submit()">
+
+                        </select>
+                        <div class="underline"></div>
+                        <label for="">UOM</label>
+                    </div>
+                </div>
+                <div class="form-row">
+                <div class="input-data">
                         <input type="number" name="qty" oninvalid="this.setCustomValidity('Enter Quantity Here')" oninput="setCustomValidity('')" required>
                         <div class="underline"></div>
                         <label for="">Quantity</label>
                     </div>
-                </div>
-                <div class="form-row">
                     <div class="input-data">
                         <input type="date" name="doc_date" id="doc_date" oninvalid="this.setCustomValidity('Enter Date Here')" oninput="setCustomValidity('')" required>
                         <div class="underline"></div>
@@ -92,6 +98,15 @@ $user_data = check_login($con);
     <script src="asset/js/js.js"></script>
     <script src="components/inset.js"></script>
     <script src="asset/js/sweetalert2.min.js"></script>
+
+    <script>
+        // JavaScript to populate UOM field based on selected item
+        document.getElementById('item_code').addEventListener('change', function() {
+            var selectedOption = this.options[this.selectedIndex];
+            var uom = selectedOption.getAttribute('data-uom');
+            document.getElementById('uom').innerHTML = '<option value="' + uom + '">' + uom + '</option>';
+        });
+    </script>
 
 </body>
 

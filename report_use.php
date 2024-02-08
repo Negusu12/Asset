@@ -41,6 +41,7 @@ $user_data = check_login($con);
                         <th scope="col">Use ID</th>
                         <th scope="col">Item Name</th>
                         <th scope="col">Item Condition</th>
+                        <th scope="col">UOM</th>
                         <th scope="col">Quantity</th>
                         <th scope="col">Document Date</th>
                         <th scope="col">Description</th>
@@ -61,6 +62,7 @@ $user_data = check_login($con);
           <td>' . $row['u_asset'] . '</td>
           <td>' . $row['item_name'] . '</td>
           <td>' . $row['item_condition'] . '</td>
+          <td>' . $row['uom'] . '</td>
           <td>' . $row['qty'] . '</td>
           <td>' . $row['doc_date'] . '</td>
           <td>' . $row['description'] . '</td>

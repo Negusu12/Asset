@@ -42,6 +42,7 @@ $user_data = check_login($con);
                         <th scope="col">Item Name</th>
                         <th scope="col">Item Condition</th>
                         <th scope="col">Full Name</th>
+                        <th scope="col">UOM</th>
                         <th scope="col">Loaned Quantity</th>
                         <th scope="col">Quantity on Loan</th>
                         <th scope="col">Document Date</th>
@@ -50,6 +51,7 @@ $user_data = check_login($con);
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
+
 
                 <?php
                 include "connect.php";
@@ -65,6 +67,7 @@ $user_data = check_login($con);
           <td>' . $row['item_name'] . '</td>
           <td>' . $row['item_condition'] . '</td>
           <td>' . $row['full_name'] . '</td>
+          <td>' . $row['uom'] . '</td>
           <td>' . $row['qty_taken'] . '</td>
           <td>' . $row['qty'] . '</td>
           <td>' . $row['doc_date'] . '</td>
