@@ -3,20 +3,42 @@ session_start();
 
 include("connect.php");
 include("components/functions.php");
+$user_data = check_login($con);
+if ($user_data['role'] == 2) {
+    // Redirect or display an error message
+    header("Location: index.php"); // Redirect to login page
+    exit();
+}
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $user_name = $_POST['user_name'];
     $password = $_POST['password'];
+    $role = $_POST['role'];
 
     if (!empty($user_name) && !empty($password) && !is_numeric(($user_name))) {
         $user_id = random_num(20);
-        $query = "insert into users (user_id,user_name,password)
-    values ('$user_id','$user_name','$password')";
-        mysqli_query($con, $query);
-        header("LOCATION: login.php");
-        die;
-    } else {
-        echo "<script>
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        $query = "INSERT INTO users (user_id, user_name, password, role)
+                  VALUES ('$user_id', '$user_name', '$hashed_password', '$role')";
+        $result = mysqli_query($con, $query);
+
+        if ($result) {
+            echo "<script>
+                window.onload = function() {
+                    // Display a success message using SweetAlert
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'User has bee registered successfully',
+                        showConfirmButton: true,
+                        confirmButtonText: 'OK',
+                        timer: 2000
+                    }).then(function() {
+                        window.location.href = 'login.php';
+                    });
+                }
+             </script>";
+        } else {
+            echo "<script>
         window.onload = function() {
             // Display a success message using SweetAlert
             Swal.fire({
@@ -28,6 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             });
         }
      </script>";
+        }
     }
 }
 ?>
@@ -75,6 +98,17 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
                         <div class="wrap-input100 validate-input" data-validate="Password is required">
                             <input class="input100" id="text" type="password" name="password" placeholder="Password">
+                            <span class="focus-input100"></span>
+                            <span class="symbol-input100">
+                                <i class="fa fa-lock" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                        <div class="wrap-input100 validate-input" data-validate="Password is required">
+                            <select class="input100" name="role" placeholder="ROLE" required>
+                                <option value="">Select a Role</option>
+                                <option value="2">User</option>
+                                <option value="1">Admin and User</option>
+                            </select>
                             <span class="focus-input100"></span>
                             <span class="symbol-input100">
                                 <i class="fa fa-lock" aria-hidden="true"></i>
