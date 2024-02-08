@@ -38,7 +38,7 @@ $user_data = check_login($con);
                     </div>
                     <div class="info-box-row">
                         <span class="info-box-number">
-                            <?php echo $con->query("SELECT * FROM asset_record GROUP BY item_c")->num_rows; ?>
+                            <?php echo $con->query("SELECT * FROM asset_record item_c")->num_rows; ?>
                         </span>
                     </div>
                 </div>

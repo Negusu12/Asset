@@ -74,7 +74,6 @@ $user_data = check_login($con);
                             <option value=""></option>
                             <option value="Meter">Meter</option>
                             <option value="Each">Each</option>
-                            <option value="Piece">Piece</option>
                         </select>
                         <div class="underline"></div>
                         <label for="">UOM</label>
