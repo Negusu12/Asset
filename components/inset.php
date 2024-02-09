@@ -428,71 +428,75 @@ if (isset($_POST['submitp'])) {
     $new_password = addslashes($_POST['new_password']);
     $confirm_password = addslashes($_POST['confirm_password']);
 
-    // Retrieve the current quantity for the selected item_code from the asset_loan table
+    // Retrieve the hashed password from the database
     $sql = "SELECT password FROM users WHERE id='$id'";
     $result = mysqli_query($con, $sql);
-    $row = mysqli_fetch_assoc($result);
-    $current_password = $row['password'];
 
-    // Check if the new password and confirm password fields match
-    if ($new_password !== $confirm_password) {
-        echo "<script>
-        window.onload = function() {
-            // Display an error message using SweetAlert
-            Swal.fire({
-                icon: 'error',
-                title: 'New Passwords and Confirm Password do not match.',
-                showConfirmButton: false,
-                showDenyButton: true,
-                denyButtonText: 'OK'
-            });
-        }
-     </script>";
-    } else if ($current_password !== $current_passwordd) {
-        // Check if the current password entered by the user is correct
-        echo "<script>
-        window.onload = function() {
-            // Display an error message using SweetAlert
-            Swal.fire({
-                icon: 'error',
-                title: 'Current password is incorrect.',
-                showConfirmButton: false,
-                showDenyButton: true,
-                denyButtonText: 'OK'
-            });
-        }
-     </script>";
-    } else {
-        // Update the password in the database
-        $update_sql = "UPDATE users SET password='$new_password' WHERE id='$id'";
-        $update_result = mysqli_query($con, $update_sql);
+    if ($result) {
+        $row = mysqli_fetch_assoc($result);
+        $hashed_password = $row['password'];
 
-        if ($update_result) {
+        // Check if the new password and confirm password fields match
+        if ($new_password !== $confirm_password) {
+            // Display an error message
             echo "<script>
                 window.onload = function() {
-                    // Display a success message using SweetAlert
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Password updated successfully',
-                        showConfirmButton: true,
-                        confirmButtonText: 'OK',
-                        timer: 2000
-                    });
-                }
-             </script>";
-        } else {
-            echo "<script>
-                window.onload = function() {
-                    // Display an error message using SweetAlert
                     Swal.fire({
                         icon: 'error',
-                        title: 'Password not changed.',
+                        title: 'New Passwords and Confirm Password do not match.',
                         showConfirmButton: false,
                         showDenyButton: true,
                         denyButtonText: 'OK'
                     });
                 }
-             </script>";
+            </script>";
+        } else if (!password_verify($current_passwordd, $hashed_password)) {
+            // Check if the entered current password is incorrect
+            echo "<script>
+                window.onload = function() {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Current password is incorrect.',
+                        showConfirmButton: false,
+                        showDenyButton: true,
+                        denyButtonText: 'OK'
+                    });
+                }
+            </script>";
+        } else {
+            // Update the password in the database
+            $hashed_new_password = password_hash($new_password, PASSWORD_DEFAULT);
+            $update_sql = "UPDATE users SET password='$hashed_new_password' WHERE id='$id'";
+            $update_result = mysqli_query($con, $update_sql);
+
+            if ($update_result) {
+                // Display a success message
+                echo "<script>
+                window.onload = function() {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Password Updated Successfully',
+                        showConfirmButton: true,
+                        confirmButtonText: 'OK',
+                    }).then(function() {
+                        window.location.href = 'index.php';
+                    });
+                }
+            </script>";
+            } else {
+                // Display an error message
+                echo "<script>
+                    window.onload = function() {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Password not changed.',
+                            showConfirmButton: false,
+                            showDenyButton: true,
+                            denyButtonText: 'OK'
+                        });
+                    }
+                </script>";
+            }
         }
     }
 }
