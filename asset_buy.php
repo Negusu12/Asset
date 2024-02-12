@@ -50,7 +50,7 @@ $user_data = check_login($con);
                         <div class="underline"></div>
                         <label for="">Item Name</label>
                     </div>
-                    
+
                     <div class="input-data">
                         <select name="uom" id="uom" placeholder="UOM" class="form__input" onchange="this.form.submit()">
 
@@ -60,7 +60,7 @@ $user_data = check_login($con);
                     </div>
                 </div>
                 <div class="form-row">
-                <div class="input-data">
+                    <div class="input-data">
                         <input type="number" name="qty" oninvalid="this.setCustomValidity('Enter Quantity Here')" oninput="setCustomValidity('')" required>
                         <div class="underline"></div>
                         <label for="">Quantity</label>
