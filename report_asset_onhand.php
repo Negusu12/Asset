@@ -13,7 +13,7 @@ $user_data = check_login($con);
 
 <head>
     <meta charset="utf-8">
-    <title>Asset Management System</title>
+    <title>AMS Asset on Hand</title>
     <link rel="icon" href="images/logo.png" type="image">
     <link rel="stylesheet" href="lib/css/bootstrap.css">
     <link rel="stylesheet" href="lib/css/dataTables.bootstrap4.min.css">
@@ -56,6 +56,7 @@ $user_data = check_login($con);
                 <table class="table bg-white table-bordered mydatatable" id="mydatatable">
                     <thead class="tbll text-dark">
                         <tr>
+                            <th>#</th>
                             <th scope="col">Item Code</th>
                             <th scope="col">Item Name</th>
                             <th scope="col">Item Condition</th>
@@ -68,6 +69,9 @@ $user_data = check_login($con);
 
                     <?php
                     include "connect.php";
+
+                    $row_count = 1;
+
                     if (isset($_POST['item_condition'])) {
                         $item_condition = $_POST['item_condition'];
 
@@ -97,16 +101,18 @@ $user_data = check_login($con);
                         // Format the doc_date column as "dd month yyyy"
                         $doc_date = date("d F Y", strtotime($row['doc_date']));
                         echo "
-      <tr>
-      <td>$row[item_c]</td>
-        <td>$row[item_name]</td>
-        <td>$row[item_condition]</td>
-        <td>$row[uom]</td>
-        <td>$row[qty]</td>
-        <td>$doc_date</td>
-        <td>$row[description]</td>
-      </tr>
-      ";
+  <tr>
+    <td>$row_count</td>
+    <td>$row[item_c]</td>
+    <td>$row[item_name]</td>
+    <td>$row[item_condition]</td>
+    <td>$row[uom]</td>
+    <td>$row[qty]</td>
+    <td>$doc_date</td>
+    <td>$row[description]</td>
+  </tr>
+  ";
+                        $row_count++; // Increment row count
                     }
                     ?>
 

@@ -13,7 +13,7 @@ $user_data = check_login($con);
 
 <head>
     <meta charset="utf-8">
-    <title>Asset Management System</title>
+    <title>AMS Asset Loaned</title>
     <link rel="icon" href="images/logo.png" type="image">
     <link rel="stylesheet" href="lib/css/bootstrap.css">
     <link rel="stylesheet" href="lib/css/dataTables.bootstrap4.min.css">
@@ -38,6 +38,7 @@ $user_data = check_login($con);
             <table class="table bg-white table-bordered mydatatable" id="mydatatable">
                 <thead class="tbll text-dark">
                     <tr>
+                        <th>#</th>
                         <th scope="col">Loan ID</th>
                         <th scope="col">Item Name</th>
                         <th scope="col">Item Condition</th>
@@ -55,6 +56,8 @@ $user_data = check_login($con);
 
                 <?php
                 include "connect.php";
+                $row_count = 1;
+
                 $sql = "select * from asset_loan_v where qty > 0";
                 $result = $con->query($sql);
                 if (!$result) {
@@ -63,6 +66,7 @@ $user_data = check_login($con);
                 while ($row = $result->fetch_assoc()) {
                     $id = $row['loan_id'];
                     echo '<tr>
+         <td>' . $row_count . '</td>
           <td>' . $row['loan_id'] . '</td>
           <td>' . $row['item_name'] . '</td>
           <td>' . $row['item_condition'] . '</td>
@@ -81,8 +85,10 @@ $user_data = check_login($con);
             </ul>
           </td>
         </tr>';
+                    $row_count++;
                 }
                 ?>
+
 
                 </tbody>
             </table>
