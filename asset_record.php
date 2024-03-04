@@ -44,6 +44,20 @@ $user_data = check_login($con);
                         <div class="underline"></div>
                         <label for="">Item Name</label>
                     </div>
+                    <div class="input-data">
+                        <select type="text" name="item_category" oninvalid="this.setCustomValidity('Select Item Category')" oninput="setCustomValidity('')" required>
+                            <option value=""></option>
+                            <option value="laptop">Laptop</option>
+                            <option value="all_in_one">All in One Desktop</option>
+                            <option value="switch">Switch</option>
+                            <option value="Phone">Phone</option>
+                            <option value="printer">printer</option>
+                            <option value="scanner">Scanner</option>
+                            <option value="projector">Projector</option>
+                        </select>
+                        <div class="underline"></div>
+                        <label for="">Item Category</label>
+                    </div>
                 </div>
                 <div class="form-row">
                     <div class="input-data">

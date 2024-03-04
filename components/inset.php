@@ -6,14 +6,15 @@ if (isset($_POST['submit'])) {
     $item_c = /*addlashes so it accept commas and sympols*/ addslashes($_POST['item_c']);
     $item_name = addslashes($_POST['item_name']);
     $item_condition = addslashes($_POST['item_condition']);
+    $item_category = addslashes($_POST['item_category']);
     $qty = addslashes($_POST['qty']);
     $doc_date = addslashes($_POST['doc_date']);
     $description = addslashes($_POST['description']);
     $user_name = addslashes($_POST['user_name']);
     $uom = addslashes($_POST['uom']);
 
-    $sql = "insert into `asset_record`(item_c,item_name,qty,item_condition,doc_date,description,user_name,uom)
-    values ('$item_c','$item_name', '$qty','$item_condition', '$doc_date', '$description', '$user_name', '$uom')";
+    $sql = "insert into `asset_record`(item_c,item_name,qty,item_condition,item_category,doc_date,description,user_name,uom)
+    values ('$item_c','$item_name', '$qty','$item_condition', '$item_category', '$doc_date', '$description', '$user_name', '$uom')";
     $result = mysqli_query($con, $sql);
     if ($result) {
         echo "<script>

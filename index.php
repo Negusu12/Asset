@@ -60,7 +60,7 @@ $user_data = check_login($con);
                 </div>
                 <!-- /.info-box-content -->
             </div>
-            <div class="info-box">
+            <div class="info-box" style="display: none;">
                 <div class="iconn">
                     <i class="fa-solid fa-hashtag"></i>
                 </div>
@@ -78,7 +78,7 @@ $user_data = check_login($con);
             </div>
         </div>
         <div class="row-d">
-            <div class="info-box">
+            <div class="info-box" style="display: none;">
                 <div class="iconn">
                     <i class="fas fa-users"></i>
                 </div>
@@ -99,7 +99,7 @@ $user_data = check_login($con);
 
     <section>
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6" style="display: none;">
                 <div class="graph px-5 my-3">
                     <div class="col-lg-6 col-md-8 col-sm-12 mb-4">
                         <div class="card shadow rounded-0">
@@ -118,7 +118,7 @@ $user_data = check_login($con);
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6" style="display: none;">
                 <div class="graph">
                     <div class="col-lg-6 col-md-8 col-sm-12 mb-4">
                         <div class="card shadow rounded-0">
@@ -150,6 +150,25 @@ $user_data = check_login($con);
                         <div class="card-body">
                             <div class="container-fluid">
                                 <canvas id="assetChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="graph">
+                <div class="col-lg-6 col-md-8 col-sm-12 mb-4">
+                    <div class="card shadow rounded-0">
+                        <div class="card-header rounded-0">
+                            <div class="d-flex justify-content-between">
+                                <div class="card-title flex-shrink-1 flex-grow-1">Asset Category</div>
+
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="container-fluid">
+                                <canvas id="categoryChart"></canvas>
                             </div>
                         </div>
                     </div>
@@ -193,6 +212,23 @@ $user_data = check_login($con);
     while ($row = $asset_result->fetch_assoc()) {
         $asset_name[] = $row['item_name'];
         $asset_quantities[] = $row['items_record'];
+    }
+    $barColors = array(
+        "#414142", "#03949B", "#26225B", "#4D7DBF", "#B2B435", "#ff9800", "#795548", "#aa00ff", "#5bc0de", "#d9534f",
+        "#007bff", "#28a745", "#ffc107", "#dc3545", "#17a2b8", "#6610f2", "#f012be", "#ff4136", "#2ecc40", "#ff851b", "#7fdbff", "#3d9970",
+        "#01ff70", "#ffdc00", "#85144b", "#39cccc", "#ff7f50", "#2c3e50", "#b10dc9", "#2aa198", "#c0392b", "#00bfff", "#8e44ad", "#2d3c4d",
+        "#e67e22", "#2e8b57", "#f1c40f", "#e74c3c", "#9b59b6", "#3498db"
+    );
+
+
+    $asset_query = "SELECT item_category, SUM(qty) AS items_categoryy FROM asset_record GROUP BY item_category";
+    $asset_result = $con->query($asset_query);
+    $asset_category = array();
+    $asset_quantities = array();
+
+    while ($row = $asset_result->fetch_assoc()) {
+        $asset_category[] = $row['item_category'];
+        $asset_quantities[] = $row['items_categoryy'];
     }
     $barColors = array(
         "#414142", "#03949B", "#26225B", "#4D7DBF", "#B2B435", "#ff9800", "#795548", "#aa00ff", "#5bc0de", "#d9534f",
@@ -283,7 +319,35 @@ $user_data = check_login($con);
             options: {
                 title: {
                     display: true,
-                    text: "World Wide Wine Production"
+                    text: ""
+                }
+            }
+        });
+
+
+
+        var asset_category = <?php echo json_encode($asset_category); ?>;
+        var asset_quantities = <?php echo json_encode($asset_quantities); ?>;
+        var barColors = <?php echo json_encode($barColors); ?>;
+        var categoryChart = document.getElementById('categoryChart').getContext('2d');
+
+        var assetChartObj = new Chart(categoryChart, {
+            type: 'pie',
+            data: {
+                labels: asset_category,
+                datasets: [{
+                    label: 'Asset Category',
+                    data: asset_quantities,
+                    backgroundColor: barColors,
+                    borderColor: '#f44336',
+                    borderWidth: 1
+
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: ""
                 }
             }
         });

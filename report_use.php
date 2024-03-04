@@ -38,6 +38,7 @@ $user_data = check_login($con);
             <table class="table bg-white table-bordered mydatatable" id="mydatatable">
                 <thead class="tbll text-dark">
                     <tr>
+                        <th>#</th>
                         <th scope="col">Use ID</th>
                         <th scope="col">Item Name</th>
                         <th scope="col">Item Condition</th>
@@ -51,6 +52,7 @@ $user_data = check_login($con);
 
                 <?php
                 include "connect.php";
+                $row_count = 1;
                 $sql = "select * from used_asset_report";
                 $result = $con->query($sql);
                 if (!$result) {
@@ -59,6 +61,7 @@ $user_data = check_login($con);
                 while ($row = $result->fetch_assoc()) {
                     $id = $row['u_asset'];
                     echo '<tr>
+                    <td>' . $row_count . '</td>
           <td>' . $row['u_asset'] . '</td>
           <td>' . $row['item_name'] . '</td>
           <td>' . $row['item_condition'] . '</td>
@@ -68,6 +71,7 @@ $user_data = check_login($con);
           <td>' . $row['description'] . '</td>
           <td>' . $row['user_name'] . '</td>
         </tr>';
+                    $row_count++;
                 }
                 ?>
 

@@ -580,7 +580,14 @@ input[readonly] {
 }
 
 #assetChart {
-    width: 700px;
+    width: 500px;
+    height: 350px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+#categoryChart {
+    width: 500px;
     height: 450px;
     max-width: 100%;
     margin: 0 auto;
@@ -590,23 +597,15 @@ input[readonly] {
 
 .graph {
     background-color: #ffffff;
-    width: 700px;
-    margin-left: 25%;
+    width: 500px;
+    margin-left: 20%;
+    margin-right: -20%;
     padding-bottom: 20px;
     display: flex;
     flex-wrap: wrap;
     padding-top: 5px;
 }
 
-.graph {
-    background-color: #ffffff;
-    width: 700px;
-    margin-left: 25%;
-    padding-bottom: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    padding-top: 5px;
-}
 
 .row {
     display: flex;

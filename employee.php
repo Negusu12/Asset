@@ -43,6 +43,9 @@ $user_data = check_login($con);
                             <option value="hr">Technical Department</option>
                             <option value="Finance">Finance Department</option>
                             <option value="Pharma">Pharma Department</option>
+<option value="Research">Research Department</option>
+<option value="project">Project</option>
+<option value="others">Others</option>
                         </select>
                         <div class="underline"></div>
                         <label for="">Department Name</label>
