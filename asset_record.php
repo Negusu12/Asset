@@ -47,14 +47,15 @@ $user_data = check_login($con);
                     <div class="input-data">
                         <select type="text" name="item_category" oninvalid="this.setCustomValidity('Select Item Category')" oninput="setCustomValidity('')" required>
                             <option value=""></option>
-                            <option value="laptop">Laptop</option>
-                            <option value="tablet">Tablet</option>
-                            <option value="all_in_one_desktop">All in One Desktop</option>
-                            <option value="switch">Switch</option>
-                            <option value="Phone">Phone</option>
-                            <option value="printer">printer</option>
-                            <option value="scanner">Scanner</option>
-                            <option value="projector">Projector</option>
+                            <?php
+                            $sql = "SELECT list_id, category FROM drop_down_list WHERE category IS NOT NULL AND category <> ''";
+                            $result = mysqli_query($con, $sql);
+                            if ($result) {
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    echo "<option value='" . $row["category"] . "'>" . $row["category"] . "</option>";
+                                }
+                            }
+                            ?>
                         </select>
                         <div class="underline"></div>
                         <label for="">Item Category</label>

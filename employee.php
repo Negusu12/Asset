@@ -36,16 +36,16 @@ $user_data = check_login($con);
                     </div>
                     <div class="input-data">
                         <select type="text" name="department">
-                            <option value="">--Select Department Here--</option>
-                            <option value="it">IT</option>
-                            <option value="Operation">Operation</option>
-                            <option value="hr">HR</option>
-                            <option value="hr">Technical Department</option>
-                            <option value="Finance">Finance Department</option>
-                            <option value="Pharma">Pharma Department</option>
-<option value="Research">Research Department</option>
-<option value="project">Project</option>
-<option value="others">Others</option>
+                            <option value=""></option>
+                            <?php
+                            $sql = "SELECT list_id, department FROM drop_down_list WHERE department IS NOT NULL AND department <> ''";
+                            $result = mysqli_query($con, $sql);
+                            if ($result) {
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    echo "<option value='" . $row["department"] . "'>" . $row["department"] . "</option>";
+                                }
+                            }
+                            ?>
                         </select>
                         <div class="underline"></div>
                         <label for="">Department Name</label>

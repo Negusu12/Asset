@@ -501,4 +501,42 @@ if (isset($_POST['submitp'])) {
         }
     }
 }
-// End Change Password
+
+
+if (isset($_POST['submit_list'])) {
+    $department = /*addlashes so it accept commas and sympols*/ addslashes($_POST['department']);
+    $category = addslashes($_POST['category']);
+
+    $sql = "insert into `drop_down_list`(department,category)
+    values ('$department','$category')";
+    $result = mysqli_query($con, $sql);
+    if ($result) {
+        echo "<script>
+        window.onload = function() {
+            // Display a success message using SweetAlert
+            Swal.fire({
+                icon: 'success',
+                title: 'Item Has been Sucessfully Added',
+                showConfirmButton: true,
+                confirmButtonText: 'OK',
+                timer: 2000
+            }).then(function() {
+                window.location.href = 'list.php';
+            });
+        }
+     </script>";
+    } else {
+        echo "<script>
+        window.onload = function() {
+            // Display a success message using SweetAlert
+            Swal.fire({
+                icon: 'error',
+                title: 'faild to record item.',
+                showConfirmButton: false,
+                showDenyButton: true,
+                denyButtonText: 'OK'
+            });
+        }
+     </script>";
+    }
+}
