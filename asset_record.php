@@ -48,7 +48,8 @@ $user_data = check_login($con);
                         <select type="text" name="item_category" oninvalid="this.setCustomValidity('Select Item Category')" oninput="setCustomValidity('')" required>
                             <option value=""></option>
                             <option value="laptop">Laptop</option>
-                            <option value="all_in_one">All in One Desktop</option>
+                            <option value="tablet">Tablet</option>
+                            <option value="all_in_one_desktop">All in One Desktop</option>
                             <option value="switch">Switch</option>
                             <option value="Phone">Phone</option>
                             <option value="printer">printer</option>

@@ -60,6 +60,7 @@ $user_data = check_login($con);
                             <th scope="col">Item Code</th>
                             <th scope="col">Item Name</th>
                             <th scope="col">Item Condition</th>
+                            <th scope="col">Item Category</th>
                             <th scope="col">UOM</th>
                             <th scope="col">Quantity</th>
                             <th scope="col">Document Date</th>
@@ -106,6 +107,7 @@ $user_data = check_login($con);
     <td>$row[item_c]</td>
     <td>$row[item_name]</td>
     <td>$row[item_condition]</td>
+    <td>$row[item_category]</td>
     <td>$row[uom]</td>
     <td>$row[qty]</td>
     <td>$doc_date</td>
