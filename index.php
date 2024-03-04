@@ -34,12 +34,17 @@ $user_data = check_login($con);
                 </div>
                 <div class="info-box-content">
                     <div class="info-box-row">
-                        <span class="info-box-text">Total Assets</span>
+                        <span class="info-box-text">Total Asset Quantity</span>
                     </div>
                     <div class="info-box-row">
                         <span class="info-box-number">
-                            <?php echo $con->query("SELECT * FROM asset_record item_c")->num_rows; ?>
+                            <?php
+                            $result = $con->query("SELECT SUM(qty) AS total_qty FROM asset_record");
+                            $row = $result->fetch_assoc();
+                            echo $row['total_qty'];
+                            ?>
                         </span>
+
                     </div>
                 </div>
                 <!-- /.info-box-content -->
