@@ -15,8 +15,11 @@ $user_data = check_login($con);
     <meta charset="utf-8">
     <title>AMS Asset on Hand</title>
     <link rel="icon" href="images/logo.png" type="image">
-    <link rel="stylesheet" href="lib/css/bootstrap.css">
-    <link rel="stylesheet" href="lib/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="asset/css/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="asset/css/bootstrap/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="asset/css/bootstrap/buttons.bootstrap4.min.css">
+    <link rel="stylesheet" href="asset/css/bootstrap/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="asset/css/bootstrap/flatpickr.min.css">
     <link rel="stylesheet" href="asset/css/style.css">
 
 </head>
@@ -124,20 +127,20 @@ $user_data = check_login($con);
         </form>
     </section>
 
-    <script src="lib/jquery-3.3.1.min.js"></script>
-    <script src="lib/popper.min.js"></script>
-    <script src="lib/jquery.dataTables.min.js"></script>
-    <script src="lib/dataTables.bootstrap4.min.js"></script>
-    <script src="lib/dataTables.buttons.min.js"></script>
-    <script src="lib/buttons.bootstrap4.min.js"></script>
-    <script src="lib/jszip.min.js"></script>
-    <script src="lib/pdfmake.min.js"></script>
-    <script src="lib/vfs_fonts.js"></script>
-    <script src="lib/buttons.html5.min.js"></script>
-    <script src="lib/buttons.print.min.js"></script>
-    <script src="lib/buttons.colVis.min.js"></script>
-    <script src="lib/dataTables.responsive.min.js"></script>
-    <script src="lib/responsive.bootstrap4.min.js"></script>
+    <script src="asset/js/jquery/jquery-3.3.1.min.js"></script>
+    <script src="asset/js/jquery/jquery.dataTables.min.js"></script>
+    <script src="asset/js/bootstrap/dataTables.bootstrap4.min.js"></script>
+    <script src="asset/js/bootstrap/dataTables.buttons.min.js"></script>
+    <script src="asset/js/bootstrap/buttons.bootstrap4.min.js"></script>
+    <script src="asset/js/bootstrap/jszip.min.js"></script>
+    <script src="asset/js/bootstrap/pdfmake.min.js"></script>
+    <script src="asset/js/bootstrap/vfs_fonts.js"></script>
+    <script src="asset/js/bootstrap/buttons.html5.min.js"></script>
+    <script src="asset/js/bootstrap/buttons.print.min.js"></script>
+    <script src="asset/js/bootstrap/buttons.colVis.min.js"></script>
+    <script src="asset/js/bootstrap/dataTables.responsive.min.js"></script>
+    <script src="asset/js/bootstrap/buttons.bootstrap4.min.js"></script>
+    <script src="asset/js/bootstrap/flatpickr.js"></script>
 
 
     <script>
@@ -155,11 +158,18 @@ $user_data = check_login($con);
 
             table.columns().every(function() {
                 var that = this;
-                $('input', this.header()).on('keyup change', function() {
-                    if (that.search() !== this.value) {
-                        that.search(this.value).draw();
-                    }
-                });
+                var columnTitle = $(this.header()).text().trim();
+
+                // Create the input element based on the column title
+                var input;
+                {
+                    // Create a regular text input element for other columns
+                    input = $('<input type="text" class="form-control" placeholder="Filter"/>')
+                        .appendTo($(this.header()))
+                        .on('keyup change', function() {
+                            that.search($(this).val()).draw();
+                        });
+                }
             });
 
             table.buttons().container()

@@ -318,9 +318,7 @@ select,
     transition: .4s;
 }
 
-ul li:hover a {
-    padding-left: 50px;
-}
+
 
 .sidebar ul a i {
     margin-right: 16px;
@@ -384,10 +382,10 @@ section {
 
 .report_table {
     padding-top: 5%;
-    width: 80%;
+    width: 85%;
     padding-left: 90px;
     margin-top: -52%;
-    margin-left: 10%;
+    margin-left: 4%;
 }
 
 .text {
@@ -651,4 +649,8 @@ input[readonly] {
 .info-box-number {
     color: black;
     /* Set text color to black */
+}
+
+.form-control {
+    width: 80px;
 }

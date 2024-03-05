@@ -20,8 +20,11 @@ if ($user_data['role'] == 2) {
     <meta charset="utf-8">
     <title>Asset Management System</title>
     <link rel="icon" href="images/logo.png" type="image">
-    <link rel="stylesheet" href="lib/css/bootstrap.css">
-    <link rel="stylesheet" href="lib/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="asset/css/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="asset/css/bootstrap/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="asset/css/bootstrap/buttons.bootstrap4.min.css">
+    <link rel="stylesheet" href="asset/css/bootstrap/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="asset/css/bootstrap/flatpickr.min.css">
     <link rel="stylesheet" href="asset/css/style.css">
     <link rel="stylesheet" href="asset/css/sweetalert2.min.css">
 

@@ -152,6 +152,24 @@ $user_data = check_login($con);
                     <div class="card shadow rounded-0">
                         <div class="card-header rounded-0">
                             <div class="d-flex justify-content-between">
+                                <div class="card-title flex-shrink-1 flex-grow-1">Asset Category</div>
+
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="container-fluid">
+                                <canvas id="categoryChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="graph">
+                <div class="col-lg-6 col-md-8 col-sm-12 mb-4">
+                    <div class="card shadow rounded-0">
+                        <div class="card-header rounded-0">
+                            <div class="d-flex justify-content-between">
                                 <div class="card-title flex-shrink-1 flex-grow-1">Asset On Hand</div>
 
                             </div>
@@ -166,24 +184,7 @@ $user_data = check_login($con);
 
             </div>
 
-            <div class="graph">
-                <div class="col-lg-6 col-md-8 col-sm-12 mb-4">
-                    <div class="card shadow rounded-0">
-                        <div class="card-header rounded-0">
-                            <div class="d-flex justify-content-between">
-                                <div class="card-title flex-shrink-1 flex-grow-1">Asset Category</div>
 
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="container-fluid">
-                                <canvas id="categoryChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
         </div>
 
 
