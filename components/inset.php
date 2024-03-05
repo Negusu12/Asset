@@ -507,9 +507,10 @@ if (isset($_POST['submitp'])) {
 if (isset($_POST['submit_list'])) {
     $department = /*addlashes so it accept commas and sympols*/ addslashes($_POST['department']);
     $category = addslashes($_POST['category']);
+    $uom = addslashes($_POST['uom']);
 
-    $sql = "insert into `drop_down_list`(department,category)
-    values ('$department','$category')";
+    $sql = "insert into `drop_down_list`(department,category,uom)
+    values ('$department','$category','$uom')";
     $result = mysqli_query($con, $sql);
     if ($result) {
         echo "<script>

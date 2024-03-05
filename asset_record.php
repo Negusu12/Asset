@@ -88,8 +88,15 @@ $user_data = check_login($con);
                     <div class="input-data">
                         <select type="text" name="uom" oninvalid="this.setCustomValidity('Select UOM')" oninput="setCustomValidity('')" required>
                             <option value=""></option>
-                            <option value="Meter">Meter</option>
-                            <option value="Each">Each</option>
+                            <?php
+                            $sql = "SELECT list_id, uom FROM drop_down_list WHERE uom IS NOT NULL AND uom <> ''";
+                            $result = mysqli_query($con, $sql);
+                            if ($result) {
+                                while ($row = mysqli_fetch_assoc($result)) {
+                                    echo "<option value='" . $row["uom"] . "'>" . $row["uom"] . "</option>";
+                                }
+                            }
+                            ?>
                         </select>
                         <div class="underline"></div>
                         <label for="">UOM</label>

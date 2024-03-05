@@ -44,6 +44,11 @@ $user_data = check_login($con);
                         <div class="underline"></div>
                         <label for="">Category</label>
                     </div>
+                    <div class="input-data">
+                        <input type="text" name="uom">
+                        <div class="underline"></div>
+                        <label for="">UOM</label>
+                    </div>
                 </div>
                 <div class="form-row submit-btn">
                     <div class="input-data">
