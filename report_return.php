@@ -43,7 +43,9 @@ $user_data = check_login($con);
                         <th>#</th>
                         <th scope="col">loan ID</th>
                         <th scope="col">Item Name</th>
-                        <th scope="col">Item Condition</th>
+                        <th scope="col">Model</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Status</th>
                         <th scope="col">Loaner Name</th>
                         <th scope="col">UOM</th>
                         <th scope="col">Quantity</th>
@@ -67,6 +69,8 @@ $user_data = check_login($con);
       <td>$row_count</td>
       <td>$row[loan_id]</td>
         <td>$row[item_name]</td>
+        <td>$row[model]</td>
+        <td>$row[item_category]</td>
         <td>$row[item_condition]</td>
         <td>$row[full_name]</td>
         <td>$row[uom]</td>

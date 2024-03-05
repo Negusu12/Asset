@@ -15,6 +15,7 @@ $user_data = check_login($con);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="icon" href="images/logo.png" type="image">
     <link rel="stylesheet" href="asset/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
     <link rel="stylesheet" href="asset/css/sweetalert2.min.css">
@@ -45,6 +46,13 @@ $user_data = check_login($con);
                         <label for="">Item Name</label>
                     </div>
                     <div class="input-data">
+                        <input type="text" name="model">
+                        <div class="underline"></div>
+                        <label for="">Model</label>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="input-data">
                         <select type="text" name="item_category" oninvalid="this.setCustomValidity('Select Item Category')" oninput="setCustomValidity('')" required>
                             <option value=""></option>
                             <?php
@@ -60,8 +68,6 @@ $user_data = check_login($con);
                         <div class="underline"></div>
                         <label for="">Item Category</label>
                     </div>
-                </div>
-                <div class="form-row">
                     <div class="input-data">
                         <select type="text" name="item_condition" oninvalid="this.setCustomValidity('Select Item Condition')" oninput="setCustomValidity('')" required>
                             <option value=""></option>
@@ -81,11 +87,6 @@ $user_data = check_login($con);
                         <label for="">Quantity</label>
                     </div>
                     <div class="input-data">
-                        <input type="date" name="doc_date" id="doc_date" oninvalid="this.setCustomValidity('Enter Date Here')" oninput="setCustomValidity('')" required>
-                        <div class="underline"></div>
-                        <label for="doc_date">Document Date</label>
-                    </div>
-                    <div class="input-data">
                         <select type="text" name="uom" oninvalid="this.setCustomValidity('Select UOM')" oninput="setCustomValidity('')" required>
                             <option value=""></option>
                             <?php
@@ -100,6 +101,11 @@ $user_data = check_login($con);
                         </select>
                         <div class="underline"></div>
                         <label for="">UOM</label>
+                    </div>
+                    <div class="input-data">
+                        <input type="date" name="doc_date" id="doc_date" oninvalid="this.setCustomValidity('Enter Date Here')" oninput="setCustomValidity('')" required>
+                        <div class="underline"></div>
+                        <label for="doc_date">Document Date</label>
                     </div>
                 </div>
                 <div class="form-row">

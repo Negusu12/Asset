@@ -13,7 +13,8 @@ $user_data = check_login($con);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Add Loaner</title>
+    <link rel="icon" href="images/logo.png" type="image">
     <link rel="stylesheet" href="asset/css/style.css">
     <link rel="stylesheet" href="asset/css/sweetalert2.min.css">
 </head>
@@ -30,12 +31,12 @@ $user_data = check_login($con);
             <form method="post" enctype="multipart/form-data">
                 <div class="form-row">
                     <div class="input-data">
-                        <input type="text" name="full_name">
+                        <input type="text" name="full_name" oninvalid="this.setCustomValidity('Enter Name Here')" oninput="setCustomValidity('')" required>
                         <div class="underline"></div>
                         <label for="">Employee Name</label>
                     </div>
                     <div class="input-data">
-                        <select type="text" name="department">
+                        <select type="text" name="department" oninvalid="this.setCustomValidity('Enter Department Here')" oninput="setCustomValidity('')" required>
                             <option value=""></option>
                             <?php
                             $sql = "SELECT list_id, department FROM drop_down_list WHERE department IS NOT NULL AND department <> ''";

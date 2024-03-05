@@ -4,6 +4,7 @@
 
 <head>
     <meta charset="utf-8">
+    <link rel="icon" href="images/logo.png" type="image">
     <!-- <title>Sider Menu Bar CSS</title> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="asset/css/style.css">
