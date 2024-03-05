@@ -45,9 +45,9 @@
                     <li><a href="users.php"><i class="fa-regular fa-address-book"></i>Users</a></li>
                 <?php endif; ?>
             </ul>
+            <li><a href="list.php"><i class="fa-solid fa-user"></i>Add Drop Down List</a></li>
             <?php if ($user_data['role'] == 1) : ?>
                 <li><a href="signup.php"><i class="fa-solid fa-user"></i>Add User</a></li>
-                <li><a href="list.php"><i class="fa-solid fa-user"></i>Add Drop Down List</a></li>
             <?php endif; ?>
             <li><a href="change_password.php"><i class="fa-solid fa-user"></i>Change Password</a></li>
             <li><a href="logout.php"><i class="fa-solid fa-arrow-right-from-bracket"></i>Log Out</a></li>

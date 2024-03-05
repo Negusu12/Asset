@@ -28,43 +28,47 @@ $user_data = check_login($con);
     <div class="dashboard">
 
         <div class="row-d">
-            <div class="info-box">
-                <div class="iconn">
-                    <i class=" fa-brands fa-product-hunt"></i>
-                </div>
-                <div class="info-box-content">
-                    <div class="info-box-row">
-                        <span class="info-box-text">Total Asset Quantity</span>
+            <a href="report_asset_onhand.php" class="info-box-link">
+                <div class="info-box">
+                    <div class="iconn">
+                        <i class=" fa-brands fa-product-hunt"></i>
                     </div>
-                    <div class="info-box-row">
-                        <span class="info-box-number">
-                            <?php
-                            $result = $con->query("SELECT SUM(qty) AS total_qty FROM asset_record");
-                            $row = $result->fetch_assoc();
-                            echo $row['total_qty'];
-                            ?>
-                        </span>
+                    <div class="info-box-content">
+                        <div class="info-box-row">
+                            <span class="info-box-text">Total Asset Quantity</span>
+                        </div>
+                        <div class="info-box-row">
+                            <span class="info-box-number">
+                                <?php
+                                $result = $con->query("SELECT SUM(qty) AS total_qty FROM asset_record");
+                                $row = $result->fetch_assoc();
+                                echo $row['total_qty'];
+                                ?>
+                            </span>
 
+                        </div>
                     </div>
+                    <!-- /.info-box-content -->
                 </div>
-                <!-- /.info-box-content -->
-            </div>
-            <div class="info-box">
-                <div class="iconn">
-                    <i class="fa-solid fa-money-bill-trend-up"></i>
-                </div>
-                <div class="info-box-content">
-                    <div class="info-box-row">
-                        <span class="info-box-text">Number Of Items Loaned</span>
+            </a>
+            <a href="report_loan.php" class="info-box-link">
+                <div class="info-box">
+                    <div class="iconn">
+                        <i class="fa-solid fa-money-bill-trend-up"></i>
                     </div>
-                    <div class="info-box-row">
-                        <span class="info-box-number">
-                            <?php echo $con->query("SELECT * FROM asset_loan where qty > 0")->num_rows; ?>
-                        </span>
+                    <div class="info-box-content">
+                        <div class="info-box-row">
+                            <span class="info-box-text">Number Of Items Loaned</span>
+                        </div>
+                        <div class="info-box-row">
+                            <span class="info-box-number">
+                                <?php echo $con->query("SELECT * FROM asset_loan where qty > 0")->num_rows; ?>
+                            </span>
+                        </div>
                     </div>
+                    <!-- /.info-box-content -->
                 </div>
-                <!-- /.info-box-content -->
-            </div>
+            </a>
             <div class="info-box" style="display: none;">
                 <div class="iconn">
                     <i class="fa-solid fa-hashtag"></i>

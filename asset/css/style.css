@@ -631,3 +631,24 @@ input[readonly] {
 .table-responsive {
     margin-left: 10%;
 }
+
+.info-box-link {
+    color: inherit;
+    /* Inherit color from parent */
+    text-decoration: none;
+    /* Remove underline */
+    cursor: pointer;
+    /* Change cursor on hover */
+}
+
+.info-box-link:hover {
+    text-decoration: none;
+    /* Remove underline on hover */
+    color: inherit;
+    /* Inherit color from parent on hover */
+}
+
+.info-box-number {
+    color: black;
+    /* Set text color to black */
+}
