@@ -41,8 +41,10 @@ $user_data = check_login($con);
                         <th>#</th>
                         <th scope="col">Loan ID</th>
                         <th scope="col">Item Name</th>
-                        <th scope="col">Item Condition</th>
-                        <th scope="col">Full Name</th>
+                        <th scope="col">Item Category</th>
+                        <th scope="col">Item Status</th>
+                        <th scope="col">Serial No.</th>
+                        <th scope="col">Loaned To</th>
                         <th scope="col">UOM</th>
                         <th scope="col">Loaned Quantity</th>
                         <th scope="col">Quantity on Loan</th>
@@ -69,7 +71,9 @@ $user_data = check_login($con);
          <td>' . $row_count . '</td>
           <td>' . $row['loan_id'] . '</td>
           <td>' . $row['item_name'] . '</td>
+          <td>' . $row['item_category'] . '</td>
           <td>' . $row['item_condition'] . '</td>
+          <td>' . $row['serial_no'] . '</td>
           <td>' . $row['full_name'] . '</td>
           <td>' . $row['uom'] . '</td>
           <td>' . $row['qty_taken'] . '</td>
@@ -126,11 +130,18 @@ $user_data = check_login($con);
 
             table.columns().every(function() {
                 var that = this;
-                $('input', this.header()).on('keyup change', function() {
-                    if (that.search() !== this.value) {
-                        that.search(this.value).draw();
-                    }
-                });
+                var columnTitle = $(this.header()).text().trim();
+
+                // Create the input element based on the column title
+                var input;
+                {
+                    // Create a regular text input element for other columns
+                    input = $('<input type="text" class="form-control" placeholder="Filter"/>')
+                        .appendTo($(this.header()))
+                        .on('keyup change', function() {
+                            that.search($(this).val()).draw();
+                        });
+                }
             });
 
             table.buttons().container()

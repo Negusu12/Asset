@@ -518,10 +518,9 @@ if (isset($_POST['submit_list'])) {
             // Display a success message using SweetAlert
             Swal.fire({
                 icon: 'success',
-                title: 'Item Has been Sucessfully Added',
+                title: 'List Choice Has been Successfully Added',
                 showConfirmButton: true,
-                confirmButtonText: 'OK',
-                timer: 2000
+                confirmButtonText: 'OK'
             }).then(function() {
                 window.location.href = 'list.php';
             });
@@ -533,7 +532,7 @@ if (isset($_POST['submit_list'])) {
             // Display a success message using SweetAlert
             Swal.fire({
                 icon: 'error',
-                title: 'faild to record item.',
+                title: 'faild to record List Choice.',
                 showConfirmButton: false,
                 showDenyButton: true,
                 denyButtonText: 'OK'
