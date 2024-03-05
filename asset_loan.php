@@ -90,6 +90,11 @@ $user_data = check_login($con);
                         <div class="underline"></div>
                         <label for="doc_date">Document Date</label>
                     </div>
+                    <div class="input-data">
+                        <input type="text" name="serial_no">
+                        <div class="underline"></div>
+                        <label for="">Serial No.</label>
+                    </div>
                 </div>
                 <div class="form-row">
                     <div class="input-data textarea">
