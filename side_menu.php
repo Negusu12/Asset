@@ -44,6 +44,7 @@
                 <li><a href="report_use.php"><i class="fa-regular fa-address-book"></i>Asset Used</a></li>
                 <?php if ($user_data['role'] == 1) : ?>
                     <li><a href="users.php"><i class="fa-regular fa-address-book"></i>Users</a></li>
+                    <li><a href="report_employee.php"><i class="fa-regular fa-address-book"></i>Loners List</a></li>
                 <?php endif; ?>
             </ul>
             <li><a href="list.php"><i class="fa-solid fa-user"></i>Add Drop Down List</a></li>

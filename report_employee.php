@@ -21,6 +21,7 @@ $user_data = check_login($con);
     <link rel="stylesheet" href="asset/css/bootstrap/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="asset/css/bootstrap/flatpickr.min.css">
     <link rel="stylesheet" href="asset/css/style.css">
+    <link rel="stylesheet" href="asset/css/sweetalert2.min.css">
 
 </head>
 
@@ -62,6 +63,7 @@ $user_data = check_login($con);
                         echo "<td>" . $row['department'] . "</td>";
                         echo "<td>
                         <a class='btn btn-success' href='components/edit_employee.php?employee_id=$row[employee_id]'>Edit</a>
+                        <button class='btn btn-danger' onclick='confirmDelete($row[employee_id])'>Delete</button>
                         </td>";
 
                         echo "</tr>";
@@ -89,6 +91,7 @@ $user_data = check_login($con);
     <script src="asset/js/bootstrap/dataTables.responsive.min.js"></script>
     <script src="asset/js/bootstrap/buttons.bootstrap4.min.js"></script>
     <script src="asset/js/bootstrap/flatpickr.js"></script>
+    <script src="asset/js/sweetalert2.min.js"></script>
 
 
     <script>
@@ -123,6 +126,26 @@ $user_data = check_login($con);
             table.buttons().container()
                 .appendTo('#mydatatable_wrapper .col-md-6:eq(0)');
         });
+    </script>
+
+    <script>
+        function confirmDelete(userId) {
+            event.preventDefault(); // Prevent default form submission
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: 'You won\'t be able to revert this!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = 'components/delete_employee.php?employee_id=' + userId;
+                }
+            });
+        }
     </script>
 
 
