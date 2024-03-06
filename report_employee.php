@@ -1,12 +1,10 @@
 <?php
-
 session_start();
 include 'components/inset.php';
 include("connect.php");
 include("components/functions.php");
 
 $user_data = check_login($con);
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,18 +20,13 @@ $user_data = check_login($con);
     <link rel="stylesheet" href="asset/css/bootstrap/flatpickr.min.css">
     <link rel="stylesheet" href="asset/css/style.css">
     <link rel="stylesheet" href="asset/css/sweetalert2.min.css">
-
 </head>
 
 <body class="body">
-
-
     <section class="">
         <?php include 'side_menu.php'; ?>
     </section>
-
     <section class="report_table">
-
         <div class="text">
             Loners List
         </div>
@@ -45,38 +38,38 @@ $user_data = check_login($con);
                             <th scope="col">employee_id</th>
                             <th scope="col">full_name</th>
                             <th scope="col">department</th>
-                            <th scope="col">Action</th>
+                            <?php if ($user_data['role'] == 1) : ?>
+                                <th scope="col">Action</th>
+                            <?php endif; ?>
                         </tr>
                     </thead>
-
-                    <?php
-                    include "connect.php";
-                    $sql = "SELECT * FROM employee";
-                    $result = $con->query($sql);
-                    if (!$result) {
-                        die("Invalid query!");
-                    }
-                    while ($row = $result->fetch_assoc()) {
-                        echo "<tr>";
-                        echo "<td>" . $row['employee_id'] . "</td>";
-                        echo "<td>" . $row['full_name'] . "</td>";
-                        echo "<td>" . $row['department'] . "</td>";
-                        echo "<td>
-                        <a class='btn btn-success' href='components/edit_employee.php?employee_id=$row[employee_id]'>Edit</a>
-                        <button class='btn btn-danger' onclick='confirmDelete($row[employee_id])'>Delete</button>
-                        </td>";
-
-                        echo "</tr>";
-                    }
-                    ?>
-
-
+                    <tbody>
+                        <?php
+                        include "connect.php";
+                        $sql = "SELECT * FROM employee";
+                        $result = $con->query($sql);
+                        if (!$result) {
+                            die("Invalid query!");
+                        }
+                        while ($row = $result->fetch_assoc()) {
+                            echo "<tr>";
+                            echo "<td>" . $row['employee_id'] . "</td>";
+                            echo "<td>" . $row['full_name'] . "</td>";
+                            echo "<td>" . $row['department'] . "</td>";
+                            if ($user_data['role'] == 1) {
+                                echo "<td>
+                                <a class='btn btn-success' href='components/edit_employee.php?employee_id=" . $row['employee_id'] . "'>Edit</a>
+                                <button class='btn btn-danger' onclick='confirmDelete(" . $row['employee_id'] . ")'>Delete</button>
+                              </td>";
+                            }
+                            echo "</tr>";
+                        }
+                        ?>
                     </tbody>
                 </table>
             </div>
         </form>
     </section>
-
     <script src="asset/js/jquery/jquery-3.3.1.min.js"></script>
     <script src="asset/js/jquery/jquery.dataTables.min.js"></script>
     <script src="asset/js/bootstrap/dataTables.bootstrap4.min.js"></script>
@@ -92,8 +85,6 @@ $user_data = check_login($con);
     <script src="asset/js/bootstrap/buttons.bootstrap4.min.js"></script>
     <script src="asset/js/bootstrap/flatpickr.js"></script>
     <script src="asset/js/sweetalert2.min.js"></script>
-
-
     <script>
         $(document).ready(function() {
             var table = $('#mydatatable').DataTable({
@@ -105,7 +96,6 @@ $user_data = check_login($con);
                     [10, 25, 50, "All"]
                 ]
             });
-
 
             table.columns().every(function() {
                 var that = this;
@@ -126,9 +116,7 @@ $user_data = check_login($con);
             table.buttons().container()
                 .appendTo('#mydatatable_wrapper .col-md-6:eq(0)');
         });
-    </script>
 
-    <script>
         function confirmDelete(userId) {
             event.preventDefault(); // Prevent default form submission
 
@@ -147,9 +135,6 @@ $user_data = check_login($con);
             });
         }
     </script>
-
-
-
 </body>
 
 </html>
