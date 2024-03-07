@@ -154,7 +154,7 @@ $user_data = check_login($con);
                     <ul class="category_li">
                         <?php
                         // Fetch item categories and their total quantities
-                        $category_query = "SELECT item_category, SUM(qty) AS total_qty FROM asset_record where qty > 0 GROUP BY item_category";
+                        $category_query = "SELECT item_category, SUM(qty) AS total_qty FROM asset_record where qty > 0 GROUP BY item_category order by total_qty desc";
                         $category_result = $con->query($category_query);
                         if ($category_result->num_rows > 0) {
                             while ($row = $category_result->fetch_assoc()) {

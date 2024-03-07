@@ -4,7 +4,7 @@ include("connect.php");
 if (isset($_POST['category'])) {
     $category = $_POST['category'];
 
-    $item_query = "SELECT item_name, qty FROM asset_record WHERE item_category = '$category' and qty > 0";
+    $item_query = "SELECT concat(item_name,'-', item_condition) as item_name, qty FROM asset_record WHERE item_category = '$category' and qty > 0 order by qty desc";
     $item_result = $con->query($item_query);
 
     if ($item_result->num_rows > 0) {
