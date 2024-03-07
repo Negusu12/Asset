@@ -148,6 +148,31 @@ $user_data = check_login($con);
 
                 </div>
             </div>
+
+            <section>
+                <div class="row">
+                    <ul class="category_li">
+                        <?php
+                        // Fetch item categories and their total quantities
+                        $category_query = "SELECT item_category, SUM(qty) AS total_qty FROM asset_record where qty > 0 GROUP BY item_category";
+                        $category_result = $con->query($category_query);
+                        if ($category_result->num_rows > 0) {
+                            while ($row = $category_result->fetch_assoc()) {
+                                echo '<li class="category" data-category="' . $row["item_category"] . '">' . $row["item_category"] . ' - Total Qty: ' . $row["total_qty"] . '</li>';
+                                echo '<ul class="item-list" style="display:none;"></ul>'; // Hidden item list for each category
+                            }
+                        } else {
+                            echo "0 results";
+                        }
+                        ?>
+                    </ul>
+                </div>
+            </section>
+
+
+
+
+
             <div class="graph">
                 <div class="col-lg-6 col-md-8 col-sm-12 mb-4">
                     <div class="card shadow rounded-0">
@@ -363,6 +388,33 @@ $user_data = check_login($con);
                     text: "Asset Category"
                 }
             }
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $(".category").click(function() {
+                var category = $(this).data('category');
+                var itemList = $(this).next('.item-list');
+
+                if (itemList.is(':visible')) {
+                    itemList.hide(); // Hide the item list if it's visible
+                } else {
+                    $.ajax({
+                        url: "get_items_by_category.php",
+                        method: "POST",
+                        data: {
+                            category: category
+                        },
+                        success: function(data) {
+                            itemList.html(data).show(); // Show and populate the item list
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(xhr.responseText);
+                        }
+                    });
+                }
+            });
         });
     </script>
 

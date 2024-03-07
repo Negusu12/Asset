@@ -581,7 +581,7 @@ input[readonly] {
 }
 
 #assetChart {
-    width: 900px;
+    width: 850px;
     height: 90%;
 }
 
@@ -595,8 +595,7 @@ input[readonly] {
 .graph {
     background-color: #ffffff;
     width: 500px;
-    margin-left: 20%;
-    margin-right: -20%;
+    height: 50%;
     padding-bottom: 20px;
     display: flex;
     flex-wrap: wrap;
@@ -605,9 +604,8 @@ input[readonly] {
 
 .grapha {
     background-color: #ffffff;
-    width: 900px;
-    margin-left: 20%;
-    margin-right: -20%;
+    width: 850px;
+    height: 50%;
     padding-bottom: 20px;
     display: flex;
     flex-wrap: wrap;
@@ -663,4 +661,9 @@ input[readonly] {
 
 .form-control {
     width: 80px;
+}
+
+.category_li {
+    padding-left: 17%;
+    margin-right: -17%;
 }
