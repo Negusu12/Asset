@@ -581,10 +581,8 @@ input[readonly] {
 }
 
 #assetChart {
-    width: 500px;
-    height: 350px;
-    max-width: 100%;
-    margin: 0 auto;
+    width: 900px;
+    height: 90%;
 }
 
 #categoryChart {
@@ -594,11 +592,20 @@ input[readonly] {
     margin: 0 auto;
 }
 
-
-
 .graph {
     background-color: #ffffff;
     width: 500px;
+    margin-left: 20%;
+    margin-right: -20%;
+    padding-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 5px;
+}
+
+.grapha {
+    background-color: #ffffff;
+    width: 900px;
     margin-left: 20%;
     margin-right: -20%;
     padding-bottom: 20px;

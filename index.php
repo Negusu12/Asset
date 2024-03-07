@@ -166,7 +166,7 @@ $user_data = check_login($con);
                 </div>
 
             </div>
-            <div class="graph">
+            <div class="grapha">
                 <div class="col-lg-6 col-md-8 col-sm-12 mb-4">
                     <div class="card shadow rounded-0">
                         <div class="card-header rounded-0">
@@ -215,7 +215,7 @@ $user_data = check_login($con);
         $return_quantities[] = $row['items_returned'];
     };
 
-    $asset_query = "SELECT item_name, SUM(qty) AS items_record FROM asset_record GROUP BY item_name";
+    $asset_query = "SELECT item_name, SUM(qty) AS items_record FROM asset_record where qty > 0 GROUP BY item_name";
     $asset_result = $con->query($asset_query);
     $asset_name = array();
     $asset_quantities = array();
@@ -317,7 +317,7 @@ $user_data = check_login($con);
         var assetChart = document.getElementById('assetChart').getContext('2d');
 
         var assetChartObj = new Chart(assetChart, {
-            type: 'pie',
+            type: 'bar',
             data: {
                 labels: asset_name,
                 datasets: [{
