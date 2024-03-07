@@ -665,5 +665,9 @@ input[readonly] {
 
 .category_li {
     padding-left: 17%;
-    margin-right: 5%;
+    width: 400px;
+}
+
+.item-list {
+    font-size: small;
 }
