@@ -70,7 +70,7 @@ if (isset($_POST['submit_e'])) {
                         confirmButtonText: 'OK',
                         timer: 2000
                     }).then(function() {
-                        window.location.href = 'report_employee.php';
+                        window.location.href = 'employee.php';
                     });
                 }
              </script>";

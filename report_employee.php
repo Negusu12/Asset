@@ -46,7 +46,7 @@ $user_data = check_login($con);
                     <tbody>
                         <?php
                         include "connect.php";
-                        $sql = "SELECT * FROM employee";
+                        $sql = "SELECT * FROM employee order by employee_id desc";
                         $result = $con->query($sql);
                         if (!$result) {
                             die("Invalid query!");

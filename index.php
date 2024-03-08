@@ -36,7 +36,7 @@ $user_data = check_login($con);
                     </div>
                     <div class="info-box-content">
                         <div class="info-box-row">
-                            <span class="info-box-text">Total Asset Quantity</span>
+                            <span class="info-box-text">Total on Hand Asset Quantity</span>
                         </div>
                         <div class="info-box-row">
                             <span class="info-box-number">
@@ -151,14 +151,16 @@ $user_data = check_login($con);
 
             <section>
                 <div class="row">
+
                     <ul class="category_li">
+                        <h1 style="font-size: 22px;">Asset On Store</h1>
                         <?php
-                        // Fetch item categories and their total quantities
-                        $category_query = "SELECT item_category, SUM(qty) AS total_qty FROM asset_record where qty > 0 GROUP BY item_category order by total_qty desc";
+                        // Fetch item categories and their total quantities from asset_record
+                        $category_query = "SELECT item_category, SUM(qty) AS total_qty FROM asset_record WHERE qty > 0 GROUP BY item_category ORDER BY total_qty DESC";
                         $category_result = $con->query($category_query);
                         if ($category_result->num_rows > 0) {
                             while ($row = $category_result->fetch_assoc()) {
-                                echo '<li class="category" data-category="' . $row["item_category"] . '">' . $row["item_category"] . ' - Total Qty: ' . $row["total_qty"] . '</li>';
+                                echo '<li class="category" data-category="' . $row["item_category"] . '"><i class="fas fa-arrow-right"></i> ' . $row["item_category"] . ' - Total Qty: ' . $row["total_qty"] . '</li>';
                                 echo '<ul class="item-list" style="display:none;"></ul>'; // Hidden item list for each category
                             }
                         } else {
@@ -167,7 +169,28 @@ $user_data = check_login($con);
                         ?>
                     </ul>
                 </div>
+                <div class="row">
+
+                    <ul class="category_li">
+                        <h1 style="font-size: 22px;">Asset On Loan</h1>
+                        <?php
+                        // Fetch item categories and their total quantities from asset_loan_v
+                        $category_query_loan = "SELECT item_category, SUM(qty) AS total_qty FROM asset_loan_v WHERE qty > 0 GROUP BY item_category ORDER BY total_qty DESC";
+                        $category_result_loan = $con->query($category_query_loan);
+                        if ($category_result_loan->num_rows > 0) {
+                            while ($row = $category_result_loan->fetch_assoc()) {
+                                echo '<li class="category_loan" data-category_loan="' . $row["item_category"] . '"><i class="fas fa-arrow-right"></i> ' . $row["item_category"] . ' - Total Qty: ' . $row["total_qty"] . '</li>';
+                                echo '<ul class="item-list_loan" style="display:none;"></ul>'; // Hidden item list for each category
+                            }
+                        } else {
+                            echo "0 results";
+                        }
+                        ?>
+                    </ul>
+                </div>
+
             </section>
+
 
 
 
@@ -408,6 +431,32 @@ $user_data = check_login($con);
                         },
                         success: function(data) {
                             itemList.html(data).show(); // Show and populate the item list
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(xhr.responseText);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $(".category_loan").click(function() {
+                var category_loan = $(this).data('category_loan');
+                var itemList_loan = $(this).next('.item-list_loan');
+
+                if (itemList_loan.is(':visible')) {
+                    itemList_loan.hide(); // Hide the item list if it's visible
+                } else {
+                    $.ajax({
+                        url: "get_items_by_category.php",
+                        method: "POST",
+                        data: {
+                            category_loan: category_loan
+                        },
+                        success: function(data) {
+                            itemList_loan.html(data).show(); // Show and populate the item list
                         },
                         error: function(xhr, status, error) {
                             console.error(xhr.responseText);
