@@ -10,8 +10,8 @@ if (isset($_POST['category'])) {
     if ($item_result->num_rows > 0) {
         $html = '<ul class="item-list">';
         while ($row = $item_result->fetch_assoc()) {
-            // Modify this line to add anchor tag
-            $html .= '<li><a class="item-link" href="report_asset_onhand.php?item_name=' . urlencode($row["item_name"]) . '">' . $row["item_name"] . ' - Qty: ' . $row["qty"] . '</a></li>';
+            // Modify this line to separate the icon from the link
+            $html .= '<li><i class="fas fa-circle" style="color: #414142;"></i> <a class="item-link" href="report_asset_onhand.php?item_name=' . urlencode($row["item_name"]) . '">' . $row["item_name"] . ' - Qty: ' . $row["qty"] . '</a></li>';
         }
         $html .= '</ul>';
         echo $html;
@@ -19,6 +19,7 @@ if (isset($_POST['category'])) {
         echo "No items found in this category.";
     }
 }
+
 
 if (isset($_POST['category_loan'])) {
     $category_loan = $_POST['category_loan'];
@@ -30,8 +31,8 @@ if (isset($_POST['category_loan'])) {
     if ($item_result->num_rows > 0) {
         $html = '<ul class="item-list_loan">';
         while ($row = $item_result->fetch_assoc()) {
-            // Modify this line to add anchor tags
-            $html .= '<li><a class="item-link" href="report_loan.php?item_name=' . urlencode($row["item_name"]) . '">' . $row["item_name"] . ' - Qty: ' . $row["total_qty"] . '</a></li>';
+            // Modify this line to separate the icon from the link
+            $html .= '<li><i class="fas fa-circle" style="color: #414142;"></i> <a class="item-link" href="report_loan.php?item_name=' . urlencode($row["item_name"]) . '">' . $row["item_name"] . ' - Qty: ' . $row["total_qty"] . '</a></li>';
         }
         $html .= '</ul>';
         echo $html;

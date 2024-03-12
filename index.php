@@ -32,7 +32,7 @@ $user_data = check_login($con);
             <a href="report_asset_onhand.php" class="info-box-link">
                 <div class="info-box">
                     <div class="iconn">
-                        <i class=" fa-brands fa-product-hunt"></i>
+                        <i class="fas fa-warehouse"></i>
                     </div>
                     <div class="info-box-content">
                         <div class="info-box-row">
@@ -55,7 +55,7 @@ $user_data = check_login($con);
             <a href="report_loan.php" class="info-box-link">
                 <div class="info-box">
                     <div class="iconn">
-                        <i class="fa-solid fa-money-bill-trend-up"></i>
+                        <i class="far fa-credit-card"></i>
                     </div>
                     <div class="info-box-content">
                         <div class="info-box-row">
@@ -169,7 +169,7 @@ $user_data = check_login($con);
                         $category_result = $con->query($category_query);
                         if ($category_result->num_rows > 0) {
                             while ($row = $category_result->fetch_assoc()) {
-                                echo '<li class="category" data-category="' . $row["item_category"] . '"><i class="fas fa-arrow-right"></i> ' . $row["item_category"] . ' - Total Qty: ' . $row["total_qty"] . '</li>';
+                                echo '<li class="category" data-category="' . $row["item_category"] . '"><i class="fas fa-arrow-right" style="color: #414142;"></i> ' . $row["item_category"] . ' - Total Qty: ' . $row["total_qty"] . '</li>';
                                 echo '<ul class="item-list" style="display:none;"></ul>'; // Hidden item list for each category
                             }
                         } else {
@@ -188,7 +188,7 @@ $user_data = check_login($con);
                         $category_result_loan = $con->query($category_query_loan);
                         if ($category_result_loan->num_rows > 0) {
                             while ($row = $category_result_loan->fetch_assoc()) {
-                                echo '<li class="category_loan" data-category_loan="' . $row["item_category"] . '"><i class="fas fa-arrow-right"></i> ' . $row["item_category"] . ' - Total Qty: ' . $row["total_qty"] . '</li>';
+                                echo '<li class="category_loan" data-category_loan="' . $row["item_category"] . '"><i class="fas fa-arrow-right" style="color: #414142;"></i> ' . $row["item_category"] . ' - Total Qty: ' . $row["total_qty"] . '</li>';
                                 echo '<ul class="item-list_loan" style="display:none;"></ul>'; // Hidden item list for each category
                             }
                         } else {
