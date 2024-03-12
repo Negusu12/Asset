@@ -39,7 +39,7 @@ $user_data = check_login($con);
                         <select type="text" name="department" oninvalid="this.setCustomValidity('Enter Department Here')" oninput="setCustomValidity('')" required>
                             <option value=""></option>
                             <?php
-                            $sql = "SELECT list_id, department FROM drop_down_list WHERE department IS NOT NULL AND department <> ''";
+                            $sql = "SELECT list_id, department FROM drop_down_list WHERE department IS NOT NULL AND department <> '' order by department ";
                             $result = mysqli_query($con, $sql);
                             if ($result) {
                                 while ($row = mysqli_fetch_assoc($result)) {

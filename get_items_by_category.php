@@ -4,7 +4,7 @@ include("connect.php");
 if (isset($_POST['category'])) {
     $category = $_POST['category'];
 
-    $item_query = "SELECT concat(item_name,'-', item_condition) as item_name, qty FROM asset_record WHERE item_category = '$category' and qty > 0 order by qty desc";
+    $item_query = "SELECT concat(item_name, IFNULL(CONCAT(' - ', model), '')) as item_name, qty FROM asset_record WHERE item_category = '$category' and qty > 0 order by qty desc";
     $item_result = $con->query($item_query);
 
     if ($item_result->num_rows > 0) {
@@ -24,7 +24,7 @@ if (isset($_POST['category'])) {
 if (isset($_POST['category_loan'])) {
     $category_loan = $_POST['category_loan'];
 
-    $item_query = "SELECT concat(item_name,'-', item_condition) as item_name, SUM(qty) AS total_qty FROM asset_loan_v WHERE item_category = '$category_loan' AND qty > 0 GROUP BY item_name, item_condition ORDER BY total_qty DESC";
+    $item_query = "SELECT concat(item_name, IFNULL(CONCAT(' - ', model), '')) as item_name, SUM(qty) AS total_qty FROM asset_loan_v WHERE item_category = '$category_loan' AND qty > 0 GROUP BY item_name, item_condition ORDER BY total_qty DESC";
 
     $item_result = $con->query($item_query);
 
