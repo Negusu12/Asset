@@ -46,7 +46,6 @@ $user_data = check_login($con);
                         <th scope="col">Item Name</th>
                         <th scope="col">Model</th>
                         <th scope="col">Item Category</th>
-                        <th scope="col">Item Status</th>
                         <th scope="col">Serial No.</th>
                         <th scope="col">Loaned To</th>
                         <th scope="col">Loaner Department</th>
@@ -65,7 +64,7 @@ $user_data = check_login($con);
                 include "connect.php";
                 $row_count = 1;
 
-                $sql = "select * from asset_loan_v where qty > 0";
+                $sql = "select * from asset_loan_v where qty > 0 and department != 'damaged'";
                 $result = $con->query($sql);
                 if (!$result) {
                     die("Invalid query!");
@@ -78,7 +77,6 @@ $user_data = check_login($con);
           <td>' . $row['item_name'] . '</td>
           <td>' . $row['model'] . '</td>
           <td>' . $row['item_category'] . '</td>
-          <td>' . $row['item_condition'] . '</td>
           <td>' . $row['serial_no'] . '</td>
           <td>' . $row['full_name'] . '</td>
           <td>' . $row['department'] . '</td>
@@ -133,7 +131,7 @@ $user_data = check_login($con);
                     [10, 25, 50, "All"]
                 ],
                 columnDefs: [{
-                        targets: [0, 4, 5, 8, 12, 15], // index of the "Password" column (zero-based index)
+                        targets: [0, 4, 7, 11, 14], // index of the "Password" column (zero-based index)
                         visible: false // set to false to hide the column by default
                     }
                     // Add similar blocks for other columns you want to hide by default

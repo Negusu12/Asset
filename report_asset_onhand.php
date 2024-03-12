@@ -37,6 +37,7 @@ $user_data = check_login($con);
             Assets on Hand
         </div>
         <form method="post" action="">
+            <!--
             <div class="filterr">
                 <div class="form-group">
                     <label class="labela1 row-2" for="item_condition">item_condition:</label>
@@ -53,8 +54,9 @@ $user_data = check_login($con);
 
 
                 <button item_condition="submit" class="btn btn-primary submita1">Submit</button>
-                <!-- rest of the form goes here -->
             </div>
+                 -->
+
             <div class="table-responsive" id="no-more-tables">
                 <table class="table bg-white table-bordered mydatatable" id="mydatatable">
                     <thead class="tbll text-dark">
@@ -63,7 +65,6 @@ $user_data = check_login($con);
                             <th scope="col">Item Code</th>
                             <th scope="col">Item Name</th>
                             <th scope="col">Model</th>
-                            <th scope="col">Item Condition</th>
                             <th scope="col">Item Category</th>
                             <th scope="col">UOM</th>
                             <th scope="col">Quantity</th>
@@ -111,7 +112,6 @@ $user_data = check_login($con);
     <td>$row[item_c]</td>
     <td>$row[item_name]</td>
     <td>$row[model]</td>
-    <td>$row[item_condition]</td>
     <td>$row[item_category]</td>
     <td>$row[uom]</td>
     <td>$row[qty]</td>

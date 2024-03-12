@@ -40,6 +40,7 @@
                 <li><a href="report_asset_onhand.php"><i class="fa-regular fa-address-book"></i>Asset On Hand</a></li>
                 <li><a href="report_loan.php"><i class="fa-regular fa-address-book"></i>Asset On Loan</a></li>
                 <li><a href="report_return.php"><i class="fa-regular fa-address-book"></i>Asset Return</a></li>
+                <li><a href="report_damaged.php"><i class="fa-regular fa-address-book"></i>Damaged Asset</a></li>
                 <li><a href="report_buy.php"><i class="fa-regular fa-address-book"></i>Asset Buy</a></li>
                 <li><a href="report_use.php"><i class="fa-regular fa-address-book"></i>Asset Used</a></li>
                 <?php if ($user_data['role'] == 1) : ?>

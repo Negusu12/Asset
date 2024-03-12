@@ -68,6 +68,7 @@ $user_data = check_login($con);
                         <div class="underline"></div>
                         <label for="">Item Category</label>
                     </div>
+                    <!--
                     <div class="input-data">
                         <select type="text" name="item_condition" oninvalid="this.setCustomValidity('Select Item Condition')" oninput="setCustomValidity('')" required>
                             <option value=""></option>
@@ -80,7 +81,7 @@ $user_data = check_login($con);
                         </select>
                         <div class="underline"></div>
                         <label for="">Item Condition</label>
-                    </div>
+                    </div>  -->
                     <div class="username_s">
                         <input type="number" name="qty" value="0">
                         <div class="underline"></div>

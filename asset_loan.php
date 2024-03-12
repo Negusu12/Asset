@@ -36,7 +36,7 @@ $user_data = check_login($con);
                             <?php
 
                             // Retrieve all records from the asset_record table
-                            $sql = "SELECT item_code, CONCAT(item_name, IFNULL(CONCAT(' - ', item_condition), '')) AS Item_Name FROM asset_record order by Item_Name";
+                            $sql = "SELECT item_code, CONCAT(item_name, IFNULL(CONCAT(' - ', model), ''),IFNULL(CONCAT(' - ', item_category), '')) AS Item_Name FROM asset_record order by Item_Name";
                             $result = mysqli_query($con, $sql);
 
                             // Check if query was successful
@@ -55,15 +55,13 @@ $user_data = check_login($con);
                         <select name="employee_id" oninvalid="this.setCustomValidity('Select Employee Here')" oninput="setCustomValidity('')" required>
                             <option value=""></option>
                             <?php
-
-
-                            // Retrieve all records from the asset_record table
-                            $sql = "SELECT employee_id, full_name FROM employee";
+                            // Retrieve all records from the employee table ordered by full_name
+                            $sql = "SELECT employee_id, full_name FROM employee ORDER BY full_name";
                             $result = mysqli_query($con, $sql);
 
                             // Check if query was successful
                             if ($result) {
-                                // Loop through each row of the result set and output the item_name value as an option in the select dropdown
+                                // Loop through each row of the result set and output the full_name value as an option in the select dropdown
                                 while ($row = mysqli_fetch_assoc($result)) {
                                     echo "<option value='" . $row["employee_id"] . "'>" . $row["full_name"] . "</option>";
                                 }
@@ -73,6 +71,7 @@ $user_data = check_login($con);
                         <div class="underline"></div>
                         <label for="">Loaner Name</label>
                     </div>
+
                 </div>
                 <div class="form-row">
 
