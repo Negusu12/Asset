@@ -675,3 +675,13 @@ input[readonly] {
 .item-list {
     font-size: small;
 }
+
+.item-list li a.item-link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.item-list_loan li a.item-link {
+    color: inherit;
+    text-decoration: none;
+}

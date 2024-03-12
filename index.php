@@ -63,7 +63,16 @@ $user_data = check_login($con);
                         </div>
                         <div class="info-box-row">
                             <span class="info-box-number">
-                                <?php echo $con->query("SELECT * FROM asset_loan where qty > 0")->num_rows; ?>
+                                <?php
+                                // Assuming $con is your database connection object
+
+                                $result = $con->query("SELECT SUM(qty) AS total_qty FROM asset_loan_v");
+                                $row = $result->fetch_assoc();
+                                $total_qty = $row['total_qty'];
+
+                                echo "" . $total_qty;
+                                ?>
+
                             </span>
                         </div>
                     </div>
@@ -188,20 +197,13 @@ $user_data = check_login($con);
                         ?>
                     </ul>
                 </div>
-
             </section>
-
-
-
-
-
-
             <div class="graph">
                 <div class="col-lg-6 col-md-8 col-sm-12 mb-4">
                     <div class="card shadow rounded-0">
                         <div class="card-header rounded-0">
                             <div class="d-flex justify-content-between">
-                                <div class="card-title flex-shrink-1 flex-grow-1">Asset Category</div>
+                                <div class="card-title flex-shrink-1 flex-grow-1">Store Asset by Category</div>
 
                             </div>
                         </div>
@@ -219,7 +221,7 @@ $user_data = check_login($con);
                     <div class="card shadow rounded-0">
                         <div class="card-header rounded-0">
                             <div class="d-flex justify-content-between">
-                                <div class="card-title flex-shrink-1 flex-grow-1">Asset On Hand</div>
+                                <div class="card-title flex-shrink-1 flex-grow-1">Asset On Store</div>
 
                             </div>
                         </div>
