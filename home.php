@@ -44,6 +44,39 @@
     <!-- /.info-box -->
 
   </div>
+  <div class="col-12 col-sm-6 col-md-3">
+    <a href="index.php?page=report_loan" class="info-box-link">
+      <div class="info-box">
+        <span class="info-box-icon bg-info elevation-1"><i class="far fa-credit-card"></i></span>
+        <div class="info-box-content">
+          <span class="info-box-text">Total Asset</span>
+          <span class="info-box-number">
+            <?php
+            // Assuming $con is your database connection object
+
+            // Query to get total quantity of on-hand assets
+            $result_on_hand = $con->query("SELECT SUM(qty) AS total_qty FROM asset_record");
+            $row_on_hand = $result_on_hand->fetch_assoc();
+            $total_qty_on_hand = $row_on_hand['total_qty'];
+
+            // Query to get total quantity of loaned assets
+            $result_loaned = $con->query("SELECT SUM(qty) AS total_qty FROM asset_loan_v");
+            $row_loaned = $result_loaned->fetch_assoc();
+            $total_qty_loaned = $row_loaned['total_qty'];
+
+            // Calculate total assets by adding on-hand and loaned quantities
+            $total_assets = $total_qty_on_hand + $total_qty_loaned;
+
+            echo $total_assets;
+            ?>
+          </span>
+        </div>
+        <!-- /.info-box-content -->
+      </div>
+    </a>
+    <!-- /.info-box -->
+  </div>
+
 </div>
 <div class="roww">
   <section class="cccc">

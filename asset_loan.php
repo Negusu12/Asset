@@ -64,7 +64,7 @@ $user_data = check_login($con);
                         </div>
                         <div class="form-group">
                             <label for="" class="control-label">Serial No</label>
-                            <input type="text" name="serial_no" id="serial_no" class="form-control form-control-sm" oninvalid="this.setCustomValidity('Enter Serial No Here')" oninput="setCustomValidity('')" required>
+                            <input type="text" name="serial_no" id="serial_no" class="form-control form-control-sm">
                         </div>
                         <div class="form-group">
                             <label class="control-label">Description</label>
