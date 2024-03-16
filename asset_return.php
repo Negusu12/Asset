@@ -1,155 +1,114 @@
 <?php
-session_start();
-include 'components/inset.php';
+include 'backend/insert.php';
 include("connect.php");
-include("components/functions.php");
 
 $user_data = check_login($con);
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="icon" href="images/logo.png" type="image">
-    <link rel="stylesheet" href="asset/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-    <link rel="stylesheet" href="asset/css/sweetalert2.min.css">
-</head>
-
-<body>
-    <section class="">
-        <?php include 'side_menu.php'; ?>
-    </section>
-    <div class="container">
-        <section class="asset_r">
-
-
-            <div class="text">
-                Asset Return
-            </div>
-
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-body">
             <form method="post" enctype="multipart/form-data">
-                <div class="form-row">
-                    <div class="input-data">
-                        <select name="loan_id" placeholder="Name" class="form__input" onchange="this.form.submit()" oninvalid="this.setCustomValidity('Select Loan ID Here')" oninput="setCustomValidity('')" required>
-                            <option value=""></option>
-                            <?php
-                            $sql = "SELECT DISTINCT loan_id FROM asset_loan where qty > 0";
-                            $result = mysqli_query($con, $sql);
+                <div class="row">
+                    <div class="col-md-6 border-right">
+                        <b class="text-muted">Asset Return</b>
+                        <div class="form-group">
+                            <label for="" class="control-label">Loan ID</label>
+                            <select name="loan_id" id="loan_id" class="custom-select custom-select-sm select2" onchange="this.form.submit()" oninvalid="this.setCustomValidity('Select Loan ID Here')" oninput="setCustomValidity('')" required>
+                                <option value=""></option>
+                                <?php
+                                $sql = "SELECT DISTINCT loan_id FROM asset_loan where qty > 0";
+                                $result = mysqli_query($con, $sql);
 
-                            if ($result) {
-                                while ($row = mysqli_fetch_assoc($result)) {
-                                    $selected = "";
-                                    if (isset($_POST['loan_id']) && $_POST['loan_id'] == $row["loan_id"]) {
-                                        $selected = "selected";
+                                if ($result) {
+                                    while ($row = mysqli_fetch_assoc($result)) {
+                                        $selected = "";
+                                        if (isset($_POST['loan_id']) && $_POST['loan_id'] == $row["loan_id"]) {
+                                            $selected = "selected";
+                                        }
+                                        echo "<option value='" . $row["loan_id"] . "' " . $selected . ">" . $row["loan_id"] . "</option>";
                                     }
-                                    echo "<option value='" . $row["loan_id"] . "' " . $selected . ">" . $row["loan_id"] . "</option>";
                                 }
-                            }
-                            ?>
-                        </select>
-                        <div class="underline"></div>
-                        <label for="">Loan ID</label>
-                    </div>
-                    <div class="input-data">
-                        <select name="employee_id" placeholder="Employee" class="form__input" onchange="this.form.submit()">
-                            <?php
-                            if (isset($_POST['loan_id'])) {
-                                $loan_id = $_POST['loan_id'];
+                                ?>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="control-label">Loaner Name</label>
+                            <select name="employee_id" id="employee_id" class="custom-select custom-select-sm select2" onchange="this.form.submit()" oninvalid="this.setCustomValidity('Select Loaner Here')" oninput="setCustomValidity('')" required>
+                                <?php
+                                if (isset($_POST['loan_id'])) {
+                                    $loan_id = $_POST['loan_id'];
 
-                                $sql = "SELECT al.employee_id, e.full_name 
+                                    $sql = "SELECT al.employee_id, e.full_name 
                 FROM asset_loan al
                 LEFT JOIN employee e ON al.employee_id = e.employee_id
                 WHERE al.loan_id = ?";
-                                $stmt = mysqli_prepare($con, $sql);
-                                mysqli_stmt_bind_param($stmt, "s", $loan_id);
-                                mysqli_stmt_execute($stmt);
-                                $result = mysqli_stmt_get_result($stmt);
+                                    $stmt = mysqli_prepare($con, $sql);
+                                    mysqli_stmt_bind_param($stmt, "s", $loan_id);
+                                    mysqli_stmt_execute($stmt);
+                                    $result = mysqli_stmt_get_result($stmt);
 
-                                if ($result) {
-                                    while ($row = mysqli_fetch_assoc($result)) {
-                                        echo "<option value='" . $row["employee_id"] . "'>" . $row["full_name"] . "</option>";
+                                    if ($result) {
+                                        while ($row = mysqli_fetch_assoc($result)) {
+                                            echo "<option value='" . $row["employee_id"] . "'>" . $row["full_name"] . "</option>";
+                                        }
                                     }
                                 }
-                            }
-                            ?>
-                        </select>
-                        <div class="underline"></div>
-                        <label for="">Loaner Name</label>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="input-data">
-                        <select name="item_code" placeholder="Item Name" class="form__input" onchange="this.form.submit()">
-                            <?php
-                            if (isset($_POST['loan_id'])) {
-                                $loan_id = $_POST['loan_id'];
+                                ?>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="control-label">Item Name</label>
+                            <select name="item_code" id="item_code" class="custom-select custom-select-sm select2" onchange="this.form.submit()" oninvalid="this.setCustomValidity('Select Loaner Here')" oninput="setCustomValidity('')" required>
+                                <?php
+                                if (isset($_POST['loan_id'])) {
+                                    $loan_id = $_POST['loan_id'];
 
-                                $sql = "SELECT al.item_code, CONCAT(ar.item_name, IFNULL(CONCAT(' - ', model), ''),IFNULL(CONCAT(' - ', item_category), '')) AS Item_Name
+                                    $sql = "SELECT al.item_code, CONCAT(ar.item_name, IFNULL(CONCAT(' - ', model), ''),IFNULL(CONCAT(' - ', item_category), '')) AS Item_Name
                                 FROM asset_loan al
                                 LEFT JOIN asset_record ar ON al.item_code = ar.item_code
                 WHERE al.loan_id = ?";
-                                $stmt = mysqli_prepare($con, $sql);
-                                mysqli_stmt_bind_param($stmt, "s", $loan_id);
-                                mysqli_stmt_execute($stmt);
-                                $result = mysqli_stmt_get_result($stmt);
+                                    $stmt = mysqli_prepare($con, $sql);
+                                    mysqli_stmt_bind_param($stmt, "s", $loan_id);
+                                    mysqli_stmt_execute($stmt);
+                                    $result = mysqli_stmt_get_result($stmt);
 
-                                if ($result) {
-                                    while ($row = mysqli_fetch_assoc($result)) {
-                                        echo "<option value='" . $row["item_code"] . "'>" . $row["Item_Name"] . "</option>";
+                                    if ($result) {
+                                        while ($row = mysqli_fetch_assoc($result)) {
+                                            echo "<option value='" . $row["item_code"] . "'>" . $row["Item_Name"] . "</option>";
+                                        }
                                     }
                                 }
-                            }
-                            ?>
-                        </select>
-                        <div class="underline"></div>
-                        <label for="">Item Name</label>
+                                ?>
+                            </select>
+                        </div>
                     </div>
-                    <div class="input-data">
-                        <input type="number" name="qty" oninvalid="this.setCustomValidity('Enter Quantity Here')" oninput="setCustomValidity('')" required>
-                        <div class="underline"></div>
-                        <label for="">Quantity</label>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="input-data">
-                        <input type="date" name="doc_date" id="doc_date" oninvalid="this.setCustomValidity('Enter Date Here')" oninput="setCustomValidity('')" required>
-                        <div class="underline"></div>
-                        <label for="doc_date">Document Date</label>
-                    </div>
-                </div>
-                <div class="username_s">
-                    <input type="text" name="user_name" value="<?php echo $user_data['user_name']; ?>">
-                    <div class="underline"></div>
-                    <label for="">qwert</label>
-                </div>
-                <div class="form-row">
-                    <div class="input-data textarea">
-                        <input type="textarea" rows="8" cols="80" name="description"> <br />
-                        <div class="underline"></div>
-                        <label for="">Discription</label>
+                    <div class="col-md-6">
+                        <br />
+                        <div class="form-group">
+                            <label for="" class="control-label">Quantity</label>
+                            <input type="number" name="qty" class="form-control form-control-sm" oninvalid="this.setCustomValidity('Enter Quantity Here')" oninput="setCustomValidity('')" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="control-label">Date</label>
+                            <input type="date" name="doc_date" id="doc_date" class="form-control form-control-sm" oninvalid="this.setCustomValidity('Enter Date Here')" oninput="setCustomValidity('')" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Description</label>
+                            <textarea name="description" cols="30" rows="4" class="form-control"></textarea>
+                        </div>
+                        <div class="form-group " style="display: none;">
+                            <label class="control-label">Prepared By</label>
+                            <input type="text" class="form-control form-control-sm" name="user_name" value="<?php echo $user_data['user_name']; ?>">
+                        </div>
                     </div>
                 </div>
-                <br>
-
-                <div class="form-row submit-btn">
-                    <div class="input-data">
-                        <div class="inner"></div>
-                        <input type="submit" name="submit_r">
-                    </div>
+                <hr>
+                <div class="col-lg-12 text-right justify-content-center d-flex">
+                    <button class="btn btn-primary mr-2" type="submit" name="submit_r">Save</button>
+                    <button class="btn btn-secondary" type="reset">Clear</button>
                 </div>
             </form>
-
+        </div>
     </div>
-    </section>
-
-    <script src="asset/js/js.js"></script>
-    <script src="components/inset.js"></script>
-    <script src="asset/js/sweetalert2.min.js"></script>
-</body>
-
-</html>
+</div>

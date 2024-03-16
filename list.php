@@ -1,69 +1,37 @@
 <?php
-session_start();
-include 'components/inset.php';
+include 'backend/insert.php';
 include("connect.php");
-include("components/functions.php");
 
 $user_data = check_login($con);
 ?>
 
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drop Down List</title>
-    <link rel="icon" href="images/logo.png" type="image">
-    <link rel="stylesheet" href="asset/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-    <link rel="stylesheet" href="asset/css/sweetalert2.min.css">
-
-</head>
-
-<body>
-    <section class="">
-        <?php include 'side_menu.php'; ?>
-    </section>
-    <div class="container">
-        <section class="asset_r">
-
-            <div class="text">
-                Add Drop Down List
-            </div>
-
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-body">
             <form method="post" enctype="multipart/form-data">
-                <div class="form-row">
-                    <div class="input-data">
-                        <input type="text" name="department">
-                        <div class="underline"></div>
-                        <label for="">Department</label>
-                    </div>
-                    <div class="input-data">
-                        <input type="text" name="category">
-                        <div class="underline"></div>
-                        <label for="">Category</label>
-                    </div>
-                    <div class="input-data">
-                        <input type="text" name="uom">
-                        <div class="underline"></div>
-                        <label for="">UOM</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <b class="text-muted">Add List Choice</b>
+                        <div class="form-group">
+                            <label for="" class="control-label">Department</label>
+                            <input type="text" name="department" class="form-control form-control-sm">
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="control-label">Category</label>
+                            <input type="text" name="category" class="form-control form-control-sm">
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="control-label">UOM</label>
+                            <input type="text" name="uom" class="form-control form-control-sm">
+                        </div>
                     </div>
                 </div>
-                <div class="form-row submit-btn">
-                    <div class="input-data">
-                        <div class="inner"></div>
-                        <input type="submit" name="submit_list">
-                    </div>
+                <hr>
+                <div class="col-lg-12 text-right justify-content-left d-flex">
+                    <button class="btn btn-primary mr-2" type="submit" name="submit_list">Save</button>
+                    <button class="btn btn-secondary" type="reset">Clear</button>
                 </div>
             </form>
-        </section>
+        </div>
     </div>
-    <script src="asset/js/js.js"></script>
-    <script src="components/inset.js"></script>
-    <script src="asset/js/sweetalert2.min.js"></script>
-
-</body>
-
-</html>
+</div>

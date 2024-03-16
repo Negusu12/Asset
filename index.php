@@ -1,474 +1,182 @@
-<?php
-session_start();
-include 'components/inset.php';
-include("connect.php");
-include("components/functions.php");
-
-$user_data = check_login($con);
-?>
-
 <!DOCTYPE html>
 <html lang="en">
+<?php include('connect.php') ?>
+<?php
+include 'header.php'
+?>
+<style>
+  img {
+    height: 50px;
+    width: 50px;
+    background-color: red;
+    margin-top: -7px;
+    margin-left: 80%;
+    animation: shake 0.5s ease-in-out infinite;
+  }
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="icon" href="images/logo.png" type="image">
-    <link rel="stylesheet" href="asset/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  @keyframes shake {
+    0% {
+      transform: translateX(0);
+    }
 
-    <script src="asset/js/npm_chart.js"></script>
-</head>
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+      transform: translateX(-5px);
+    }
 
-<body>
-    <section class="">
-        <?php include 'side_menu.php'; ?>
-    </section>
-    <!-- Info boxes -->
-    <div class="dashboard">
+    20%,
+    40%,
+    60%,
+    80% {
+      transform: translateX(5px);
+    }
 
-        <div class="row-d">
-            <a href="report_asset_onhand.php" class="info-box-link">
-                <div class="info-box">
-                    <div class="iconn">
-                        <i class="fas fa-warehouse"></i>
-                    </div>
-                    <div class="info-box-content">
-                        <div class="info-box-row">
-                            <span class="info-box-text">Total on Hand Asset Quantity</span>
-                        </div>
-                        <div class="info-box-row">
-                            <span class="info-box-number">
-                                <?php
-                                $result = $con->query("SELECT SUM(qty) AS total_qty FROM asset_record");
-                                $row = $result->fetch_assoc();
-                                echo $row['total_qty'];
-                                ?>
-                            </span>
+    100% {
+      transform: translateX(0);
+    }
+  }
 
-                        </div>
-                    </div>
-                    <!-- /.info-box-content -->
-                </div>
-            </a>
-            <a href="report_loan.php" class="info-box-link">
-                <div class="info-box">
-                    <div class="iconn">
-                        <i class="far fa-credit-card"></i>
-                    </div>
-                    <div class="info-box-content">
-                        <div class="info-box-row">
-                            <span class="info-box-text">Number Of Items Loaned</span>
-                        </div>
-                        <div class="info-box-row">
-                            <span class="info-box-number">
-                                <?php
-                                // Assuming $con is your database connection object
+  .notification-container {
+    position: relative;
+    display: inline-block;
+    margin-left: 80%;
+  }
 
-                                $result = $con->query("SELECT SUM(qty) AS total_qty FROM asset_loan_v");
-                                $row = $result->fetch_assoc();
-                                $total_qty = $row['total_qty'];
+  .notification-count {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: red;
+    color: white;
+    font-size: 30px;
+    text-align: center;
+    line-height: 20px;
 
-                                echo "" . $total_qty;
-                                ?>
+  }
+</style>
 
-                            </span>
-                        </div>
-                    </div>
-                    <!-- /.info-box-content -->
-                </div>
-            </a>
-            <div class="info-box" style="display: none;">
-                <div class="iconn">
-                    <i class="fa-solid fa-hashtag"></i>
-                </div>
-                <div class="info-box-content">
-                    <div class="info-box-row">
-                        <span class="info-box-text">Number Of Loaners</span>
-                    </div>
-                    <div class="info-box-row">
-                        <span class="info-box-number">
-                            <?php echo $con->query("SELECT * FROM employee")->num_rows; ?>
-                        </span>
-                    </div>
-                </div>
-                <!-- /.info-box-content -->
-            </div>
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+  <div class="wrapper">
+    <?php include 'topbar.php' ?>
+    <?php include 'sidebar.php' ?>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <div class="toast" id="alert_toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-body text-white">
         </div>
-        <div class="row-d">
-            <div class="info-box" style="display: none;">
-                <div class="iconn">
-                    <i class="fas fa-users"></i>
-                </div>
-                <div class="info-box-content">
-                    <div class="info-box-row">
-                        <span class="info-box-text">Number of Users</span>
-                    </div>
-                    <div class="info-box-row">
-                        <span class="info-box-number">
-                            <?php echo $con->query("SELECT * FROM users")->num_rows; ?>
-                        </span>
-                    </div>
-                </div>
-                <!-- /.info-box-content -->
+      </div>
+      <div id="toastsContainerTopRight" class="toasts-top-right fixed"></div>
+      <!-- Content Header (Page header) -->
+
+
+      <!-- /.content-header -->
+
+      <!-- Main content -->
+      <section class="content">
+        <div class="container-fluid">
+          <?php
+          $page = isset($_GET['page']) ? $_GET['page'] : 'home'; // Set a default value if $_GET['page'] is not set
+          $page_file = $page . '.php'; // Construct the file path
+
+          // Check if the file exists before including it
+          if (file_exists($page_file)) {
+            include $page_file;
+          } else {
+            // Handle the case where the file does not exist (e.g., display an error message)
+            echo "Error: Page not found";
+          }
+
+          ?>
+
+
+        </div><!--/. container-fluid -->
+      </section>
+      <!-- /.content -->
+      <div class="modal fade" id="confirm_modal" role='dialog'>
+        <div class="modal-dialog modal-md" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Confirmation</h5>
             </div>
+            <div class="modal-body">
+              <div id="delete_content"></div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" id='confirm' onclick="">Continue</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
         </div>
+      </div>
+      <div class="modal fade" id="uni_modal" role='dialog'>
+        <div class="modal-dialog modal-md" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title"></h5>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" id='submit' onclick="$('#uni_modal form').submit()">Save</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="uni_modal_right" role='dialog'>
+        <div class="modal-dialog modal-full-height  modal-md" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title"></h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span class="fa fa-arrow-right"></span>
+              </button>
+            </div>
+            <div class="modal-body">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="viewer_modal" role='dialog'>
+        <div class="modal-dialog modal-md" role="document">
+          <div class="modal-content">
+            <button type="button" class="btn-close" data-dismiss="modal"><span class="fa fa-times"></span></button>
+            <img src="" alt="">
+          </div>
+        </div>
+      </div>
     </div>
+    <!-- /.content-wrapper -->
 
-    <section>
-        <div class="row">
-            <div class="col-md-6" style="display: none;">
-                <div class="graph px-5 my-3">
-                    <div class="col-lg-6 col-md-8 col-sm-12 mb-4">
-                        <div class="card shadow rounded-0">
-                            <div class="card-header rounded-0">
-                                <div class="d-flex justify-content-between">
-                                    <div class="card-title flex-shrink-1 flex-grow-1">Daily Item Returns</div>
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
 
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="container-fluid">
-                                    <canvas id="returnChart"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6" style="display: none;">
-                <div class="graph">
-                    <div class="col-lg-6 col-md-8 col-sm-12 mb-4">
-                        <div class="card shadow rounded-0">
-                            <div class="card-header rounded-0">
-                                <div class="d-flex justify-content-between">
-                                    <div class="card-title flex-shrink-1 flex-grow-1">Daily Item Loan</div>
+    <!-- Main Footer -->
+    <footer class="main-footer">
+      <strong>Copyright &copy; 2024 <a1 href="https://abhpartners.com/"></a1>.</strong>
+      All rights reserved.
+      <div class="float-right d-none d-sm-inline-block">
+        <b>ABH inventory Management System</b>
+      </div>
+    </footer>
+  </div>
+  <!-- ./wrapper -->
 
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="container-fluid">
-                                    <canvas id="loanChart"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <section>
-                <div class="row">
-
-                    <ul class="category_li">
-                        <h1 style="font-size: 22px;">Asset On Store</h1>
-                        <?php
-                        // Fetch item categories and their total quantities from asset_record
-                        $category_query = "SELECT item_category, SUM(qty) AS total_qty FROM asset_record WHERE qty > 0 GROUP BY item_category ORDER BY total_qty DESC";
-                        $category_result = $con->query($category_query);
-                        if ($category_result->num_rows > 0) {
-                            while ($row = $category_result->fetch_assoc()) {
-                                echo '<li class="category" data-category="' . $row["item_category"] . '"><i class="fas fa-arrow-right" style="color: #414142;"></i> ' . $row["item_category"] . ' - Total Qty: ' . $row["total_qty"] . '</li>';
-                                echo '<ul class="item-list" style="display:none;"></ul>'; // Hidden item list for each category
-                            }
-                        } else {
-                            echo "0 results";
-                        }
-                        ?>
-                    </ul>
-                </div>
-                <div class="row">
-
-                    <ul class="category_li">
-                        <h1 style="font-size: 22px;">Asset On Loan</h1>
-                        <?php
-                        // Fetch item categories and their total quantities from asset_loan_v
-                        $category_query_loan = "SELECT item_category, SUM(qty) AS total_qty FROM asset_loan_v WHERE qty > 0 GROUP BY item_category ORDER BY total_qty DESC";
-                        $category_result_loan = $con->query($category_query_loan);
-                        if ($category_result_loan->num_rows > 0) {
-                            while ($row = $category_result_loan->fetch_assoc()) {
-                                echo '<li class="category_loan" data-category_loan="' . $row["item_category"] . '"><i class="fas fa-arrow-right" style="color: #414142;"></i> ' . $row["item_category"] . ' - Total Qty: ' . $row["total_qty"] . '</li>';
-                                echo '<ul class="item-list_loan" style="display:none;"></ul>'; // Hidden item list for each category
-                            }
-                        } else {
-                            echo "0 results";
-                        }
-                        ?>
-                    </ul>
-                </div>
-            </section>
-            <div class="graph">
-                <div class="col-lg-6 col-md-8 col-sm-12 mb-4">
-                    <div class="card shadow rounded-0">
-                        <div class="card-header rounded-0">
-                            <div class="d-flex justify-content-between">
-                                <div class="card-title flex-shrink-1 flex-grow-1">Store Asset by Category</div>
-
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="container-fluid">
-                                <canvas id="categoryChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="grapha">
-                <div class="col-lg-6 col-md-8 col-sm-12 mb-4">
-                    <div class="card shadow rounded-0">
-                        <div class="card-header rounded-0">
-                            <div class="d-flex justify-content-between">
-                                <div class="card-title flex-shrink-1 flex-grow-1">Asset On Store</div>
-
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="container-fluid">
-                                <canvas id="assetChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-
-        </div>
-
-
-    </section>
-
-
-    <?php
-    // Fetch data for loan chart
-    $loan_query = "SELECT doc_date, SUM(qty_taken) AS items_loaned FROM asset_loan GROUP BY doc_date";
-    $loan_result = $con->query($loan_query);
-    $loan_dates = array();
-    $loan_quantities = array();
-
-    while ($row = $loan_result->fetch_assoc()) {
-        $loan_dates[] = $doc_date = date("d F Y", strtotime($row['doc_date']));
-        $loan_quantities[] = $row['items_loaned'];
-    }
-
-    // Fetch data for return chart
-    $return_query = "SELECT doc_date, SUM(qty) AS items_returned FROM asset_return GROUP BY doc_date";
-    $return_result = $con->query($return_query);
-    $return_dates = array();
-    $return_quantities = array();
-
-    while ($row = $return_result->fetch_assoc()) {
-        $return_dates[] = $doc_date = date("d F Y", strtotime($row['doc_date']));
-        $return_quantities[] = $row['items_returned'];
-    };
-
-    $asset_query = "SELECT item_name, SUM(qty) AS items_record FROM asset_record where qty > 0 GROUP BY item_name";
-    $asset_result = $con->query($asset_query);
-    $asset_name = array();
-    $asset_quantities = array();
-
-    while ($row = $asset_result->fetch_assoc()) {
-        $asset_name[] = $row['item_name'];
-        $asset_quantities[] = $row['items_record'];
-    }
-
-    $barColors = array(
-        "#414142", "#03949B", "#26225B", "#4D7DBF", "#B2B435", "#ff9800", "#795548", "#aa00ff", "#5bc0de", "#d9534f",
-        "#007bff", "#28a745", "#ffc107", "#dc3545", "#17a2b8", "#6610f2", "#f012be", "#ff4136", "#2ecc40", "#ff851b", "#7fdbff", "#3d9970",
-        "#01ff70", "#ffdc00", "#85144b", "#39cccc", "#ff7f50", "#2c3e50", "#b10dc9", "#2aa198", "#c0392b", "#00bfff", "#8e44ad", "#2d3c4d",
-        "#e67e22", "#2e8b57", "#f1c40f", "#e74c3c", "#9b59b6", "#3498db"
-    );
-
-
-    $category_query = "SELECT item_category, SUM(qty) AS items_categoryy FROM asset_record GROUP BY item_category";
-    $category_result = $con->query($category_query);
-    $asset_category = array();
-    $category_quantities = array();
-
-    while ($row = $category_result->fetch_assoc()) {
-        $asset_category[] = $row['item_category'];
-        $category_quantities[] = $row['items_categoryy'];
-    }
-
-    $barColors2 = array(
-        "#01ff70", "#ffdc00", "#85144b", "#39cccc", "#ff7f50", "#2c3e50", "#b10dc9", "#2aa198", "#c0392b", "#00bfff", "#8e44ad", "#2d3c4d",
-        "#e67e22", "#2e8b57", "#f1c40f", "#e74c3c", "#9b59b6", "#3498db", "#414142", "#03949B", "#26225B", "#4D7DBF", "#B2B435", "#ff9800", "#795548", "#aa00ff", "#5bc0de", "#d9534f",
-        "#007bff", "#28a745", "#ffc107", "#dc3545", "#17a2b8", "#6610f2", "#f012be", "#ff4136", "#2ecc40", "#ff851b", "#7fdbff", "#3d9970"
-
-    );
-    ?>
-
-    <script>
-        // Loan chart data
-        var loan_dates = <?php echo json_encode($loan_dates); ?>;
-        var loan_quantities = <?php echo json_encode($loan_quantities); ?>;
-
-        var loanChart = document.getElementById('loanChart').getContext('2d');
-
-        var loanChartObj = new Chart(loanChart, {
-            type: 'line',
-            data: {
-                labels: loan_dates,
-                datasets: [{
-                    label: 'Items Loaned',
-                    data: loan_quantities,
-                    backgroundColor: '#3f51b5',
-                    borderColor: '#3f51b5',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                }
-            }
-        });
-
-        // Return chart data
-        var return_dates = <?php echo json_encode($return_dates); ?>;
-        var return_quantities = <?php echo json_encode($return_quantities); ?>;
-
-        var returnChart = document.getElementById('returnChart').getContext('2d');
-
-        var returnChartObj = new Chart(returnChart, {
-            type: 'bar',
-            data: {
-                labels: return_dates,
-                datasets: [{
-                    label: 'Items Returned',
-                    data: return_quantities,
-                    backgroundColor: '#f44336',
-                    borderColor: '#f44336',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                }
-            }
-        });
-
-
-        var asset_name = <?php echo json_encode($asset_name); ?>;
-        var asset_quantities = <?php echo json_encode($asset_quantities); ?>;
-        var barColors = <?php echo json_encode($barColors); ?>;
-        var assetChart = document.getElementById('assetChart').getContext('2d');
-
-        var assetChartObj = new Chart(assetChart, {
-            type: 'bar',
-            data: {
-                labels: asset_name,
-                datasets: [{
-                    label: 'Asset on Hand',
-                    data: asset_quantities,
-                    backgroundColor: barColors,
-                    borderColor: '#f44336',
-                    borderWidth: 1
-
-                }]
-            },
-            options: {
-                title: {
-                    display: true,
-                    text: "Asset On Hand"
-                }
-            }
-        });
-
-
-
-
-        var asset_category = <?php echo json_encode($asset_category); ?>;
-        var category_quantities = <?php echo json_encode($category_quantities); ?>;
-        var barColors2 = <?php echo json_encode($barColors2); ?>;
-        var categoryChart = document.getElementById('categoryChart').getContext('2d');
-
-        var assetChartObj = new Chart(categoryChart, {
-            type: 'pie',
-            data: {
-                labels: asset_category,
-                datasets: [{
-                    label: 'Asset Category',
-                    data: category_quantities,
-                    backgroundColor: barColors2,
-                    borderColor: '#f44336',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                title: {
-                    display: true,
-                    text: "Asset Category"
-                }
-            }
-        });
-    </script>
-
-    <script>
-        $(document).ready(function() {
-            $(".category").click(function() {
-                var category = $(this).data('category');
-                var itemList = $(this).next('.item-list');
-
-                if (itemList.is(':visible')) {
-                    itemList.hide(); // Hide the item list if it's visible
-                } else {
-                    $.ajax({
-                        url: "get_items_by_category.php",
-                        method: "POST",
-                        data: {
-                            category: category
-                        },
-                        success: function(data) {
-                            itemList.html(data).show(); // Show and populate the item list
-                        },
-                        error: function(xhr, status, error) {
-                            console.error(xhr.responseText);
-                        }
-                    });
-                }
-            });
-        });
-    </script>
-    <script>
-        $(document).ready(function() {
-            $(".category_loan").click(function() {
-                var category_loan = $(this).data('category_loan');
-                var itemList_loan = $(this).next('.item-list_loan');
-
-                if (itemList_loan.is(':visible')) {
-                    itemList_loan.hide(); // Hide the item list if it's visible
-                } else {
-                    $.ajax({
-                        url: "get_items_by_category.php",
-                        method: "POST",
-                        data: {
-                            category_loan: category_loan
-                        },
-                        success: function(data) {
-                            itemList_loan.html(data).show(); // Show and populate the item list
-                        },
-                        error: function(xhr, status, error) {
-                            console.error(xhr.responseText);
-                        }
-                    });
-                }
-            });
-        });
-    </script>
-
+  <!-- REQUIRED SCRIPTS -->
+  <!-- jQuery -->
+  <!-- Bootstrap -->
+  <?php include 'footer.php' ?>
 </body>
 
 </html>

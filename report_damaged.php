@@ -1,45 +1,8 @@
-<?php
-
-session_start();
-include 'components/inset.php';
-include("connect.php");
-include("components/functions.php");
-
-$user_data = check_login($con);
-
-?>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <title>AMS Damaged Asset</title>
-    <link rel="icon" href="images/logo.png" type="image">
-    <link rel="stylesheet" href="asset/css/bootstrap/bootstrap.css">
-    <link rel="stylesheet" href="asset/css/bootstrap/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="asset/css/bootstrap/buttons.bootstrap4.min.css">
-    <link rel="stylesheet" href="asset/css/bootstrap/responsive.bootstrap4.min.css">
-    <link rel="stylesheet" href="asset/css/bootstrap/flatpickr.min.css">
-    <link rel="stylesheet" href="asset/css/style.css">
-
-
-</head>
-
-<body class="body">
-
-
-    <section class="">
-        <?php include 'side_menu.php'; ?>
-    </section>
-
-    <section class="report_table">
-
-        <div class="text">
-            Damaged Assets
-        </div>
-        <div class="table-responsive" id="no-more-tables">
-            <table class="table bg-white table-bordered mydatatable" id="mydatatable">
-                <thead class="tbll text-dark">
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-body">
+            <table class="table tabe-hover table-bordered mydatatable" id="mydatatable">
+                <thead>
                     <tr>
                         <th>Row No.</th>
                         <th scope="col">Loan ID</th>
@@ -55,113 +18,112 @@ $user_data = check_login($con);
                         <th scope="col">Document Date</th>
                         <th scope="col">Description</th>
                         <th scope="col">Prepared By</th>
-                        <th scope="col">Print</th>
+                        <th scope="col">Action</th>
                     </tr>
                 </thead>
+                <tbody>
+                    <?php
+                    $i = 1;
+                    $qry = $con->query("select * from asset_loan_v where qty > 0 and department = 'damaged'");
+                    while ($row = $qry->fetch_assoc()) {
+                        $id = $row['loan_id'];
+                    ?>
+                        <tr>
+                            <th class="text-center"><?php echo $i++ ?></th>
+                            <td><b><?php echo $row['loan_id'] ?></b></td>
+                            <td><b><?php echo ucwords($row['item_name']) ?></b></td>
+                            <td><b><?php echo $row['model'] ?></b></td>
+                            <td><b><?php echo $row['item_category'] ?></b></td>
+                            <td><b><?php echo $row['serial_no'] ?></b></td>
+                            <td><b><?php echo $row['full_name'] ?></b></td>
+                            <td><b><?php echo $row['department'] ?></b></td>
+                            <td><b><?php echo $row['uom'] ?></b></td>
+                            <td><b><?php echo ucwords($row['qty_taken']) ?></b></td>
+                            <td><b><?php echo $row['qty'] ?></b></td>
+                            <td><b><?php echo $row['doc_date'] ?></b></td>
+                            <td><b><?php echo $row['description'] ?></b></td>
+                            <td><b><?php echo $row['user_name'] ?></b></td>
 
-
-                <?php
-                include "connect.php";
-                $row_count = 1;
-
-                $sql = "select * from asset_loan_v where qty > 0 and department = 'damaged'";
-                $result = $con->query($sql);
-                if (!$result) {
-                    die("Invalid query!");
-                }
-                while ($row = $result->fetch_assoc()) {
-                    $id = $row['loan_id'];
-                    echo '<tr>
-         <td>' . $row_count . '</td>
-          <td>' . $row['loan_id'] . '</td>
-          <td>' . $row['item_name'] . '</td>
-          <td>' . $row['model'] . '</td>
-          <td>' . $row['item_category'] . '</td>
-          <td>' . $row['serial_no'] . '</td>
-          <td>' . $row['full_name'] . '</td>
-          <td>' . $row['department'] . '</td>
-          <td>' . $row['uom'] . '</td>
-          <td>' . $row['qty_taken'] . '</td>
-          <td>' . $row['qty'] . '</td>
-          <td>' . $row['doc_date'] . '</td>
-          <td>' . $row['description'] . '</td>
-          <td>' . $row['user_name'] . '</td>
-          <td>
-            <ul class="action_list">
-              <li class="action_item action_view" title="View">
-                <a href="components/print_loan.php?loan_id=' . $row['loan_id'] . '" target="_blank"><i class="fa fa-eye"></i></a>
-              </li>
-            </ul>
-          </td>
-        </tr>';
-                    $row_count++;
-                }
-                ?>
-
-
+                            <td class="text-center">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                                    Action
+                                </button>
+                                <div class="dropdown-menu" style="">
+                                    <a class="dropdown-item" href="print_loan.php?loan_id=<?php echo $row['loan_id'] ?>" target="_blank">Print</a>
+                                </div>
+                            </td>
+                        </tr>
+                    <?php
+                    }
+                    ?>
                 </tbody>
+
             </table>
         </div>
-    </section>
+    </div>
+</div>
+<script>
+    $(document).ready(function() {
+        // Check if DataTable is already initialized
+        var isDataTableInitialized = $.fn.DataTable.isDataTable('#mydatatable');
 
-    <script src="asset/js/jquery/jquery-3.3.1.min.js"></script>
-    <script src="asset/js/jquery/jquery.dataTables.min.js"></script>
-    <script src="asset/js/bootstrap/dataTables.bootstrap4.min.js"></script>
-    <script src="asset/js/bootstrap/dataTables.buttons.min.js"></script>
-    <script src="asset/js/bootstrap/buttons.bootstrap4.min.js"></script>
-    <script src="asset/js/bootstrap/jszip.min.js"></script>
-    <script src="asset/js/bootstrap/pdfmake.min.js"></script>
-    <script src="asset/js/bootstrap/vfs_fonts.js"></script>
-    <script src="asset/js/bootstrap/buttons.html5.min.js"></script>
-    <script src="asset/js/bootstrap/buttons.print.min.js"></script>
-    <script src="asset/js/bootstrap/buttons.colVis.min.js"></script>
-    <script src="asset/js/bootstrap/dataTables.responsive.min.js"></script>
-    <script src="asset/js/bootstrap/buttons.bootstrap4.min.js"></script>
-    <script src="asset/js/bootstrap/flatpickr.js"></script>
+        // If DataTable is initialized, destroy it
+        if (isDataTableInitialized) {
+            $('#mydatatable').DataTable().destroy();
+        }
 
-
-    <script>
-        $(document).ready(function() {
-            var table = $('#mydatatable').DataTable({
-                ordering: true,
-                buttons: ['excel', 'pdf', 'colvis'],
-                pagingType: 'full_numbers',
-                lengthMenu: [
-                    [10, 25, 50, -1],
-                    [10, 25, 50, "All"]
-                ],
-                columnDefs: [{
-                        targets: [0, 4, 7, 11, 14], // index of the "Password" column (zero-based index)
-                        visible: false // set to false to hide the column by default
-                    }
-                    // Add similar blocks for other columns you want to hide by default
-                ]
-            });
-
-
-            table.columns().every(function() {
-                var that = this;
-                var columnTitle = $(this.header()).text().trim();
-
-                // Create the input element based on the column title
-                var input;
-                {
-                    // Create a regular text input element for other columns
-                    input = $('<input type="text" class="form-control" placeholder="Filter"/>')
-                        .appendTo($(this.header()))
-                        .on('keyup change', function() {
-                            that.search($(this).val()).draw();
-                        });
+        // Initialize DataTable
+        var table = $('#mydatatable').DataTable({
+            ordering: true,
+            buttons: ['excel', 'pdf', 'colvis'],
+            pagingType: 'full_numbers',
+            lengthMenu: [
+                [10, 25, 50, -1],
+                [10, 25, 50, "All"]
+            ],
+            columnDefs: [{
+                    targets: [0, 4, 7, 11, 14], // index of the "Password" column (zero-based index)
+                    visible: false // set to false to hide the column by default
                 }
-            });
-
-            table.buttons().container()
-                .appendTo('#mydatatable_wrapper .col-md-6:eq(0)');
+                // Add similar blocks for other columns you want to hide by default
+            ]
         });
-    </script>
+        table.columns().every(function() {
+            var that = this;
+            var columnTitle = $(this.header()).text().trim();
 
+            // Create the input element based on the column title
+            var input;
+            {
+                // Create a regular text input element for other columns
+                input = $('<input type="text" class="form-control" placeholder="Filter"/>')
+                    .appendTo($(this.header()))
+                    .on('keyup change', function() {
+                        that.search($(this).val()).draw();
+                    });
+            }
+        });
 
+        table.buttons().container()
+            .appendTo('#mydatatable_wrapper .col-md-6:eq(0)');
 
-</body>
-
-</html>
+    });
+</script>
+<script>
+    function confirmDelete(userId) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'You won\'t be able to revert this!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Redirect to your delete script with the user ID
+                window.location.href = 'delete_user.php?id=' + userId;
+            }
+        });
+    }
+</script>

@@ -1,140 +1,88 @@
 <?php
-session_start();
-include 'components/inset.php';
+include 'backend/insert.php';
 include("connect.php");
-include("components/functions.php");
 
 $user_data = check_login($con);
 ?>
 
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="icon" href="images/logo.png" type="image">
-    <link rel="stylesheet" href="asset/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-    <link rel="stylesheet" href="asset/css/sweetalert2.min.css">
-
-</head>
-
-<body>
-    <section class="">
-        <?php include 'side_menu.php'; ?>
-    </section>
-    <div class="container">
-        <section class="asset_r">
-
-            <div class="text">
-                Asset Register
-            </div>
-
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-body">
             <form method="post" enctype="multipart/form-data">
-                <div class="form-row">
-                    <div class="input-data">
-                        <input type="text" oninvalid="this.setCustomValidity('Enter Item Code Here')" oninput="setCustomValidity('')" required name="item_c">
-                        <div class="underline"></div>
-                        <label for="">Item Code</label>
-                    </div>
-                    <div class="input-data">
-                        <input type="text" name="item_name" oninvalid="this.setCustomValidity('Enter Item Name Here')" oninput="setCustomValidity('')" required>
-                        <div class="underline"></div>
-                        <label for="">Item Name</label>
-                    </div>
-                    <div class="input-data">
-                        <input type="text" name="model">
-                        <div class="underline"></div>
-                        <label for="">Model</label>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="input-data">
-                        <select type="text" name="item_category" oninvalid="this.setCustomValidity('Select Item Category')" oninput="setCustomValidity('')" required>
-                            <option value=""></option>
-                            <?php
-                            $sql = "SELECT list_id, category FROM drop_down_list WHERE category IS NOT NULL AND category <> ''";
-                            $result = mysqli_query($con, $sql);
-                            if ($result) {
-                                while ($row = mysqli_fetch_assoc($result)) {
-                                    echo "<option value='" . $row["category"] . "'>" . $row["category"] . "</option>";
+                <div class="row">
+                    <div class="col-md-6 border-right">
+                        <b class="text-muted">Asset Register</b>
+                        <div class="form-group">
+                            <label for="" class="control-label">Item Code</label>
+                            <input type="text" name="item_c" class="form-control form-control-sm" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="control-label">Item Name</label>
+                            <input type="text" name="item_name" class="form-control form-control-sm" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="control-label">Model</label>
+                            <input type="text" name="model" class="form-control form-control-sm" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="control-label">Item Category</label>
+                            <select name="item_category" id="item_category" class="custom-select custom-select-sm select2" required>
+                                <option value=""></option>
+                                <?php
+                                $sql = "SELECT list_id, category FROM drop_down_list WHERE category IS NOT NULL AND category <> ''";
+                                $result = mysqli_query($con, $sql);
+                                if ($result) {
+                                    while ($row = mysqli_fetch_assoc($result)) {
+                                        echo "<option value='" . $row["category"] . "'>" . $row["category"] . "</option>";
+                                    }
                                 }
-                            }
-                            ?>
-                        </select>
-                        <div class="underline"></div>
-                        <label for="">Item Category</label>
-                    </div>
-                    <!--
-                    <div class="input-data">
-                        <select type="text" name="item_condition" oninvalid="this.setCustomValidity('Select Item Condition')" oninput="setCustomValidity('')" required>
-                            <option value=""></option>
-                            <option value="Functional">Functional</option>
-                            <option value="Damaged but Functional">Damaged but Functional</option>
-                            <option value="Non Functional">Non Functional</option>
-                            <option value="Damaged">Damaged</option>
-                            <option value="Damaged and Non-Functional">Damaged and Non-Functional</option>
-                            <option value="Damaged or Non-Functional">Damaged or Non-Functional</option>
-                        </select>
-                        <div class="underline"></div>
-                        <label for="">Item Condition</label>
-                    </div>  -->
-                    <div class="username_s">
-                        <input type="number" name="qty" value="0">
-                        <div class="underline"></div>
-                        <label for="">Quantity</label>
-                    </div>
-                    <div class="input-data">
-                        <select type="text" name="uom" oninvalid="this.setCustomValidity('Select UOM')" oninput="setCustomValidity('')" required>
-                            <option value=""></option>
-                            <?php
-                            $sql = "SELECT list_id, uom FROM drop_down_list WHERE uom IS NOT NULL AND uom <> ''";
-                            $result = mysqli_query($con, $sql);
-                            if ($result) {
-                                while ($row = mysqli_fetch_assoc($result)) {
-                                    echo "<option value='" . $row["uom"] . "'>" . $row["uom"] . "</option>";
+                                ?>
+                            </select>
+
+                        </div>
+                        <div class="form-group " style="display: none;">
+                            <label class="control-label">Quantity</label>
+                            <input type="text" class="form-control form-control-sm" name="qty" value="0">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="" class="control-label">UOM</label>
+                            <select name="uom" id="uom" class="custom-select custom-select-sm select2" required>
+                                <option value=""></option>
+                                <?php
+                                $sql = "SELECT list_id, uom FROM drop_down_list WHERE uom IS NOT NULL AND uom <> ''";
+                                $result = mysqli_query($con, $sql);
+                                if ($result) {
+                                    while ($row = mysqli_fetch_assoc($result)) {
+                                        echo "<option value='" . $row["uom"] . "'>" . $row["uom"] . "</option>";
+                                    }
                                 }
-                            }
-                            ?>
-                        </select>
-                        <div class="underline"></div>
-                        <label for="">UOM</label>
+                                ?>
+                            </select>
+                        </div>
                     </div>
-                    <div class="input-data">
-                        <input type="date" name="doc_date" id="doc_date" oninvalid="this.setCustomValidity('Enter Date Here')" oninput="setCustomValidity('')" required>
-                        <div class="underline"></div>
-                        <label for="doc_date">Document Date</label>
+                    <div class="col-md-6">
+                        <br />
+                        <div class="form-group">
+                            <label for="" class="control-label">Date</label>
+                            <input type="date" name="doc_date" id="doc_date" class="form-control form-control-sm">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Description</label>
+                            <textarea name="description" cols="30" rows="4" class="form-control"></textarea>
+                        </div>
+                        <div class="form-group " style="display: none;">
+                            <label class="control-label">Prepared By</label>
+                            <input type="text" class="form-control form-control-sm" name="user_name" value="<?php echo $user_data['user_name']; ?>">
+                        </div>
                     </div>
                 </div>
-                <div class="form-row">
-                    <div class="input-data textarea">
-                        <input type="textarea" rows="8" cols="80" name="description">
-                        <div class="underline"></div>
-                        <label for="">Discription</label>
-                    </div>
-                </div>
-                <div class="username_s">
-                    <input type="text" name="user_name" value="<?php echo $user_data['user_name']; ?>">
-                    <div class="underline"></div>
-                    <label for="">qwert</label>
-                </div>
-                <br>
-                <div class="form-row submit-btn">
-                    <div class="input-data">
-                        <div class="inner"></div>
-                        <input type="submit" name="submit">
-                    </div>
+                <hr>
+                <div class="col-lg-12 text-right justify-content-center d-flex">
+                    <button class="btn btn-primary mr-2" type="submit" name="submit">Save</button>
+                    <button class="btn btn-secondary" type="reset">Clear</button>
                 </div>
             </form>
-        </section>
+        </div>
     </div>
-    <script src="asset/js/js.js"></script>
-    <script src="components/inset.js"></script>
-    <script src="asset/js/sweetalert2.min.js"></script>
-
-</body>
-
-</html>
+</div>

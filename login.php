@@ -2,7 +2,7 @@
 session_start();
 
 include("connect.php");
-include("components/functions.php");
+include("backend/functions.php");
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $user_name = $_POST['user_name'];
@@ -49,96 +49,78 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
 }
 ?>
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <title>LogIn</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--===============================================================================================-->
-    <link rel="icon" type="image/png" href="asset/image/logo.png" />
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="asset/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="asset/login/css/util.css">
-    <link rel="stylesheet" type="text/css" href="asset/login/css/main.css">
-    <link rel="stylesheet" href="asset/css/sweetalert2.min.css">
-    <!--===============================================================================================-->
+    <title>Login</title>
+    <link rel="shortcut icon" type="image/icon" href="assets/images/logo/favicon.png" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="assets/dist/css/login.css">
+    <link rel="stylesheet" href="assets/dist/css/sweetalert2.min.css">
+
 </head>
 
 <body>
-
-    <div class="limiter">
-        <div class="container-login100">
-            <div class="wrap-login100">
-                <div class="login100-pic js-tilt" data-tilt>
-                    <a class="navbar-brand" href="home">
-                        <img src="asset/image/logo.png" alt="IMG">
-                    </a>
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center mb-5">
+                    <a href="home" <h2 class="heading-section" style="color: #03949B; font-size: 36px; font-weight: bold; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);">Abh Inventory System</h2></a>
                 </div>
-
-                <div id="box">
-                    <form method="post">
-                        <span class="login100-form-title">
-                            Admin Login
-                        </span>
-
-                        <div class="wrap-input100">
-                            <input class="input100" id="text" type="text" name="user_name" placeholder="Username" onkeyup="lettersOnly(this)">
-                            <span class="focus-input100"></span>
-                            <span class="symbol-input100">
-                                <i class="fa fa-user" aria-hidden="true"></i>
-                            </span>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-7 col-lg-5">
+                    <div class="login-wrap p-4 p-md-5">
+                        <div class="d-flex">
+                            <div class="w-100" style="text-align: right;">
+                                <h3 class="mb-3" style="color: #03949B; font-size: 24px; font-weight: bold; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);">Log In</h3>
+                            </div>
+                            <div class="w-100">
+                                <p class="social-media d-flex justify-content-end">
+                                    <a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-facebook"></span></a>
+                                    <a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-twitter"></span></a>
+                                </p>
+                            </div>
                         </div>
-
-                        <div class="wrap-input100" data-validate="Password is required">
-                            <input class="input100" id="text" type="password" name="password" placeholder="Password">
-                            <span class="focus-input100"></span>
-                            <span class="symbol-input100">
-                                <i class="fa fa-lock" aria-hidden="true"></i>
-                            </span>
-                        </div>
-
-                        <div class="container-login100-form-btn">
-
-                            <input class="login100-form-btn" type="submit" value="Login">
-
-                        </div>
-
-
-                        <div class="text-center p-t-136">
-
-                        </div>
-
-                    </form>
+                        <form method="post" class="login-form">
+                            <div class="form-group">
+                                <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-user"></span></div>
+                                <input type="text" name="user_name" class="form-control rounded-left" placeholder="Username" onkeyup="lettersOnly(this)" required>
+                            </div>
+                            <div class="form-group">
+                                <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-lock"></span></div>
+                                <input type="password" name="password" class="form-control rounded-left" placeholder="Password" required>
+                            </div>
+                            <div class="form-group d-flex align-items-center">
+                                <div class="w-100">
+                                    <label class="checkbox-wrap checkbox-primary mb-0">Save Password
+                                        <input type="checkbox" checked>
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                                <div class="w-100 d-flex justify-content-end">
+                                    <button type="submit" class="btn btn-primary rounded submit">Login</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
+    </section>
 
-
-
-
-        <!--===============================================================================================-->
-        <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-        <!--===============================================================================================-->
-        <script src="vendor/bootstrap/js/popper.js"></script>
-        <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-        <!--===============================================================================================-->
-        <script src="vendor/select2/select2.min.js"></script>
-        <!--===============================================================================================-->
-        <script src="vendor/tilt/tilt.jquery.min.js"></script>
-        <script>
-            $('.js-tilt').tilt({
-                scale: 1.1
-            })
-        </script>
-        <!--===============================================================================================-->
-        <script src="js/main.js"></script>
-        <script src="assets/js/js.js"></script>
-        <script src="asset/js/sweetalert2.min.js"></script>
-
+    <script src="assets/plugins/jquery/jquery.min.js"></script>
+    <script src="assets/plugins/popper/popper.js"></script>
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/dist/js/sweetalert2.min.js"></script>
 </body>
 
 </html>
