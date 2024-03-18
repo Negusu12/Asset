@@ -212,6 +212,9 @@ $barColors = array(
       title: {
         display: true,
         text: "Asset Category"
+      },
+      legend: {
+        display: false
       }
     }
   });

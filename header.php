@@ -41,5 +41,11 @@ $user_data = check_login($con);
   <link rel="stylesheet" href="assets/dist/css/sweetalert2.min.css">
   <script src="assets/dist/js/sweetalert2.min.js"></script>
 
-  <script src="assets/dist/js/npm_chart.js"></script>
+  <!-- Chart -->
+  <link rel="stylesheet" href="assets/plugins/chart.js/Chart.css">
+  <link rel="stylesheet" href="assets/plugins/chart.js/Chart.min.css">
+  <script src="assets/plugins/chart.js/Chart.min.js"></script>
+  <script src="assets/plugins/chart.js/Chart.bundle.js"></script>
+  <script src="assets/plugins/chart.js/Chart.bundle.min.js"></script>
+  <script src="assets/plugins/chart.js/Chart.js"></script>
 </head>
