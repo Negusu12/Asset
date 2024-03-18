@@ -126,7 +126,7 @@
       <div class="card shadow rounded-0">
         <div class="card-header rounded-0">
           <div class="d-flex justify-content-between">
-            <div class="card-title flex-shrink-1 flex-grow-1">Store Asset by Category</div>
+            <div class="card-title flex-shrink-1 flex-grow-1">Total Asset Quantity</div>
 
           </div>
         </div>
@@ -153,12 +153,40 @@
         </div>
       </div>
     </div>
+    <div class="graph">
+      <div class="card shadow rounded-0">
+        <div class="card-header rounded-0">
+          <div class="d-flex justify-content-between">
+            <div class="card-title flex-shrink-1 flex-grow-1">Asset Usage Over Time</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="container-fluid">
+            <canvas id="useChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="graph">
+      <div class="card shadow rounded-0">
+        <div class="card-header rounded-0">
+          <div class="d-flex justify-content-between">
+            <div class="card-title flex-shrink-1 flex-grow-1">Asset Purchase Over Time</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="container-fluid">
+            <canvas id="buyChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
 
 <?php
-$category_query = "SELECT item_category, SUM(qty) AS items_categoryy FROM asset_record GROUP BY item_category";
+$category_query = "SELECT item_category, SUM(total_qty) AS items_categoryy FROM total_item_qty_view GROUP BY item_category";
 $category_result = $con->query($category_query);
 $asset_category = array();
 $category_quantities = array();
@@ -167,13 +195,6 @@ while ($row = $category_result->fetch_assoc()) {
   $asset_category[] = $row['item_category'];
   $category_quantities[] = $row['items_categoryy'];
 }
-
-$barColors2 = array(
-  "#01ff70", "#ffdc00", "#85144b", "#39cccc", "#ff7f50", "#2c3e50", "#b10dc9", "#2aa198", "#c0392b", "#00bfff", "#8e44ad", "#2d3c4d",
-  "#e67e22", "#2e8b57", "#f1c40f", "#e74c3c", "#9b59b6", "#3498db", "#414142", "#03949B", "#26225B", "#4D7DBF", "#B2B435", "#ff9800", "#795548", "#aa00ff", "#5bc0de", "#d9534f",
-  "#007bff", "#28a745", "#ffc107", "#dc3545", "#17a2b8", "#6610f2", "#f012be", "#ff4136", "#2ecc40", "#ff851b", "#7fdbff", "#3d9970"
-
-);
 
 $asset_query = "SELECT item_name, SUM(qty) AS items_record FROM asset_record where qty > 0 GROUP BY item_name";
 $asset_result = $con->query($asset_query);
@@ -186,34 +207,75 @@ while ($row = $asset_result->fetch_assoc()) {
 }
 
 $barColors = array(
-  "#414142", "#03949B", "#26225B", "#4D7DBF", "#B2B435", "#ff9800", "#795548", "#aa00ff", "#5bc0de", "#d9534f",
+  "#03949B", "#26225B", "#4D7DBF", "#B2B435", "#414142", "#ff9800", "#795548", "#aa00ff", "#5bc0de", "#d9534f",
   "#007bff", "#28a745", "#ffc107", "#dc3545", "#17a2b8", "#6610f2", "#f012be", "#ff4136", "#2ecc40", "#ff851b", "#7fdbff", "#3d9970",
   "#01ff70", "#ffdc00", "#85144b", "#39cccc", "#ff7f50", "#2c3e50", "#b10dc9", "#2aa198", "#c0392b", "#00bfff", "#8e44ad", "#2d3c4d",
   "#e67e22", "#2e8b57", "#f1c40f", "#e74c3c", "#9b59b6", "#3498db"
 );
+// Query to fetch data for asset usage over time
+$used_query = "SELECT doc_date, SUM(qty) AS total_qty FROM used_asset_report GROUP BY doc_date ORDER BY doc_date";
+$used_result = $con->query($used_query);
+$used_dates = array();
+$used_quantities = array();
+
+while ($row = $used_result->fetch_assoc()) {
+  // Convert the database date string to a UNIX timestamp
+  $timestamp = strtotime($row['doc_date']);
+  // Format the UNIX timestamp to the desired date format
+  $formatted_date = date("F j Y", $timestamp);
+
+  $used_dates[] = $formatted_date; // Assuming doc_date is the label for x-axis
+  $used_quantities[] = $row['total_qty'];
+}
+
+
+$buy_query = "SELECT doc_date, SUM(qty) AS total_qty FROM buy_asset_report GROUP BY doc_date ORDER BY doc_date";
+$buy_result = $con->query($buy_query);
+$buy_dates = array();
+$buy_quantities = array();
+
+while ($row = $buy_result->fetch_assoc()) {
+  // Convert the database date string to a UNIX timestamp
+  $timestamp = strtotime($row['doc_date']);
+  // Format the UNIX timestamp to the desired date format
+  $formatted_date = date("F j Y", $timestamp);
+
+  $buy_dates[] = $formatted_date; // Assuming doc_date is the label for x-axis
+  $buy_quantities[] = $row['total_qty'];
+}
+
+
 
 ?>
 <script>
   var asset_category = <?php echo json_encode($asset_category); ?>;
   var category_quantities = <?php echo json_encode($category_quantities); ?>;
-  var barColors2 = <?php echo json_encode($barColors2); ?>;
+  var barColors = <?php echo json_encode($barColors); ?>;
   var categoryChart = document.getElementById('categoryChart').getContext('2d');
 
   var assetChartObj = new Chart(categoryChart, {
-    type: 'pie',
+    type: 'bar',
     data: {
       labels: asset_category,
       datasets: [{
         label: 'Asset Category',
         data: category_quantities,
-        backgroundColor: barColors2,
-        borderColor: '#f44336',
+        backgroundColor: barColors,
+        borderColor: 'rgb(75, 192, 192)',
         borderWidth: 1
       }]
     },
     options: {
+      title: {
+        display: false
+      },
       legend: {
         display: false
+      },
+      scales: {
+        xAxes: [{
+          display: false // hide x-axis labels
+        }]
       }
     }
   });
@@ -225,14 +287,14 @@ $barColors = array(
   var assetChart = document.getElementById('assetChart').getContext('2d');
 
   var assetChartObj = new Chart(assetChart, {
-    type: 'bar',
+    type: 'pie',
     data: {
       labels: asset_name,
       datasets: [{
         label: 'Asset on Hand',
         data: asset_quantities,
+        borderColor: 'rgb(75, 192, 192)',
         backgroundColor: barColors,
-        borderColor: '#f44336',
         borderWidth: 1
       }]
     },
@@ -240,6 +302,60 @@ $barColors = array(
       title: {
         display: false
       },
+      legend: {
+        display: false
+      },
+      scales: {
+        xAxes: [{
+          display: false // hide x-axis labels
+        }]
+      }
+    }
+  });
+
+  // PHP data for line chart
+  var used_dates = <?php echo json_encode($used_dates); ?>;
+  var used_quantities = <?php echo json_encode($used_quantities); ?>;
+  var barColors = <?php echo json_encode($barColors); ?>;
+
+  // Configure line chart
+  var useChart = document.getElementById('useChart').getContext('2d');
+  var useChartObj = new Chart(useChart, {
+    type: 'doughnut',
+    data: {
+      labels: used_dates,
+      datasets: [{
+        label: 'Usage Quantity',
+        data: used_quantities,
+        borderColor: 'rgb(75, 192, 192)',
+        backgroundColor: barColors,
+        borderWidth: 1
+      }]
+    },
+    options: {
+      legend: {
+        display: false
+      }
+    }
+  });
+
+  var buy_dates = <?php echo json_encode($buy_dates); ?>;
+  var buy_quantities = <?php echo json_encode($buy_quantities); ?>;
+
+  // Configure line chart
+  var buyChart = document.getElementById('buyChart').getContext('2d');
+  var buyChartObj = new Chart(buyChart, {
+    type: 'line',
+    data: {
+      labels: buy_dates,
+      datasets: [{
+        label: 'Purchase Quantity',
+        data: buy_quantities,
+        borderColor: 'rgb(75, 192, 192)',
+        borderWidth: 1
+      }]
+    },
+    options: {
       legend: {
         display: false
       },
