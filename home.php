@@ -78,75 +78,78 @@
   </div>
 
 </div>
-<div class="roww">
-  <section class="cccc">
-    <div class="ccc">
+<div class="containerr">
+  <div class="sideba">
+    <section class="cccc">
+      <div class="ccc">
 
-      <ul class="category_li">
-        <h1 style="font-size: 22px;">Asset On Store</h1>
-        <?php
-        // Fetch item categories and their total quantities from asset_record
-        $category_query = "SELECT item_category, SUM(qty) AS total_qty FROM asset_record WHERE qty > 0 GROUP BY item_category ORDER BY total_qty DESC";
-        $category_result = $con->query($category_query);
-        if ($category_result->num_rows > 0) {
-          while ($row = $category_result->fetch_assoc()) {
-            echo '<li class="category" data-category="' . $row["item_category"] . '"><i class="fas fa-arrow-right" style="color: #414142;"></i> ' . $row["item_category"] . ' - Total Qty: ' . $row["total_qty"] . '</li>';
-            echo '<ul class="item-list" style="display:none;"></ul>'; // Hidden item list for each category
+        <ul class="category_li">
+          <h1 style="font-size: 22px;">Asset On Store</h1>
+          <?php
+          // Fetch item categories and their total quantities from asset_record
+          $category_query = "SELECT item_category, SUM(qty) AS total_qty FROM asset_record WHERE qty > 0 GROUP BY item_category ORDER BY total_qty DESC";
+          $category_result = $con->query($category_query);
+          if ($category_result->num_rows > 0) {
+            while ($row = $category_result->fetch_assoc()) {
+              echo '<li class="category" data-category="' . $row["item_category"] . '"><i class="fas fa-arrow-right" style="color: #414142;"></i> ' . $row["item_category"] . ' - Total Qty: ' . $row["total_qty"] . '</li>';
+              echo '<ul class="item-list" style="display:none;"></ul>'; // Hidden item list for each category
+            }
+          } else {
+            echo "0 results";
           }
-        } else {
-          echo "0 results";
-        }
-        ?>
-      </ul>
-    </div>
-    <div class="ccc">
+          ?>
+        </ul>
+      </div>
+      <div class="ccc">
 
-      <ul class="category_li">
-        <h1 style="font-size: 22px;">Asset On Loan</h1>
-        <?php
-        // Fetch item categories and their total quantities from asset_loan_v
-        $category_query_loan = "SELECT item_category, SUM(qty) AS total_qty FROM asset_loan_v WHERE qty > 0 GROUP BY item_category ORDER BY total_qty DESC";
-        $category_result_loan = $con->query($category_query_loan);
-        if ($category_result_loan->num_rows > 0) {
-          while ($row = $category_result_loan->fetch_assoc()) {
-            echo '<li class="category_loan" data-category_loan="' . $row["item_category"] . '"><i class="fas fa-arrow-right" style="color: #414142;"></i> ' . $row["item_category"] . ' - Total Qty: ' . $row["total_qty"] . '</li>';
-            echo '<ul class="item-list_loan" style="display:none;"></ul>'; // Hidden item list for each category
+        <ul class="category_li">
+          <h1 style="font-size: 22px;">Asset On Loan</h1>
+          <?php
+          // Fetch item categories and their total quantities from asset_loan_v
+          $category_query_loan = "SELECT item_category, SUM(qty) AS total_qty FROM asset_loan_v WHERE qty > 0 GROUP BY item_category ORDER BY total_qty DESC";
+          $category_result_loan = $con->query($category_query_loan);
+          if ($category_result_loan->num_rows > 0) {
+            while ($row = $category_result_loan->fetch_assoc()) {
+              echo '<li class="category_loan" data-category_loan="' . $row["item_category"] . '"><i class="fas fa-arrow-right" style="color: #414142;"></i> ' . $row["item_category"] . ' - Total Qty: ' . $row["total_qty"] . '</li>';
+              echo '<ul class="item-list_loan" style="display:none;"></ul>'; // Hidden item list for each category
+            }
+          } else {
+            echo "0 results";
           }
-        } else {
-          echo "0 results";
-        }
-        ?>
-      </ul>
-    </div>
-  </section>
-
-  <div class="graph">
-    <div class="card shadow rounded-0">
-      <div class="card-header rounded-0">
-        <div class="d-flex justify-content-between">
-          <div class="card-title flex-shrink-1 flex-grow-1">Store Asset by Category</div>
-
-        </div>
+          ?>
+        </ul>
       </div>
-      <div class="card-body">
-        <div class="container-fluid">
-          <canvas id="categoryChart"></canvas>
-        </div>
-      </div>
-    </div>
+    </section>
   </div>
+  <div class="content">
+    <div class="graph">
+      <div class="card shadow rounded-0">
+        <div class="card-header rounded-0">
+          <div class="d-flex justify-content-between">
+            <div class="card-title flex-shrink-1 flex-grow-1">Store Asset by Category</div>
 
-  <div class="grapha">
-    <div class="card shadow rounded-0">
-      <div class="card-header rounded-0">
-        <div class="d-flex justify-content-between">
-          <div class="card-title flex-shrink-1 flex-grow-1">Asset On Store</div>
-
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="container-fluid">
+            <canvas id="categoryChart"></canvas>
+          </div>
         </div>
       </div>
-      <div class="card-body">
-        <div class="container-fluid">
-          <canvas id="assetChart"></canvas>
+    </div>
+
+    <div class="grapha">
+      <div class="card shadow rounded-0">
+        <div class="card-header rounded-0">
+          <div class="d-flex justify-content-between">
+            <div class="card-title flex-shrink-1 flex-grow-1">Asset On Store</div>
+
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="container-fluid">
+            <canvas id="assetChart"></canvas>
+          </div>
         </div>
       </div>
     </div>
@@ -209,10 +212,6 @@ $barColors = array(
       }]
     },
     options: {
-      title: {
-        display: true,
-        text: "Asset Category"
-      },
       legend: {
         display: false
       }
@@ -235,13 +234,19 @@ $barColors = array(
         backgroundColor: barColors,
         borderColor: '#f44336',
         borderWidth: 1
-
       }]
     },
     options: {
       title: {
-        display: true,
-        text: "Asset On Hand"
+        display: false
+      },
+      legend: {
+        display: false
+      },
+      scales: {
+        xAxes: [{
+          display: false // hide x-axis labels
+        }]
       }
     }
   });

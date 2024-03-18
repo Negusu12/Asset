@@ -76,52 +76,53 @@
 /* Styles for the charts container */
 /* Styles for the charts container */
 /* Styles for the charts container */
-.roww {
+.containerr {
+  display: flex;
+}
+
+.sideba {
+  flex: 1 1 25%;
+  /* Adjust as needed */
+  background-color: #f8f9fa;
+  /* Example background color */
+  padding: 20px;
+  /* Add any other styling you want for the sidebar */
+}
+
+.content {
+  flex: 1 1 75%;
+  /* Adjust as needed */
+  padding: 20px;
   display: flex;
   flex-wrap: wrap;
-  margin-left: -10px;
-  /* Adjust for negative margin */
-  margin-right: -10px;
-  /* Adjust for negative margin */
 }
 
-.graph {
-  flex: 1 1 calc(33.33% - 20px);
-  /* Three charts per row with margin */
-  max-width: calc(33.33% - 20px);
-  /* Adjust as needed */
-  margin: 0 10px 20px 10px;
-  /* Adjust margin as needed */
-}
-
+.graph,
 .grapha {
-  flex: 1 1 calc(33.33% - 20px);
-  /* Three charts per row with margin */
-  max-width: calc(53.33% - 30px);
+  flex: 1 1 calc(50% - 20px);
+  /* Two graphs per row with margin */
+  max-width: calc(50% - 20px);
   /* Adjust as needed */
-  margin: 0 10px 20px 10px;
-  /* Adjust margin as needed */
-}
-
-/* Ensure responsiveness */
-@media (max-width: 1200px) {
-
-  .graph,
-  .grapha {
-    flex: 1 1 calc(50% - 20px);
-    /* Two charts per row on smaller screens */
-    max-width: calc(50% - 20px);
-    /* Adjust as needed */
-  }
+  margin: 10px;
 }
 
 @media (max-width: 768px) {
+  .containerr {
+    flex-direction: column;
+    /* Switch to column layout on smaller screens */
+  }
+
+  .sideba,
+  .content {
+    flex: 1 1 100%;
+  }
 
   .graph,
   .grapha {
     flex: 1 1 100%;
-    /* One chart per row on smaller screens */
+    /* One graph per row on smaller screens */
     max-width: 100%;
+    /* Adjust as needed */
   }
 }
 
