@@ -141,21 +141,7 @@
     </section>
   </div>
   <div class="content">
-    <div class="graph">
-      <div class="card shadow rounded-0">
-        <div class="card-header rounded-0">
-          <div class="d-flex justify-content-between">
-            <div class="card-title flex-shrink-1 flex-grow-1">Total Asset Quantity</div>
 
-          </div>
-        </div>
-        <div class="card-body">
-          <div class="container-fluid">
-            <canvas id="categoryChart"></canvas>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <div class="grapha">
       <div class="card shadow rounded-0">
@@ -168,6 +154,21 @@
         <div class="card-body">
           <div class="container-fluid">
             <canvas id="assetChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="graph">
+      <div class="card shadow rounded-0">
+        <div class="card-header rounded-0">
+          <div class="d-flex justify-content-between">
+            <div class="card-title flex-shrink-1 flex-grow-1">Total Asset Quantity</div>
+
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="container-fluid">
+            <canvas id="categoryChart"></canvas>
           </div>
         </div>
       </div>
