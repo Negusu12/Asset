@@ -119,6 +119,25 @@
           ?>
         </ul>
       </div>
+      <div class="ccc">
+
+        <ul class="category_li">
+          <h1 style="font-size: 22px;">Total Asset</h1>
+          <?php
+          // Fetch item categories and their total quantities from asset_loan_v
+          $category_query_total = "SELECT item_category, SUM(total_qty) AS total_qty FROM total_item_qty_view GROUP BY item_category ORDER BY total_qty DESC";
+          $category_result_total = $con->query($category_query_total);
+          if ($category_result_total->num_rows > 0) {
+            while ($row = $category_result_total->fetch_assoc()) {
+              echo '<li class="category_total" data-category_total="' . $row["item_category"] . '"><i class="fas fa-arrow-right" style="color: #414142;"></i> ' . $row["item_category"] . ' - Total Qty: ' . $row["total_qty"] . '</li>';
+              echo '<ul class="item-list_total" style="display:none;"></ul>'; // Hidden item list for each category
+            }
+          } else {
+            echo "0 results";
+          }
+          ?>
+        </ul>
+      </div>
     </section>
   </div>
   <div class="content">
@@ -413,6 +432,32 @@ while ($row = $buy_result->fetch_assoc()) {
           },
           success: function(data) {
             itemList_loan.html(data).show(); // Show and populate the item list
+          },
+          error: function(xhr, status, error) {
+            console.error(xhr.responseText);
+          }
+        });
+      }
+    });
+  });
+</script>
+<script>
+  $(document).ready(function() {
+    $(".category_total").click(function() {
+      var category_total = $(this).data('category_total');
+      var itemList_total = $(this).next('.item-list_total');
+
+      if (itemList_total.is(':visible')) {
+        itemList_total.hide(); // Hide the item list if it's visible
+      } else {
+        $.ajax({
+          url: "get_items_by_category.php",
+          method: "POST",
+          data: {
+            category_total: category_total
+          },
+          success: function(data) {
+            itemList_total.html(data).show(); // Show and populate the item list
           },
           error: function(xhr, status, error) {
             console.error(xhr.responseText);
