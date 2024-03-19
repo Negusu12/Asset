@@ -86,7 +86,7 @@
   background-color: #f8f9fa;
   /* Example background color */
   padding: 20px;
-  /* Add any other styling you want for the sidebar */
+  margin-right: -5%;
 }
 
 .content {
@@ -115,6 +115,7 @@
   .sideba,
   .content {
     flex: 1 1 100%;
+    margin-left: -6%;
   }
 
   .graph,
@@ -221,5 +222,6 @@ ul {
 .cccc {
   max-height: 700px;
   overflow-y: scroll;
-  overflow-x: hidden;
+  overflow-x: scroll;
+  width: 82%;
 }
