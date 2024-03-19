@@ -5,9 +5,10 @@
                 <thead>
                     <tr>
                         <th scope="col">row_No</th>
-                        <th scope="col">employee_id</th>
-                        <th scope="col">full_name</th>
-                        <th scope="col">department</th>
+                        <th scope="col">list_id</th>
+                        <th scope="col">Department</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">UOM</th>
                         <?php if ($user_data['role'] == 1) : ?>
                             <th scope="col">Action</th>
                         <?php endif; ?>
@@ -16,23 +17,22 @@
                 <tbody>
                     <?php
                     $i = 1;
-                    $qry = $con->query("select * from employee order by employee_id desc");
+                    $qry = $con->query("select * from drop_down_list");
                     while ($row = $qry->fetch_assoc()) :
                     ?>
                         <tr>
                             <th class="text-center"><?php echo $i++ ?></th>
-                            <td><b><?php echo $row['employee_id'] ?></b></td>
-                            <td><b><?php echo $row['full_name'] ?></b></td>
+                            <td><b><?php echo $row['list_id'] ?></b></td>
                             <td><b><?php echo $row['department'] ?></b></td>
+                            <td><b><?php echo $row['category'] ?></b></td>
+                            <td><b><?php echo $row['uom'] ?></b></td>
                             <?php if ($user_data['role'] == 1) : ?>
                                 <td class="text-center">
                                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                                         Action
                                     </button>
                                     <div class="dropdown-menu" style="">
-                                        <a class="dropdown-item" href="./index.php?page=backend/edit_employee&employee_id=<?php echo $row['employee_id'] ?>">Edit</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" onclick='confirmDelete(<?php echo $row['employee_id']; ?>)'>Delete</a>
+                                        <a class="dropdown-item" onclick='confirmDelete(<?php echo $row['list_id']; ?>)'>Delete</a>
 
                                     </div>
                                 </td>
@@ -106,7 +106,7 @@
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href = 'backend/delete_employee.php?employee_id=' + userId;
+                window.location.href = 'backend/delete_list.php?list_id=' + userId;
             }
         });
     }

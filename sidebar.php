@@ -39,7 +39,7 @@
             <li class="nav-item">
               <a href="./index.php?page=asset_record" class="nav-link nav-asset_record tree-item">
                 <i class="fas fa-angle-right nav-icon"></i>
-                <p>Asset Register</p>
+                <p>Asset Record</p>
               </a>
             </li>
             <li class="nav-item">
@@ -153,6 +153,12 @@
                 <a href="./index.php?page=users" class="nav-link nav-users tree-item">
                   <i class="fas fa-angle-right nav-icon"></i>
                   <p>Users Record</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="./index.php?page=report_list" class="nav-link nav-report_list tree-item">
+                  <i class="fas fa-angle-right nav-icon"></i>
+                  <p>List Choice</p>
                 </a>
               </li>
             </ul>
