@@ -45,13 +45,13 @@
             <li class="nav-item">
               <a href="./index.php?page=asset_buy" class="nav-link nav-asset_buy tree-item">
                 <i class="fas fa-angle-right nav-icon"></i>
-                <p>Asset Buy</p>
+                <p>GRN</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="./index.php?page=asset_use" class="nav-link nav-asset_use tree-item">
                 <i class="fas fa-angle-right nav-icon"></i>
-                <p>Asset Use</p>
+                <p>Asset usage</p>
               </a>
             </li>
             <li class="nav-item">
@@ -116,13 +116,13 @@
             <li class="nav-item">
               <a href="./index.php?page=report_buy" class="nav-link nav-report_buy tree-item">
                 <i class="fas fa-angle-right nav-icon"></i>
-                <p>Buy Record</p>
+                <p>GRN</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="./index.php?page=report_use" class="nav-link nav-report_use tree-item">
                 <i class="fas fa-angle-right nav-icon"></i>
-                <p>GRN Record</p>
+                <p>consumption Record</p>
               </a>
             </li>
             <li class="nav-item">

@@ -40,7 +40,7 @@
                             <td><b><?php echo $row['uom'] ?></b></td>
                             <td><b><?php echo ucwords($row['qty_taken']) ?></b></td>
                             <td><b><?php echo $row['qty'] ?></b></td>
-                            <td><b><?php echo $row['doc_date'] ?></b></td>
+                            <td><b><?php echo date('F d Y', strtotime($row['doc_date'])) ?></b></td>
                             <td><b><?php echo $row['description'] ?></b></td>
                             <td><b><?php echo $row['user_name'] ?></b></td>
 
