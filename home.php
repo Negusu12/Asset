@@ -23,14 +23,14 @@
   <div class="col-12 col-sm-6 col-md-3">
     <a href="index.php?page=report_loan" class="info-box-link">
       <div class="info-box">
-        <span class="info-box-icon bg-info elevation-1"><i class="far fa-credit-card"></i></i></span>
+        <span class="info-box-icon bg-info elevation-1"><i class="fas fa-dumpster-fire"></i></i></i></span>
         <div class="info-box-content">
-          <span class="info-box-text">Number Of Items Loaned</span>
+          <span class="info-box-text">Damages Assets</span>
           <span class="info-box-number">
             <?php
             // Assuming $con is your database connection object
 
-            $result = $con->query("SELECT SUM(qty) AS total_qty FROM asset_loan_v");
+            $result = $con->query("SELECT SUM(qty) AS total_qty FROM asset_loan_v where department = 'damaged'");
             $row = $result->fetch_assoc();
             $total_qty = $row['total_qty'];
 
@@ -47,7 +47,31 @@
   <div class="col-12 col-sm-6 col-md-3">
     <a href="index.php?page=report_loan" class="info-box-link">
       <div class="info-box">
-        <span class="info-box-icon bg-info elevation-1"><i class="far fa-credit-card"></i></span>
+        <span class="info-box-icon bg-info elevation-1"><i class="far fa-credit-card"></i></i></span>
+        <div class="info-box-content">
+          <span class="info-box-text">Number Of Items Loaned</span>
+          <span class="info-box-number">
+            <?php
+            // Assuming $con is your database connection object
+
+            $result = $con->query("SELECT SUM(qty) AS total_qty FROM asset_loan_v where department != 'damaged'");
+            $row = $result->fetch_assoc();
+            $total_qty = $row['total_qty'];
+
+            echo "" . $total_qty;
+            ?>
+          </span>
+        </div>
+        <!-- /.info-box-content -->
+      </div>
+    </a>
+    <!-- /.info-box -->
+
+  </div>
+  <div class="col-12 col-sm-6 col-md-3">
+    <a href="index.php?page=report_loan" class="info-box-link">
+      <div class="info-box">
+        <span class="info-box-icon bg-info elevation-1"><i class="fas fa-globe-africa"></i></span>
         <div class="info-box-content">
           <span class="info-box-text">Total Asset</span>
           <span class="info-box-number">
@@ -143,21 +167,6 @@
   <div class="content">
 
 
-    <div class="grapha">
-      <div class="card shadow rounded-0">
-        <div class="card-header rounded-0">
-          <div class="d-flex justify-content-between">
-            <div class="card-title flex-shrink-1 flex-grow-1">Asset On Store</div>
-
-          </div>
-        </div>
-        <div class="card-body">
-          <div class="container-fluid">
-            <canvas id="assetChart"></canvas>
-          </div>
-        </div>
-      </div>
-    </div>
     <div class="graph">
       <div class="card shadow rounded-0">
         <div class="card-header rounded-0">
@@ -169,6 +178,21 @@
         <div class="card-body">
           <div class="container-fluid">
             <canvas id="categoryChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="grapha">
+      <div class="card shadow rounded-0">
+        <div class="card-header rounded-0">
+          <div class="d-flex justify-content-between">
+            <div class="card-title flex-shrink-1 flex-grow-1">Asset On Store</div>
+
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="container-fluid">
+            <canvas id="assetChart"></canvas>
           </div>
         </div>
       </div>
