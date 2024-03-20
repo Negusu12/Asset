@@ -131,6 +131,12 @@
                 <p>Loaners List</p>
               </a>
             </li>
+            <li class="nav-item">
+              <a href="./index.php?page=report_total_summary" class="nav-link nav-report_total_summary tree-item">
+                <i class="fas fa-angle-right nav-icon"></i>
+                <p>Total Asset Summary</p>
+              </a>
+            </li>
           </ul>
         </li>
         <?php if ($user_data['role'] == 1) : ?>
