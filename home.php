@@ -69,7 +69,7 @@
 
   </div>
   <div class="col-12 col-sm-6 col-md-3">
-    <a href="" class="info-box-link">
+    <a href="index.php?page=report_total_summary" class="info-box-link">
       <div class="info-box">
         <span class="info-box-icon bg-info elevation-1"><i class="fas fa-globe-africa"></i></span>
         <div class="info-box-content">
