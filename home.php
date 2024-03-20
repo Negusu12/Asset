@@ -166,7 +166,21 @@
   </div>
   <div class="content">
 
+    <div class="grapha">
+      <div class="card shadow rounded-0">
+        <div class="card-header rounded-0">
+          <div class="d-flex justify-content-between">
+            <div class="card-title flex-shrink-1 flex-grow-1">Asset On Store and On Loan</div>
 
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="container-fluid">
+            <canvas id="assetChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="graph">
       <div class="card shadow rounded-0">
         <div class="card-header rounded-0">
@@ -182,21 +196,7 @@
         </div>
       </div>
     </div>
-    <div class="grapha">
-      <div class="card shadow rounded-0">
-        <div class="card-header rounded-0">
-          <div class="d-flex justify-content-between">
-            <div class="card-title flex-shrink-1 flex-grow-1">Asset On Store</div>
 
-          </div>
-        </div>
-        <div class="card-body">
-          <div class="container-fluid">
-            <canvas id="assetChart"></canvas>
-          </div>
-        </div>
-      </div>
-    </div>
     <div class="graph">
       <div class="card shadow rounded-0">
         <div class="card-header rounded-0">
@@ -230,6 +230,8 @@
 
 
 <?php
+
+// Fetch Total QTY
 $category_query = "SELECT item_category, SUM(total_qty) AS items_categoryy FROM total_item_qty_view GROUP BY item_category";
 $category_result = $con->query($category_query);
 $asset_category = array();
@@ -239,7 +241,7 @@ while ($row = $category_result->fetch_assoc()) {
   $asset_category[] = $row['item_category'];
   $category_quantities[] = $row['items_categoryy'];
 }
-
+// Fetch data by item name store
 $asset_query = "SELECT item_name, SUM(qty) AS items_record FROM asset_record where qty > 0 GROUP BY item_name";
 $asset_result = $con->query($asset_query);
 $asset_name = array();
@@ -248,6 +250,18 @@ $asset_quantities = array();
 while ($row = $asset_result->fetch_assoc()) {
   $asset_name[] = $row['item_name'];
   $asset_quantities[] = $row['items_record'];
+}
+// Fetch data by item category store
+$category_query = "SELECT item_category, total_store_qty, total_loan_qty FROM store_loan_dash_v";
+$store_result = $con->query($category_query);
+$store_category = array();
+$store_quantities = array();
+$loan_quantities = array(); // Initialize loan_quantities array
+
+while ($row = $store_result->fetch_assoc()) {
+  $store_category[] = $row['item_category'];
+  $store_quantities[] = $row['total_store_qty'];
+  $loan_quantities[] = $row['total_loan_qty'];
 }
 
 $barColors = array(
@@ -298,7 +312,7 @@ while ($row = $buy_result->fetch_assoc()) {
   var categoryChart = document.getElementById('categoryChart').getContext('2d');
 
   var assetChartObj = new Chart(categoryChart, {
-    type: 'bar',
+    type: 'pie',
     data: {
       labels: asset_category,
       datasets: [{
@@ -325,20 +339,27 @@ while ($row = $buy_result->fetch_assoc()) {
   });
 
 
-  var asset_name = <?php echo json_encode($asset_name); ?>;
-  var asset_quantities = <?php echo json_encode($asset_quantities); ?>;
-  var barColors = <?php echo json_encode($barColors); ?>;
+  var store_category = <?php echo json_encode($store_category); ?>;
+  var store_quantities = <?php echo json_encode($store_quantities); ?>;
+  var loan_quantities = <?php echo json_encode($loan_quantities); ?>;
+  var barColors = <?php echo json_encode($barColors); ?>; // Assuming you define $barColors somewhere
   var assetChart = document.getElementById('assetChart').getContext('2d');
 
   var assetChartObj = new Chart(assetChart, {
-    type: 'pie',
+    type: 'bar',
     data: {
-      labels: asset_name,
+      labels: store_category,
       datasets: [{
-        label: 'Asset on Hand',
-        data: asset_quantities,
-        borderColor: 'rgb(75, 192, 192)',
-        backgroundColor: barColors,
+        label: 'Asset on Store',
+        data: store_quantities,
+        backgroundColor: barColors, // Use correct variable name
+        borderColor: '#f44336',
+        borderWidth: 1
+      }, {
+        label: 'Asset on Loan',
+        data: loan_quantities,
+        backgroundColor: barColors, // Use correct variable name
+        borderColor: '#f44336',
         borderWidth: 1
       }]
     },
