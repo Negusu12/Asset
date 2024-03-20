@@ -48,4 +48,7 @@ $user_data = check_login($con);
   <script src="assets/plugins/chart.js/Chart.bundle.js"></script>
   <script src="assets/plugins/chart.js/Chart.bundle.min.js"></script>
   <script src="assets/plugins/chart.js/Chart.js"></script>
+  <script src="assets/plugins/chart.js/zoom.min.js"></script>
+
+
 </head>

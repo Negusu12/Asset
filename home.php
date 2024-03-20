@@ -251,7 +251,7 @@ while ($row = $asset_result->fetch_assoc()) {
   $asset_name[] = $row['item_name'];
   $asset_quantities[] = $row['items_record'];
 }
-// Fetch data by item category store
+// Fetch data category for store and loan
 $category_query = "SELECT item_category, total_store_qty, total_loan_qty FROM store_loan_dash_v";
 $store_result = $con->query($category_query);
 $store_category = array();
@@ -368,7 +368,7 @@ while ($row = $buy_result->fetch_assoc()) {
         display: false
       },
       legend: {
-        display: false
+        display: true
       },
       scales: {
         xAxes: [{
@@ -377,6 +377,7 @@ while ($row = $buy_result->fetch_assoc()) {
       }
     }
   });
+
 
   // PHP data for line chart
   var used_dates = <?php echo json_encode($used_dates); ?>;
