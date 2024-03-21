@@ -20,7 +20,7 @@ $user_data = check_login($con);
 
 
                                 // Retrieve all records from the asset_record table
-                                $sql = "SELECT item_code, CONCAT(item_name, IFNULL(CONCAT(' - ', item_condition), '')) AS Item_Name FROM asset_record";
+                                $sql = "SELECT item_code, CONCAT(item_name, IFNULL(CONCAT(' - ', brand, ' - ', model, ' - ', item_category), '')) AS Item_Name FROM asset_record";
                                 $result = mysqli_query($con, $sql);
 
                                 // Check if query was successful

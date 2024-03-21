@@ -4,7 +4,7 @@ include("connect.php");
 
 $user_data = check_login($con);
 
-$item_code = $item_name = $model = $item_category = $qty = $uom = $doc_date = $description = "";
+$item_code = $item_name = $model = $brand = $item_type = $item_category = $qty = $uom = $doc_date = $description = "";
 $error = $success = "";
 
 if ($_SERVER["REQUEST_METHOD"] == 'GET') {
@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'GET') {
     }
 
     $item_code = $_GET['item_code'];
-    $sql = "SELECT item_code, item_name, model, item_category, qty, uom, doc_date, description FROM asset_record WHERE item_code=?";
+    $sql = "SELECT item_code, item_name, model, brand, item_type, item_category, qty, uom, doc_date, description FROM asset_record WHERE item_code=?";
     $stmt = $con->prepare($sql);
     $stmt->bind_param('s', $item_code);
 
@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'GET') {
             exit;
         }
 
-        $stmt->bind_result($item_code, $item_name, $model, $item_category, $qty, $uom, $doc_date, $description);
+        $stmt->bind_result($item_code, $item_name, $model, $brand, $item_type, $item_category, $qty, $uom, $doc_date, $description);
         $stmt->fetch();
     }
     $stmt->close();
@@ -36,6 +36,8 @@ if ($_SERVER["REQUEST_METHOD"] == 'GET') {
     $item_code = $_POST["item_code"];
     $item_name = $_POST["item_name"];
     $model = $_POST["model"];
+    $brand = $_POST["brand"];
+    $item_type = $_POST["item_type"];
     $item_category = $_POST["item_category"];
     $qty = $_POST["qty"];
     $uom = $_POST["uom"];
@@ -43,9 +45,9 @@ if ($_SERVER["REQUEST_METHOD"] == 'GET') {
     $description = $_POST["description"];
 
     if (empty($error)) {
-        $sql = "UPDATE asset_record SET item_name=?, model=?, item_category=?, qty=?, uom=?, doc_date=?, description=? WHERE item_code=?";
+        $sql = "UPDATE asset_record SET item_name=?, model=?, brand=?, item_type=?, item_category=?, qty=?, uom=?, doc_date=?, description=? WHERE item_code=?";
         $stmt = $con->prepare($sql);
-        $stmt->bind_param('sssiisss', $item_name, $model, $item_category, $qty, $uom, $doc_date, $description, $item_code);
+        $stmt->bind_param('sssssissss', $item_name, $model, $brand, $item_type, $item_category, $qty, $uom, $doc_date, $description, $item_code);
 
         if (!$stmt->execute()) {
             $error = "Error: " . $stmt->error;
@@ -80,9 +82,22 @@ if ($_SERVER["REQUEST_METHOD"] == 'GET') {
                             <input type="text" name="item_name" class="form-control form-control-sm" value="<?php echo $item_name ?>" required>
                         </div>
                         <div class="form-group">
+                            <label for="" class="control-label">Brand</label>
+                            <input type="text" name="brand" class="form-control form-control-sm" value="<?php echo $brand ?>">
+                        </div>
+                        <div class=" form-group">
                             <label for="" class="control-label">Model</label>
                             <input type="text" name="model" class="form-control form-control-sm" value="<?php echo $model ?>">
                         </div>
+                        <div class="form-group">
+                            <label for="" class="control-label">Item Type</label>
+                            <select name="item_type" id="item_type" class="custom-select custom-select-sm select2" required>
+                                <option value=""></option>
+                                <option value="asset" <?php if ($item_type == "asset") echo "selected"; ?>>Asset</option>
+                                <option value="consumable" <?php if ($item_type == "consumable") echo "selected"; ?>>Consumable</option>
+                            </select>
+                        </div>
+
                         <div class="form-group">
                             <label for="" class="control-label">Item Category</label>
                             <select name="item_category" id="item_category" class="custom-select custom-select-sm select2" required>

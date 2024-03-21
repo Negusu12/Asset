@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-6 text-center mb-5">
-                    <a href="home" <h2 class="heading-section" style="color: #03949B; font-size: 36px; font-weight: bold; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);">ABH Inventory System</h2></a>
+                    <a href="home" <h2 class="heading-section" style="color: #B2B435; font-size: 36px; font-weight: bold; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);">ABH Inventory System</h2></a>
                 </div>
             </div>
             <div class="row justify-content-center">

@@ -8,8 +8,10 @@
 						<th scope="col">Item Code</th>
 						<th scope="col">Item Code</th>
 						<th scope="col">Item Name</th>
+						<th scope="col">Brand</th>
 						<th scope="col">Model</th>
 						<th scope="col">Item Category</th>
+						<th scope="col">Item Type</th>
 						<th scope="col">UOM</th>
 						<th scope="col">Quantity</th>
 						<th scope="col">Action</th>
@@ -26,8 +28,10 @@
 							<td><b><?php echo $row['item_code'] ?></b></td>
 							<td><b><?php echo $row['item_c'] ?></b></td>
 							<td><b><?php echo ucwords($row['item_name']) ?></b></td>
+							<td><b><?php echo $row['brand'] ?></b></td>
 							<td><b><?php echo $row['model'] ?></b></td>
 							<td><b><?php echo $row['item_category'] ?></b></td>
+							<td><b><?php echo $row['item_type'] ?></b></td>
 							<td><b><?php echo $row['uom'] ?></b></td>
 							<td><b><?php echo $row['qty'] ?></b></td>
 							<td class="text-center">
