@@ -40,9 +40,9 @@ $user_data = check_login($con);
                             </select>
 
                         </div>
-                        <div class="form-group " style="display: none;">
+                        <div class="form-group ">
                             <label class="control-label">Quantity</label>
-                            <input type="text" class="form-control form-control-sm" name="qty" value="0">
+                            <input type="number" class="form-control form-control-sm" name="qty" required>
                         </div>
 
                         <div class="form-group">

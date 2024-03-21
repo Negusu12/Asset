@@ -1,73 +1,7 @@
 <?php include('connect.php') ?>
 <!-- Info boxes -->
 <div class="row">
-  <div class="col-12 col-sm-6 col-md-3">
-    <a href="index.php?page=report_asset_onhand" class="info-box-link">
-      <div class="info-box">
-        <span class="info-box-icon bg-info elevation-1"><i class="fas fa-warehouse"></i></i></span>
-        <div class="info-box-content">
-          <span class="info-box-text">Total on Hand Asset Quantity</span>
-          <span class="info-box-number">
-            <?php
-            $result = $con->query("SELECT SUM(qty) AS total_qty FROM asset_record");
-            $row = $result->fetch_assoc();
-            echo $row['total_qty'];
-            ?>
-          </span>
-        </div>
-        <!-- /.info-box-content -->
-      </div>
-    </a>
-    <!-- /.info-box -->
-  </div>
-  <div class="col-12 col-sm-6 col-md-3">
-    <a href="index.php?page=report_damaged" class="info-box-link">
-      <div class="info-box">
-        <span class="info-box-icon bg-info elevation-1"><i class="fas fa-dumpster-fire"></i></i></i></span>
-        <div class="info-box-content">
-          <span class="info-box-text">Damages Assets</span>
-          <span class="info-box-number">
-            <?php
-            // Assuming $con is your database connection object
 
-            $result = $con->query("SELECT SUM(qty) AS total_qty FROM asset_loan_v where department = 'damaged'");
-            $row = $result->fetch_assoc();
-            $total_qty = $row['total_qty'];
-
-            echo "" . $total_qty;
-            ?>
-          </span>
-        </div>
-        <!-- /.info-box-content -->
-      </div>
-    </a>
-    <!-- /.info-box -->
-
-  </div>
-  <div class="col-12 col-sm-6 col-md-3">
-    <a href="index.php?page=report_loan" class="info-box-link">
-      <div class="info-box">
-        <span class="info-box-icon bg-info elevation-1"><i class="far fa-credit-card"></i></i></span>
-        <div class="info-box-content">
-          <span class="info-box-text">Number Of Items Loaned</span>
-          <span class="info-box-number">
-            <?php
-            // Assuming $con is your database connection object
-
-            $result = $con->query("SELECT SUM(qty) AS total_qty FROM asset_loan_v where department != 'damaged'");
-            $row = $result->fetch_assoc();
-            $total_qty = $row['total_qty'];
-
-            echo "" . $total_qty;
-            ?>
-          </span>
-        </div>
-        <!-- /.info-box-content -->
-      </div>
-    </a>
-    <!-- /.info-box -->
-
-  </div>
   <div class="col-12 col-sm-6 col-md-3">
     <a href="index.php?page=report_total_summary" class="info-box-link">
       <div class="info-box">
@@ -100,6 +34,74 @@
     </a>
     <!-- /.info-box -->
   </div>
+  <div class="col-12 col-sm-6 col-md-3">
+    <a href="index.php?page=report_asset_onhand" class="info-box-link">
+      <div class="info-box">
+        <span class="info-box-icon bg-info elevation-1"><i class="fas fa-warehouse"></i></i></span>
+        <div class="info-box-content">
+          <span class="info-box-text">Asset in Store</span>
+          <span class="info-box-number">
+            <?php
+            $result = $con->query("SELECT SUM(qty) AS total_qty FROM asset_record");
+            $row = $result->fetch_assoc();
+            echo $row['total_qty'];
+            ?>
+          </span>
+        </div>
+        <!-- /.info-box-content -->
+      </div>
+    </a>
+    <!-- /.info-box -->
+  </div>
+  <div class="col-12 col-sm-6 col-md-3">
+    <a href="index.php?page=report_loan" class="info-box-link">
+      <div class="info-box">
+        <span class="info-box-icon bg-info elevation-1"><i class="far fa-credit-card"></i></i></span>
+        <div class="info-box-content">
+          <span class="info-box-text">Assets on Loan</span>
+          <span class="info-box-number">
+            <?php
+            // Assuming $con is your database connection object
+
+            $result = $con->query("SELECT SUM(qty) AS total_qty FROM asset_loan_v where department != 'damaged'");
+            $row = $result->fetch_assoc();
+            $total_qty = $row['total_qty'];
+
+            echo "" . $total_qty;
+            ?>
+          </span>
+        </div>
+        <!-- /.info-box-content -->
+      </div>
+    </a>
+    <!-- /.info-box -->
+
+  </div>
+  <div class="col-12 col-sm-6 col-md-3">
+    <a href="index.php?page=report_damaged" class="info-box-link">
+      <div class="info-box">
+        <span class="info-box-icon bg-info elevation-1"><i class="fas fa-dumpster-fire"></i></i></i></span>
+        <div class="info-box-content">
+          <span class="info-box-text">Inactive Assets</span>
+          <span class="info-box-number">
+            <?php
+            // Assuming $con is your database connection object
+
+            $result = $con->query("SELECT SUM(qty) AS total_qty FROM asset_loan_v where department = 'damaged'");
+            $row = $result->fetch_assoc();
+            $total_qty = $row['total_qty'];
+
+            echo "" . $total_qty;
+            ?>
+          </span>
+        </div>
+        <!-- /.info-box-content -->
+      </div>
+    </a>
+    <!-- /.info-box -->
+
+  </div>
+
 
 </div>
 <div class="containerr">
@@ -108,7 +110,26 @@
       <div class="ccc">
 
         <ul class="category_li">
-          <h1 style="font-size: 22px;">Asset On Store</h1>
+          <h1 style="font-size: 22px;">Total Asset</h1>
+          <?php
+          // Fetch item categories and their total quantities from asset_loan_v
+          $category_query_total = "SELECT item_category, SUM(total_qty) AS total_qty FROM total_item_qty_view GROUP BY item_category ORDER BY total_qty DESC";
+          $category_result_total = $con->query($category_query_total);
+          if ($category_result_total->num_rows > 0) {
+            while ($row = $category_result_total->fetch_assoc()) {
+              echo '<li class="category_total" data-category_total="' . $row["item_category"] . '"><i class="fas fa-arrow-right" style="color: #414142;"></i> ' . $row["item_category"] . ' - Total Qty: ' . $row["total_qty"] . '</li>';
+              echo '<ul class="item-list_total" style="display:none;"></ul>'; // Hidden item list for each category
+            }
+          } else {
+            echo "0 results";
+          }
+          ?>
+        </ul>
+      </div>
+      <div class="ccc">
+
+        <ul class="category_li">
+          <h1 style="font-size: 22px;">Asset in Store</h1>
           <?php
           // Fetch item categories and their total quantities from asset_record
           $category_query = "SELECT item_category, SUM(qty) AS total_qty FROM asset_record WHERE qty > 0 GROUP BY item_category ORDER BY total_qty DESC";
@@ -143,44 +164,11 @@
           ?>
         </ul>
       </div>
-      <div class="ccc">
 
-        <ul class="category_li">
-          <h1 style="font-size: 22px;">Total Asset</h1>
-          <?php
-          // Fetch item categories and their total quantities from asset_loan_v
-          $category_query_total = "SELECT item_category, SUM(total_qty) AS total_qty FROM total_item_qty_view GROUP BY item_category ORDER BY total_qty DESC";
-          $category_result_total = $con->query($category_query_total);
-          if ($category_result_total->num_rows > 0) {
-            while ($row = $category_result_total->fetch_assoc()) {
-              echo '<li class="category_total" data-category_total="' . $row["item_category"] . '"><i class="fas fa-arrow-right" style="color: #414142;"></i> ' . $row["item_category"] . ' - Total Qty: ' . $row["total_qty"] . '</li>';
-              echo '<ul class="item-list_total" style="display:none;"></ul>'; // Hidden item list for each category
-            }
-          } else {
-            echo "0 results";
-          }
-          ?>
-        </ul>
-      </div>
     </section>
   </div>
   <div class="content">
 
-    <div class="grapha">
-      <div class="card shadow rounded-0">
-        <div class="card-header rounded-0">
-          <div class="d-flex justify-content-between">
-            <div class="card-title flex-shrink-1 flex-grow-1">Asset On Store and On Loan</div>
-
-          </div>
-        </div>
-        <div class="card-body">
-          <div class="container-fluid">
-            <canvas id="assetChart"></canvas>
-          </div>
-        </div>
-      </div>
-    </div>
     <div class="graph">
       <div class="card shadow rounded-0">
         <div class="card-header rounded-0">
@@ -192,6 +180,21 @@
         <div class="card-body">
           <div class="container-fluid">
             <canvas id="categoryChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="grapha">
+      <div class="card shadow rounded-0">
+        <div class="card-header rounded-0">
+          <div class="d-flex justify-content-between">
+            <div class="card-title flex-shrink-1 flex-grow-1">Asset in Store and On Loan</div>
+
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="container-fluid">
+            <canvas id="assetChart"></canvas>
           </div>
         </div>
       </div>

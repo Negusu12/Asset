@@ -49,7 +49,7 @@ if (isset($_POST['category_total'])) {
     if ($item_result->num_rows > 0) {
         $html = '<ul class="item-list_total">';
         while ($row = $item_result->fetch_assoc()) {
-            $html .= '<li><i class="fas fa-circle" style="color: #414142;"></i> <a class="item-link" href="index.php?page=report_total&item_name=' . urlencode($row["item_name"]) . '">' . $row["item_name"] . ' - total_qty: ' . $row["total_qty"] . '</a></li>';
+            $html .= '<li><i class="fas fa-circle" style="color: #414142;"></i> <a class="item-link" href="index.php?page=report_total_summary&item_name=' . urlencode($row["item_name"]) . '">' . $row["item_name"] . ' - total_qty: ' . $row["total_qty"] . '</a></li>';
         }
         $html .= '</ul>';
         echo $html;

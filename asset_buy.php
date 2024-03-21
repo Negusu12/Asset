@@ -18,14 +18,20 @@ $user_data = check_login($con);
                                 <option value=""></option>
                                 <?php
                                 // Retrieve all records from the asset_record table
-                                $sql = "SELECT item_code, CONCAT(item_name, IFNULL(CONCAT(' - ', model), ''),IFNULL(CONCAT(' - ', item_category), '')) AS Item_Name, uom FROM asset_record order by Item_Name";
+                                $sql = "SELECT ar.item_code,
+                                CONCAT(ar.item_name,
+                                IFNULL(CONCAT(' - ', ar.model), ''),IFNULL(CONCAT(' - ', ar.item_category), '')) AS Item_Name,
+                                ar.uom,
+                                ats.sum_qty
+                                FROM asset_record ar
+                               left join asset_total_summury_v ats on ats.item_code = ar.item_code order by Item_Name";
                                 $result = mysqli_query($con, $sql);
 
                                 // Check if query was successful
                                 if ($result) {
                                     // Loop through each row of the result set and output the item_name value as an option in the select dropdown
                                     while ($row = mysqli_fetch_assoc($result)) {
-                                        echo "<option value='" . $row["item_code"] . "' data-uom='" . $row["uom"] . "'>" . $row["Item_Name"] . "</option>";
+                                        echo "<option value='" . $row["item_code"] . "' data-uom='" . $row["uom"] . "' dataq-sum_qty='" . $row["sum_qty"] . "'>" . $row["Item_Name"] . "</option>";
                                     }
                                 }
                                 ?>
@@ -37,6 +43,12 @@ $user_data = check_login($con);
                             </select>
 
                         </div>
+                        <div class="form-group">
+                            <label for="" class="control-label">Current QTY</label>
+                            <select id="sum_qty" class="custom-select custom-select-sm select2" disabled>
+                            </select>
+                        </div>
+
                         <div class="form-group">
                             <label for="" class="control-label">Quantity</label>
                             <input type="number" name="qty" class="form-control form-control-sm" oninvalid="this.setCustomValidity('Enter Quantity Here')" oninput="setCustomValidity('')" required>
@@ -72,5 +84,12 @@ $user_data = check_login($con);
         var selectedOption = this.options[this.selectedIndex];
         var uom = selectedOption.getAttribute('data-uom');
         document.getElementById('uom').innerHTML = '<option value="' + uom + '">' + uom + '</option>';
+    });
+</script>
+<script>
+    document.getElementById('item_code').addEventListener('change', function() {
+        var selectedOption = this.options[this.selectedIndex];
+        var sum_qty = selectedOption.getAttribute('dataq-sum_qty');
+        document.getElementById('sum_qty').innerHTML = '<option value="' + sum_qty + '">' + sum_qty + '</option>';
     });
 </script>
