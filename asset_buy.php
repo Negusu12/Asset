@@ -50,7 +50,7 @@ $user_data = check_login($con);
                         </div>
 
                         <div class="form-group">
-                            <label for="" class="control-label">Quantity</label>
+                            <label for="" class="control-label">Additional Quantity</label>
                             <input type="number" name="qty" class="form-control form-control-sm" oninvalid="this.setCustomValidity('Enter Quantity Here')" oninput="setCustomValidity('')" required>
                         </div>
                     </div>

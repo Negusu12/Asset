@@ -126,9 +126,15 @@
               </a>
             </li>
             <li class="nav-item">
+              <a href="./index.php?page=report_register_asset" class="nav-link nav-report_register_asset tree-item">
+                <i class="fas fa-angle-right nav-icon"></i>
+                <p>Register Record</p>
+              </a>
+            </li>
+            <li class="nav-item">
               <a href="./index.php?page=report_use" class="nav-link nav-report_use tree-item">
                 <i class="fas fa-angle-right nav-icon"></i>
-                <p>consumption Record</p>
+                <p>Consumption Record</p>
               </a>
             </li>
             <li class="nav-item">

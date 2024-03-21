@@ -1,0 +1,142 @@
+<?php
+include 'backend/insert.php';
+include("connect.php");
+
+$user_data = check_login($con);
+
+$item_code = $item_name = $model = $item_category = $qty = $uom = $doc_date = $description = "";
+$error = $success = "";
+
+if ($_SERVER["REQUEST_METHOD"] == 'GET') {
+    if (!isset($_GET['item_code'])) {
+        header('Location: ../report_asset.php');
+        exit;
+    }
+
+    $item_code = $_GET['item_code'];
+    $sql = "SELECT item_code, item_name, model, item_category, qty, uom, doc_date, description FROM asset_record WHERE item_code=?";
+    $stmt = $con->prepare($sql);
+    $stmt->bind_param('s', $item_code);
+
+    if (!$stmt->execute()) {
+        $error = "Error: " . $stmt->error;
+    } else {
+        $stmt->store_result();
+
+        if ($stmt->num_rows == 0) {
+            header('Location: ../report_asset.php');
+            exit;
+        }
+
+        $stmt->bind_result($item_code, $item_name, $model, $item_category, $qty, $uom, $doc_date, $description);
+        $stmt->fetch();
+    }
+    $stmt->close();
+} else {
+    $item_code = $_POST["item_code"];
+    $item_name = $_POST["item_name"];
+    $model = $_POST["model"];
+    $item_category = $_POST["item_category"];
+    $qty = $_POST["qty"];
+    $uom = $_POST["uom"];
+    $doc_date = $_POST["doc_date"];
+    $description = $_POST["description"];
+
+    if (empty($error)) {
+        $sql = "UPDATE asset_record SET item_name=?, model=?, item_category=?, qty=?, uom=?, doc_date=?, description=? WHERE item_code=?";
+        $stmt = $con->prepare($sql);
+        $stmt->bind_param('sssiisss', $item_name, $model, $item_category, $qty, $uom, $doc_date, $description, $item_code);
+
+        if (!$stmt->execute()) {
+            $error = "Error: " . $stmt->error;
+        } else {
+            echo "<script>
+        window.onload = function() {
+            Swal.fire({
+                icon: 'success',
+                title: 'Asset Record Updated Successfully',
+                showConfirmButton: true,
+                confirmButtonText: 'OK',
+            }).then(function() {
+                window.location.href = 'index.php?page=report_asset_onhand';
+            });
+        }
+    </script>";
+        }
+    }
+}
+?>
+
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-body">
+            <form method="post" enctype="multipart/form-data">
+                <div class="row">
+                    <input type="hidden" name="item_code" value="<?php echo $item_code; ?>">
+                    <div class="col-md-6">
+                        <b class="text-muted">Edit Asset</b>
+                        <div class="form-group">
+                            <label for="" class="control-label">Item Name</label>
+                            <input type="text" name="item_name" class="form-control form-control-sm" value="<?php echo $item_name ?>" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="control-label">Model</label>
+                            <input type="text" name="model" class="form-control form-control-sm" value="<?php echo $model ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="control-label">Item Category</label>
+                            <select name="item_category" id="item_category" class="custom-select custom-select-sm select2" required>
+                                <option value=""></option>
+                                <?php
+                                $sql = "SELECT list_id, category FROM drop_down_list WHERE category IS NOT NULL AND category <> ''";
+                                $result = mysqli_query($con, $sql);
+                                if ($result) {
+                                    while ($row = mysqli_fetch_assoc($result)) {
+                                        echo "<option value='" . $row["category"] . "'" . ($item_category == $row["category"] ? " selected" : "") . ">" . $row["category"] . "</option>";
+                                    }
+                                }
+                                ?>
+                            </select>
+                        </div>
+                        <div class="form-group" style="display: none;">
+                            <label class="control-label">Quantity</label>
+                            <input type="number" class="form-control form-control-sm" name="qty" value="<?php echo $qty ?>" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <br />
+                        <div class="form-group">
+                            <label for="" class="control-label">UOM</label>
+                            <select name="uom" id="uom" class="custom-select custom-select-sm select2" required>
+                                <option value=""></option>
+                                <?php
+                                $sql = "SELECT list_id, uom FROM drop_down_list WHERE uom IS NOT NULL AND uom <> ''";
+                                $result = mysqli_query($con, $sql);
+                                if ($result) {
+                                    while ($row = mysqli_fetch_assoc($result)) {
+                                        echo "<option value='" . $row["uom"] . "'" . ($uom == $row["uom"] ? " selected" : "") . ">" . $row["uom"] . "</option>";
+                                    }
+                                }
+                                ?>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="" class="control-label">Date</label>
+                            <input type="date" name="doc_date" id="doc_date" class="form-control form-control-sm" value="<?php echo $doc_date ?>">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Description</label>
+                            <textarea name="description" cols="30" rows="4" class="form-control"><?php echo $description ?></textarea>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="col-lg-12 text-right justify-content-left d-flex">
+                    <button class="btn btn-primary mr-2" type="submit">Update</button>
+                    <button class="btn btn-secondary" type="reset">Clear</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

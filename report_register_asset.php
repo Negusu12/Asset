@@ -6,39 +6,33 @@
 					<tr>
 						<th>#</th>
 						<th scope="col">Item Code</th>
-						<th scope="col">Item Code</th>
 						<th scope="col">Item Name</th>
 						<th scope="col">Model</th>
 						<th scope="col">Item Category</th>
 						<th scope="col">UOM</th>
 						<th scope="col">Quantity</th>
-						<th scope="col">Action</th>
+						<th scope="col">Document Date</th>
+						<th scope="col">Description</th>
+						<th scope="col">Prepared By</th>
 					</tr>
 				</thead>
 				<tbody>
 					<?php
 					$i = 1;
-					$qry = $con->query("select * from asset_record");
+					$qry = $con->query("select * from asset_register_record");
 					while ($row = $qry->fetch_assoc()) :
 					?>
 						<tr>
 							<th class="text-center"><?php echo $i++ ?></th>
-							<td><b><?php echo $row['item_code'] ?></b></td>
 							<td><b><?php echo $row['item_c'] ?></b></td>
 							<td><b><?php echo ucwords($row['item_name']) ?></b></td>
 							<td><b><?php echo $row['model'] ?></b></td>
 							<td><b><?php echo $row['item_category'] ?></b></td>
 							<td><b><?php echo $row['uom'] ?></b></td>
 							<td><b><?php echo $row['qty'] ?></b></td>
-							<td class="text-center">
-								<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-									Action
-								</button>
-								<div class="dropdown-menu" style="">
-									<a class="dropdown-item" href="./index.php?page=backend/edit_asset&item_code=<?php echo $row['item_code'] ?>">Edit</a>
-
-								</div>
-							</td>
+							<td><b><?php echo date('F d Y', strtotime($row['doc_date'])) ?></b></td>
+							<td><b><?php echo $row['description'] ?></b></td>
+							<td><b><?php echo $row['user_name'] ?></b></td>
 						</tr>
 					<?php endwhile; ?>
 				</tbody>
