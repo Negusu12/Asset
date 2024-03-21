@@ -5,21 +5,23 @@ include('connect.php');
 if (isset($_POST['submit'])) {
     $item_c = /*addlashes so it accept commas and sympols*/ addslashes($_POST['item_c']);
     $item_name = addslashes($_POST['item_name']);
+    $brand = addslashes($_POST['brand']);
     $model = addslashes($_POST['model']);
     /*$item_condition = addslashes($_POST['item_condition']);*/
     $item_category = addslashes($_POST['item_category']);
+    $item_type = addslashes($_POST['item_type']);
     $qty = addslashes($_POST['qty']);
     $doc_date = addslashes($_POST['doc_date']);
     $description = addslashes($_POST['description']);
     $user_name = addslashes($_POST['user_name']);
     $uom = addslashes($_POST['uom']);
 
-    $sql_asset_record = "INSERT INTO asset_record (item_c, item_name, model, qty, item_category, doc_date, description, user_name, uom)
-                     VALUES ('$item_c', '$item_name', '$model', '$qty', '$item_category', '$doc_date', '$description', '$user_name', '$uom')";
+    $sql_asset_record = "INSERT INTO asset_record (item_c, item_name, model, qty, item_category, brand,item_type,doc_date, description, user_name, uom)
+                     VALUES ('$item_c', '$item_name', '$model', '$qty', '$item_category', '$brand','$item_type', '$doc_date', '$description', '$user_name', '$uom')";
     $result_asset_record = mysqli_query($con, $sql_asset_record);
 
-    $sql_asset_register_record = "INSERT INTO asset_register_record (item_c, item_name, model, qty, item_category, doc_date, description, user_name, uom)
-                              VALUES ('$item_c', '$item_name', '$model', '$qty', '$item_category', '$doc_date', '$description', '$user_name', '$uom')";
+    $sql_asset_register_record = "INSERT INTO asset_register_record (item_c, item_name, model, qty, item_category,brand,item_type, doc_date, description, user_name, uom)
+                              VALUES ('$item_c', '$item_name', '$model', '$qty', '$item_category', '$brand','$item_type', '$doc_date', '$description', '$user_name', '$uom')";
     $result_asset_register_record = mysqli_query($con, $sql_asset_register_record);
 
     if ($result_asset_record && $result_asset_register_record) {

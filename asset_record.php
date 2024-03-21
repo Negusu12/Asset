@@ -21,8 +21,20 @@ $user_data = check_login($con);
                             <input type="text" name="item_name" class="form-control form-control-sm" required>
                         </div>
                         <div class="form-group">
+                            <label for="" class="control-label">Brand</label>
+                            <input type="text" name="brand" class="form-control form-control-sm" required>
+                        </div>
+                        <div class="form-group">
                             <label for="" class="control-label">Model</label>
                             <input type="text" name="model" class="form-control form-control-sm" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="control-label">Item Type</label>
+                            <select name="item_type" id="item_type" class="custom-select custom-select-sm select2" required>
+                                <option value=""></option>
+                                <option value="asset">Asset</option>
+                                <option value="consumable">Consumable</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="" class="control-label">Item Category</label>
@@ -38,16 +50,10 @@ $user_data = check_login($con);
                                 }
                                 ?>
                             </select>
-
-                        </div>
-                        <div class="form-group ">
-                            <label class="control-label">Quantity</label>
-                            <input type="number" class="form-control form-control-sm" name="qty" required>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <br />
-
                         <div class="form-group">
                             <label for="" class="control-label">UOM</label>
                             <select name="uom" id="uom" class="custom-select custom-select-sm select2" required>
@@ -62,6 +68,10 @@ $user_data = check_login($con);
                                 }
                                 ?>
                             </select>
+                        </div>
+                        <div class="form-group ">
+                            <label class="control-label">Quantity</label>
+                            <input type="number" class="form-control form-control-sm" name="qty" required>
                         </div>
                         <div class="form-group">
                             <label for="" class="control-label">Date</label>
