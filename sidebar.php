@@ -43,6 +43,12 @@
               </a>
             </li>
             <li class="nav-item">
+              <a href="./index.php?page=asset_loan" class="nav-link nav-asset_loan tree-item">
+                <i class="fas fa-angle-right nav-icon"></i>
+                <p>Asset Loan</p>
+              </a>
+            </li>
+            <li class="nav-item">
               <a href="./index.php?page=asset_buy" class="nav-link nav-asset_buy tree-item">
                 <i class="fas fa-angle-right nav-icon"></i>
                 <p>GRN</p>
@@ -52,12 +58,6 @@
               <a href="./index.php?page=asset_use" class="nav-link nav-asset_use tree-item">
                 <i class="fas fa-angle-right nav-icon"></i>
                 <p>Asset usage</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="./index.php?page=asset_loan" class="nav-link nav-asset_loan tree-item">
-                <i class="fas fa-angle-right nav-icon"></i>
-                <p>Asset Loan</p>
               </a>
             </li>
             <li class="nav-item">
@@ -89,6 +89,12 @@
             </p>
           </a>
           <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="./index.php?page=report_total_summary" class="nav-link nav-report_total_summary tree-item">
+                <i class="fas fa-angle-right nav-icon"></i>
+                <p>Total Asset Summary</p>
+              </a>
+            </li>
             <li class="nav-item">
               <a href="./index.php?page=report_asset_onhand" class="nav-link nav-report_asset_onhand tree-item">
                 <i class="fas fa-angle-right nav-icon"></i>
@@ -129,12 +135,6 @@
               <a href="./index.php?page=report_employee" class="nav-link nav-report_employee tree-item">
                 <i class="fas fa-angle-right nav-icon"></i>
                 <p>Loaners List</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="./index.php?page=report_total_summary" class="nav-link nav-report_total_summary tree-item">
-                <i class="fas fa-angle-right nav-icon"></i>
-                <p>Total Asset Summary</p>
               </a>
             </li>
           </ul>

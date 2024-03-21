@@ -13,6 +13,7 @@
 						<th scope="col">Quantity</th>
 						<th scope="col">Document Date</th>
 						<th scope="col">Description</th>
+						<th scope="col">Prepared By</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -31,6 +32,7 @@
 							<td><b><?php echo $row['qty'] ?></b></td>
 							<td><b><?php echo date('F d Y', strtotime($row['doc_date'])) ?></b></td>
 							<td><b><?php echo $row['description'] ?></b></td>
+							<td><b><?php echo $row['user_name'] ?></b></td>
 						</tr>
 					<?php endwhile; ?>
 				</tbody>
@@ -56,7 +58,11 @@
 			lengthMenu: [
 				[10, 25, 50, -1],
 				[10, 25, 50, "All"]
-			]
+			],
+			columnDefs: [{
+				targets: [9], // index of the "Password" column (zero-based index)
+				visible: false // set to false to hide the column by default
+			}]
 		});
 		table.columns().every(function() {
 			var that = this;

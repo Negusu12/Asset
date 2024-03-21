@@ -14,10 +14,15 @@ if (isset($_POST['submit'])) {
     $user_name = addslashes($_POST['user_name']);
     $uom = addslashes($_POST['uom']);
 
-    $sql = "insert into `asset_record`(item_c,item_name,model,qty,item_category,doc_date,description,user_name,uom)
-    values ('$item_c','$item_name','$model', '$qty', '$item_category', '$doc_date', '$description', '$user_name', '$uom')";
-    $result = mysqli_query($con, $sql);
-    if ($result) {
+    $sql_asset_record = "INSERT INTO asset_record (item_c, item_name, model, qty, item_category, doc_date, description, user_name, uom)
+                     VALUES ('$item_c', '$item_name', '$model', '$qty', '$item_category', '$doc_date', '$description', '$user_name', '$uom')";
+    $result_asset_record = mysqli_query($con, $sql_asset_record);
+
+    $sql_asset_register_record = "INSERT INTO asset_register_record (item_c, item_name, model, qty, item_category, doc_date, description, user_name, uom)
+                              VALUES ('$item_c', '$item_name', '$model', '$qty', '$item_category', '$doc_date', '$description', '$user_name', '$uom')";
+    $result_asset_register_record = mysqli_query($con, $sql_asset_register_record);
+
+    if ($result_asset_record && $result_asset_register_record) {
         echo "<script>
         window.onload = function() {
             // Display a success message using SweetAlert

@@ -44,6 +44,9 @@ $user_data = check_login($con);
                             <label class="control-label">Quantity</label>
                             <input type="number" class="form-control form-control-sm" name="qty" required>
                         </div>
+                    </div>
+                    <div class="col-md-6">
+                        <br />
 
                         <div class="form-group">
                             <label for="" class="control-label">UOM</label>
@@ -60,9 +63,6 @@ $user_data = check_login($con);
                                 ?>
                             </select>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <br />
                         <div class="form-group">
                             <label for="" class="control-label">Date</label>
                             <input type="date" name="doc_date" id="doc_date" class="form-control form-control-sm">
