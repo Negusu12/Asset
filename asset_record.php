@@ -14,23 +14,23 @@ $user_data = check_login($con);
                         <b class="text-muted">Asset Register</b>
                         <div class="form-group">
                             <label for="" class="control-label">Item Code</label>
-                            <input type="text" name="item_c" class="form-control form-control-sm" required>
+                            <input type="text" name="item_c" class="form-control form-control-sm" oninvalid="this.setCustomValidity('Enter Item Code Here')" oninput="setCustomValidity('')" required>
                         </div>
                         <div class="form-group">
                             <label for="" class="control-label">Item Name</label>
-                            <input type="text" name="item_name" class="form-control form-control-sm" required>
+                            <input type="text" name="item_name" class="form-control form-control-sm" oninvalid="this.setCustomValidity('Enter Item Name Here')" oninput="setCustomValidity('')" required>
                         </div>
                         <div class="form-group">
                             <label for="" class="control-label">Brand</label>
-                            <input type="text" name="brand" class="form-control form-control-sm" required>
+                            <input type="text" name="brand" class="form-control form-control-sm">
                         </div>
                         <div class="form-group">
                             <label for="" class="control-label">Model</label>
-                            <input type="text" name="model" class="form-control form-control-sm" required>
+                            <input type="text" name="model" class="form-control form-control-sm">
                         </div>
                         <div class="form-group">
                             <label for="" class="control-label">Item Type</label>
-                            <select name="item_type" id="item_type" class="custom-select custom-select-sm select2" required>
+                            <select name="item_type" id="item_type" class="custom-select custom-select-sm select2" oninvalid="this.setCustomValidity('Select Item Type Here')" oninput="setCustomValidity('')" required>
                                 <option value=""></option>
                                 <option value="asset">Asset</option>
                                 <option value="consumable">Consumable</option>
@@ -38,7 +38,7 @@ $user_data = check_login($con);
                         </div>
                         <div class="form-group">
                             <label for="" class="control-label">Item Category</label>
-                            <select name="item_category" id="item_category" class="custom-select custom-select-sm select2" required>
+                            <select name="item_category" id="item_category" class="custom-select custom-select-sm select2" oninvalid="this.setCustomValidity('Select Item Category Here')" oninput="setCustomValidity('')" required>
                                 <option value=""></option>
                                 <?php
                                 $sql = "SELECT list_id, category FROM drop_down_list WHERE category IS NOT NULL AND category <> ''";
@@ -56,7 +56,7 @@ $user_data = check_login($con);
                         <br />
                         <div class="form-group">
                             <label for="" class="control-label">UOM</label>
-                            <select name="uom" id="uom" class="custom-select custom-select-sm select2" required>
+                            <select name="uom" id="uom" class="custom-select custom-select-sm select2" oninvalid="this.setCustomValidity('Enter UOM Here')" oninput="setCustomValidity('')" required>
                                 <option value=""></option>
                                 <?php
                                 $sql = "SELECT list_id, uom FROM drop_down_list WHERE uom IS NOT NULL AND uom <> ''";
@@ -71,11 +71,11 @@ $user_data = check_login($con);
                         </div>
                         <div class="form-group ">
                             <label class="control-label">Quantity</label>
-                            <input type="number" class="form-control form-control-sm" name="qty" required>
+                            <input type="number" class="form-control form-control-sm" name="qty" oninvalid="this.setCustomValidity('Enter Quantity Here')" oninput="setCustomValidity('')" required>
                         </div>
                         <div class="form-group">
                             <label for="" class="control-label">Date</label>
-                            <input type="date" name="doc_date" id="doc_date" class="form-control form-control-sm">
+                            <input type="date" name="doc_date" id="doc_date" class="form-control form-control-sm" oninvalid="this.setCustomValidity('Enter Date Here')" oninput="setCustomValidity('')" required>
                         </div>
                         <div class="form-group">
                             <label class="control-label">Description</label>

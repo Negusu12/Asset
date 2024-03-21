@@ -43,27 +43,27 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="./index.php?page=asset_loan" class="nav-link nav-asset_loan tree-item">
-                <i class="fas fa-angle-right nav-icon"></i>
-                <p>Asset Loan</p>
-              </a>
-            </li>
-            <li class="nav-item">
               <a href="./index.php?page=asset_buy" class="nav-link nav-asset_buy tree-item">
                 <i class="fas fa-angle-right nav-icon"></i>
                 <p>GRN</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="./index.php?page=asset_use" class="nav-link nav-asset_use tree-item">
+              <a href="./index.php?page=asset_loan" class="nav-link nav-asset_loan tree-item">
                 <i class="fas fa-angle-right nav-icon"></i>
-                <p>Asset usage</p>
+                <p>Asset Loan</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="./index.php?page=asset_return" class="nav-link nav-asset_return tree-item">
                 <i class="fas fa-angle-right nav-icon"></i>
                 <p>Asset Return</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="./index.php?page=asset_use" class="nav-link nav-asset_use tree-item">
+                <i class="fas fa-angle-right nav-icon"></i>
+                <p>Asset usage</p>
               </a>
             </li>
             <li class="nav-item">

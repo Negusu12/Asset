@@ -7,8 +7,10 @@
                         <th>#</th>
                         <th scope="col">loan ID</th>
                         <th scope="col">Item Name</th>
+                        <th scope="col">Brand</th>
                         <th scope="col">Model</th>
                         <th scope="col">Category</th>
+                        <th scope="col">Type</th>
                         <th scope="col">Loaner Name</th>
                         <th scope="col">UOM</th>
                         <th scope="col">Quantity</th>
@@ -27,8 +29,10 @@
                             <th class="text-center"><?php echo $i++ ?></th>
                             <td><b><?php echo $row['loan_id'] ?></b></td>
                             <td><b><?php echo ucwords($row['item_name']) ?></b></td>
+                            <td><b><?php echo $row['brand'] ?></b></td>
                             <td><b><?php echo $row['model'] ?></b></td>
                             <td><b><?php echo $row['item_category'] ?></b></td>
+                            <td><b><?php echo $row['item_type'] ?></b></td>
                             <td><b><?php echo $row['full_name'] ?></b></td>
                             <td><b><?php echo $row['uom'] ?></b></td>
                             <td><b><?php echo $row['qty'] ?></b></td>
@@ -60,6 +64,12 @@
             lengthMenu: [
                 [10, 25, 50, -1],
                 [10, 25, 50, "All"]
+            ],
+            columnDefs: [{
+                    targets: [1, 6], // index of the "Password" column (zero-based index)
+                    visible: false // set to false to hide the column by default
+                }
+                // Add similar blocks for other columns you want to hide by default
             ]
         });
         table.columns().every(function() {
