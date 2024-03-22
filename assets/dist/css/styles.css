@@ -225,3 +225,29 @@ ul {
   overflow-x: scroll;
   width: 82%;
 }
+
+.navigation_arrow {
+  padding: 10px;
+}
+
+.navigation-btn {
+  background-color: #007bff;
+  /* Blue background color */
+  color: white;
+  /* White text color */
+  border: none;
+  /* Add padding */
+  font-size: 16px;
+  /* Increase font size */
+  cursor: pointer;
+  /* Add pointer cursor on hover */
+  border-radius: 5px;
+  /* Add border radius */
+  margin-right: 10px;
+  /* Add margin to separate buttons */
+}
+
+.navigation-btn:hover {
+  background-color: #0056b3;
+  /* Darker blue on hover */
+}

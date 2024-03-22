@@ -124,6 +124,16 @@
 		})
 
 	})
+
+	// Go back and forward to page
+	function goBack() {
+		window.history.back();
+	}
+
+	function goForward() {
+		window.history.forward();
+	}
+	// Go back and forward to page
 </script>
 <script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- overlayScrollbars -->

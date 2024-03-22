@@ -7,8 +7,8 @@
                         <th>Row No.</th>
                         <th scope="col">Loan ID</th>
                         <th scope="col">Item Name</th>
-                        <th scope="col">Model</th>
                         <th scope="col">Brand</th>
+                        <th scope="col">Model</th>
                         <th scope="col">Item Category</th>
                         <th scope="col">Item Type</th>
                         <th scope="col">Serial No.</th>
