@@ -8,7 +8,7 @@
       <span class="brand-text font-weight-light"><?php echo ucwords($user_data['user_name']); ?></span>
 
     </a>
-    <div class="dropdown-menu" style="">
+    <div class="dropdown-menu">
       <a class="dropdown-item" href="index.php?page=manage_user">Manage Account</a>
       <div class="dropdown-divider"></div>
       <a class="dropdown-item" href="logout.php">Logout</a>

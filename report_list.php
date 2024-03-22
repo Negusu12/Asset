@@ -35,7 +35,7 @@
                                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                                         Action
                                     </button>
-                                    <div class="dropdown-menu" style="">
+                                    <div class="dropdown-menu">
                                         <a class="dropdown-item" onclick='confirmDelete(<?php echo $row['list_id']; ?>)'>Delete</a>
 
                                     </div>

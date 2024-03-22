@@ -56,7 +56,7 @@
                                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                                     Action
                                 </button>
-                                <div class="dropdown-menu" style="">
+                                <div class="dropdown-menu">
                                     <a class="dropdown-item" href="print_loan.php?loan_id=<?php echo $row['loan_id'] ?>" target="_blank">Print</a>
                                 </div>
                             </td>

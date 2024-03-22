@@ -42,7 +42,7 @@
 								<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
 									Action
 								</button>
-								<div class="dropdown-menu" style="">
+								<div class="dropdown-menu">
 									<a class="dropdown-item" href="./index.php?page=backend/edit_asset&item_code=<?php echo $row['item_code'] ?>">Edit</a>
 
 								</div>

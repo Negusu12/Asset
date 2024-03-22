@@ -1,3 +1,7 @@
+<div class="navigation_arrow">
+    <button class="navigation-btn" onclick="goBack()"><i class="fas fa-arrow-left"></i></button>
+    <button class="navigation-btn" onclick="goForward()"><i class="fas fa-arrow-right"></i></button>
+</div>
 <div class="col-lg-12">
     <div class="card">
         <div class="card-body">
@@ -52,7 +56,7 @@
                                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                                     Action
                                 </button>
-                                <div class="dropdown-menu" style="">
+                                <div class="dropdown-menu">
                                     <a class="dropdown-item" href="print_loan.php?loan_id=<?php echo $row['loan_id'] ?>" target="_blank">Print</a>
                                 </div>
                             </td>

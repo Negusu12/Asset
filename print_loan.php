@@ -110,6 +110,18 @@ echo '<!DOCTYPE html>
                 <td>' . $row['item_name'] . '</td>
             </tr>
             <tr>
+                <th>Brand</th>
+                <td>' . $row['brand'] . '</td>
+            </tr>
+            <tr>
+                <th>Model</th>
+                <td>' . $row['model'] . '</td>
+            </tr>
+            <tr>
+                <th>Serial No.</th>
+                <td>' . $row['serial_no'] . '</td>
+            </tr>
+            <tr>
                 <th>Loaner Name</th>
                 <td>' . $row['full_name'] . '</td>
             </tr>
@@ -130,15 +142,15 @@ echo '<!DOCTYPE html>
             <form>
                 <label>
                     <span>Name:</span>
-                    <input type="text" name="name" value="' . $row['full_name'] . '" required>
+                    <input type="text" name="name" value="' . $row['full_name'] . '" required readonly>
                 </label>
                 <label>
                     <span>Date:</span>
-                    <input type="text" name="name" value="' . date('F j Y', strtotime($row['doc_date'])) . '" required>
+                    <input type="text" name="name" value="' . date('F j Y', strtotime($row['doc_date'])) . '" required readonly>
                 </label>
                 <label>
                     <span>signature :</span>
-                    <input type="text" name="date" required>
+                    <input type="text" name="date" required readonly>
                 </label>
             </form>
         </div>

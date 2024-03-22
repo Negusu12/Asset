@@ -33,7 +33,7 @@
                                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                                     Action
                                 </button>
-                                <div class="dropdown-menu" style="">
+                                <div class="dropdown-menu">
                                     <a class="dropdown-item" href="./index.php?page=backend/edit_user&id=<?php echo $row['id'] ?>">Edit</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" onclick='confirmDelete(<?php echo $row['id']; ?>)'>Delete</a>
