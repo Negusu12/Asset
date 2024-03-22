@@ -97,8 +97,10 @@ echo '<!DOCTYPE html>
 </head>
 <body>
 <div class="text">
-            IT Item Borrow Form
-        </div>
+    <span style="font-size: 41px;">ABH IT Item Borrow Form</span>
+    <img src="assets/dist/img/logo.png" alt="Logo" style="height: 51px;">
+</div>
+
     <div class="container">
         <table class="table">
             <tr>
