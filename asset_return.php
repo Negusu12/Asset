@@ -86,8 +86,8 @@ $user_data = check_login($con);
                     <div class="col-md-6">
                         <br />
                         <div class="form-group">
-                            <label for="" class="control-label">Quantity</label>
-                            <input type="number" name="qty" class="form-control form-control-sm" oninvalid="this.setCustomValidity('Enter Quantity Here')" oninput="setCustomValidity('')" required>
+                            <label class="control-label">Quantity</label>
+                            <input type="number" class="form-control form-control-sm" name="qty" min="0" oninvalid="this.setCustomValidity('Enter Quantity Here')" oninput="setCustomValidity('')" required>
                         </div>
                         <div class="form-group">
                             <label for="" class="control-label">Date</label>

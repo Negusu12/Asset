@@ -69,10 +69,11 @@ $user_data = check_login($con);
                                 ?>
                             </select>
                         </div>
-                        <div class="form-group ">
+                        <div class="form-group">
                             <label class="control-label">Quantity</label>
-                            <input type="number" class="form-control form-control-sm" name="qty" oninvalid="this.setCustomValidity('Enter Quantity Here')" oninput="setCustomValidity('')" required>
+                            <input type="number" class="form-control form-control-sm" name="qty" min="0" oninvalid="this.setCustomValidity('Enter Quantity Here')" oninput="setCustomValidity('')" required>
                         </div>
+
                         <div class="form-group">
                             <label for="" class="control-label">Date</label>
                             <input type="date" name="doc_date" id="doc_date" class="form-control form-control-sm" oninvalid="this.setCustomValidity('Enter Date Here')" oninput="setCustomValidity('')" required>
