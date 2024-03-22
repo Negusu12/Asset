@@ -11720,8 +11720,13 @@ body {
   line-height: 1.8;
   font-weight: normal;
   background-image: url("../img/bg_image.png");
+  background-size: cover;
+  /* Add this line */
+  background-repeat: no-repeat;
+  /* Optional: prevent image from repeating */
   color: gray;
 }
+
 
 
 a {
