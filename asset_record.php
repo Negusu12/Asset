@@ -13,23 +13,24 @@ $user_data = check_login($con);
                     <div class="col-md-6 border-right">
                         <b class="text-muted">Asset Register</b>
                         <div class="form-group">
-                            <label for="" class="control-label">Item Code</label>
+                            <label for="" class="control-label"><span style="color: red;">*</span> Item Code</label>
                             <input type="text" name="item_c" class="form-control form-control-sm" oninvalid="this.setCustomValidity('Enter Item Code Here')" oninput="setCustomValidity('')" required>
                         </div>
+
                         <div class="form-group">
-                            <label for="" class="control-label">Item Name</label>
+                            <label for="" class="control-label"><span style="color: red;">*</span> Item Name</label>
                             <input type="text" name="item_name" class="form-control form-control-sm" oninvalid="this.setCustomValidity('Enter Item Name Here')" oninput="setCustomValidity('')" required>
                         </div>
                         <div class="form-group">
-                            <label for="" class="control-label">Brand</label>
+                            <label for="" class="control-label">&nbsp;&nbsp;&nbsp;Brand</label>
                             <input type="text" name="brand" class="form-control form-control-sm">
                         </div>
                         <div class="form-group">
-                            <label for="" class="control-label">Model</label>
+                            <label for="" class="control-label">&nbsp;&nbsp;&nbsp;Model</label>
                             <input type="text" name="model" class="form-control form-control-sm">
                         </div>
                         <div class="form-group">
-                            <label for="" class="control-label">Item Type</label>
+                            <label for="" class="control-label"><span style="color: red;">*</span> Item Type</label>
                             <select name="item_type" id="item_type" class="custom-select custom-select-sm select2" oninvalid="this.setCustomValidity('Select Item Type Here')" oninput="setCustomValidity('')" required>
                                 <option value=""></option>
                                 <option value="asset">Asset</option>
@@ -37,7 +38,7 @@ $user_data = check_login($con);
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="" class="control-label">Item Category</label>
+                            <label for="" class="control-label"><span style="color: red;">*</span> Item Category</label>
                             <select name="item_category" id="item_category" class="custom-select custom-select-sm select2" oninvalid="this.setCustomValidity('Select Item Category Here')" oninput="setCustomValidity('')" required>
                                 <option value=""></option>
                                 <?php
@@ -55,7 +56,7 @@ $user_data = check_login($con);
                     <div class="col-md-6">
                         <br />
                         <div class="form-group">
-                            <label for="" class="control-label">UOM</label>
+                            <label for="" class="control-label"><span style="color: red;">*</span> UOM</label>
                             <select name="uom" id="uom" class="custom-select custom-select-sm select2" oninvalid="this.setCustomValidity('Enter UOM Here')" oninput="setCustomValidity('')" required>
                                 <option value=""></option>
                                 <?php
@@ -70,16 +71,16 @@ $user_data = check_login($con);
                             </select>
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Quantity</label>
+                            <label class="control-label"><span style="color: red;">*</span> Quantity</label>
                             <input type="number" class="form-control form-control-sm" name="qty" min="0" oninvalid="this.setCustomValidity('Enter Quantity Here')" oninput="setCustomValidity('')" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="" class="control-label">Date</label>
+                            <label for="" class="control-label"><span style="color: red;">*</span> Date</label>
                             <input type="date" name="doc_date" id="doc_date" class="form-control form-control-sm" oninvalid="this.setCustomValidity('Enter Date Here')" oninput="setCustomValidity('')" required>
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Description</label>
+                            <label class="control-label">&nbsp;&nbsp;&nbsp;Description</label>
                             <textarea name="description" cols="30" rows="4" class="form-control"></textarea>
                         </div>
                         <div class="form-group " style="display: none;">

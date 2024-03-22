@@ -30,7 +30,7 @@ if (isset($_POST['submit'])) {
             // Display a success message using SweetAlert
             Swal.fire({
                 icon: 'success',
-                title: 'Item Has been Sucessfully Added',
+                title: 'Item Has been Successfully Recorded',
                 showConfirmButton: true,
                 confirmButtonText: 'OK',
                 timer: 2000
@@ -45,7 +45,7 @@ if (isset($_POST['submit'])) {
             // Display a success message using SweetAlert
             Swal.fire({
                 icon: 'error',
-                title: 'faild to record item.',
+                title: 'Failed to record Item.',
                 showConfirmButton: false,
                 showDenyButton: true,
                 denyButtonText: 'OK'
@@ -87,7 +87,7 @@ if (isset($_POST['submit_e'])) {
                     // Display a success message using SweetAlert
                     Swal.fire({
                         icon: 'error',
-                        title: 'faild to add employee.',
+                        title: 'Failed to add employee.',
                         showConfirmButton: false,
                         showDenyButton: true,
                         denyButtonText: 'OK'
@@ -128,7 +128,7 @@ if (isset($_POST['submit_l'])) {
                     // Display a success message using SweetAlert
                     Swal.fire({
                         icon: 'error',
-                        title: 'The selected item is out of stock.',
+                        title: 'The Selected Item is out of Stock.',
                         showConfirmButton: false,
                         showDenyButton: true,
                         denyButtonText: 'OK'
@@ -152,7 +152,7 @@ if (isset($_POST['submit_l'])) {
                     // Display a success message using SweetAlert
                     Swal.fire({
                         icon: 'success',
-                        title: 'Loan submited successfully',
+                        title: 'Loan Submitted successfully',
                         showConfirmButton: true,
                         confirmButtonText: 'OK',
                         timer: 2000
@@ -234,7 +234,7 @@ if (isset($_POST['submit_b'])) {
         // Display a success message using SweetAlert
         Swal.fire({
             icon: 'success',
-            title: 'item Bought successfully',
+            title: 'Item Bought successfully',
             showConfirmButton: true,
             confirmButtonText: 'OK',
             timer: 2000
@@ -249,7 +249,7 @@ if (isset($_POST['submit_b'])) {
                 // Display a success message using SweetAlert
                 Swal.fire({
                     icon: 'error',
-                    title: 'faild to insert data to buy asset table.',
+                    title: 'Failed to insert data to buy asset table.',
                     showConfirmButton: false,
                     showDenyButton: true,
                     denyButtonText: 'OK'
@@ -293,7 +293,7 @@ if (isset($_POST['submit_u'])) {
         // Display a success message using SweetAlert
         Swal.fire({
             icon: 'success',
-            title: 'item updated successfully',
+            title: 'Item Updated Successfully',
             showConfirmButton: true,
             confirmButtonText: 'OK',
             timer: 2000
@@ -308,7 +308,7 @@ if (isset($_POST['submit_u'])) {
                 // Display a success message using SweetAlert
                 Swal.fire({
                     icon: 'error',
-                    title: 'faild to insert data to buy asset table.',
+                    title: 'Failed to insert data to buy asset table.',
                     showConfirmButton: false,
                     showDenyButton: true,
                     denyButtonText: 'OK'
@@ -384,7 +384,7 @@ if (isset($_POST['submit_r'])) {
                     // Display a success message using SweetAlert
                     Swal.fire({
                         icon: 'success',
-                        title: 'Item Returned Sucessfuly',
+                        title: 'Item Returned Successfully',
                         showConfirmButton: true,
                         confirmButtonText: 'OK',
                         timer: 2000
@@ -540,7 +540,7 @@ if (isset($_POST['submit_list'])) {
             // Display a success message using SweetAlert
             Swal.fire({
                 icon: 'error',
-                title: 'faild to record List Choice.',
+                title: 'Failed to record List Choice.',
                 showConfirmButton: false,
                 showDenyButton: true,
                 denyButtonText: 'OK'
@@ -568,7 +568,7 @@ if (isset($_POST['submit_user'])) {
                     // Display a success message using SweetAlert
                     Swal.fire({
                         icon: 'success',
-                        title: 'User has bee registered successfully',
+                        title: 'User has bee Registered Successfully',
                         showConfirmButton: true,
                         confirmButtonText: 'OK',
                         timer: 2000

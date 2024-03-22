@@ -13,7 +13,7 @@ $user_data = check_login($con);
                     <div class="col-md-6 border-right">
                         <b class="text-muted">Asset Loan</b>
                         <div class="form-group">
-                            <label for="" class="control-label">Item Name</label>
+                            <label for="" class="control-label"><span style="color: red;">*</span> Item Name</label>
                             <select name="item_code" id="item_code" class="custom-select custom-select-sm select2" oninvalid="this.setCustomValidity('Select Item Here')" oninput="setCustomValidity('')" required>
                                 <option value=""></option>
                                 <?php
@@ -33,7 +33,7 @@ $user_data = check_login($con);
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="" class="control-label">Loaner Name</label>
+                            <label for="" class="control-label"><span style="color: red;">*</span> Loaner Name</label>
                             <select name="employee_id" id="employee_id" class="custom-select custom-select-sm select2" oninvalid="this.setCustomValidity('Select Loaner Here')" oninput="setCustomValidity('')" required>
                                 <option value=""></option>
                                 <?php
@@ -52,22 +52,22 @@ $user_data = check_login($con);
                             </select>
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Quantity</label>
+                            <label class="control-label"><span style="color: red;">*</span> Quantity</label>
                             <input type="number" class="form-control form-control-sm" name="qty" min="0" oninvalid="this.setCustomValidity('Enter Quantity Here')" oninput="setCustomValidity('')" required>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <br />
                         <div class="form-group">
-                            <label for="" class="control-label">Date</label>
+                            <label for="" class="control-label"><span style="color: red;">*</span> Date</label>
                             <input type="date" name="doc_date" id="doc_date" class="form-control form-control-sm" oninvalid="this.setCustomValidity('Enter Date Here')" oninput="setCustomValidity('')" required>
                         </div>
                         <div class="form-group">
-                            <label for="" class="control-label">Serial No</label>
+                            <label for="" class="control-label">&nbsp;&nbsp;&nbsp;Serial No</label>
                             <input type="text" name="serial_no" id="serial_no" class="form-control form-control-sm">
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Description</label>
+                            <label class="control-label">&nbsp;&nbsp;&nbsp;Description</label>
                             <textarea name="description" cols="30" rows="4" class="form-control"></textarea>
                         </div>
                         <div class="form-group " style="display: none;">

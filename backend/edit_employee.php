@@ -73,11 +73,11 @@ if ($_SERVER["REQUEST_METHOD"] == 'GET') {
 					<div class="col-md-6">
 						<b class="text-muted">Add List Choice</b>
 						<div class="form-group">
-							<label for="" class="control-label">Loaner Name</label>
+							<label for="" class="control-label"><span style="color: red;">*</span> Loaner Name</label>
 							<input type="text" name="full_name" class="form-control form-control-sm" value="<?php echo $full_name ?>" oninvalid="this.setCustomValidity('Enter User Name Here')" oninput="setCustomValidity('')" required>
 						</div>
 						<div class="form-group">
-							<label for="" class="control-label">Department</label>
+							<label for="" class="control-label"><span style="color: red;">*</span> Department</label>
 							<select name="department" id="department" class="custom-select custom-select-sm select2" oninvalid="this.setCustomValidity('Select Role Here')" oninput="setCustomValidity('')" required>
 								<?php
 								$sql = "SELECT list_id, department FROM drop_down_list WHERE department IS NOT NULL AND department <> ''";

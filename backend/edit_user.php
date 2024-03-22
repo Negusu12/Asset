@@ -99,15 +99,15 @@ if ($_SERVER["REQUEST_METHOD"] == 'GET') {
                     <div class="col-md-6">
                         <b class="text-muted">Add List Choice</b>
                         <div class="form-group">
-                            <label for="" class="control-label">User Name</label>
+                            <label for="" class="control-label"><span style="color: red;">*</span> User Name</label>
                             <input type="text" name="user_name" class="form-control form-control-sm" value="<?php echo $user_name ?>" oninvalid="this.setCustomValidity('Enter User Name Here')" oninput="setCustomValidity('')" required>
                         </div>
                         <div class="form-group">
-                            <label for="" class="control-label">Password</label>
+                            <label for="" class="control-label"><span style="color: red;">*</span> Password</label>
                             <input type="text" name="password" class="form-control form-control-sm" placeholder="Leave empty to keep current password">
                         </div>
                         <div class="form-group">
-                            <label for="" class="control-label">Role</label>
+                            <label for="" class="control-label"><span style="color: red;">*</span> Role</label>
                             <select name="role" id="role" class="custom-select custom-select-sm select2" oninvalid="this.setCustomValidity('Select Role Here')" oninput="setCustomValidity('')" required>
                                 <option value="1" <?php echo ($role == 1) ? 'selected' : ''; ?>>Admin and User</option>
                                 <option value="2" <?php echo ($role == 2) ? 'selected' : ''; ?>>User</option>

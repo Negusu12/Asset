@@ -13,7 +13,7 @@ $user_data = check_login($con);
                     <div class="col-md-6 border-right">
                         <b class="text-muted">Asset Buy</b>
                         <div class="form-group">
-                            <label for="" class="control-label">Item Name</label>
+                            <label for="" class="control-label"><span style="color: red;">*</span> Item Name</label>
                             <select name="item_code" id="item_code" class="custom-select custom-select-sm select1" oninvalid="this.setCustomValidity('Select Item Here')" oninput="setCustomValidity('')" required>
                                 <option value=""></option>
                                 <?php
@@ -38,30 +38,30 @@ $user_data = check_login($con);
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="" class="control-label">UOM</label>
+                            <label for="" class="control-label"><span style="color: red;">*</span> UOM</label>
                             <select name="uom" id="uom" class="custom-select custom-select-sm select2">
                             </select>
 
                         </div>
                         <div class="form-group">
-                            <label for="" class="control-label">Current QTY</label>
+                            <label for="" class="control-label"><span style="color: red;">*</span> Current QTY</label>
                             <select id="sum_qty" class="custom-select custom-select-sm select2" disabled>
                             </select>
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label">Additional Quantity</label>
+                            <label class="control-label"><span style="color: red;">*</span> Additional Quantity</label>
                             <input type="number" class="form-control form-control-sm" name="qty" min="0" oninvalid="this.setCustomValidity('Enter Quantity Here')" oninput="setCustomValidity('')" required>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <br />
                         <div class="form-group">
-                            <label for="" class="control-label">Date</label>
+                            <label for="" class="control-label"><span style="color: red;">*</span> Date</label>
                             <input type="date" name="doc_date" id="doc_date" class="form-control form-control-sm" oninvalid="this.setCustomValidity('Enter Date Here')" oninput="setCustomValidity('')" required>
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Description</label>
+                            <label class="control-label">&nbsp;&nbsp;&nbsp;Description</label>
                             <textarea name="description" cols="30" rows="4" class="form-control"></textarea>
                         </div>
                         <div class="form-group " style="display: none;">
@@ -83,13 +83,12 @@ $user_data = check_login($con);
     document.getElementById('item_code').addEventListener('change', function() {
         var selectedOption = this.options[this.selectedIndex];
         var uom = selectedOption.getAttribute('data-uom');
-        document.getElementById('uom').innerHTML = '<option value="' + uom + '">' + uom + '</option>';
-    });
-</script>
-<script>
-    document.getElementById('item_code').addEventListener('change', function() {
-        var selectedOption = this.options[this.selectedIndex];
         var sum_qty = selectedOption.getAttribute('dataq-sum_qty');
-        document.getElementById('sum_qty').innerHTML = '<option value="' + sum_qty + '">' + sum_qty + '</option>';
+
+        // Update UOM field using Select2
+        $('#uom').html('<option value="' + uom + '">' + uom + '</option>').trigger('change');
+
+        // Update Current QTY field using Select2
+        $('#sum_qty').html('<option value="' + sum_qty + '">' + sum_qty + '</option>').trigger('change');
     });
 </script>

@@ -13,15 +13,15 @@ $user_data = check_login($con);
                     <div class="col-md-6 border-right">
                         <b class="text-muted">Register Loaner</b>
                         <div class="form-group">
-                            <label for="" class="control-label">Loaner Name</label>
+                            <label for="" class="control-label"><span style="color: red;">*</span> Loaner Name</label>
                             <input type="text" name="full_name" class="form-control form-control-sm" oninvalid="this.setCustomValidity('Enter Loaner Name Here')" oninput="setCustomValidity('')" required>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <br />
                         <div class="form-group">
-                            <label for="" class="control-label">Department</label>
-                            <select name="department" id="department" class="custom-select custom-select-sm select2" required>
+                            <label for="" class="control-label"><span style="color: red;">*</span> Department</label>
+                            <select name="department" id="department" class="custom-select custom-select-sm select2" oninvalid="this.setCustomValidity('Enter Loaner Name Here')" oninput="setCustomValidity('')" required>
                                 <option value=""></option>
                                 <?php
                                 $sql = "SELECT list_id, department FROM drop_down_list WHERE department IS NOT NULL AND department <> '' order by department ";
