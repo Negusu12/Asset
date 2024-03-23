@@ -86,8 +86,15 @@ echo '<!DOCTYPE html>
             font-size: 41px;
             font-weight: 600;
             font-family:sans-serif;
-            
         }
+        .text_box {
+    margin-bottom: 18px;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    flex-direction: column 2; 
+}
+
         button.print-button {
             height: 50px;
             weidth: 50px;
@@ -96,9 +103,11 @@ echo '<!DOCTYPE html>
     </style>
 </head>
 <body>
+<div class="text_box">
 <div class="text">
     <span style="font-size: 41px;">ABH IT Item Borrow Form</span>
-    <img src="assets/dist/img/logo.png" alt="Logo" style="height: 51px;">
+    </div>
+    &nbsp;&nbsp;&nbsp;<img src="assets/dist/img/logo.png" alt="Logo" style="height: 61px;">
 </div>
 
     <div class="container">
