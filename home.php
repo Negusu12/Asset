@@ -267,12 +267,7 @@ while ($row = $store_result->fetch_assoc()) {
   $loan_quantities[] = $row['total_loan_qty'];
 }
 
-$barColors = array(
-  "#03949B", "#26225B", "#4D7DBF", "#B2B435", "#414142", "#ff9800", "#795548", "#aa00ff", "#5bc0de", "#d9534f",
-  "#007bff", "#28a745", "#ffc107", "#dc3545", "#17a2b8", "#6610f2", "#f012be", "#ff4136", "#2ecc40", "#ff851b", "#7fdbff", "#3d9970",
-  "#01ff70", "#ffdc00", "#85144b", "#39cccc", "#ff7f50", "#2c3e50", "#b10dc9", "#2aa198", "#c0392b", "#00bfff", "#8e44ad", "#2d3c4d",
-  "#e67e22", "#2e8b57", "#f1c40f", "#e74c3c", "#9b59b6", "#3498db"
-);
+
 // Query to fetch data for asset usage over time
 $used_query = "SELECT doc_date, SUM(qty) AS total_qty FROM used_asset_report GROUP BY doc_date ORDER BY doc_date";
 $used_result = $con->query($used_query);
@@ -305,7 +300,12 @@ while ($row = $buy_result->fetch_assoc()) {
   $buy_quantities[] = $row['total_qty'];
 }
 
-
+$barColors = array(
+  "#03949B", "#26225B", "#4D7DBF", "#B2B435", "#414142", "#ff9800", "#795548", "#aa00ff", "#5bc0de", "#d9534f",
+  "#b84d4d", "#6082b6", "#de994d", "#5c5c8a", "#c19a5f", "#6497b1", "#a57f8d", "#4a8468", "#d09494", "#619b78",
+  "#ad6b88", "#7a9aa7", "#c7a685", "#5274ab", "#9f7b56", "#4f4f7f", "#ae6f7f", "#9b9b6b", "#5b8fa3", "#b29b75",
+  "#4b6584", "#936e4d", "#6b6b94", "#c4a493", "#497c87", "#a37356", "#4f7d6b", "#a69b6c", "#6d8b92", "#d8af8f"
+);
 
 ?>
 <script>

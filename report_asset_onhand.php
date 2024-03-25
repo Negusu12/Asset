@@ -18,6 +18,7 @@
 						<th scope="col">Item Type</th>
 						<th scope="col">UOM</th>
 						<th scope="col">Quantity</th>
+						<th scope="col">Description</th>
 						<th scope="col">Action</th>
 					</tr>
 				</thead>
@@ -38,6 +39,7 @@
 							<td><b><?php echo $row['item_type'] ?></b></td>
 							<td><b><?php echo $row['uom'] ?></b></td>
 							<td><b><?php echo $row['qty'] ?></b></td>
+							<td><b><?php echo $row['description'] ?></b></td>
 							<td class="text-center">
 								<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
 									Action
