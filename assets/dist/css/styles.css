@@ -251,3 +251,24 @@ ul {
   background-color: #0056b3;
   /* Darker blue on hover */
 }
+
+.custom-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  /* Green background */
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+.custom-button:hover {
+  background-color: #45a049;
+  /* Darker green on hover */
+}

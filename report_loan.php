@@ -24,7 +24,7 @@
                         <th scope="col">Document Date</th>
                         <th scope="col">Description</th>
                         <th scope="col">Prepared By</th>
-                        <th scope="col">Action</th>
+                        <th scope="col">Print</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -52,12 +52,9 @@
                             <td><b><?php echo $row['description'] ?></b></td>
                             <td><b><?php echo $row['user_name'] ?></b></td>
 
-                            <td class="text-center">
-                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                                    Action
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="print_loan.php?loan_id=<?php echo $row['loan_id'] ?>" target="_blank">Print</a>
+                            <td>
+                                <div>
+                                    <a class="custom-button" style="padding: 5px;" href="print_loan.php?loan_id=<?php echo $row['loan_id'] ?>" target="_blank">Print</a>
                                 </div>
                             </td>
                         </tr>
@@ -90,7 +87,7 @@
                 [10, 25, 50, "All"]
             ],
             columnDefs: [{
-                    targets: [0, 6, 9, 13, 16], // index of the "Password" column (zero-based index)
+                    targets: [0, 6, 9, 13], // index of the "Password" column (zero-based index)
                     visible: false // set to false to hide the column by default
                 }
                 // Add similar blocks for other columns you want to hide by default
