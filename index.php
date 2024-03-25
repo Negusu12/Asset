@@ -5,15 +5,6 @@
 include 'header.php'
 ?>
 <style>
-  img {
-    height: 50px;
-    width: 50px;
-    background-color: red;
-    margin-top: -7px;
-    margin-left: 80%;
-    animation: shake 0.5s ease-in-out infinite;
-  }
-
   @keyframes shake {
     0% {
       transform: translateX(0);

@@ -134,6 +134,18 @@
 		window.history.forward();
 	}
 	// Go back and forward to page
+
+
+	// make image open when clicked
+	function openImageModal(imageData) {
+		// Set the source of the full-size image in the modal
+		document.getElementById('previewImage').src =
+			'data:image/jpeg;base64,' + imageData
+
+		// Open the modal
+		$('#imageModal').modal('show')
+	}
+	// End make image open when clicked
 </script>
 <script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- overlayScrollbars -->

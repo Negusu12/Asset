@@ -282,3 +282,7 @@ ul {
   background-color: #45a049;
   /* Darker green on hover */
 }
+
+.img_tbl img {
+  max-height: 80px;
+}

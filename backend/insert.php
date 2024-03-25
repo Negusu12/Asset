@@ -3,11 +3,11 @@ include('connect.php');
 
 //Register Asset
 if (isset($_POST['submit'])) {
-    $item_c = /*addlashes so it accept commas and sympols*/ addslashes($_POST['item_c']);
+    // Retrieve form data
+    $item_c = addslashes($_POST['item_c']);
     $item_name = addslashes($_POST['item_name']);
     $brand = addslashes($_POST['brand']);
     $model = addslashes($_POST['model']);
-    /*$item_condition = addslashes($_POST['item_condition']);*/
     $item_category = addslashes($_POST['item_category']);
     $item_type = addslashes($_POST['item_type']);
     $qty = addslashes($_POST['qty']);
@@ -16,44 +16,54 @@ if (isset($_POST['submit'])) {
     $user_name = addslashes($_POST['user_name']);
     $uom = addslashes($_POST['uom']);
 
-    $sql_asset_record = "INSERT INTO asset_record (item_c, item_name, model, qty, item_category, brand,item_type,doc_date, description, user_name, uom)
-                     VALUES ('$item_c', '$item_name', '$model', '$qty', '$item_category', '$brand','$item_type', '$doc_date', '$description', '$user_name', '$uom')";
+    // File upload handling
+    $image = $_FILES['image'];
+    $image_data = file_get_contents($image['tmp_name']); // Get binary data of the image
+    $image_data = mysqli_real_escape_string($con, $image_data); // Escape special characters to prevent SQL injection
+
+    // Add image data to the SQL query
+    $sql_asset_record = "INSERT INTO asset_record (item_c, item_name, model, qty, item_category, brand, item_type, doc_date, description, user_name, uom, item_image)
+                         VALUES ('$item_c', '$item_name', '$model', '$qty', '$item_category', '$brand', '$item_type', '$doc_date', '$description', '$user_name', '$uom', '$image_data')";
     $result_asset_record = mysqli_query($con, $sql_asset_record);
 
-    $sql_asset_register_record = "INSERT INTO asset_register_record (item_c, item_name, model, qty, item_category,brand,item_type, doc_date, description, user_name, uom)
-                              VALUES ('$item_c', '$item_name', '$model', '$qty', '$item_category', '$brand','$item_type', '$doc_date', '$description', '$user_name', '$uom')";
+    $sql_asset_register_record = "INSERT INTO asset_register_record (item_c, item_name, model, qty, item_category, brand, item_type, doc_date, description, user_name, uom, item_image)
+    VALUES ('$item_c', '$item_name', '$model', '$qty', '$item_category', '$brand', '$item_type', '$doc_date', '$description', '$user_name', '$uom', '$image_data')";
     $result_asset_register_record = mysqli_query($con, $sql_asset_register_record);
 
     if ($result_asset_record && $result_asset_register_record) {
         echo "<script>
-        window.onload = function() {
-            // Display a success message using SweetAlert
-            Swal.fire({
-                icon: 'success',
-                title: 'Item Has been Successfully Recorded',
-                showConfirmButton: true,
-                confirmButtonText: 'OK',
-                timer: 2000
-            }).then(function() {
-                window.location.href = 'index.php?page=asset_record';
-            });
-        }
-     </script>";
+              window.onload = function() {
+                  // Display a success message using SweetAlert
+                  Swal.fire({
+                      icon: 'success',
+                      title: 'Item has been successfully recorded',
+                      showConfirmButton: true,
+                      confirmButtonText: 'OK',
+                      timer: 2000
+                  }).then(function() {
+                      window.location.href = 'index.php?page=asset_record';
+                  });
+              }
+              </script>";
     } else {
         echo "<script>
-        window.onload = function() {
-            // Display a success message using SweetAlert
-            Swal.fire({
-                icon: 'error',
-                title: 'Failed to record Item.',
-                showConfirmButton: false,
-                showDenyButton: true,
-                denyButtonText: 'OK'
-            });
-        }
-     </script>";
+              window.onload = function() {
+                  // Display an error message using SweetAlert
+                  Swal.fire({
+                      icon: 'error',
+                      title: 'Failed to record item.',
+                      showConfirmButton: false,
+                      showDenyButton: true,
+                      denyButtonText: 'OK'
+                  });
+              }
+              </script>";
     }
+
+    // Close the database connection
+    mysqli_close($con);
 }
+
 
 // End Register Asset
 

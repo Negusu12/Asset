@@ -17,6 +17,7 @@
 						<th scope="col">Quantity</th>
 						<th scope="col">Document Date</th>
 						<th scope="col">Description</th>
+						<th scope="col">Image</th>
 						<th scope="col">Prepared By</th>
 					</tr>
 				</thead>
@@ -36,6 +37,11 @@
 							<td><b><?php echo $row['qty'] ?></b></td>
 							<td><b><?php echo date('F d Y', strtotime($row['doc_date'])) ?></b></td>
 							<td><b><?php echo $row['description'] ?></b></td>
+							<td class="img_tbl">
+								<img src="data:image/jpeg;base64,<?php echo base64_encode($row['item_image']); ?>" alt="Image" class="img-thumbnail" style="cursor: pointer;" onclick="openImageModal('<?php echo base64_encode($row['item_image']); ?>')">
+							</td>
+
+
 							<td><b><?php echo $row['user_name'] ?></b></td>
 						</tr>
 					<?php endwhile; ?>
@@ -44,6 +50,8 @@
 		</div>
 	</div>
 </div>
+
+
 <script>
 	$(document).ready(function() {
 		// Check if DataTable is already initialized

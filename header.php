@@ -52,3 +52,22 @@ $user_data = check_login($con);
 
 
 </head>
+
+<body>
+  <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="imageModalLabel">Image Preview</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-center">
+          <img id="previewImage" src="" class="img-fluid" alt="Preview" style="max-width: 100%; max-height: 100vh; margin: auto;">
+        </div>
+
+      </div>
+    </div>
+  </div>
+</body>

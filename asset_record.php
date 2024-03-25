@@ -86,6 +86,11 @@ $user_data = check_login($con);
                             <label class="control-label">&nbsp;&nbsp;&nbsp;Description</label>
                             <textarea name="description" cols="30" rows="4" class="form-control"></textarea>
                         </div>
+                        <div class="form-group">
+                            <label for="" class="control-label"><span style="color: red;">*</span> Upload Image</label>
+                            <input class="form-control form-control-sm" type="file" name="image" id="image" accept="image/*" required>
+                        </div>
+
                         <div class="form-group " style="display: none;">
                             <label class="control-label">Prepared By</label>
                             <input type="text" class="form-control form-control-sm" name="user_name" value="<?php echo $user_data['user_name']; ?>">
@@ -101,3 +106,57 @@ $user_data = check_login($con);
         </div>
     </div>
 </div>
+<script>
+    // JavaScript code for handling file input and preview
+    document.addEventListener('DOMContentLoaded', function() {
+        const dropArea = document.getElementById('drop-area');
+        const dropMessage = document.getElementById('drop-message');
+        const imagePreview = document.getElementById('image-preview');
+        const inputPhotos = document.getElementById('photos');
+
+        dropArea.addEventListener('dragover', function(event) {
+            event.preventDefault();
+            dropArea.classList.add('drag-over');
+            dropMessage.textContent = 'Drop files here.';
+        });
+
+        dropArea.addEventListener('dragleave', function() {
+            dropArea.classList.remove('drag-over');
+            dropMessage.textContent = 'Drop files here or click to upload.';
+        });
+
+        dropArea.addEventListener('drop', function(event) {
+            event.preventDefault();
+            dropArea.classList.remove('drag-over');
+
+            const files = event.dataTransfer.files;
+            displayPreview(files);
+            inputPhotos.files = files;
+        });
+
+        inputPhotos.addEventListener('change', function() {
+            const files = this.files;
+            displayPreview(files);
+        });
+
+        function displayPreview(files) {
+            imagePreview.innerHTML = ''; // Clear existing preview
+
+            for (const file of files) {
+                if (file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.alt = file.name;
+                        img.classList.add('preview-image');
+                        imagePreview.appendChild(img);
+                    };
+
+                    reader.readAsDataURL(file);
+                }
+            }
+        }
+    });
+</script>
