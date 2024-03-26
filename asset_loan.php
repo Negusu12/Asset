@@ -22,7 +22,7 @@ $user_data = check_login($con);
                                 <?php
 
                                 // Retrieve all records from the asset_record table
-                                $sql = "SELECT item_code, CONCAT(item_name, IFNULL(CONCAT(' - ', model), ''),IFNULL(CONCAT(' - ', item_category), '')) AS Item_Name FROM asset_record order by Item_Name";
+                                $sql = "SELECT item_code, CONCAT(item_name, IFNULL(CONCAT(' - ', model), ''),IFNULL(CONCAT(' - ', item_category), '')) AS Item_Name FROM asset_record where item_type = 'asset' order by Item_Name";
                                 $result = mysqli_query($con, $sql);
 
                                 // Check if query was successful

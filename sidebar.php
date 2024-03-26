@@ -31,7 +31,7 @@
           <a href="#" class="nav-link nav-edit_customer">
             <i class="nav-icon far fa-folder-open"></i>
             <p>
-              Documents
+              Forms
               <i class="right fas fa-angle-left"></i>
             </p>
           </a>
@@ -98,7 +98,7 @@
             <li class="nav-item">
               <a href="./index.php?page=report_asset_onhand" class="nav-link nav-report_asset_onhand tree-item">
                 <i class="fas fa-angle-right nav-icon"></i>
-                <p>Asset on Store</p>
+                <p>Asset in Store</p>
               </a>
             </li>
             <li class="nav-item">
