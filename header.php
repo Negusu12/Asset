@@ -58,13 +58,13 @@ $user_data = check_login($con);
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="imageModalLabel">Image Preview</h5>
+          <h5 class="modal-title" id="imageModalLabel">Asset Image</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body text-center">
-          <img id="previewImage" src="" class="img-fluid" alt="Preview" style="max-width: 100%; max-height: 100vh; margin: auto;">
+          <img id="previewImage" src="" class="img-fluid" alt="Preview" style="max-width: 100%; max-height: 70vh; margin: auto;">
         </div>
 
       </div>
