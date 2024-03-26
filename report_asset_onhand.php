@@ -19,7 +19,7 @@
 						<th scope="col">UOM</th>
 						<th scope="col">Quantity</th>
 						<th scope="col">Description</th>
-						<th scope="col">Image</th>
+						<th scope="col">Item Image</th>
 						<th scope="col">Action</th>
 					</tr>
 				</thead>
@@ -42,8 +42,22 @@
 							<td><b><?php echo $row['qty'] ?></b></td>
 							<td><b><?php echo $row['description'] ?></b></td>
 							<td class="img_tbl">
-								<img src="data:image/jpeg;base64,<?php echo base64_encode($row['item_image']); ?>" alt="Image" class="img-thumbnail" style="cursor: pointer;" onclick="openImageModal('<?php echo base64_encode($row['item_image']); ?>')">
+								<?php
+								$image_data = $row['item_image'];
+								if (!empty($image_data)) {
+									$base64_image = base64_encode($image_data);
+									if ($base64_image) {
+										echo '<img src="data:image/jpeg;base64,' . $base64_image . '" alt="Image" class="img-thumbnail" style="cursor: pointer;" onclick="openImageModal(\'' . $base64_image . '\')">';
+									} else {
+										echo '<p>Error: Unable to encode image data.</p>';
+									}
+								} else {
+									echo '<p></p>';
+								}
+								?>
 							</td>
+
+
 
 							<td class="text-center">
 								<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
