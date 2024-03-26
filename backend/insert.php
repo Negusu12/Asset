@@ -284,21 +284,35 @@ if (isset($_POST['submit_u'])) {
     $result = mysqli_query($con, $sql);
     $row = mysqli_fetch_assoc($result);
     $current_qty = $row['qty'];
-    // Calculate the new quantity
-    $new_qty = $current_qty - $qty;
-    // Update the qty column in the asset_record table with the new quantity
-    $update_sql = "UPDATE asset_record SET qty='$new_qty' WHERE item_code='$item_code'";
-    $update_result = mysqli_query($con, $update_sql);
+    if ($current_qty < $qty) {
+        echo "<script>
+                window.onload = function() {
+                    // Display a success message using SweetAlert
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'The Selected Item is out of Stock.',
+                        showConfirmButton: false,
+                        showDenyButton: true,
+                        denyButtonText: 'OK'
+                    });
+                }
+             </script>";
+    } else {
+        // Calculate the new quantity
+        $new_qty = $current_qty - $qty;
+        // Update the qty column in the asset_record table with the new quantity
+        $update_sql = "UPDATE asset_record SET qty='$new_qty' WHERE item_code='$item_code'";
+        $update_result = mysqli_query($con, $update_sql);
 
-    if ($update_result) {
-        // Insert the data into the asset_loan table
-        $insert_sql = "INSERT INTO use_asset (item_code, qty, doc_date, description, user_name)
+        if ($update_result) {
+            // Insert the data into the asset_loan table
+            $insert_sql = "INSERT INTO use_asset (item_code, qty, doc_date, description, user_name)
                            VALUES ('$item_code', '$qty', '$doc_date', '$description', '$user_name')";
-        $insert_result = mysqli_query($con, $insert_sql);
+            $insert_result = mysqli_query($con, $insert_sql);
 
-        if ($insert_result) {
-            // Display a success message using SweetAlert
-            echo "<script>
+            if ($insert_result) {
+                // Display a success message using SweetAlert
+                echo "<script>
     window.onload = function() {
         // Display a success message using SweetAlert
         Swal.fire({
@@ -312,8 +326,8 @@ if (isset($_POST['submit_u'])) {
         });
     }
  </script>";
-        } else {
-            echo "<script>
+            } else {
+                echo "<script>
             window.onload = function() {
                 // Display a success message using SweetAlert
                 Swal.fire({
@@ -325,9 +339,16 @@ if (isset($_POST['submit_u'])) {
                 });
             }
          </script>";
+            }
         }
     }
 }
+
+// Display the error message, if any
+if (isset($error_message)) {
+    echo $error_message;
+}
+
 // End Use Asset
 
 // Asset Return
