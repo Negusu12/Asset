@@ -10,25 +10,33 @@
                     <tr>
                         <th>#</th>
                         <th scope="col">Item Name</th>
+                        <th scope="col">Brand</th>
                         <th scope="col">Model</th>
                         <th scope="col">Item Category</th>
+                        <th scope="col">Item Type</th>
                         <th scope="col">UOM</th>
-                        <th scope="col">Quantity</th>
+                        <th scope="col">In Store Quantity</th>
+                        <th scope="col">In Loan Quantity</th>
+                        <th scope="col">Total Quantity</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
                     $i = 1;
-                    $qry = $con->query("select * from asset_total_summury_v");
+                    $qry = $con->query("select * from total_item_qty_view");
                     while ($row = $qry->fetch_assoc()) :
                     ?>
                         <tr>
                             <th class="text-center"><?php echo $i++ ?></th>
                             <td><b><?php echo ucwords($row['item_name']) ?></b></td>
+                            <td><b><?php echo $row['brand'] ?></b></td>
                             <td><b><?php echo $row['model'] ?></b></td>
                             <td><b><?php echo $row['item_category'] ?></b></td>
+                            <td><b><?php echo $row['item_type'] ?></b></td>
                             <td><b><?php echo $row['uom'] ?></b></td>
-                            <td><b><?php echo $row['sum_qty'] ?></b></td>
+                            <td><b><?php echo $row['total_qty_record'] ?></b></td>
+                            <td><b><?php echo $row['total_qty_loan'] ?></b></td>
+                            <td><b><?php echo $row['total_qty'] ?></b></td>
                         </tr>
                     <?php endwhile; ?>
                 </tbody>
@@ -54,6 +62,12 @@
             lengthMenu: [
                 [10, 25, 50, -1],
                 [10, 25, 50, "All"]
+            ],
+            columnDefs: [{
+                    targets: [5, 7, 8], // index of the "Password" column (zero-based index)
+                    visible: false // set to false to hide the column by default
+                }
+                // Add similar blocks for other columns you want to hide by default
             ]
         });
         table.columns().every(function() {
