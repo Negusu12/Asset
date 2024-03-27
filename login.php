@@ -71,13 +71,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     <section class="ftco-section">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-md-6 text-center mb-5">
-                    <a href="home" <h2 class="heading-section" style="color: #B2B435; font-size: 36px; font-weight: bold; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);">ABH Inventory System</h2></a>
-                </div>
             </div>
             <div class="row justify-content-center">
                 <div class="col-md-7 col-lg-5">
                     <div class="login-wrap p-4 p-md-5">
+                        <div class="text-center login-titleee">
+                            <a href="home" <h2 class="heading-section" style="color: #B2B435; font-size: 30px; font-weight: bold; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);">ABH Inventory System</h2></a>
+                        </div>
                         <div class="d-flex">
                             <div class="w-100" style="text-align: right;">
                                 <h3 class="mb-3" style="color: #03949B; font-size: 24px; font-weight: bold; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);">Log In</h3>

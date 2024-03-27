@@ -22,7 +22,7 @@ $user_data = check_login($con);
                                 <?php
                                 // Retrieve all records from the asset_record table
                                 $sql = "SELECT ar.item_code,
-                                CONCAT(ar.item_name,
+                                CONCAT(ar.item_name, IFNULL(CONCAT(' - ', ar.brand), ''),
                                 IFNULL(CONCAT(' - ', ar.model), ''),IFNULL(CONCAT(' - ', ar.item_category), '')) AS Item_Name,
                                 ar.uom,
                                 ats.sum_qty

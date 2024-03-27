@@ -10,7 +10,7 @@ if (isset($_POST['category'])) {
     if ($item_result->num_rows > 0) {
         $html = '<ul class="item-list">';
         while ($row = $item_result->fetch_assoc()) {
-            $html .= '<li><i class="fas fa-circle" style="color: #414142;"></i> <a class="item-link" item_name=' . urlencode($row["item_name"]) . '">' . $row["item_name"] . ' - ' . $row["total_qty"] . '</a></li>';
+            $html .= '<li style="cursor: auto;"><i class="fas fa-circle" style="color: #414142;"></i> <a class="item-link" item_name=' . urlencode($row["item_name"]) . '">' . $row["item_name"] . ' - ' . $row["total_qty"] . '</a></li>';
         }
         $html .= '</ul>';
         echo $html;

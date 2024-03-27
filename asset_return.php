@@ -67,7 +67,7 @@ $user_data = check_login($con);
                                 if (isset($_POST['loan_id'])) {
                                     $loan_id = $_POST['loan_id'];
 
-                                    $sql = "SELECT al.item_code, CONCAT(ar.item_name, IFNULL(CONCAT(' - ', model), ''),IFNULL(CONCAT(' - ', item_category), '')) AS Item_Name
+                                    $sql = "SELECT al.item_code, CONCAT(ar.item_name, IFNULL(CONCAT(' - ', brand), ''), IFNULL(CONCAT(' - ', model), ''),IFNULL(CONCAT(' - ', item_category), '')) AS Item_Name
                                 FROM asset_loan al
                                 LEFT JOIN asset_record ar ON al.item_code = ar.item_code
                 WHERE al.loan_id = ?";

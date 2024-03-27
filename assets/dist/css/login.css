@@ -11790,7 +11790,7 @@ h5,
 .login-wrap {
   position: relative;
   background: #fff;
-  border-radius: 5px;
+  border-radius: 35px;
   -webkit-box-shadow: 0px 10px 34px -15px rgba(0, 0, 0, 0.24);
   -moz-box-shadow: 0px 10px 34px -15px rgba(0, 0, 0, 0.24);
   box-shadow: 0px 10px 34px -15px rgba(0, 0, 0, 0.24);
@@ -12018,4 +12018,9 @@ h5,
   /* Auto margin for center alignment */
   margin-top: 15px;
   /* Add margin top for spacing */
+}
+
+.login-titleee {
+  margin-top: -5%;
+  margin-bottom: 5%;
 }
