@@ -126,44 +126,7 @@
           ?>
         </ul>
       </div>
-      <div class="ccc">
 
-        <ul class="category_li">
-          <h1 style="font-size: 22px;">Asset in Store</h1>
-          <?php
-          // Fetch item categories and their total quantities from asset_record
-          $category_query = "SELECT item_category, SUM(qty) AS total_qty FROM asset_record WHERE qty > 0 GROUP BY item_category ORDER BY total_qty DESC";
-          $category_result = $con->query($category_query);
-          if ($category_result->num_rows > 0) {
-            while ($row = $category_result->fetch_assoc()) {
-              echo '<li class="category" data-category="' . $row["item_category"] . '"><i class="fas fa-arrow-right" style="color: #414142;"></i> ' . $row["item_category"] . ' -  ' . $row["total_qty"] . '</li>';
-              echo '<ul class="item-list" style="display:none;"></ul>'; // Hidden item list for each category
-            }
-          } else {
-            echo "0 results";
-          }
-          ?>
-        </ul>
-      </div>
-      <div class="ccc">
-
-        <ul class="category_li">
-          <h1 style="font-size: 22px;">Asset On Loan</h1>
-          <?php
-          // Fetch item categories and their total quantities from asset_loan_v
-          $category_query_loan = "SELECT item_category, SUM(qty) AS total_qty FROM asset_loan_v WHERE qty > 0 GROUP BY item_category ORDER BY total_qty DESC";
-          $category_result_loan = $con->query($category_query_loan);
-          if ($category_result_loan->num_rows > 0) {
-            while ($row = $category_result_loan->fetch_assoc()) {
-              echo '<li class="category_loan" data-category_loan="' . $row["item_category"] . '"><i class="fas fa-arrow-right" style="color: #414142;"></i> ' . $row["item_category"] . ' -  ' . $row["total_qty"] . '</li>';
-              echo '<ul class="item-list_loan" style="display:none;"></ul>'; // Hidden item list for each category
-            }
-          } else {
-            echo "0 results";
-          }
-          ?>
-        </ul>
-      </div>
 
     </section>
   </div>
@@ -438,59 +401,6 @@ $barColors = array(
 </script>
 
 
-
-<script>
-  $(document).ready(function() {
-    $(".category").click(function() {
-      var category = $(this).data('category');
-      var itemList = $(this).next('.item-list');
-
-      if (itemList.is(':visible')) {
-        itemList.hide(); // Hide the item list if it's visible
-      } else {
-        $.ajax({
-          url: "get_items_by_category.php",
-          method: "POST",
-          data: {
-            category: category
-          },
-          success: function(data) {
-            itemList.html(data).show(); // Show and populate the item list
-          },
-          error: function(xhr, status, error) {
-            console.error(xhr.responseText);
-          }
-        });
-      }
-    });
-  });
-</script>
-<script>
-  $(document).ready(function() {
-    $(".category_loan").click(function() {
-      var category_loan = $(this).data('category_loan');
-      var itemList_loan = $(this).next('.item-list_loan');
-
-      if (itemList_loan.is(':visible')) {
-        itemList_loan.hide(); // Hide the item list if it's visible
-      } else {
-        $.ajax({
-          url: "get_items_by_category.php",
-          method: "POST",
-          data: {
-            category_loan: category_loan
-          },
-          success: function(data) {
-            itemList_loan.html(data).show(); // Show and populate the item list
-          },
-          error: function(xhr, status, error) {
-            console.error(xhr.responseText);
-          }
-        });
-      }
-    });
-  });
-</script>
 <script>
   $(document).ready(function() {
     $(".category_total").click(function() {
