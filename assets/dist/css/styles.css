@@ -221,18 +221,9 @@ ul {
 
 .cccc {
   max-height: 700px;
-  overflow-y: hidden;
-  /* Hide vertical scrollbar initially */
   overflow-x: hidden;
   /* Hide horizontal scrollbar initially */
   width: 82%;
-}
-
-.cccc:hover {
-  overflow-y: scroll;
-  /* Display vertical scrollbar on hover */
-  overflow-x: scroll;
-  /* Display horizontal scrollbar on hover */
 }
 
 
@@ -241,7 +232,7 @@ ul {
 }
 
 .navigation-btn {
-  background-color: #007bff;
+  background-color: #4D7DBF;
   /* Blue background color */
   color: white;
   /* White text color */

@@ -53,8 +53,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 <html lang="en">
 
 <head>
+    <link rel="shortcut icon" type="image/icon" href="assets/dist/img/logo.png" />
     <title>Login</title>
-    <link rel="shortcut icon" type="image/icon" href="assets/images/logo/favicon.png" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 

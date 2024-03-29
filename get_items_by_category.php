@@ -25,7 +25,7 @@ if (isset($_POST['category_total'])) {
     if ($item_result->num_rows > 0) {
         $html = '<ul class="item-list_total">';
         while ($row = $item_result->fetch_assoc()) {
-            echo '<li><i class="fas fa-circle" style="color: #414142;"></i> <a class="item-link" item_name="' . urlencode($row["item_name"]) . '" item_code="' . $row["item_code"] . '">' . $row["item_name"] . ' - Total Qty: ' . $row["total_qty"] . '</a><ul class="item-details_total" style="display:none;"></ul></li>';
+            echo '<li><i class="fas fa-circle" style="color: #414142;"></i> <a class="item-link" item_name="' . urlencode($row["item_name"]) . '" item_code="' . $row["item_code"] . '">' . $row["item_name"] . ' : ' . $row["total_qty"] . '</a><ul class="item-details_total" style="display:none;"></ul></li>';
         }
         echo '</ul>';
     } else {

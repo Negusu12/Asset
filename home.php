@@ -110,7 +110,7 @@
       <div class="ccc">
 
         <ul class="category_li">
-          <h1 style="font-size: 22px;">Total Asset</h1>
+          <h1 style="font-size: 22px;">Assets</h1>
           <?php
           // Fetch item categories and their total quantities from asset_loan_v
           $category_query_total = "SELECT item_category, SUM(total_qty) AS total_qty FROM total_item_qty_view GROUP BY item_category ORDER BY total_qty DESC";
