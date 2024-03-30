@@ -12,7 +12,7 @@ if (isset($_POST['item_code'])) {
                                 total_qty_record,
                                 total_qty_loan
                             FROM 
-                                total_item_qty_view 
+                                total_item_qty_view
                             WHERE 
                                 item_code = '$item_code'";
 
@@ -21,8 +21,8 @@ if (isset($_POST['item_code'])) {
     if ($item_details_result) {
         if ($item_details_result->num_rows > 0) {
             $row = $item_details_result->fetch_assoc();
-            $html = '<li style="cursor: auto;"><i class="far fa-circle"></i> In Store: ' . $row["total_qty_record"] . '</li>';
-            $html .= '<li style="cursor: auto;"><i class="far fa-circle"></i> On Loan: ' . $row["total_qty_loan"] . '</li>';
+            $html = '<li><a class="item-link" href="index.php?page=pages/report_in_store&item_code=' . $item_code . '"><i class="far fa-circle"></i> In Store: ' . $row["total_qty_record"] . '</a></li>';
+            $html .= '<li><a class="item-link" href="index.php?page=pages/report_on_loan&item_code=' . $item_code . '"><i class="far fa-circle"></i> On Loan: ' . $row["total_qty_loan"] . '</a></li>';
             echo $html;
         } else {
             echo "No rows found for item code: " . $item_code;
