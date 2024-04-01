@@ -133,7 +133,7 @@ echo '<!DOCTYPE html>
                 <td>' . $row['serial_no'] . '</td>
             </tr>
             <tr>
-                <th>Loaner Name</th>
+                <th>Borrower Name</th>
                 <td>' . $row['full_name'] . '</td>
             </tr>
             <tr>
@@ -152,15 +152,15 @@ echo '<!DOCTYPE html>
         <div class="signature-section">
             <form>
                 <label>
-                    <span>Name:</span>
+                    <span>Borrower Name:</span>
                     <input type="text" name="name" value="' . $row['full_name'] . '" required readonly>
                 </label>
                 <label>
-                    <span>Date:</span>
+                    <span>Borrowed Date:</span>
                     <input type="text" name="name" value="' . date('F j Y', strtotime($row['doc_date'])) . '" required readonly>
                 </label>
                 <label>
-                    <span>signature :</span>
+                    <span>Borrower signature :</span>
                     <input type="text" name="date" required readonly>
                 </label>
             </form>

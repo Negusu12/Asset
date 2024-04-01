@@ -69,7 +69,7 @@
             <li class="nav-item">
               <a href="./index.php?page=employee" class="nav-link nav-employee tree-item">
                 <i class="fas fa-angle-right nav-icon"></i>
-                <p>Register Loaner</p>
+                <p>Register Borrower</p>
               </a>
             </li>
             <li class="nav-item">
@@ -140,7 +140,7 @@
             <li class="nav-item">
               <a href="./index.php?page=report_employee" class="nav-link nav-report_employee tree-item">
                 <i class="fas fa-angle-right nav-icon"></i>
-                <p>Loaners List</p>
+                <p>Borrowers List</p>
               </a>
             </li>
           </ul>

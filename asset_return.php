@@ -36,8 +36,8 @@ $user_data = check_login($con);
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="" class="control-label"><span style="color: red;">*</span> Loaner Name</label>
-                            <select name="employee_id" id="employee_id" class="custom-select custom-select-sm select2" onchange="this.form.submit()" oninvalid="this.setCustomValidity('Select Loaner Here')" oninput="setCustomValidity('')" required>
+                            <label for="" class="control-label"><span style="color: red;">*</span> Borrower Name</label>
+                            <select name="employee_id" id="employee_id" class="custom-select custom-select-sm select2" onchange="this.form.submit()" oninvalid="this.setCustomValidity('Select Borrower Here')" oninput="setCustomValidity('')" required>
                                 <?php
                                 if (isset($_POST['loan_id'])) {
                                     $loan_id = $_POST['loan_id'];
@@ -62,7 +62,7 @@ $user_data = check_login($con);
                         </div>
                         <div class="form-group">
                             <label for="" class="control-label"><span style="color: red;">*</span> Item Name</label>
-                            <select name="item_code" id="item_code" class="custom-select custom-select-sm select2" onchange="this.form.submit()" oninvalid="this.setCustomValidity('Select Loaner Here')" oninput="setCustomValidity('')" required>
+                            <select name="item_code" id="item_code" class="custom-select custom-select-sm select2" onchange="this.form.submit()" oninvalid="this.setCustomValidity('Select Item Here')" oninput="setCustomValidity('')" required>
                                 <?php
                                 if (isset($_POST['loan_id'])) {
                                     $loan_id = $_POST['loan_id'];

@@ -36,8 +36,8 @@ $user_data = check_login($con);
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="" class="control-label"><span style="color: red;">*</span> Loaner Name</label>
-                            <select name="employee_id" id="employee_id" class="custom-select custom-select-sm select2" oninvalid="this.setCustomValidity('Select Loaner Here')" oninput="setCustomValidity('')" required>
+                            <label for="" class="control-label"><span style="color: red;">*</span> Borrower Name</label>
+                            <select name="employee_id" id="employee_id" class="custom-select custom-select-sm select2" oninvalid="this.setCustomValidity('Select Borrower Here')" oninput="setCustomValidity('')" required>
                                 <option value=""></option>
                                 <?php
                                 // Retrieve all records from the employee table ordered by full_name

@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'GET') {
         window.onload = function() {
             Swal.fire({
                 icon: 'success',
-                title: 'Loner Record Updated Successfully',
+                title: 'Borrower Record Updated Successfully',
                 showConfirmButton: true,
                 confirmButtonText: 'OK',
             }).then(function() {
@@ -64,8 +64,8 @@ if ($_SERVER["REQUEST_METHOD"] == 'GET') {
 }
 ?>
 <div class="navigation_arrow">
-    <button class="navigation-btn" onclick="goBack()"><i class="fas fa-arrow-left"></i></button>
-    <button class="navigation-btn" onclick="goForward()"><i class="fas fa-arrow-right"></i></button>
+	<button class="navigation-btn" onclick="goBack()"><i class="fas fa-arrow-left"></i></button>
+	<button class="navigation-btn" onclick="goForward()"><i class="fas fa-arrow-right"></i></button>
 </div>
 <div class="col-lg-12">
 	<div class="card">
@@ -76,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'GET') {
 					<div class="col-md-6">
 						<b class="text-muted">Add List Choice</b>
 						<div class="form-group">
-							<label for="" class="control-label"><span style="color: red;">*</span> Loaner Name</label>
+							<label for="" class="control-label"><span style="color: red;">*</span> Borrower Name</label>
 							<input type="text" name="full_name" class="form-control form-control-sm" value="<?php echo $full_name ?>" oninvalid="this.setCustomValidity('Enter User Name Here')" oninput="setCustomValidity('')" required>
 						</div>
 						<div class="form-group">

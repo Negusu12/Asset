@@ -12,7 +12,7 @@ if (isset($_GET["employee_id"])) {
             // Display a success message using SweetAlert
             Swal.fire({
                 icon: 'success',
-                title: 'Loner Record has been deleted Successfully',
+                title: 'Borrower Record has been deleted Successfully',
                 showConfirmButton: true,
                 confirmButtonText: 'OK'
             }).then(function() {
@@ -26,7 +26,7 @@ if (isset($_GET["employee_id"])) {
                 // Display a success message using SweetAlert
                 Swal.fire({
                     icon: 'error',
-                    title: 'failed to Delete Loner Record.',
+                    title: 'failed to Delete Borrower Record.',
                     showConfirmButton: false,
                     showDenyButton: true,
                     denyButtonText: 'OK'

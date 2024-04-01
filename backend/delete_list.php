@@ -26,7 +26,7 @@ if (isset($_GET["list_id"])) {
                 // Display a success message using SweetAlert
                 Swal.fire({
                     icon: 'error',
-                    title: 'failed to Delete Loner Record.',
+                    title: 'failed to Delete List Choice Record.',
                     showConfirmButton: false,
                     showDenyButton: true,
                     denyButtonText: 'OK'

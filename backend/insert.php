@@ -82,7 +82,7 @@ if (isset($_POST['submit_e'])) {
                     // Display a success message using SweetAlert
                     Swal.fire({
                         icon: 'success',
-                        title: 'Loaner has bee registered successfully',
+                        title: 'Borrower has bee registered successfully',
                         showConfirmButton: true,
                         confirmButtonText: 'OK',
                         timer: 2000
@@ -97,7 +97,7 @@ if (isset($_POST['submit_e'])) {
                     // Display a success message using SweetAlert
                     Swal.fire({
                         icon: 'error',
-                        title: 'Failed to add employee.',
+                        title: 'Failed to add Borrower.',
                         showConfirmButton: false,
                         showDenyButton: true,
                         denyButtonText: 'OK'

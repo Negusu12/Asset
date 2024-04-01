@@ -17,7 +17,7 @@
                         <th scope="col">Item Type</th>
                         <th scope="col">Serial No.</th>
                         <th scope="col">Loaned To</th>
-                        <th scope="col">Loaner Department</th>
+                        <th scope="col">Borrower Department</th>
                         <th scope="col">UOM</th>
                         <th scope="col">Loaned Quantity</th>
                         <th scope="col">Quantity on Loan</th>

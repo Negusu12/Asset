@@ -15,7 +15,7 @@
                         <th scope="col">Model</th>
                         <th scope="col">Category</th>
                         <th scope="col">Type</th>
-                        <th scope="col">Loaner Name</th>
+                        <th scope="col">Borrower Name</th>
                         <th scope="col">UOM</th>
                         <th scope="col">Quantity</th>
                         <th scope="col">Document Date</th>
