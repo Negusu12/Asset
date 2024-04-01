@@ -63,12 +63,12 @@ echo '<!DOCTYPE html>
         .signature-section input[type="text"] {
             width: 300px;
             padding: 5px;
+            padding-left: 50px;
             border: none;
             border-bottom: 1px solid #ccc;
             margin-bottom: 10px;
         }
         .signature-section label span {
-            display: inline-block;
             width: 100px;
         }
         .signature-section input[type="submit"] {
