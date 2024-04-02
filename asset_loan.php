@@ -17,7 +17,7 @@ $user_data = check_login($con);
                         <b class="text-muted">Asset Loan</b>
                         <div class="form-group">
                             <label for="" class="control-label"><span style="color: red;">*</span> Item Name</label>
-                            <select name="item_code" id="item_code" class="custom-select custom-select-sm select1" oninvalid="this.setCustomValidity('Select Item Here')" oninput="setCustomValidity('')" required>
+                            <select name="item_code" id="item_code" class="custom-select custom-select-sm select2" oninvalid="this.setCustomValidity('Select Item Here')" oninput="setCustomValidity('')" required>
                                 <option value=""></option>
                                 <?php
 
@@ -54,11 +54,12 @@ $user_data = check_login($con);
                                 ?>
                             </select>
                         </div>
+                        <!-- 
                         <div class="form-group">
                             <label for="" class="control-label"><span style="color: red;">*</span> Available QTY</label>
                             <select id="sum_qty" class="custom-select custom-select-sm select2" disabled>
                             </select>
-                        </div>
+                        </div> -->
                         <div class="form-group">
                             <label class="control-label"><span style="color: red;">*</span> Quantity</label>
                             <input type="number" class="form-control form-control-sm" name="qty" min="0" oninvalid="this.setCustomValidity('Enter Quantity Here')" oninput="setCustomValidity('')" required>
@@ -93,6 +94,9 @@ $user_data = check_login($con);
         </div>
     </div>
 </div>
+<!-- 
+
+available Quantity
 <script>
     document.getElementById('item_code').addEventListener('change', function() {
         var selectedOption = this.options[this.selectedIndex];
@@ -105,4 +109,6 @@ $user_data = check_login($con);
         // Update Current QTY field using Select2
         $('#sum_qty').html('<option value="' + qty + '">' + qty + '</option>').trigger('change');
     });
-</script>
+</script> 
+
+-->
