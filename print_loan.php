@@ -99,7 +99,16 @@ echo '<!DOCTYPE html>
             height: 50px;
             weidth: 50px;
         }
-
+        p {
+            font-size: 16px;
+            font-family:sans-serif;            
+            line-height: 25px;
+        }
+        h13 {
+            font-size: 16px;
+            font-family:sans-serif;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -149,6 +158,13 @@ echo '<!DOCTYPE html>
                 <td>' . $row['description'] . '</td>
             </tr>
         </table>
+        <div class="signature-section">
+        <h13>I acknowledge:</h13>
+        <p>
+•  I will make sure the borrowed items will be used properly and safely, keep the items in good condition, and return the items in time.</p>
+<p>
+•  I will be responsible for the cost of repair or replacement if any damage happens to the items.
+</p></div>
         <div class="signature-section">
             <form>
                 <label>
