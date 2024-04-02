@@ -17,19 +17,19 @@ $user_data = check_login($con);
                         <b class="text-muted">Asset Loan</b>
                         <div class="form-group">
                             <label for="" class="control-label"><span style="color: red;">*</span> Item Name</label>
-                            <select name="item_code" id="item_code" class="custom-select custom-select-sm select2" oninvalid="this.setCustomValidity('Select Item Here')" oninput="setCustomValidity('')" required>
+                            <select name="item_code" id="item_code" class="custom-select custom-select-sm select1" oninvalid="this.setCustomValidity('Select Item Here')" oninput="setCustomValidity('')" required>
                                 <option value=""></option>
                                 <?php
 
                                 // Retrieve all records from the asset_record table
-                                $sql = "SELECT item_code, CONCAT(item_name, IFNULL(CONCAT(' - ', brand), ''),IFNULL(CONCAT(' - ', model), ''),IFNULL(CONCAT(' - ', item_category), '')) AS Item_Name FROM asset_record where item_type = 'asset' order by Item_Name";
+                                $sql = "SELECT item_code, CONCAT(item_name, IFNULL(CONCAT(' - ', brand), ''),IFNULL(CONCAT(' - ', model), ''),IFNULL(CONCAT(' - ', item_category), '')) AS Item_Name, qty FROM asset_record where item_type = 'asset' order by Item_Name";
                                 $result = mysqli_query($con, $sql);
 
                                 // Check if query was successful
                                 if ($result) {
                                     // Loop through each row of the result set and output the item_name value as an option in the select dropdown
                                     while ($row = mysqli_fetch_assoc($result)) {
-                                        echo "<option value='" . $row["item_code"] . "'>" . $row["Item_Name"] . "</option>";
+                                        echo "<option value='" . $row["item_code"] . "' dataq-qty='" . $row["qty"] . "'>" . $row["Item_Name"] . "</option>";
                                     }
                                 }
                                 ?>
@@ -52,6 +52,11 @@ $user_data = check_login($con);
                                     }
                                 }
                                 ?>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="control-label"><span style="color: red;">*</span> Available QTY</label>
+                            <select id="sum_qty" class="custom-select custom-select-sm select2" disabled>
                             </select>
                         </div>
                         <div class="form-group">
@@ -88,3 +93,16 @@ $user_data = check_login($con);
         </div>
     </div>
 </div>
+<script>
+    document.getElementById('item_code').addEventListener('change', function() {
+        var selectedOption = this.options[this.selectedIndex];
+        var uom = selectedOption.getAttribute('data-uom');
+        var qty = selectedOption.getAttribute('dataq-qty');
+
+        // Update UOM field using Select2
+        $('#uom').html('<option value="' + uom + '">' + uom + '</option>').trigger('change');
+
+        // Update Current QTY field using Select2
+        $('#sum_qty').html('<option value="' + qty + '">' + qty + '</option>').trigger('change');
+    });
+</script>
