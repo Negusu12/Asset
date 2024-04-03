@@ -17,7 +17,7 @@ $user_data = check_login($con);
                         <b class="text-muted">Asset Buy</b>
                         <div class="form-group">
                             <label for="" class="control-label"><span style="color: red;">*</span> Item Name</label>
-                            <select name="item_code" id="item_code" class="custom-select custom-select-sm select1" oninvalid="this.setCustomValidity('Select Item Here')" oninput="setCustomValidity('')" required>
+                            <select name="item_code" id="item_code" class="custom-select custom-select-sm select2" onchange="updateAvailableQty()" oninvalid="this.setCustomValidity('Select Item Here')" oninput="setCustomValidity('')" required>
                                 <option value=""></option>
                                 <?php
                                 // Retrieve all records from the asset_record table
@@ -25,16 +25,16 @@ $user_data = check_login($con);
                                 CONCAT(ar.item_name, IFNULL(CONCAT(' - ', ar.brand), ''),
                                 IFNULL(CONCAT(' - ', ar.model), ''),IFNULL(CONCAT(' - ', ar.item_category), '')) AS Item_Name,
                                 ar.uom,
-                                ats.sum_qty
+                                ats.total_qty as sum_qty
                                 FROM asset_record ar
-                               left join asset_total_summury_v ats on ats.item_code = ar.item_code order by Item_Name";
+                               left join total_item_qty_view ats on ats.item_code = ar.item_code order by Item_Name";
                                 $result = mysqli_query($con, $sql);
 
                                 // Check if query was successful
                                 if ($result) {
                                     // Loop through each row of the result set and output the item_name value as an option in the select dropdown
                                     while ($row = mysqli_fetch_assoc($result)) {
-                                        echo "<option value='" . $row["item_code"] . "' data-uom='" . $row["uom"] . "' dataq-sum_qty='" . $row["sum_qty"] . "'>" . $row["Item_Name"] . "</option>";
+                                        echo "<option value='" . $row["item_code"] . "' data-uom='" . $row["uom"] . "' data-qty='" . $row["sum_qty"] . "'>" . $row["Item_Name"] . "</option>";
                                     }
                                 }
                                 ?>
@@ -42,14 +42,13 @@ $user_data = check_login($con);
                         </div>
                         <div class="form-group">
                             <label for="" class="control-label"><span style="color: red;">*</span> UOM</label>
-                            <select name="uom" id="uom" class="custom-select custom-select-sm select2">
+                            <input id="item_uom" name="uom" type="text" class="form-control form-control-sm" disabled>
                             </select>
 
                         </div>
                         <div class="form-group">
                             <label for="" class="control-label"><span style="color: red;">*</span> Current QTY</label>
-                            <select id="sum_qty" class="custom-select custom-select-sm select2" disabled>
-                            </select>
+                            <input id="available_qty" type="text" class="form-control form-control-sm" disabled>
                         </div>
 
                         <div class="form-group">
@@ -83,15 +82,12 @@ $user_data = check_login($con);
     </div>
 </div>
 <script>
-    document.getElementById('item_code').addEventListener('change', function() {
-        var selectedOption = this.options[this.selectedIndex];
-        var uom = selectedOption.getAttribute('data-uom');
-        var sum_qty = selectedOption.getAttribute('dataq-sum_qty');
-
-        // Update UOM field using Select2
-        $('#uom').html('<option value="' + uom + '">' + uom + '</option>').trigger('change');
-
-        // Update Current QTY field using Select2
-        $('#sum_qty').html('<option value="' + sum_qty + '">' + sum_qty + '</option>').trigger('change');
-    });
+    function updateAvailableQty() {
+        var selectedItem = document.getElementById("item_code");
+        var selectedOption = selectedItem.options[selectedItem.selectedIndex];
+        var availableQtyInput = document.getElementById("available_qty");
+        availableQtyInput.value = selectedOption.getAttribute("data-qty");
+        var availableQtyInput = document.getElementById("item_uom");
+        availableQtyInput.value = selectedOption.getAttribute("data-uom");
+    }
 </script>
