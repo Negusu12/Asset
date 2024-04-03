@@ -161,9 +161,9 @@ echo '<!DOCTYPE html>
         <div class="signature-section">
         <h13>I acknowledge:</h13>
         <p>
-•  I will make sure the borrowed items will be used properly and safely, keep the items in good condition, and return the items in time.</p>
+•  I will ensure the borrowed item(s) are used properly and safely, kept in good condition, and returned on time.</p>
 <p>
-•  I will be responsible for the cost of repair or replacement if any damage happens to the items.
+•  I understand that I am responsible for the cost of repair or replacement in case of any damage or loss to the item(s) while in my possession.
 </p></div>
         <div class="signature-section">
             <form>
