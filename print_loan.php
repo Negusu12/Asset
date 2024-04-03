@@ -114,7 +114,7 @@ echo '<!DOCTYPE html>
 <body>
 <div class="text_box">
 <div class="text">
-    <span style="font-size: 41px;">ABH IT Item Borrow Form</span>
+    <span style="font-size: 41px;">ABH IT Item Borrowing Form</span>
     </div>
     &nbsp;&nbsp;&nbsp;<img src="assets/dist/img/logo.png" alt="Logo" style="height: 61px;">
 </div>
