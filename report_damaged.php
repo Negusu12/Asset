@@ -1,72 +1,76 @@
-<div class="navigation_arrow">
-    <button class="navigation-btn" onclick="goBack()"><i class="fas fa-arrow-left"></i></button>
-    <button class="navigation-btn" onclick="goForward()"><i class="fas fa-arrow-right"></i></button>
-</div>
-<div class="col-lg-12">
-    <div class="card">
-        <div class="card-body">
-            <table class="table tabe-hover table-bordered mydatatable" id="mydatatable">
-                <thead>
-                    <tr>
-                        <th>Row No.</th>
-                        <th scope="col">Loan ID</th>
-                        <th scope="col">Item Name</th>
-                        <th scope="col">Model</th>
-                        <th scope="col">Brand</th>
-                        <th scope="col">Item Category</th>
-                        <th scope="col">Item Type</th>
-                        <th scope="col">Serial No.</th>
-                        <th scope="col">Loaned To</th>
-                        <th scope="col">Department Department</th>
-                        <th scope="col">UOM</th>
-                        <th scope="col">Loaned Quantity</th>
-                        <th scope="col">Quantity on Loan</th>
-                        <th scope="col">Document Date</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Prepared By</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    $i = 1;
-                    $qry = $con->query("select * from asset_loan_v where qty > 0 and department = 'damaged'");
-                    while ($row = $qry->fetch_assoc()) {
-                        $id = $row['loan_id'];
-                    ?>
-                        <tr>
-                            <th class="text-center"><?php echo $i++ ?></th>
-                            <td><b><?php echo $row['loan_id'] ?></b></td>
-                            <td><b><?php echo ucwords($row['item_name']) ?></b></td>
-                            <td><b><?php echo $row['brand'] ?></b></td>
-                            <td><b><?php echo $row['model'] ?></b></td>
-                            <td><b><?php echo $row['item_category'] ?></b></td>
-                            <td><b><?php echo $row['item_type'] ?></b></td>
-                            <td><b><?php echo $row['serial_no'] ?></b></td>
-                            <td><b><?php echo $row['full_name'] ?></b></td>
-                            <td><b><?php echo $row['department'] ?></b></td>
-                            <td><b><?php echo $row['uom'] ?></b></td>
-                            <td><b><?php echo ucwords($row['qty_taken']) ?></b></td>
-                            <td><b><?php echo $row['qty'] ?></b></td>
-                            <td><b><?php echo date('F d Y', strtotime($row['doc_date'])) ?></b></td>
-                            <td><b><?php echo $row['description'] ?></b></td>
-                            <td><b><?php echo $row['user_name'] ?></b></td>
+<div class="wrapperr">
+    <div class="container-fluidd">
+        <div class="navigation_arrow">
+            <button class="navigation-btn" onclick="goBack()"><i class="fas fa-arrow-left"></i></button>
+            <button class="navigation-btn" onclick="goForward()"><i class="fas fa-arrow-right"></i></button>
+        </div>
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <table class="table tabe-hover table-bordered mydatatable" id="mydatatable">
+                        <thead>
+                            <tr>
+                                <th>Row No.</th>
+                                <th scope="col">Loan ID</th>
+                                <th scope="col">Item Name</th>
+                                <th scope="col">Model</th>
+                                <th scope="col">Brand</th>
+                                <th scope="col">Item Category</th>
+                                <th scope="col">Item Type</th>
+                                <th scope="col">Serial No.</th>
+                                <th scope="col">Loaned To</th>
+                                <th scope="col">Department Department</th>
+                                <th scope="col">UOM</th>
+                                <th scope="col">Loaned Quantity</th>
+                                <th scope="col">Quantity on Loan</th>
+                                <th scope="col">Document Date</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Prepared By</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $i = 1;
+                            $qry = $con->query("select * from asset_loan_v where qty > 0 and department = 'damaged'");
+                            while ($row = $qry->fetch_assoc()) {
+                                $id = $row['loan_id'];
+                            ?>
+                                <tr>
+                                    <th class="text-center"><?php echo $i++ ?></th>
+                                    <td><b><?php echo $row['loan_id'] ?></b></td>
+                                    <td><b><?php echo ucwords($row['item_name']) ?></b></td>
+                                    <td><b><?php echo $row['brand'] ?></b></td>
+                                    <td><b><?php echo $row['model'] ?></b></td>
+                                    <td><b><?php echo $row['item_category'] ?></b></td>
+                                    <td><b><?php echo $row['item_type'] ?></b></td>
+                                    <td><b><?php echo $row['serial_no'] ?></b></td>
+                                    <td><b><?php echo $row['full_name'] ?></b></td>
+                                    <td><b><?php echo $row['department'] ?></b></td>
+                                    <td><b><?php echo $row['uom'] ?></b></td>
+                                    <td><b><?php echo ucwords($row['qty_taken']) ?></b></td>
+                                    <td><b><?php echo $row['qty'] ?></b></td>
+                                    <td><b><?php echo date('F d Y', strtotime($row['doc_date'])) ?></b></td>
+                                    <td><b><?php echo $row['description'] ?></b></td>
+                                    <td><b><?php echo $row['user_name'] ?></b></td>
 
-                            <td class="text-center">
-                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                                    Action
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="print_loan.php?loan_id=<?php echo $row['loan_id'] ?>" target="_blank">Print</a>
-                                </div>
-                            </td>
-                        </tr>
-                    <?php
-                    }
-                    ?>
-                </tbody>
+                                    <td class="text-center">
+                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                                            Action
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="print_loan.php?loan_id=<?php echo $row['loan_id'] ?>" target="_blank">Print</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php
+                            }
+                            ?>
+                        </tbody>
 
-            </table>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>

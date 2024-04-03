@@ -597,10 +597,16 @@ pre code {
 .container-md,
 .container-sm,
 .container-xl {
+    width: 100%;
     padding-right: 7.5px;
     padding-left: 7.5px;
     margin-right: auto;
     margin-left: auto
+}
+
+.container-fluidd {
+    width: fit-content;
+    min-width: 100%;
 }
 
 @media (min-width:576px) {
@@ -11511,7 +11517,12 @@ html {
 
 .wrapper {
     position: relative;
+}
+
+.wrapperr {
+    position: relative;
     width: fit-content;
+    min-width: 100%;
 }
 
 .wrapper .content-wrapper {

@@ -1,52 +1,56 @@
-<div class="navigation_arrow">
-    <button class="navigation-btn" onclick="goBack()"><i class="fas fa-arrow-left"></i></button>
-    <button class="navigation-btn" onclick="goForward()"><i class="fas fa-arrow-right"></i></button>
-</div>
-<div class="col-lg-12">
-    <div class="card">
-        <div class="card-body">
-            <table class="table tabe-hover table-bordered mydatatable" id="mydatatable">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th scope="col">loan ID</th>
-                        <th scope="col">Item Name</th>
-                        <th scope="col">Brand</th>
-                        <th scope="col">Model</th>
-                        <th scope="col">Category</th>
-                        <th scope="col">Type</th>
-                        <th scope="col">Borrower Name</th>
-                        <th scope="col">UOM</th>
-                        <th scope="col">Quantity</th>
-                        <th scope="col">Document Date</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Prepared By</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    $i = 1;
-                    $qry = $con->query("select * from asset_return_v");
-                    while ($row = $qry->fetch_assoc()) :
-                    ?>
-                        <tr>
-                            <th class="text-center"><?php echo $i++ ?></th>
-                            <td><b><?php echo $row['loan_id'] ?></b></td>
-                            <td><b><?php echo ucwords($row['item_name']) ?></b></td>
-                            <td><b><?php echo $row['brand'] ?></b></td>
-                            <td><b><?php echo $row['model'] ?></b></td>
-                            <td><b><?php echo $row['item_category'] ?></b></td>
-                            <td><b><?php echo $row['item_type'] ?></b></td>
-                            <td><b><?php echo $row['full_name'] ?></b></td>
-                            <td><b><?php echo $row['uom'] ?></b></td>
-                            <td><b><?php echo $row['qty'] ?></b></td>
-                            <td><b><?php echo date('F d Y', strtotime($row['doc_date'])) ?></b></td>
-                            <td><b><?php echo $row['description'] ?></b></td>
-                            <td><b><?php echo $row['user_name'] ?></b></td>
-                        </tr>
-                    <?php endwhile; ?>
-                </tbody>
-            </table>
+<div class="wrapperr">
+    <div class="container-fluidd">
+        <div class="navigation_arrow">
+            <button class="navigation-btn" onclick="goBack()"><i class="fas fa-arrow-left"></i></button>
+            <button class="navigation-btn" onclick="goForward()"><i class="fas fa-arrow-right"></i></button>
+        </div>
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <table class="table tabe-hover table-bordered mydatatable" id="mydatatable">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th scope="col">loan ID</th>
+                                <th scope="col">Item Name</th>
+                                <th scope="col">Brand</th>
+                                <th scope="col">Model</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Type</th>
+                                <th scope="col">Borrower Name</th>
+                                <th scope="col">UOM</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Document Date</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Prepared By</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $i = 1;
+                            $qry = $con->query("select * from asset_return_v");
+                            while ($row = $qry->fetch_assoc()) :
+                            ?>
+                                <tr>
+                                    <th class="text-center"><?php echo $i++ ?></th>
+                                    <td><b><?php echo $row['loan_id'] ?></b></td>
+                                    <td><b><?php echo ucwords($row['item_name']) ?></b></td>
+                                    <td><b><?php echo $row['brand'] ?></b></td>
+                                    <td><b><?php echo $row['model'] ?></b></td>
+                                    <td><b><?php echo $row['item_category'] ?></b></td>
+                                    <td><b><?php echo $row['item_type'] ?></b></td>
+                                    <td><b><?php echo $row['full_name'] ?></b></td>
+                                    <td><b><?php echo $row['uom'] ?></b></td>
+                                    <td><b><?php echo $row['qty'] ?></b></td>
+                                    <td><b><?php echo date('F d Y', strtotime($row['doc_date'])) ?></b></td>
+                                    <td><b><?php echo $row['description'] ?></b></td>
+                                    <td><b><?php echo $row['user_name'] ?></b></td>
+                                </tr>
+                            <?php endwhile; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>

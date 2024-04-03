@@ -1,50 +1,54 @@
-<div class="navigation_arrow">
-    <button class="navigation-btn" onclick="goBack()"><i class="fas fa-arrow-left"></i></button>
-    <button class="navigation-btn" onclick="goForward()"><i class="fas fa-arrow-right"></i></button>
-</div>
-<div class="col-lg-12">
-    <div class="card">
-        <div class="card-body">
-            <table class="table tabe-hover table-bordered mydatatable" id="mydatatable">
-                <thead>
-                    <tr>
-                        <th scope="col">row_No</th>
-                        <th scope="col">employee_id</th>
-                        <th scope="col">full_name</th>
-                        <th scope="col">department</th>
-                        <?php if ($user_data['role'] == 1) : ?>
-                            <th scope="col">Action</th>
-                        <?php endif; ?>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    $i = 1;
-                    $qry = $con->query("select * from employee order by employee_id desc");
-                    while ($row = $qry->fetch_assoc()) :
-                    ?>
-                        <tr>
-                            <th class="text-center"><?php echo $i++ ?></th>
-                            <td><b><?php echo $row['employee_id'] ?></b></td>
-                            <td><b><?php echo $row['full_name'] ?></b></td>
-                            <td><b><?php echo $row['department'] ?></b></td>
-                            <?php if ($user_data['role'] == 1) : ?>
-                                <td class="text-center">
-                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                                        Action
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="./index.php?page=backend/edit_employee&employee_id=<?php echo $row['employee_id'] ?>">Edit</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" onclick='confirmDelete(<?php echo $row['employee_id']; ?>)'>Delete</a>
+<div class="wrapperr">
+    <div class="container-fluidd">
+        <div class="navigation_arrow">
+            <button class="navigation-btn" onclick="goBack()"><i class="fas fa-arrow-left"></i></button>
+            <button class="navigation-btn" onclick="goForward()"><i class="fas fa-arrow-right"></i></button>
+        </div>
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <table class="table tabe-hover table-bordered mydatatable" id="mydatatable">
+                        <thead>
+                            <tr>
+                                <th scope="col">row_No</th>
+                                <th scope="col">employee_id</th>
+                                <th scope="col">full_name</th>
+                                <th scope="col">department</th>
+                                <?php if ($user_data['role'] == 1) : ?>
+                                    <th scope="col">Action</th>
+                                <?php endif; ?>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $i = 1;
+                            $qry = $con->query("select * from employee order by employee_id desc");
+                            while ($row = $qry->fetch_assoc()) :
+                            ?>
+                                <tr>
+                                    <th class="text-center"><?php echo $i++ ?></th>
+                                    <td><b><?php echo $row['employee_id'] ?></b></td>
+                                    <td><b><?php echo $row['full_name'] ?></b></td>
+                                    <td><b><?php echo $row['department'] ?></b></td>
+                                    <?php if ($user_data['role'] == 1) : ?>
+                                        <td class="text-center">
+                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                                                Action
+                                            </button>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="./index.php?page=backend/edit_employee&employee_id=<?php echo $row['employee_id'] ?>">Edit</a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" onclick='confirmDelete(<?php echo $row['employee_id']; ?>)'>Delete</a>
 
-                                    </div>
-                                </td>
-                            <?php endif; ?>
-                        </tr>
-                    <?php endwhile; ?>
-                </tbody>
-            </table>
+                                            </div>
+                                        </td>
+                                    <?php endif; ?>
+                                </tr>
+                            <?php endwhile; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>
