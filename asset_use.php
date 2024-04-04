@@ -17,24 +17,28 @@ $user_data = check_login($con);
                         <b class="text-muted">Asset Use</b>
                         <div class="form-group">
                             <label for="" class="control-label"><span style="color: red;">*</span> Item Name</label>
-                            <select name="item_code" id="item_code" class="custom-select custom-select-sm select2" oninvalid="this.setCustomValidity('Select Item Here')" oninput="setCustomValidity('')" required>
+                            <select name="item_code" id="item_code" class="custom-select custom-select-sm select2" onchange="updateAvailableQty()" oninvalid="this.setCustomValidity('Select Item Here')" oninput="setCustomValidity('')" required>
                                 <option value=""></option>
                                 <?php
 
 
                                 // Retrieve all records from the asset_record table
-                                $sql = "SELECT item_code, CONCAT(item_name, IFNULL(CONCAT(' - ', brand, ' - ', model, ' - ', item_category), '')) AS Item_Name FROM asset_record where item_type = 'consumable'";
+                                $sql = "SELECT item_code, qty, CONCAT(item_name, IFNULL(CONCAT(' - ', brand, ' - ', model, ' - ', item_category), '')) AS Item_Name FROM asset_record where item_type = 'consumable'";
                                 $result = mysqli_query($con, $sql);
 
                                 // Check if query was successful
                                 if ($result) {
                                     // Loop through each row of the result set and output the item_name value as an option in the select dropdown
                                     while ($row = mysqli_fetch_assoc($result)) {
-                                        echo "<option value='" . $row["item_code"] . "'>" . $row["Item_Name"] . "</option>";
+                                        echo "<option value='" . $row["item_code"] . "' data-qty='" . $row["qty"] . "'>" . $row["Item_Name"] . "</option>";
                                     }
                                 }
                                 ?>
                             </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="control-label"><span style="color: red;">*</span> Available QTY</label>
+                            <input id="available_qty" type="text" class="form-control form-control-sm" disabled>
                         </div>
                         <div class="form-group">
                             <label class="control-label"><span style="color: red;">*</span> Quantity</label>
@@ -66,3 +70,11 @@ $user_data = check_login($con);
         </div>
     </div>
 </div>
+<script>
+    function updateAvailableQty() {
+        var selectedItem = document.getElementById("item_code");
+        var selectedOption = selectedItem.options[selectedItem.selectedIndex];
+        var availableQtyInput = document.getElementById("available_qty");
+        availableQtyInput.value = selectedOption.getAttribute("data-qty");
+    }
+</script>
