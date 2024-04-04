@@ -17,10 +17,20 @@ $user_data = check_login($con);
                         <b class="text-muted">Asset Return</b>
                         <div class="form-group">
                             <label for="" class="control-label"><span style="color: red;">*</span> Loan ID</label>
-                            <select name="loan_id" id="loan_id" class="custom-select custom-select-sm select2" onchange="this.form.submit()" oninvalid="this.setCustomValidity('Select Loan ID Here')" oninput="setCustomValidity('')" required>
+                            <select name="loan_id" id="loan_id" class="custom-select custom-select-sm select2" onchange="updateLoanedQty()" oninvalid="this.setCustomValidity('Select Loan ID Here')" oninput="setCustomValidity('')" required>
                                 <option value=""></option>
                                 <?php
-                                $sql = "SELECT DISTINCT loan_id FROM asset_loan where qty > 0";
+                                $sql = "SELECT DISTINCT 
+                                al.loan_id,
+                                al.employee_id,
+                                al.item_code,
+                                al.qty as sum_qty,
+                                e.full_name as full_name,
+                                ar.item_name as item_name
+                                 FROM  asset_loan al
+                                LEFT JOIN employee e ON al.employee_id = e.employee_id
+                                LEFT JOIN asset_record ar ON al.item_code = ar.item_code
+                                where al.qty > 0";
                                 $result = mysqli_query($con, $sql);
 
                                 if ($result) {
@@ -29,7 +39,7 @@ $user_data = check_login($con);
                                         if (isset($_POST['loan_id']) && $_POST['loan_id'] == $row["loan_id"]) {
                                             $selected = "selected";
                                         }
-                                        echo "<option value='" . $row["loan_id"] . "' " . $selected . ">" . $row["loan_id"] . "</option>";
+                                        echo "<option value='" . $row["loan_id"] . "' " . $selected . " data-qty='" . $row["sum_qty"] . "' . ' " . $selected . " data-full_name='" . $row["full_name"] . "' . ' " . $selected . " data-item_name='" . $row["item_name"] . "' . ' " . $selected . " data-employee_id='" . $row["employee_id"] . "' . ' " . $selected . " data-item_code='" . $row["item_code"] . "'>" . $row["loan_id"] . "</option>";
                                     }
                                 }
                                 ?>
@@ -37,53 +47,26 @@ $user_data = check_login($con);
                         </div>
                         <div class="form-group">
                             <label for="" class="control-label"><span style="color: red;">*</span> Borrower Name</label>
-                            <select name="employee_id" id="employee_id" class="custom-select custom-select-sm select2" onchange="this.form.submit()" oninvalid="this.setCustomValidity('Select Borrower Here')" oninput="setCustomValidity('')" required>
-                                <?php
-                                if (isset($_POST['loan_id'])) {
-                                    $loan_id = $_POST['loan_id'];
-
-                                    $sql = "SELECT al.employee_id, e.full_name 
-                FROM asset_loan al
-                LEFT JOIN employee e ON al.employee_id = e.employee_id
-                WHERE al.loan_id = ?";
-                                    $stmt = mysqli_prepare($con, $sql);
-                                    mysqli_stmt_bind_param($stmt, "s", $loan_id);
-                                    mysqli_stmt_execute($stmt);
-                                    $result = mysqli_stmt_get_result($stmt);
-
-                                    if ($result) {
-                                        while ($row = mysqli_fetch_assoc($result)) {
-                                            echo "<option value='" . $row["employee_id"] . "'>" . $row["full_name"] . "</option>";
-                                        }
-                                    }
-                                }
-                                ?>
-                            </select>
+                            <input id="borrower_name" type="text" class="form-control form-control-sm" readonly>
                         </div>
                         <div class="form-group">
                             <label for="" class="control-label"><span style="color: red;">*</span> Item Name</label>
-                            <select name="item_code" id="item_code" class="custom-select custom-select-sm select2" onchange="this.form.submit()" oninvalid="this.setCustomValidity('Select Item Here')" oninput="setCustomValidity('')" required>
-                                <?php
-                                if (isset($_POST['loan_id'])) {
-                                    $loan_id = $_POST['loan_id'];
+                            <input id="item_name" type="text" class="form-control form-control-sm" readonly>
+                        </div>
 
-                                    $sql = "SELECT al.item_code, CONCAT(ar.item_name, IFNULL(CONCAT(' - ', brand), ''), IFNULL(CONCAT(' - ', model), ''),IFNULL(CONCAT(' - ', item_category), '')) AS Item_Name
-                                FROM asset_loan al
-                                LEFT JOIN asset_record ar ON al.item_code = ar.item_code
-                WHERE al.loan_id = ?";
-                                    $stmt = mysqli_prepare($con, $sql);
-                                    mysqli_stmt_bind_param($stmt, "s", $loan_id);
-                                    mysqli_stmt_execute($stmt);
-                                    $result = mysqli_stmt_get_result($stmt);
+                        <div class="form-group" style="display: none;">
+                            <label for="" class="control-label"><span style="color: red;">*</span> Borrower Name</label>
+                            <input name="employee_id" id="employee_id" type="text" class="form-control form-control-sm" readonly>
+                        </div>
+                        <div class="form-group" style="display: none;">
+                            <label for="" class="control-label"><span style="color: red;">*</span> Item Name</label>
+                            <input name="item_code" id="item_code" type="text" class="form-control form-control-sm" readonly>
+                        </div>
 
-                                    if ($result) {
-                                        while ($row = mysqli_fetch_assoc($result)) {
-                                            echo "<option value='" . $row["item_code"] . "'>" . $row["Item_Name"] . "</option>";
-                                        }
-                                    }
-                                }
-                                ?>
-                            </select>
+
+                        <div class="form-group">
+                            <label for="" class="control-label">&nbsp;&nbsp;&nbsp;Unreturned QTY</label>
+                            <input id="loaned_qty" type="text" class="form-control form-control-sm" readonly>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -115,3 +98,21 @@ $user_data = check_login($con);
         </div>
     </div>
 </div>
+<script>
+    function updateLoanedQty() {
+        var selectedItem = document.getElementById("loan_id");
+        var selectedOption = selectedItem.options[selectedItem.selectedIndex];
+        var unreturnedQtyInput = document.getElementById("loaned_qty");
+        unreturnedQtyInput.value = selectedOption.getAttribute("data-qty");
+        var borrowerNameInput = document.getElementById("borrower_name");
+        borrowerNameInput.value = selectedOption.getAttribute("data-full_name");
+        var itemNameInput = document.getElementById("item_name");
+        itemNameInput.value = selectedOption.getAttribute("data-item_name");
+
+        var borrowerIdInput = document.getElementById("employee_id");
+        borrowerIdInput.value = selectedOption.getAttribute("data-employee_id");
+        var itemCodeInput = document.getElementById("item_code");
+        itemCodeInput.value = selectedOption.getAttribute("data-item_code");
+
+    }
+</script>
