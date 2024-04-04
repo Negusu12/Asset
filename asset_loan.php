@@ -22,14 +22,14 @@ $user_data = check_login($con);
                                 <?php
 
                                 // Retrieve all records from the asset_record table
-                                $sql = "SELECT item_code, CONCAT(item_name, IFNULL(CONCAT(' - ', brand), ''),IFNULL(CONCAT(' - ', model), ''),IFNULL(CONCAT(' - ', item_category), '')) AS Item_Name, qty as sum_qty FROM asset_record where item_type = 'asset' order by Item_Name";
+                                $sql = "SELECT item_code, CONCAT(item_name, IFNULL(CONCAT(' - ', brand), ''),IFNULL(CONCAT(' - ', model), ''),IFNULL(CONCAT(' - ', item_category), '')) AS Item_Name, qty as sum_qty, uom FROM asset_record where item_type = 'asset' order by Item_Name";
                                 $result = mysqli_query($con, $sql);
 
                                 // Check if query was successful
                                 if ($result) {
                                     // Loop through each row of the result set and output the item_name value as an option in the select dropdown
                                     while ($row = mysqli_fetch_assoc($result)) {
-                                        echo "<option value='" . $row["item_code"] . "' data-qty='" . $row["sum_qty"] . "'>" . $row["Item_Name"] . "</option>";
+                                        echo "<option value='" . $row["item_code"] . "' data-qty='" . $row["sum_qty"] . "' . data-uom='" . $row["uom"] . "'>" . $row["Item_Name"] . "</option>";
                                     }
                                 }
                                 ?>
@@ -56,7 +56,7 @@ $user_data = check_login($con);
                         </div>
 
                         <div class="form-group">
-                            <label for="" class="control-label"><span style="color: red;">*</span> Available QTY</label>
+                            <label for="" class="control-label">&nbsp;&nbsp;&nbsp;Available Quantity</label>
                             <input id="available_qty" type="text" class="form-control form-control-sm" disabled>
                         </div>
                         <div class="form-group">
@@ -66,6 +66,10 @@ $user_data = check_login($con);
                     </div>
                     <div class="col-md-6">
                         <br />
+                        <div class="form-group">
+                            <label for="" class="control-label"><span style="color: red;">*</span> UOM</label>
+                            <input id="item_uom" type="text" class="form-control form-control-sm" disabled>
+                        </div>
                         <div class="form-group">
                             <label for="" class="control-label"><span style="color: red;">*</span> Date</label>
                             <input type="date" name="doc_date" id="doc_date" class="form-control form-control-sm" oninvalid="this.setCustomValidity('Enter Date Here')" oninput="setCustomValidity('')" required>
@@ -100,5 +104,7 @@ $user_data = check_login($con);
         var selectedOption = selectedItem.options[selectedItem.selectedIndex];
         var availableQtyInput = document.getElementById("available_qty");
         availableQtyInput.value = selectedOption.getAttribute("data-qty");
+        var availableQtyInput = document.getElementById("item_uom");
+        availableQtyInput.value = selectedOption.getAttribute("data-uom");
     }
 </script>

@@ -23,21 +23,25 @@ $user_data = check_login($con);
 
 
                                 // Retrieve all records from the asset_record table
-                                $sql = "SELECT item_code, qty, CONCAT(item_name, IFNULL(CONCAT(' - ', brand, ' - ', model, ' - ', item_category), '')) AS Item_Name FROM asset_record where item_type = 'consumable'";
+                                $sql = "SELECT item_code, qty, CONCAT(item_name, IFNULL(CONCAT(' - ', brand, ' - ', model, ' - ', item_category), '')) AS Item_Name, uom FROM asset_record where item_type = 'consumable'";
                                 $result = mysqli_query($con, $sql);
 
                                 // Check if query was successful
                                 if ($result) {
                                     // Loop through each row of the result set and output the item_name value as an option in the select dropdown
                                     while ($row = mysqli_fetch_assoc($result)) {
-                                        echo "<option value='" . $row["item_code"] . "' data-qty='" . $row["qty"] . "'>" . $row["Item_Name"] . "</option>";
+                                        echo "<option value='" . $row["item_code"] . "' data-qty='" . $row["qty"] . "' . data-uom='" . $row["uom"] . "'>" . $row["Item_Name"] . "</option>";
                                     }
                                 }
                                 ?>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="" class="control-label"><span style="color: red;">*</span> Available QTY</label>
+                            <label for="" class="control-label"><span style="color: red;">*</span> UOM</label>
+                            <input id="item_uom" type="text" class="form-control form-control-sm" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="control-label">&nbsp;&nbsp;&nbsp;Available QTY</label>
                             <input id="available_qty" type="text" class="form-control form-control-sm" disabled>
                         </div>
                         <div class="form-group">
@@ -76,5 +80,7 @@ $user_data = check_login($con);
         var selectedOption = selectedItem.options[selectedItem.selectedIndex];
         var availableQtyInput = document.getElementById("available_qty");
         availableQtyInput.value = selectedOption.getAttribute("data-qty");
+        var availableQtyInput = document.getElementById("item_uom");
+        availableQtyInput.value = selectedOption.getAttribute("data-uom");
     }
 </script>

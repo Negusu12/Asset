@@ -43,11 +43,9 @@ $user_data = check_login($con);
                         <div class="form-group">
                             <label for="" class="control-label"><span style="color: red;">*</span> UOM</label>
                             <input id="item_uom" name="uom" type="text" class="form-control form-control-sm" disabled>
-                            </select>
-
                         </div>
                         <div class="form-group">
-                            <label for="" class="control-label"><span style="color: red;">*</span> Current QTY</label>
+                            <label for="" class="control-label">&nbsp;&nbsp;&nbsp;Current QTY</label>
                             <input id="available_qty" type="text" class="form-control form-control-sm" disabled>
                         </div>
 
