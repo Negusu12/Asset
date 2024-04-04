@@ -26,7 +26,8 @@ $user_data = check_login($con);
                                 al.item_code,
                                 al.qty as sum_qty,
                                 e.full_name as full_name,
-                                ar.item_name as item_name
+                                ar.item_name as item_name,
+                                concat(al.loan_id, ' - ' , e.full_name, ' - ' , ar.item_name, ' - ' , al.qty_taken) as loan
                                  FROM  asset_loan al
                                 LEFT JOIN employee e ON al.employee_id = e.employee_id
                                 LEFT JOIN asset_record ar ON al.item_code = ar.item_code
@@ -39,7 +40,7 @@ $user_data = check_login($con);
                                         if (isset($_POST['loan_id']) && $_POST['loan_id'] == $row["loan_id"]) {
                                             $selected = "selected";
                                         }
-                                        echo "<option value='" . $row["loan_id"] . "' " . $selected . " data-qty='" . $row["sum_qty"] . "' . ' " . $selected . " data-full_name='" . $row["full_name"] . "' . ' " . $selected . " data-item_name='" . $row["item_name"] . "' . ' " . $selected . " data-employee_id='" . $row["employee_id"] . "' . ' " . $selected . " data-item_code='" . $row["item_code"] . "'>" . $row["loan_id"] . "</option>";
+                                        echo "<option value='" . $row["loan_id"] . "' " . $selected . " data-qty='" . $row["sum_qty"] . "' . ' " . $selected . " data-full_name='" . $row["full_name"] . "' . ' " . $selected . " data-item_name='" . $row["item_name"] . "' . ' " . $selected . " data-employee_id='" . $row["employee_id"] . "' . ' " . $selected . " data-item_code='" . $row["item_code"] . "'>" . $row["loan"] . "</option>";
                                     }
                                 }
                                 ?>
