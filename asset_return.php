@@ -27,7 +27,7 @@ $user_data = check_login($con);
                                 ar.uom,
                                 al.qty as sum_qty,
                                 e.full_name as full_name,
-                                ar.item_name as item_name,
+                                CONCAT(ar.item_name, IFNULL(CONCAT(' - ', ar.brand), ''),IFNULL(CONCAT(' - ', ar.model), ''),IFNULL(CONCAT(' - ', ar.item_category), '')) as item_name,
                                 CONCAT(al.loan_id, ' - ' , e.full_name, ' - ' , ar.item_name, IFNULL(CONCAT(' - ', ar.brand), ''),IFNULL(CONCAT(' - ', ar.model), ''),IFNULL(CONCAT(' - ', ar.item_category), ''), ' - ', al.qty_taken) as loan
                                  FROM  asset_loan al
                                 LEFT JOIN employee e ON al.employee_id = e.employee_id
