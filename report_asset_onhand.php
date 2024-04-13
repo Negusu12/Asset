@@ -28,7 +28,7 @@
 						<tbody>
 							<?php
 							$i = 1;
-							$qry = $con->query("select * from asset_record");
+							$qry = $con->query("select * from asset_record order by item_code desc");
 							while ($row = $qry->fetch_assoc()) :
 							?>
 								<tr>

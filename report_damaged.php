@@ -32,7 +32,7 @@
                         <tbody>
                             <?php
                             $i = 1;
-                            $qry = $con->query("select * from asset_loan_v where qty > 0 and department = 'damaged'");
+                            $qry = $con->query("select * from asset_loan_v where qty > 0 and department = 'damaged' order by loan_id desc");
                             while ($row = $qry->fetch_assoc()) {
                                 $id = $row['loan_id'];
                             ?>

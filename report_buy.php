@@ -23,7 +23,7 @@
                         <tbody>
                             <?php
                             $i = 1;
-                            $qry = $con->query("select * from buy_asset_report");
+                            $qry = $con->query("select * from buy_asset_report order by b_asset desc");
                             while ($row = $qry->fetch_assoc()) :
                             ?>
                                 <tr>
