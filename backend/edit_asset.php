@@ -145,7 +145,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'GET') {
                         </div>
                         <div class="form-group">
                             <label class="control-label">&nbsp;&nbsp;&nbsp;Description</label>
-                            <textarea name="description" cols="30" rows="4" class="form-control"><?php echo $description ?></textarea>
+                            <textarea name="description" id="description" cols="30" rows="4" class="form-control"><?php echo $description ?></textarea>
                         </div>
                     </div>
                 </div>

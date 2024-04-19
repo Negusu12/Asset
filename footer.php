@@ -179,7 +179,7 @@
 <script src="assets/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="assets/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-<!-- Text Editor -->
+<!-- Text Editor 
 <script src="https://cdn.tiny.cloud/1/97skrcesyhw4bznyp5spfe2pnnj075hepezg5hj58dbq2uxi/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
 	tinymce.init({
@@ -200,4 +200,16 @@
 		ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
 	});
 </script>
-<!-- End Text Editor -->
+ End Text Editor -->
+
+<script src="assets/plugins/ckeditor/ckeditor.js"></script>
+<script>
+	ClassicEditor
+		.create(document.querySelector('#description'))
+		.then(editor => {
+			console.log(editor);
+		})
+		.catch(error => {
+			console.error(error);
+		});
+</script>

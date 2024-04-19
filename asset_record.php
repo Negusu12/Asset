@@ -84,7 +84,7 @@ $user_data = check_login($con);
                         </div>
                         <div class="form-group">
                             <label class="control-label">&nbsp;&nbsp;&nbsp;Description</label>
-                            <textarea name="description" cols="30" rows="4" class="form-control"></textarea>
+                            <textarea name="description" id="description" id="description" cols="30" rows="4" class="form-control"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="" class="control-label"><span style="color: red;">*</span> Upload Image</label>
