@@ -278,3 +278,58 @@ ul {
   max-height: 80px;
 }
 
+.item-details-form {
+  font-family: Arial, sans-serif;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.item-details-form h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.form-column {
+  flex: 1;
+  padding: 10px;
+}
+
+.form-column label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+.form-column span {
+  display: block;
+  padding: 5px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.swal2-container.swal2-center>.swal2-popup {
+  grid-column: 2;
+  grid-row: 2;
+  align-self: center;
+  justify-self: center;
+  max-width: 70%;
+  min-width: 30%;
+  width: auto;
+}
+
+.item-details-form {
+  max-width: 100%;
+}
