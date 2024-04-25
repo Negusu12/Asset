@@ -333,3 +333,16 @@ ul {
 .item-details-form {
   max-width: 100%;
 }
+
+@media print {
+
+  /* Hide the print button */
+  .btn-primary {
+    display: none !important;
+  }
+
+  /* Hide the OK button in SweetAlert */
+  .swal2-confirm {
+    display: none !important;
+  }
+}

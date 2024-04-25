@@ -86,6 +86,8 @@ if (isset($_GET['item_code'])) {
             $htmlContent .= '</div>';
         }
 
+        $htmlContent .= '<button onclick="window.print()" class="btn btn-primary">Print</button>';
+
         // Close the div
         $htmlContent .= '</div>';
 
