@@ -71,6 +71,9 @@ if (isset($_GET['item_code'])) {
                                     }
                                     ?>
                                 </td>
+
+
+
                                 <td class="text-center">
                                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                                         Action
@@ -79,8 +82,12 @@ if (isset($_GET['item_code'])) {
                                         <a class="dropdown-item" href="./index.php?page=backend/edit_asset&item_code=<?php echo $row['item_code'] ?>">Edit</a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="./index.php?page=backend/edit_image&item_code=<?php echo $row['item_code'] ?>">Change Image</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" style="cursor: pointer;" onclick="viewItem('<?php echo $row['item_code']; ?>')">View</a>
+
                                     </div>
                                 </td>
+
                             </tr>
                         <?php endwhile; ?>
                     </tbody>
@@ -106,6 +113,12 @@ if (isset($_GET['item_code'])) {
                 lengthMenu: [
                     [10, 25, 50, -1],
                     [10, 25, 50, "All"]
+                ],
+                columnDefs: [{
+                        targets: [10], // index of the "Password" column (zero-based index)
+                        visible: false // set to false to hide the column by default
+                    }
+                    // Add similar blocks for other columns you want to hide by default
                 ]
             });
             table.columns().every(function() {
@@ -128,6 +141,32 @@ if (isset($_GET['item_code'])) {
                 .appendTo('#mydatatable_wrapper .col-md-6:eq(0)');
 
         });
+    </script>
+    <script>
+        function viewItem(itemCode) {
+            fetch('item_detail_card.php?item_code=' + itemCode)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.text(); // Change to text() to receive plain text response
+                })
+                .then(data => {
+                    // Display the plain text response directly
+                    Swal.fire({
+                        title: 'Item Details',
+                        html: data // Display the plain text response
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching item details:', error);
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Failed to fetch item details. Please try again later.',
+                        icon: 'error'
+                    });
+                });
+        }
     </script>
 <?php
 } else {

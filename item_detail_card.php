@@ -72,18 +72,21 @@ if (isset($_GET['item_code'])) {
         $htmlContent .= '</div>';
         $htmlContent .= '</div>';
 
-        $htmlContent .= '<div class="form-row">';
-        $htmlContent .= '<div class="form-column">';
-        $htmlContent .= '<label for="item_image">Item Image</label>';
-        $htmlContent .= '</div>';
-        $htmlContent .= '</div>';
+        if ($item['item_image'] !== null) {
+            $htmlContent .= '<div class="form-row">';
+            $htmlContent .= '<div class="form-column">';
+            $htmlContent .= '<label for="item_image">Item Image</label>';
+            $htmlContent .= '</div>';
+            $htmlContent .= '</div>';
 
-        $htmlContent .= '<div class="form-row">';
-        $htmlContent .= '</div>';
-        $htmlContent .= '<div class="form-column">';
-        $htmlContent .= '<img src="data:image/jpeg;base64,' . base64_encode($item['item_image']) . '" alt="Item Image" class="img-thumbnail" style="max-width: 300px; max-height: 300px;">';
-        $htmlContent .= '</div>';
-        // Add more rows and columns as needed
+            $htmlContent .= '<div class="form-row">';
+            $htmlContent .= '</div>';
+            $htmlContent .= '<div class="form-column">';
+            $htmlContent .= '<img src="data:image/jpeg;base64,' . base64_encode($item['item_image']) . '" alt="Item Image" class="img-thumbnail" style="max-width: 300px; max-height: 300px;">';
+            $htmlContent .= '</div>';
+        }
+
+        // Close the div
         $htmlContent .= '</div>';
 
         // Output the HTML content
