@@ -345,4 +345,30 @@ ul {
   .swal2-confirm {
     display: none !important;
   }
+
+  .item-details-form {
+    max-width: 100%;
+    width: 900px;
+    padding: 10px;
+    /* Adjust padding as needed */
+  }
+
+  /* Adjust the font size for better readability when printed */
+  .item-details-form * {
+    font-size: 12px;
+    /* Adjust font size as needed */
+  }
+
+  /* Use the scale() function to adjust the scale of printed content */
+  @page {
+    size: A4;
+    /* Set the page size to A4 or any desired size */
+    margin: 0;
+    /* Remove default margins */
+  }
+
+  body {
+    margin: 1.5cm;
+    /* Set margins for the body */
+  }
 }

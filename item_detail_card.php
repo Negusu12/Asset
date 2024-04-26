@@ -86,12 +86,12 @@ if (isset($_GET['item_code'])) {
             $htmlContent .= '</div>';
         }
 
-        $htmlContent .= '<button onclick="window.print()" class="btn btn-primary">Print</button>';
+
 
         // Close the div
         $htmlContent .= '</div>';
 
-        // Output the HTML content
+        $htmlContent .= '<button onclick="window.print()" class="btn btn-primary">Print</button>';
         echo $htmlContent;
     } else {
         // Item not found
