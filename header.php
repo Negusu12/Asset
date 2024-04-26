@@ -49,6 +49,7 @@ $user_data = check_login($con);
   <script src="assets/plugins/chart.js/Chart.bundle.min.js"></script>
   <script src="assets/plugins/chart.js/Chart.js"></script>
   <script src="assets/plugins/chart.js/zoom.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
 
 </head>

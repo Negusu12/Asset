@@ -1,7 +1,6 @@
 <?php
 // Include necessary files and configurations
 include("connect.php");
-
 // Check if the 'item_code' parameter is set
 if (isset($_GET['item_code'])) {
     // Sanitize the input
@@ -91,7 +90,7 @@ if (isset($_GET['item_code'])) {
         // Close the div
         $htmlContent .= '</div>';
 
-        $htmlContent .= '<button onclick="window.print()" class="btn btn-primary print_btn">Print</button>';
+        $htmlContent .= '<button onclick="window.print()" class="print_btn"><i class="fa-solid fa-print fa-2xl"></i></button>';
         echo $htmlContent;
     } else {
         // Item not found

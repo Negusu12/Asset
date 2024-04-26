@@ -336,6 +336,15 @@ ul {
 
 .print_btn {
   margin-top: 10px;
+  width: 55px;
+  height: 50px;
+  border-color: rgb(99, 12, 199);
+  ;
+}
+
+.fa-print:before {
+  content: "\f02f";
+  color: rgb(99, 12, 199);
 }
 
 @media print {
