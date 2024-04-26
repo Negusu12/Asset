@@ -334,6 +334,10 @@ ul {
   max-width: 100%;
 }
 
+.print_btn {
+  margin-top: 10px;
+}
+
 @media print {
 
   /* Hide the print button */

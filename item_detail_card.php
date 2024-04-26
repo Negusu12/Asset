@@ -91,7 +91,7 @@ if (isset($_GET['item_code'])) {
         // Close the div
         $htmlContent .= '</div>';
 
-        $htmlContent .= '<button onclick="window.print()" class="btn btn-primary">Print</button>';
+        $htmlContent .= '<button onclick="window.print()" class="btn btn-primary print_btn">Print</button>';
         echo $htmlContent;
     } else {
         // Item not found
