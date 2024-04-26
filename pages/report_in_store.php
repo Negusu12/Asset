@@ -108,7 +108,23 @@ if (isset($_GET['item_code'])) {
             // Initialize DataTable
             var table = $('#mydatatable').DataTable({
                 ordering: true,
-                buttons: ['excel', 'pdf', 'colvis'],
+                buttons: [{
+                        extend: 'excel',
+                        text: 'Export Excel',
+                        exportOptions: {
+                            columns: ':visible' // Export only visible columns
+                        }
+                    },
+                    {
+                        extend: 'pdf',
+                        text: 'Export PDF',
+                        orientation: 'landscape', // Set orientation to landscape
+                        exportOptions: {
+                            columns: ':visible' // Export only visible columns
+                        }
+                    },
+                    'colvis'
+                ],
                 pagingType: 'full_numbers',
                 lengthMenu: [
                     [10, 25, 50, -1],
