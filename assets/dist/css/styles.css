@@ -350,7 +350,7 @@ ul {
 @media print {
 
   /* Hide the print button */
-  .btn-primary {
+  .print_btn {
     display: none !important;
   }
 
