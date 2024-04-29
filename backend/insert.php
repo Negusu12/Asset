@@ -16,10 +16,16 @@ if (isset($_POST['submit'])) {
     $user_name = addslashes($_POST['user_name']);
     $uom = addslashes($_POST['uom']);
 
-    // File upload handling
-    $image = $_FILES['image'];
-    $image_data = file_get_contents($image['tmp_name']); // Get binary data of the image
-    $image_data = mysqli_real_escape_string($con, $image_data); // Escape special characters to prevent SQL injection
+    // Check if a file has been uploaded
+    if (isset($_FILES['image']) && $_FILES['image']['size'] > 0) {
+        // File upload handling
+        $image = $_FILES['image'];
+        $image_data = file_get_contents($image['tmp_name']); // Get binary data of the image
+        $image_data = mysqli_real_escape_string($con, $image_data); // Escape special characters to prevent SQL injection
+    } else {
+        // Set default value for image data if no file is uploaded
+        $image_data = null; // Or any other default value you want to assign
+    }
 
     // Add image data to the SQL query
     $sql_asset_record = "INSERT INTO asset_record (item_c, item_name, model, qty, item_category, brand, item_type, doc_date, description, user_name, uom, item_image)
@@ -63,6 +69,7 @@ if (isset($_POST['submit'])) {
     // Close the database connection
     mysqli_close($con);
 }
+
 
 
 // End Register Asset

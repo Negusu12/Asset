@@ -75,7 +75,7 @@ $user_data = check_login($con);
                         </div>
                         <div class="form-group">
                             <label class="control-label"><span style="color: red;">*</span> Quantity</label>
-                            <input type="number" class="form-control form-control-sm" name="qty" min="0" oninvalid="this.setCustomValidity('Enter Quantity Here')" oninput="setCustomValidity('')" required>
+                            <input type="number" class="form-control form-control-sm" name="qty" min="0" value="0" oninvalid="this.setCustomValidity('Enter Quantity Here')" oninput="setCustomValidity('')" required>
                         </div>
 
                         <div class="form-group">
@@ -88,7 +88,7 @@ $user_data = check_login($con);
                         </div>
                         <div class="form-group">
                             <label for="" class="control-label"><span style="color: red;">*</span> Upload Image</label>
-                            <input class="form-control form-control-sm" type="file" name="image" id="image" accept="image/*" required>
+                            <input class="form-control form-control-sm" type="file" name="image" id="image" accept="image/*">
                         </div>
 
                         <div class="form-group " style="display: none;">

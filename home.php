@@ -113,7 +113,7 @@
           <h1 style="font-size: 22px;">Assets</h1>
           <?php
           // Fetch item categories and their total quantities from asset_loan_v
-          $category_query_total = "SELECT item_category, SUM(total_qty) AS total_qty FROM total_item_qty_view GROUP BY item_category ORDER BY total_qty DESC";
+          $category_query_total = "SELECT item_category, SUM(total_qty) AS total_qty FROM total_item_qty_view GROUP BY item_category ORDER BY item_category ASC";
           $category_result_total = $con->query($category_query_total);
           if ($category_result_total->num_rows > 0) {
             while ($row = $category_result_total->fetch_assoc()) {
