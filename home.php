@@ -178,18 +178,25 @@
       </div>
     </div>
     <div class="graph">
-      <div class="card shadow rounded-0">
-        <div class="card-header rounded-0">
-          <div class="d-flex justify-content-between">
-            <div class="card-title flex-shrink-1 flex-grow-1">Asset Purchase Over Time</div>
+      <div class="graph-container">
+        <div class="card shadow rounded-0">
+          <div class="card-header rounded-0">
+            <div class="d-flex justify-content-between">
+              <div class="card-title flex-shrink-1 flex-grow-1">Asset Purchase Over Time</div>
+            </div>
           </div>
-        </div>
-        <div class="card-body">
-          <div class="container-fluid">
-            <canvas id="buyChart"></canvas>
+          <div class="card-body">
+            <div class="container-fluid">
+              <div class="chart-container">
+                <canvas id="buyChart"></canvas>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
+
+
     </div>
   </div>
 </div>
@@ -248,7 +255,7 @@ while ($row = $used_result->fetch_assoc()) {
 }
 
 
-$buy_query = "SELECT doc_date, SUM(qty) AS total_qty FROM buy_asset_report GROUP BY doc_date ORDER BY doc_date";
+$buy_query = "SELECT doc_date, SUM(qty) AS total_qty FROM buy_asset_report GROUP BY doc_date ORDER BY doc_date desc";
 $buy_result = $con->query($buy_query);
 $buy_dates = array();
 $buy_quantities = array();
@@ -377,8 +384,6 @@ $barColors = array(
 
   var buy_dates = <?php echo json_encode($buy_dates); ?>;
   var buy_quantities = <?php echo json_encode($buy_quantities); ?>;
-
-  // Configure line chart
   var buyChart = document.getElementById('buyChart').getContext('2d');
   var buyChartObj = new Chart(buyChart, {
     type: 'line',
@@ -398,7 +403,20 @@ $barColors = array(
       scales: {
         xAxes: [{
           display: false // hide x-axis labels
+        }],
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
         }]
+      },
+      layout: {
+        padding: {
+          left: 50,
+          right: 50,
+          top: 0,
+          bottom: 0
+        }
       }
     }
   });
