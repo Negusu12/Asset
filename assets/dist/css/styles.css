@@ -98,9 +98,9 @@
 
 .graph,
 .grapha {
-  flex: 1 1 calc(47% - 20px);
+  flex: 1 1 calc(50% - 20px);
   /* Two graphs per row with margin */
-  max-width: calc(47% - 20px);
+  max-width: calc(50% - 20px);
   /* Adjust as needed */
   margin: 10px;
   margin-top: -15px;
@@ -384,16 +384,4 @@ ul {
     margin: 1.5cm;
     /* Set margins for the body */
   }
-}
-
-.graph-container {
-  width: 100%;
-  height: 370px;
-  overflow: auto;
-  background-color: #ffffff;
-}
-
-.chart-container {
-  width: 1200px;
-  height: 100%;
 }
