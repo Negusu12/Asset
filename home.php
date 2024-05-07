@@ -353,20 +353,24 @@ $barColors = array(
   // Configure line chart
   var useChart = document.getElementById('useChart').getContext('2d');
   var useChartObj = new Chart(useChart, {
-    type: 'doughnut',
+    type: 'line',
     data: {
       labels: used_dates,
       datasets: [{
         label: 'Usage Quantity',
         data: used_quantities,
-        borderColor: 'rgb(75, 192, 192)',
-        backgroundColor: barColors,
+        borderColor: '#4D7DBF',
         borderWidth: 1
       }]
     },
     options: {
       legend: {
         display: false
+      },
+      scales: {
+        xAxes: [{
+          display: false // hide x-axis labels
+        }]
       }
     }
   });
