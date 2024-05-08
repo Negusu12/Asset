@@ -13,6 +13,9 @@
                                 <th>#</th>
                                 <th scope="col">Use ID</th>
                                 <th scope="col">Item Name</th>
+                                <th scope="col">Brand</th>
+                                <th scope="col">Model</th>
+                                <th scope="col">Item Category</th>
                                 <th scope="col">UOM</th>
                                 <th scope="col">Quantity</th>
                                 <th scope="col">Document Date</th>
@@ -30,6 +33,9 @@
                                     <th class="text-center"><?php echo $i++ ?></th>
                                     <td><b><?php echo $row['u_asset'] ?></b></td>
                                     <td><b><?php echo ucwords($row['item_name']) ?></b></td>
+                                    <td><b><?php echo $row['brand'] ?></b></td>
+                                    <td><b><?php echo $row['model'] ?></b></td>
+                                    <td><b><?php echo $row['item_category'] ?></b></td>
                                     <td><b><?php echo $row['uom'] ?></b></td>
                                     <td><b><?php echo $row['qty'] ?></b></td>
                                     <td><b><?php echo date('F d Y', strtotime($row['doc_date'])) ?></b></td>
