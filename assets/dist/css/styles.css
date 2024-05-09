@@ -385,3 +385,42 @@ ul {
     /* Set margins for the body */
   }
 }
+
+.btn-group>.btn-group:not(:first-child)>.btn,
+.btn-group>.btn:not(:first-child) {
+  background-color: #03949B;
+  border-color: #03949B;
+}
+
+.btn-group>.btn-group:not(:last-child)>.btn,
+.btn-group>.btn:not(:last-child):not(.dropdown-toggle) {
+  background-color: #03949B;
+  border-color: #03949B;
+}
+
+a.page-link {
+  background-color: #03949B;
+  border-color: #006B80;
+  color: #FFFFFF;
+}
+
+a.page-link:hover {
+  background-color: #26225B;
+  color: #FFFFFF;
+  border-color: #006B80;
+}
+
+.page-item.active .page-link {
+  background-color: #26225B !important;
+  border-color: #006B80 !important;
+  color: #FFFFFF !important;
+}
+
+li#mydatatable_first.paginate_button.page-item.first.disabled a.page-link,
+li#mydatatable_previous.paginate_button.page-item.previous.disabled a.page-link,
+li#mydatatable_next.paginate_button.page-item.next.disabled a.page-link,
+li#mydatatable_last.paginate_button.page-item.last.disabled a.page-link {
+  color: #ffffff !important;
+  background-color: #86B235 !important;
+  border-color: #4F7D2A;
+}
