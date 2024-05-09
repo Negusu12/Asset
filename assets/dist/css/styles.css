@@ -417,6 +417,7 @@ a.page-link:hover {
 }
 
 li#mydatatable_first.paginate_button.page-item.first.disabled a.page-link,
+li#mydatatable_ellipsis.paginate_button.page-item.disabled a.page-link,
 li#mydatatable_previous.paginate_button.page-item.previous.disabled a.page-link,
 li#mydatatable_next.paginate_button.page-item.next.disabled a.page-link,
 li#mydatatable_last.paginate_button.page-item.last.disabled a.page-link {
