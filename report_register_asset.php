@@ -139,25 +139,21 @@
 	});
 </script>
 <script>
-	$(document).ready(function() {
-		// Your existing DataTable initialization code
-
-		// Calculate and display total quantity
-		function calculateTotalQuantity() {
-			var totalQuantity = 0;
-			$('#mydatatable tbody tr').each(function() {
-				var qty = parseFloat($(this).find('td:eq(5)').text().trim()); // 5th column (index starts from 0)
-				if (!isNaN(qty)) {
-					totalQuantity += qty;
-				}
-			});
-			$('#totalQuantity').text(totalQuantity);
-		}
-
-		calculateTotalQuantity(); // Initial calculation
-
-		$('#mydatatable').on('draw.dt', function() {
-			calculateTotalQuantity(); // Recalculate total quantity when the DataTable is redrawn (e.g., page change)
+	// Calculate and display total quantity
+	function calculateTotalQuantity() {
+		var totalQuantity = 0;
+		$('#mydatatable tbody tr').each(function() {
+			var qty = parseFloat($(this).find('td:eq(5)').text().trim()); // 5th column (index starts from 0)
+			if (!isNaN(qty)) {
+				totalQuantity += qty;
+			}
 		});
+		$('#totalQuantity').text(totalQuantity);
+	}
+
+	calculateTotalQuantity(); // Initial calculation
+
+	$('#mydatatable').on('draw.dt', function() {
+		calculateTotalQuantity(); // Recalculate total quantity when the DataTable is redrawn (e.g., page change)
 	});
 </script>
