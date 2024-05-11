@@ -13,6 +13,10 @@
                                 <th>#</th>
                                 <th scope="col">Buy ID</th>
                                 <th scope="col">Item Name</th>
+                                <th scope="col">Brand</th>
+                                <th scope="col">Model</th>
+                                <th scope="col">Item Category</th>
+                                <th scope="col">Item Type</th>
                                 <th scope="col">UOM</th>
                                 <th scope="col">Quantity</th>
                                 <th scope="col">Document Date</th>
@@ -30,6 +34,10 @@
                                     <th class="text-center"><?php echo $i++ ?></th>
                                     <td><b><?php echo $row['b_asset'] ?></b></td>
                                     <td><b><?php echo ucwords($row['item_name']) ?></b></td>
+                                    <td><b><?php echo $row['brand'] ?></b></td>
+                                    <td><b><?php echo $row['model'] ?></b></td>
+                                    <td><b><?php echo $row['item_category'] ?></b></td>
+                                    <td><b><?php echo $row['item_type'] ?></b></td>
                                     <td><b><?php echo $row['uom'] ?></b></td>
                                     <td><b><?php echo $row['qty'] ?></b></td>
                                     <td><b><?php echo date('F d Y', strtotime($row['doc_date'])) ?></b></td>
@@ -38,6 +46,13 @@
                                 </tr>
                             <?php endwhile; ?>
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <th colspan="8" class="text-right">Total Quantity:</th>
+                                <th id="totalQuantity"></th>
+                                <th colspan="3"></th>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>
@@ -99,5 +114,24 @@
         table.buttons().container()
             .appendTo('#mydatatable_wrapper .col-md-6:eq(0)');
 
+    });
+</script>
+<script>
+    // Calculate and display total quantity
+    function calculateTotalQuantity() {
+        var totalQuantity = 0;
+        $('#mydatatable tbody tr').each(function() {
+            var qty = parseFloat($(this).find('td:eq(7)').text().trim()); // 5th column (index starts from 0)
+            if (!isNaN(qty)) {
+                totalQuantity += qty;
+            }
+        });
+        $('#totalQuantity').text(totalQuantity);
+    }
+
+    calculateTotalQuantity(); // Initial calculation
+
+    $('#mydatatable').on('draw.dt', function() {
+        calculateTotalQuantity(); // Recalculate total quantity when the DataTable is redrawn (e.g., page change)
     });
 </script>

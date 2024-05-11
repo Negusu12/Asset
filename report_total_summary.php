@@ -84,7 +84,7 @@
                 [10, 25, 50, "All"]
             ],
             columnDefs: [{
-                    targets: [5, 7, 8], // index of the "Password" column (zero-based index)
+                    targets: [5], // index of the "Password" column (zero-based index)
                     visible: false // set to false to hide the column by default
                 }
                 // Add similar blocks for other columns you want to hide by default

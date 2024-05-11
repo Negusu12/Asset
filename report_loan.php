@@ -80,7 +80,14 @@
                             }
                             ?>
                         </tbody>
-
+                        <tfoot>
+                            <tr>
+                                <th colspan="11" class="text-right">Total Quantity:</th>
+                                <th id="loanedQuantity"></th>
+                                <th id="onLoanQuantity"></th>
+                                <th colspan="5"></th>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>
@@ -167,4 +174,39 @@
             }
         });
     }
+</script>
+<script>
+    // Calculate and display total quantity
+    function calculateLoanedQuantity() {
+        var loanedQuantity = 0;
+        $('#mydatatable tbody tr').each(function() {
+            var qty_taken = parseFloat($(this).find('td:not(.hiddenColumn):eq(8)').text().trim());
+            if (!isNaN(qty_taken)) {
+                loanedQuantity += qty_taken;
+            }
+        });
+        $('#loanedQuantity').text(loanedQuantity);
+    }
+
+    calculateLoanedQuantity(); // Initial calculation
+    $('#mydatatable').on('draw.dt', function() {
+        calculateLoanedQuantity(); // Recalculate total quantity when the DataTable is redrawn (e.g., page change)
+    });
+
+    function calculateOnLoanQuantity() {
+        var onLoanQuantity = 0;
+        $('#mydatatable tbody tr').each(function() {
+            var qty = parseFloat($(this).find('td:not(.hiddenColumn):eq(9)').text().trim());
+            if (!isNaN(qty)) {
+                onLoanQuantity += qty;
+            }
+        });
+        $('#onLoanQuantity').text(onLoanQuantity);
+    }
+
+    calculateOnLoanQuantity(); // Initial calculation
+
+    $('#mydatatable').on('draw.dt', function() {
+        calculateOnLoanQuantity(); // Recalculate total quantity when the DataTable is redrawn (e.g., page change)
+    });
 </script>
