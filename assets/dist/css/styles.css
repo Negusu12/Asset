@@ -302,7 +302,9 @@ ul {
 
 .form-column {
   flex: 1;
-  padding: 10px;
+  padding: 2px;
+  column-count: 2;
+  column-gap: 2px;
 }
 
 .form-column label {
@@ -314,10 +316,33 @@ ul {
 
 .form-column span {
   display: block;
-  padding: 5px;
-  background-color: #fff;
-  border: 1px solid #ccc;
+  padding-bottom: 5px;
+  border-bottom: 2px solid #ccc;
   border-radius: 3px;
+  min-width: 180px;
+}
+
+.form-columnn {
+  flex: 1;
+  padding: 10px;
+}
+
+.form-columnn label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+.form-columnn span {
+  display: block;
+  padding: 5px;
+  border-bottom: 2px solid #ccc;
+  border-radius: 3px;
+  text-align: left;
+  line-height: 2;
+  text-justify: inter-word;
+
 }
 
 .swal2-container.swal2-center>.swal2-popup {
@@ -372,6 +397,10 @@ ul {
     /* Adjust font size as needed */
   }
 
+  .form-column span {
+    min-width: 80px;
+  }
+
   /* Use the scale() function to adjust the scale of printed content */
   @page {
     size: A4;
@@ -381,7 +410,7 @@ ul {
   }
 
   body {
-    margin: 1.5cm;
+    margin: 0;
     /* Set margins for the body */
   }
 }

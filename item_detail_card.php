@@ -65,7 +65,7 @@ if (isset($_GET['item_code'])) {
         $htmlContent .= '</div>';
         $htmlContent .= '</div>';
         $htmlContent .= '<div class="form-row">';
-        $htmlContent .= '<div class="form-column">';
+        $htmlContent .= '<div class="form-columnn">';
         $htmlContent .= '<label for="description">Description:</label>';
         $htmlContent .= '<span>' . $item['description'] . '</span>';
         $htmlContent .= '</div>';
@@ -73,14 +73,14 @@ if (isset($_GET['item_code'])) {
 
         if ($item['item_image'] !== null) {
             $htmlContent .= '<div class="form-row">';
-            $htmlContent .= '<div class="form-column">';
+            $htmlContent .= '<div class="form-columnn">';
             $htmlContent .= '<label for="item_image">Item Image</label>';
             $htmlContent .= '</div>';
             $htmlContent .= '</div>';
 
             $htmlContent .= '<div class="form-row">';
             $htmlContent .= '</div>';
-            $htmlContent .= '<div class="form-column">';
+            $htmlContent .= '<div class="form-columnn">';
             $htmlContent .= '<img src="data:image/jpeg;base64,' . base64_encode($item['item_image']) . '" alt="Item Image" class="img-thumbnail" style="max-width: 300px; max-height: 300px;">';
             $htmlContent .= '</div>';
         }
