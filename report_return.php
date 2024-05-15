@@ -11,6 +11,7 @@
                         <thead>
                             <tr>
                                 <th>#</th>
+                                <th scope="col">Return ID</th>
                                 <th scope="col">loan ID</th>
                                 <th scope="col">Item Name</th>
                                 <th scope="col">Brand</th>
@@ -28,11 +29,12 @@
                         <tbody>
                             <?php
                             $i = 1;
-                            $qry = $con->query("select * from asset_return_v");
+                            $qry = $con->query("select * from asset_return_v order by return_id desc");
                             while ($row = $qry->fetch_assoc()) :
                             ?>
                                 <tr>
                                     <th class="text-center"><?php echo $i++ ?></th>
+                                    <td><b><?php echo $row['return_id'] ?></b></td>
                                     <td><b><?php echo $row['loan_id'] ?></b></td>
                                     <td><b><?php echo ucwords($row['item_name']) ?></b></td>
                                     <td><b><?php echo $row['brand'] ?></b></td>
