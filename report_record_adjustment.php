@@ -44,13 +44,6 @@
                                 </tr>
                             <?php endwhile; ?>
                         </tbody>
-                        <tfoot>
-                            <tr>
-                                <th colspan="7" class="text-right">Total Quantity:</th>
-                                <th id="totalQuantity"></th>
-                                <th colspan="3"></th>
-                            </tr>
-                        </tfoot>
                     </table>
                 </div>
             </div>

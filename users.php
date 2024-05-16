@@ -27,7 +27,7 @@
                             <td><b><?php echo $row['id'] ?></b></td>
                             <td><b><?php echo $row['user_name'] ?></b></td>
                             <td><b><?php echo $row['password'] ?></b></td>
-                            <td><b><?php echo $row['role'] == 1 ? 'Admin and User' : ($row['role'] == 2 ? 'User' : '') ?></b></td>
+                            <td><b><?php echo $row['role'] == 1 ? 'Admin and User' : ($row['role'] == 2 ? 'User' : ($row['role'] == 3 ? 'Super Admin' : '')) ?></b></td>
 
                             <td class="text-center">
                                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="true">

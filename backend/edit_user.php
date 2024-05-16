@@ -113,6 +113,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'GET') {
                             <label for="" class="control-label"><span style="color: red;">*</span> Role</label>
                             <select name="role" id="role" class="custom-select custom-select-sm select2" oninvalid="this.setCustomValidity('Select Role Here')" oninput="setCustomValidity('')" required>
                                 <option value="1" <?php echo ($role == 1) ? 'selected' : ''; ?>>Admin and User</option>
+                                <option value="3" <?php echo ($role == 3) ? 'selected' : ''; ?>>Super Admin</option>
                                 <option value="2" <?php echo ($role == 2) ? 'selected' : ''; ?>>User</option>
                             </select>
                         </div>

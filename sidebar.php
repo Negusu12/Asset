@@ -145,7 +145,7 @@
             </li>
           </ul>
         </li>
-        <?php if ($user_data['role'] == 1) : ?>
+        <?php if ($user_data['role'] == 1 || $user_data['role'] == 3) : ?>
           <li class="nav-item">
             <a href="#" class="nav-link nav-edit_staff">
               <i class="nav-icon fas fa-user-cog"></i>
@@ -173,6 +173,19 @@
                   <p>List Choice</p>
                 </a>
               </li>
+            </ul>
+          </li>
+        <?php endif; ?>
+        <?php if ($user_data['role'] == 3) : ?>
+          <li class="nav-item">
+            <a href="#" class="nav-link nav-edit_staff">
+              <i class="nav-icon fas fa-user-cog"></i>
+              <p>
+                Super Admin
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="./index.php?page=record_adjustment" class="nav-link nav-record_adjustment tree-item">
                   <i class="fas fa-angle-right nav-icon"></i>

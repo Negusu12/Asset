@@ -29,6 +29,7 @@ $user_data = check_login($con);
                                 <option value="">Select a Role</option>
                                 <option value="2">User</option>
                                 <option value="1">Admin and User</option>
+                                <option value="3">Super Admin</option>
                             </select>
                         </div>
                     </div>
