@@ -128,7 +128,7 @@
             <li class="nav-item">
               <a href="./index.php?page=report_register_asset" class="nav-link nav-report_register_asset tree-item">
                 <i class="fas fa-angle-right nav-icon"></i>
-                <p>Register Record</p>
+                <p>Asset Log Record</p>
               </a>
             </li>
             <li class="nav-item">
@@ -171,6 +171,18 @@
                 <a href="./index.php?page=report_list" class="nav-link nav-report_list tree-item">
                   <i class="fas fa-angle-right nav-icon"></i>
                   <p>List Choice</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="./index.php?page=record_adjustment" class="nav-link nav-record_adjustment tree-item">
+                  <i class="fas fa-angle-right nav-icon"></i>
+                  <p>Record Adjustment</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="./index.php?page=report_record_adjustment" class="nav-link nav-report_record_adjustment tree-item">
+                  <i class="fas fa-angle-right nav-icon"></i>
+                  <p>Asset Adjustment Log</p>
                 </a>
               </li>
             </ul>
