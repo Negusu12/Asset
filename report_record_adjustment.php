@@ -38,8 +38,8 @@
                                     <td><b><?php echo $row['model'] ?></b></td>
                                     <td><b><?php echo $row['item_category'] ?></b></td>
                                     <td><b><?php echo $row['uom'] ?></b></td>
-                                    <td><b><?php echo $row['subtract_qty'] ?></b></td>
-                                    <td><b><?php echo $row['add_qty'] ?></b></td>
+                                    <td><b><?php echo $row['subtract_qty'] != 0 ? $row['subtract_qty'] : '' ?></b></td>
+                                    <td><b><?php echo $row['add_qty'] != 0 ? $row['add_qty'] : '' ?></b></td>
                                     <td><b><?php echo date('F d Y H:i:s', strtotime($row['doc_date'])) ?></b></td>
                                     <td><b><?php echo $row['description'] ?></b></td>
                                     <td><b><?php echo $row['user_name'] ?></b></td>
