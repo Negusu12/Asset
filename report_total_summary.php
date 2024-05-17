@@ -19,6 +19,7 @@
                                 <th scope="col">UOM</th>
                                 <th scope="col">In Store Quantity</th>
                                 <th scope="col">In Loan Quantity</th>
+                                <th scope="col">Inactive Quantity</th>
                                 <th scope="col">Total Quantity</th>
                             </tr>
                         </thead>
@@ -38,6 +39,7 @@
                                     <td><b><?php echo $row['uom'] ?></b></td>
                                     <td><b><?php echo $row['total_qty_record'] ?></b></td>
                                     <td><b><?php echo $row['total_qty_loan'] ?></b></td>
+                                    <td><b><?php echo $row['total_qty_inactive'] ?></b></td>
                                     <td><b><?php echo $row['total_qty'] ?></b></td>
                                 </tr>
                             <?php endwhile; ?>
@@ -47,6 +49,7 @@
                                 <th colspan="7" class="text-right">Total Quantity:</th>
                                 <th id="storeQuantity"></th>
                                 <th id="loanQuantity"></th>
+                                <th id="inactiveQuantity"></th>
                                 <th id="totalQuantity"></th>
                             </tr>
                         </tfoot>
@@ -154,10 +157,27 @@
         calculateLoanQuantity(); // Recalculate total quantity when the DataTable is redrawn (e.g., page change)
     });
 
+
+    function calculateInactiveQuantity() {
+        var inactiveQuantity = 0;
+        $('#mydatatable tbody tr').each(function() {
+            var total_qty_inactive = parseFloat($(this).find('td:not(.hiddenColumn):eq(7)').text().trim());
+            if (!isNaN(total_qty_inactive)) {
+                inactiveQuantity += total_qty_inactive;
+            }
+        });
+        $('#inactiveQuantity').text(inactiveQuantity);
+    }
+
+    calculateInactiveQuantity(); // Initial calculation
+    $('#mydatatable').on('draw.dt', function() {
+        calculateInactiveQuantity(); // Recalculate total quantity when the DataTable is redrawn (e.g., page change)
+    });
+
     function calculateTotalQuantity() {
         var totalQuantity = 0;
         $('#mydatatable tbody tr').each(function() {
-            var total_qty = parseFloat($(this).find('td:not(.hiddenColumn):eq(7)').text().trim());
+            var total_qty = parseFloat($(this).find('td:not(.hiddenColumn):eq(8)').text().trim());
             if (!isNaN(total_qty)) {
                 totalQuantity += total_qty;
             }

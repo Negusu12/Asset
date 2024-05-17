@@ -56,7 +56,7 @@ $user_data = check_login($con);
                     <div class="col-md-6">
                         <br />
                         <div class="form-group">
-                            <label class="control-label">&nbsp;&nbsp;&nbsp;Description</label>
+                            <label class="control-label">&nbsp;&nbsp;&nbsp;Remark</label>
                             <textarea name="description" id="description" cols="30" rows="4" class="form-control"></textarea>
                         </div>
                         <div class="form-group " style="display: none;">

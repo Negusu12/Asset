@@ -116,7 +116,7 @@
             <li class="nav-item">
               <a href="./index.php?page=report_damaged" class="nav-link nav-report_damaged tree-item">
                 <i class="fas fa-angle-right nav-icon"></i>
-                <p>Damaged Assets</p>
+                <p>Inactive Assets</p>
               </a>
             </li>
             <li class="nav-item">
