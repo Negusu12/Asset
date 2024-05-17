@@ -157,7 +157,6 @@ if ($_SERVER["REQUEST_METHOD"] == 'GET') {
                 <hr>
                 <div class="col-lg-12 text-right justify-content-left d-flex">
                     <button class="btn btn-primary mr-2" type="submit">Update</button>
-                    <button class="btn btn-secondary" type="reset">Clear</button>
                 </div>
             </form>
         </div>

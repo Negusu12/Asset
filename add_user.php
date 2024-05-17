@@ -28,8 +28,10 @@ $user_data = check_login($con);
                             <select name="role" id="role" class="custom-select custom-select-sm select2" oninvalid="this.setCustomValidity('Select Role Here')" oninput="setCustomValidity('')" required>
                                 <option value="">Select a Role</option>
                                 <option value="2">User</option>
-                                <option value="1">Admin and User</option>
-                                <option value="3">Super Admin</option>
+                                <?php if ($user_data['role'] == 3) : ?>
+                                    <option value="1">Admin</option>
+                                    <option value="3">Super Admin</option>
+                                <?php endif; ?>
                             </select>
                         </div>
                     </div>

@@ -19,7 +19,16 @@
                 <tbody>
                     <?php
                     $i = 1;
-                    $qry = $con->query("select * from users");
+                    // Check the logged-in user's role
+                    $user_role = $user_data['role'];
+
+                    // If the logged-in user is an Admin (role == 1), filter to show only users with role 2 (User)
+                    if ($user_role == 1) {
+                        $qry = $con->query("SELECT * FROM users WHERE role = 2");
+                    } else {
+                        $qry = $con->query("SELECT * FROM users");
+                    }
+
                     while ($row = $qry->fetch_assoc()) :
                     ?>
                         <tr>
@@ -27,7 +36,7 @@
                             <td><b><?php echo $row['id'] ?></b></td>
                             <td><b><?php echo $row['user_name'] ?></b></td>
                             <td><b><?php echo $row['password'] ?></b></td>
-                            <td><b><?php echo $row['role'] == 1 ? 'Admin and User' : ($row['role'] == 2 ? 'User' : ($row['role'] == 3 ? 'Super Admin' : '')) ?></b></td>
+                            <td><b><?php echo $row['role'] == 1 ? 'Admin' : ($row['role'] == 2 ? 'User' : ($row['role'] == 3 ? 'Super Admin' : '')) ?></b></td>
 
                             <td class="text-center">
                                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="true">

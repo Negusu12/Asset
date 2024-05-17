@@ -14,7 +14,7 @@
                                 <th scope="col">employee_id</th>
                                 <th scope="col">full_name</th>
                                 <th scope="col">department</th>
-                                <?php if ($user_data['role'] == 1) : ?>
+                                <?php if ($user_data['role'] == 1 || $user_data['role'] == 3) : ?>
                                     <th scope="col">Action</th>
                                 <?php endif; ?>
                             </tr>
@@ -30,7 +30,7 @@
                                     <td><b><?php echo $row['employee_id'] ?></b></td>
                                     <td><b><?php echo $row['full_name'] ?></b></td>
                                     <td><b><?php echo $row['department'] ?></b></td>
-                                    <?php if ($user_data['role'] == 1) : ?>
+                                    <?php if ($user_data['role'] == 1 || $user_data['role'] == 3) : ?>
                                         <td class="text-center">
                                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                                                 Action

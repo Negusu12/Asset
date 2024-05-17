@@ -66,8 +66,10 @@
 											Action
 										</button>
 										<div class="dropdown-menu">
-											<a class="dropdown-item" href="./index.php?page=backend/edit_asset&item_code=<?php echo $row['item_code'] ?>">Edit</a>
-											<div class="dropdown-divider"></div>
+											<?php if ($user_data['role'] == 1 || $user_data['role'] == 3) : ?>
+												<a class="dropdown-item" href="./index.php?page=backend/edit_asset&item_code=<?php echo $row['item_code'] ?>">Edit</a>
+												<div class="dropdown-divider"></div>
+											<?php endif; ?>
 											<a class="dropdown-item" href="./index.php?page=backend/edit_image&item_code=<?php echo $row['item_code'] ?>">Change Image</a>
 											<div class="dropdown-divider"></div>
 											<a class="dropdown-item" style="cursor: pointer;" onclick="viewItem('<?php echo $row['item_code']; ?>')">View</a>
