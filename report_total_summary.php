@@ -42,6 +42,14 @@
                                 </tr>
                             <?php endwhile; ?>
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <th colspan="7" class="text-right">Total Quantity:</th>
+                                <th id="storeQuantity"></th>
+                                <th id="loanQuantity"></th>
+                                <th id="totalQuantity"></th>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>
@@ -109,5 +117,56 @@
         table.buttons().container()
             .appendTo('#mydatatable_wrapper .col-md-6:eq(0)');
 
+    });
+</script>
+<script>
+    // Calculate and display total quantity
+    function calculateStoreQuantity() {
+        var storeQuantity = 0;
+        $('#mydatatable tbody tr').each(function() {
+            var total_qty_record = parseFloat($(this).find('td:not(.hiddenColumn):eq(5)').text().trim());
+            if (!isNaN(total_qty_record)) {
+                storeQuantity += total_qty_record;
+            }
+        });
+        $('#storeQuantity').text(storeQuantity);
+    }
+
+    calculateStoreQuantity(); // Initial calculation
+    $('#mydatatable').on('draw.dt', function() {
+        calculateStoreQuantity(); // Recalculate total quantity when the DataTable is redrawn (e.g., page change)
+    });
+
+    function calculateLoanQuantity() {
+        var loanQuantity = 0;
+        $('#mydatatable tbody tr').each(function() {
+            var total_qty_loan = parseFloat($(this).find('td:not(.hiddenColumn):eq(6)').text().trim());
+            if (!isNaN(total_qty_loan)) {
+                loanQuantity += total_qty_loan;
+            }
+        });
+        $('#loanQuantity').text(loanQuantity);
+    }
+
+    calculateLoanQuantity(); // Initial calculation
+
+    $('#mydatatable').on('draw.dt', function() {
+        calculateLoanQuantity(); // Recalculate total quantity when the DataTable is redrawn (e.g., page change)
+    });
+
+    function calculateTotalQuantity() {
+        var totalQuantity = 0;
+        $('#mydatatable tbody tr').each(function() {
+            var total_qty = parseFloat($(this).find('td:not(.hiddenColumn):eq(7)').text().trim());
+            if (!isNaN(total_qty)) {
+                totalQuantity += total_qty;
+            }
+        });
+        $('#totalQuantity').text(totalQuantity);
+    }
+
+    calculateTotalQuantity(); // Initial calculation
+    $('#mydatatable').on('draw.dt', function() {
+        calculateTotalQuantity(); // Recalculate total quantity when the DataTable is redrawn (e.g., page change)
     });
 </script>
