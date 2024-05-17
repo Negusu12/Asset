@@ -4,7 +4,7 @@ include("connect.php");
 
 $user_data = check_login($con);
 
-$item_code = $item_name = $model = $brand = $item_type = $item_category = $qty = $uom = $doc_date = $description = "";
+$item_code = $item_c = $item_name = $model = $brand = $item_type = $item_category = $qty = $uom = $doc_date = $description = "";
 $error = $success = "";
 
 if ($_SERVER["REQUEST_METHOD"] == 'GET') {
@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'GET') {
     }
 
     $item_code = $_GET['item_code'];
-    $sql = "SELECT item_code, item_name, model, brand, item_type, item_category, qty, uom, doc_date, description FROM asset_record WHERE item_code=?";
+    $sql = "SELECT item_code, item_c, item_name, model, brand, item_type, item_category, qty, uom, doc_date, description FROM asset_record WHERE item_code=?";
     $stmt = $con->prepare($sql);
     $stmt->bind_param('s', $item_code);
 
@@ -28,12 +28,13 @@ if ($_SERVER["REQUEST_METHOD"] == 'GET') {
             exit;
         }
 
-        $stmt->bind_result($item_code, $item_name, $model, $brand, $item_type, $item_category, $qty, $uom, $doc_date, $description);
+        $stmt->bind_result($item_code, $item_c, $item_name, $model, $brand, $item_type, $item_category, $qty, $uom, $doc_date, $description);
         $stmt->fetch();
     }
     $stmt->close();
 } else {
     $item_code = $_POST["item_code"];
+    $item_c = $_POST["item_c"];
     $item_name = $_POST["item_name"];
     $model = $_POST["model"];
     $brand = $_POST["brand"];
@@ -45,9 +46,9 @@ if ($_SERVER["REQUEST_METHOD"] == 'GET') {
     $description = $_POST["description"];
 
     if (empty($error)) {
-        $sql = "UPDATE asset_record SET item_name=?, model=?, brand=?, item_type=?, item_category=?, qty=?, uom=?, doc_date=?, description=? WHERE item_code=?";
+        $sql = "UPDATE asset_record SET item_c=?, item_name=?, model=?, brand=?, item_type=?, item_category=?, qty=?, uom=?, doc_date=?, description=? WHERE item_code=?";
         $stmt = $con->prepare($sql);
-        $stmt->bind_param('sssssissss', $item_name, $model, $brand, $item_type, $item_category, $qty, $uom, $doc_date, $description, $item_code);
+        $stmt->bind_param('ssssssissss', $item_c, $item_name, $model, $brand, $item_type, $item_category, $qty, $uom, $doc_date, $description, $item_code);
 
         if (!$stmt->execute()) {
             $error = "Error: " . $stmt->error;
@@ -80,6 +81,10 @@ if ($_SERVER["REQUEST_METHOD"] == 'GET') {
                     <input type="hidden" name="item_code" value="<?php echo $item_code; ?>">
                     <div class="col-md-6">
                         <b class="text-muted">Edit Asset</b>
+                        <div class="form-group">
+                            <label for="" class="control-label"><span style="color: red;">*</span> Item Code</label>
+                            <input type="text" name="item_c" class="form-control form-control-sm" value="<?php echo $item_c ?>" oninvalid="this.setCustomValidity('Enter Item Code Here')" oninput="setCustomValidity('')" required>
+                        </div>
                         <div class="form-group">
                             <label for="" class="control-label"><span style="color: red;">*</span> Item Name</label>
                             <input type="text" name="item_name" class="form-control form-control-sm" value="<?php echo $item_name ?>" oninvalid="this.setCustomValidity('Enter Item Name Here')" oninput="setCustomValidity('')" required>
