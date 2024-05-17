@@ -364,7 +364,6 @@ if (isset($error_message)) {
 if (isset($_POST['submit_adj'])) {
     $item_code = /*addslashes so it accept commas and symbols*/ addslashes($_POST['item_code']);
     $qty = addslashes($_POST['qty']);
-    $doc_date = addslashes($_POST['doc_date']);
     $description = addslashes($_POST['description']);
     $user_name = addslashes($_POST['user_name']);
     // Retrieve the current quantity for the selected item_code from the asset_record table
@@ -394,8 +393,8 @@ if (isset($_POST['submit_adj'])) {
 
         if ($update_result) {
             // Insert the data into the asset_loan table
-            $insert_sql = "INSERT INTO adjust_asset (item_code, qty, doc_date, description, user_name)
-                           VALUES ('$item_code', '$qty', '$doc_date', '$description', '$user_name')";
+            $insert_sql = "INSERT INTO adjust_asset (item_code, qty,  description, user_name)
+                           VALUES ('$item_code', '$qty',  '$description', '$user_name')";
             $insert_result = mysqli_query($con, $insert_sql);
 
             if ($insert_result) {

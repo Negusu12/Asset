@@ -45,16 +45,12 @@ $user_data = check_login($con);
                             <input id="available_qty" type="text" class="form-control form-control-sm" disabled>
                         </div>
                         <div class="form-group">
-                            <label class="control-label"><span style="color: red;">*</span> Quantity</label>
+                            <label class="control-label"><span style="color: red;">*</span>Quantity to Subtract</label>
                             <input type="number" class="form-control form-control-sm" name="qty" min="0" oninvalid="this.setCustomValidity('Enter Quantity Here')" oninput="setCustomValidity('')" required>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <br />
-                        <div class="form-group" style="display: none;">
-                            <label for="" class="control-label"><span style="color: red;">*</span> Date</label>
-                            <input type="date" name="doc_date" id="doc_date" class="form-control form-control-sm" oninvalid="this.setCustomValidity('Enter Date Here')" oninput="setCustomValidity('')" required>
-                        </div>
                         <div class="form-group">
                             <label class="control-label">&nbsp;&nbsp;&nbsp;Description</label>
                             <textarea name="description" id="description" cols="30" rows="4" class="form-control"></textarea>
