@@ -362,19 +362,21 @@ if (isset($error_message)) {
 // Adjustment record
 
 if (isset($_POST['submit_adj'])) {
-    $item_code = /*addslashes so it accept commas and symbols*/ addslashes($_POST['item_code']);
-    $qty = addslashes($_POST['qty']);
+    $item_code = addslashes($_POST['item_code']);
+    $qty_to_subtract = isset($_POST['qty_to_subtract']) ? addslashes($_POST['qty_to_subtract']) : 0;
+    $qty_to_add = isset($_POST['qty_to_add']) ? addslashes($_POST['qty_to_add']) : 0;
     $description = addslashes($_POST['description']);
     $user_name = addslashes($_POST['user_name']);
-    // Retrieve the current quantity for the selected item_code from the asset_record table
+
     $sql = "SELECT qty FROM asset_record WHERE item_code='$item_code'";
     $result = mysqli_query($con, $sql);
     $row = mysqli_fetch_assoc($result);
     $current_qty = $row['qty'];
-    if ($current_qty < $qty) {
-        echo "<script>
+
+    if ($qty_to_subtract > 0) {
+        if ($current_qty < $qty_to_subtract) {
+            echo "<script>
                 window.onload = function() {
-                    // Display a success message using SweetAlert
                     Swal.fire({
                         icon: 'error',
                         title: 'The Selected Item is out of Stock.',
@@ -384,56 +386,48 @@ if (isset($_POST['submit_adj'])) {
                     });
                 }
              </script>";
-    } else {
-        // Calculate the new quantity
-        $new_qty = $current_qty - $qty;
-        // Update the qty column in the asset_record table with the new quantity
+        } else {
+            $new_qty = $current_qty - $qty_to_subtract;
+            $update_sql = "UPDATE asset_record SET qty='$new_qty' WHERE item_code='$item_code'";
+        }
+    } elseif ($qty_to_add > 0) {
+        $new_qty = $current_qty + $qty_to_add;
         $update_sql = "UPDATE asset_record SET qty='$new_qty' WHERE item_code='$item_code'";
-        $update_result = mysqli_query($con, $update_sql);
-
-        if ($update_result) {
-            // Insert the data into the asset_loan table
-            $insert_sql = "INSERT INTO adjust_asset (item_code, qty,  description, user_name)
-                           VALUES ('$item_code', '$qty',  '$description', '$user_name')";
-            $insert_result = mysqli_query($con, $insert_sql);
-
-            if ($insert_result) {
-                // Display a success message using SweetAlert
-                echo "<script>
-    window.onload = function() {
-        // Display a success message using SweetAlert
-        Swal.fire({
-            icon: 'success',
-            title: 'Item Updated Successfully',
-            showConfirmButton: true,
-            confirmButtonText: 'OK',
-            timer: 2000
-        }).then(function() {
-            window.location.href = 'index.php?page=record_adjustment';
-        });
     }
- </script>";
-            } else {
-                echo "<script>
-            window.onload = function() {
-                // Display a success message using SweetAlert
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Failed to insert data to buy asset table.',
-                    showConfirmButton: false,
-                    showDenyButton: true,
-                    denyButtonText: 'OK'
-                });
-            }
-         </script>";
-            }
+
+    if (isset($update_sql) && mysqli_query($con, $update_sql)) {
+        $insert_sql = "INSERT INTO adjust_asset (item_code, qty, description, user_name, add_qty)
+                       VALUES ('$item_code', '$qty_to_subtract', '$description', '$user_name', '$qty_to_add')";
+        $insert_result = mysqli_query($con, $insert_sql);
+
+        if ($insert_result) {
+            echo "<script>
+                window.onload = function() {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Item Updated Successfully',
+                        showConfirmButton: true,
+                        confirmButtonText: 'OK',
+                        timer: 2000
+                    }).then(function() {
+                        window.location.href = 'index.php?page=record_adjustment';
+                    });
+                }
+            </script>";
+        } else {
+            echo "<script>
+                window.onload = function() {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Failed to insert data into adjust asset table.',
+                        showConfirmButton: false,
+                        showDenyButton: true,
+                        denyButtonText: 'OK'
+                    });
+                }
+            </script>";
         }
     }
-}
-
-// Display the error message, if any
-if (isset($error_message)) {
-    echo $error_message;
 }
 
 // End Adjustment Record

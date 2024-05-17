@@ -46,7 +46,11 @@ $user_data = check_login($con);
                         </div>
                         <div class="form-group">
                             <label class="control-label"><span style="color: red;">*</span>Quantity to Subtract</label>
-                            <input type="number" class="form-control form-control-sm" name="qty" min="0" oninvalid="this.setCustomValidity('Enter Quantity Here')" oninput="setCustomValidity('')" required>
+                            <input id="qty_to_subtract" type="number" class="form-control form-control-sm" name="qty_to_subtract" min="0" oninput="toggleAddQty(this.value)">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label"><span style="color: red;">*</span>Quantity to Add</label>
+                            <input id="qty_to_add" type="number" class="form-control form-control-sm" name="qty_to_add" min="0" oninput="toggleSubtractQty(this.value)">
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -76,7 +80,28 @@ $user_data = check_login($con);
         var selectedOption = selectedItem.options[selectedItem.selectedIndex];
         var availableQtyInput = document.getElementById("available_qty");
         availableQtyInput.value = selectedOption.getAttribute("data-qty");
-        var availableQtyInput = document.getElementById("item_uom");
-        availableQtyInput.value = selectedOption.getAttribute("data-uom");
+        var uomInput = document.getElementById("item_uom");
+        uomInput.value = selectedOption.getAttribute("data-uom");
+    }
+
+    function toggleAddQty(subtractValue) {
+        var addInput = document.getElementById("qty_to_add");
+        addInput.disabled = subtractValue > 0;
+        if (subtractValue > 0) {
+            addInput.value = '';
+        }
+    }
+
+    function toggleSubtractQty(addValue) {
+        var subtractInput = document.getElementById("qty_to_subtract");
+        subtractInput.disabled = addValue > 0;
+        if (addValue > 0) {
+            subtractInput.value = '';
+        }
+    }
+
+    function resetForm() {
+        document.getElementById("qty_to_add").disabled = false;
+        document.getElementById("qty_to_subtract").disabled = false;
     }
 </script>

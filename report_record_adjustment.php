@@ -17,7 +17,8 @@
                                 <th scope="col">Model</th>
                                 <th scope="col">Item Category</th>
                                 <th scope="col">UOM</th>
-                                <th scope="col">Quantity</th>
+                                <th scope="col">Quantity Subtracted</th>
+                                <th scope="col">Quantity Added</th>
                                 <th scope="col">Document Date</th>
                                 <th scope="col">Description</th>
                                 <th scope="col">Prepared By</th>
@@ -37,7 +38,8 @@
                                     <td><b><?php echo $row['model'] ?></b></td>
                                     <td><b><?php echo $row['item_category'] ?></b></td>
                                     <td><b><?php echo $row['uom'] ?></b></td>
-                                    <td><b><?php echo $row['qty'] ?></b></td>
+                                    <td><b><?php echo $row['subtract_qty'] ?></b></td>
+                                    <td><b><?php echo $row['add_qty'] ?></b></td>
                                     <td><b><?php echo date('F d Y H:i:s', strtotime($row['doc_date'])) ?></b></td>
                                     <td><b><?php echo $row['description'] ?></b></td>
                                     <td><b><?php echo $row['user_name'] ?></b></td>
