@@ -39,13 +39,13 @@ $user_data = check_login($con);
                             <label for="" class="control-label"><span style="color: red;">*</span> Item Condition</label>
                             <select name="item_condition" id="item_condition" class="custom-select custom-select-sm select2" onchange="updateAvailableQty()" oninvalid="this.setCustomValidity('Select Item Here')" oninput="setCustomValidity('')" required>
                                 <option value=""></option>
-                                <option value="new">Brand New</option>
-                                <option value="likeNew">Like New</option>
-                                <option value="excellent">Excellent</option>
-                                <option value="good">Good</option>
-                                <option value="fair">Fair</option>
-                                <option value="poor">Poor</option>
-                                <option value="damaged">Damaged</option>
+                                <option value="New">Brand New</option>
+                                <option value="like New">Like New</option>
+                                <option value="Excellent">Excellent</option>
+                                <option value="Good">Good</option>
+                                <option value="Fair">Fair</option>
+                                <option value="Poor">Poor</option>
+                                <option value="Damaged">Damaged</option>
                             </select>
                         </div>
                         <div class="form-group">
