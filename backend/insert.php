@@ -121,6 +121,7 @@ if (isset($_POST['submit_e'])) {
 
 if (isset($_POST['submit_l'])) {
     $item_code = /*addslashes so it accept commas and symbols*/ addslashes($_POST['item_code']);
+    $item_condition = addslashes($_POST['item_condition']);
     $employee_id = addslashes($_POST['employee_id']);
     $qty = addslashes($_POST['qty']);
     $qty_taken = addslashes($_POST['qty']);
@@ -159,8 +160,8 @@ if (isset($_POST['submit_l'])) {
 
         if ($update_result) {
             // Insert the data into the asset_loan table
-            $insert_sql = "INSERT INTO asset_loan (item_code, employee_id, qty, qty_taken,doc_date,serial_no, user_name, description)
-                           VALUES ('$item_code', '$employee_id', '$qty', '$qty_taken', '$doc_date','$serial_no', '$user_name', '$description')";
+            $insert_sql = "INSERT INTO asset_loan (item_code, item_condition, employee_id, qty, qty_taken,doc_date,serial_no, user_name, description)
+                           VALUES ('$item_code', '$item_condition', '$employee_id', '$qty', '$qty_taken', '$doc_date','$serial_no', '$user_name', '$description')";
             $insert_result = mysqli_query($con, $insert_sql);
 
             if ($insert_result) {

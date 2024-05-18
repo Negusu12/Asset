@@ -170,6 +170,10 @@ $row = $result->fetch_assoc();
                 <td><?php echo $row['item_name']; ?></td>
             </tr>
             <tr>
+                <th>Item Condition</th>
+                <td><?php echo $row['item_condition']; ?></td>
+            </tr>
+            <tr>
                 <th>Brand</th>
                 <td><?php echo $row['brand']; ?></td>
             </tr>

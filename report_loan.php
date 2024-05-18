@@ -16,6 +16,7 @@
                                 <th scope="col">Brand</th>
                                 <th scope="col">Model</th>
                                 <th scope="col">Item Category</th>
+                                <th scope="col">Item Condition</th>
                                 <th scope="col">Item Type</th>
                                 <th scope="col">Serial No.</th>
                                 <th scope="col">Loaned To</th>
@@ -44,6 +45,7 @@
                                     <td><b><?php echo $row['brand'] ?></b></td>
                                     <td><b><?php echo $row['model'] ?></b></td>
                                     <td><b><?php echo $row['item_category'] ?></b></td>
+                                    <td><b><?php echo $row['item_condition'] ?></b></td>
                                     <td><b><?php echo $row['item_type'] ?></b></td>
                                     <td><b><?php echo $row['serial_no'] ?></b></td>
                                     <td><b><?php echo $row['full_name'] ?></b></td>
@@ -82,7 +84,7 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th colspan="11" class="text-right">Total Quantity:</th>
+                                <th colspan="12" class="text-right">Total Quantity:</th>
                                 <th id="loanedQuantity"></th>
                                 <th id="onLoanQuantity"></th>
                                 <th colspan="5"></th>
@@ -130,7 +132,7 @@
                 [10, 25, 50, "All"]
             ],
             columnDefs: [{
-                    targets: [0, 6, 9, 13], // index of the "Password" column (zero-based index)
+                    targets: [0, 7, 10, 14, 17], // index of the "Password" column (zero-based index)
                     visible: false // set to false to hide the column by default
                 }
                 // Add similar blocks for other columns you want to hide by default
@@ -180,7 +182,7 @@
     function calculateLoanedQuantity() {
         var loanedQuantity = 0;
         $('#mydatatable tbody tr').each(function() {
-            var qty_taken = parseFloat($(this).find('td:not(.hiddenColumn):eq(8)').text().trim());
+            var qty_taken = parseFloat($(this).find('td:not(.hiddenColumn):eq(9)').text().trim());
             if (!isNaN(qty_taken)) {
                 loanedQuantity += qty_taken;
             }
@@ -196,7 +198,7 @@
     function calculateOnLoanQuantity() {
         var onLoanQuantity = 0;
         $('#mydatatable tbody tr').each(function() {
-            var qty = parseFloat($(this).find('td:not(.hiddenColumn):eq(9)').text().trim());
+            var qty = parseFloat($(this).find('td:not(.hiddenColumn):eq(10)').text().trim());
             if (!isNaN(qty)) {
                 onLoanQuantity += qty;
             }
