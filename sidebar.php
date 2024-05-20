@@ -145,7 +145,7 @@
             </li>
           </ul>
         </li>
-        <?php if ($user_data['role'] == 1 || $user_data['role'] == 3) : ?>
+        <?php if ($user_data['role'] == 1) : ?>
           <li class="nav-item">
             <a href="#" class="nav-link nav-edit_staff">
               <i class="nav-icon fas fa-user-cog"></i>
@@ -186,6 +186,24 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="./index.php?page=add_user" class="nav-link nav-add_user tree-item">
+                  <i class="fas fa-angle-right nav-icon"></i>
+                  <p>Add User</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="./index.php?page=users" class="nav-link nav-users tree-item">
+                  <i class="fas fa-angle-right nav-icon"></i>
+                  <p>Users Record</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="./index.php?page=report_list" class="nav-link nav-report_list tree-item">
+                  <i class="fas fa-angle-right nav-icon"></i>
+                  <p>List Choice</p>
+                </a>
+              </li>
               <li class="nav-item">
                 <a href="./index.php?page=record_adjustment" class="nav-link nav-record_adjustment tree-item">
                   <i class="fas fa-angle-right nav-icon"></i>
