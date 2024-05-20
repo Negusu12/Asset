@@ -19,11 +19,9 @@
                                 <th scope="col">Item Condition</th>
                                 <th scope="col">Item Type</th>
                                 <th scope="col">Serial No.</th>
-                                <th scope="col">Loaned To</th>
-                                <th scope="col">Department Department</th>
                                 <th scope="col">UOM</th>
-                                <th scope="col">Loaned Quantity</th>
-                                <th scope="col">Quantity on Loan</th>
+                                <th scope="col">Inactive Quantity</th>
+                                <th scope="col">Quantity still Inactive</th>
                                 <th scope="col">Document Date</th>
                                 <th scope="col">Description</th>
                                 <th scope="col">Item Image</th>
@@ -48,8 +46,6 @@
                                     <td><b><?php echo $row['item_condition'] ?></b></td>
                                     <td><b><?php echo $row['item_type'] ?></b></td>
                                     <td><b><?php echo $row['serial_no'] ?></b></td>
-                                    <td><b><?php echo $row['full_name'] ?></b></td>
-                                    <td><b><?php echo $row['department'] ?></b></td>
                                     <td><b><?php echo $row['uom'] ?></b></td>
                                     <td><b><?php echo ucwords($row['qty_taken']) ?></b></td>
                                     <td><b><?php echo $row['qty'] ?></b></td>
@@ -132,7 +128,7 @@
                 [10, 25, 50, "All"]
             ],
             columnDefs: [{
-                    targets: [0, 7, 9, 10, 14, 17], // index of the "Password" column (zero-based index)
+                    targets: [0, 7, 12], // index of the "Password" column (zero-based index)
                     visible: false // set to false to hide the column by default
                 }
                 // Add similar blocks for other columns you want to hide by default

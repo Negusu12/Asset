@@ -116,7 +116,7 @@ $row = $result->fetch_assoc();
 
         button.print-button {
             height: 50px;
-            weidth: 50px;
+            width: 50px;
         }
 
         p {
