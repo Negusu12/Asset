@@ -107,19 +107,6 @@ ob_end_flush();
                             <input type="hidden" name="item_code" value="<?php echo $item_code; ?>">
                         </div>
                         <div class="form-group">
-                            <label for="" class="control-label"><span style="color: red;">*</span> Item Condition</label>
-                            <select name="item_condition" id="item_condition" class="custom-select custom-select-sm select2" onchange="updateAvailableQty()" oninvalid="this.setCustomValidity('Select Item Condition Here')" oninput="setCustomValidity('')" required>
-                                <option value=""></option>
-                                <option value="Brand New" <?php if ($item_condition == "Brand New") echo "selected"; ?>>Brand New</option>
-                                <option value="like New" <?php if ($item_condition == "like New") echo "selected"; ?>>Like New</option>
-                                <option value="Excellent" <?php if ($item_condition == "Excellent") echo "selected"; ?>>Excellent</option>
-                                <option value="Good" <?php if ($item_condition == "Good") echo "selected"; ?>>Good</option>
-                                <option value="Fair" <?php if ($item_condition == "Fair") echo "selected"; ?>>Fair</option>
-                                <option value="Poor" <?php if ($item_condition == "Poor") echo "selected"; ?>>Poor</option>
-                                <option value="Damaged" <?php if ($item_condition == "Damaged") echo "selected"; ?>>Damaged</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
                             <label for="" class="control-label"><span style="color: red;">*</span> Borrower Name</label>
                             <select name="employee_id" id="employee_id" class="custom-select custom-select-sm select2" disabled>
                                 <option value=""></option>
@@ -136,6 +123,19 @@ ob_end_flush();
                                 ?>
                             </select>
                             <input type="hidden" name="employee_id" value="<?php echo $employee_id; ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="control-label"><span style="color: red;">*</span> Item Condition</label>
+                            <select name="item_condition" id="item_condition" class="custom-select custom-select-sm select2" onchange="updateAvailableQty()" oninvalid="this.setCustomValidity('Select Item Condition Here')" oninput="setCustomValidity('')" required>
+                                <option value=""></option>
+                                <option value="Brand New" <?php if ($item_condition == "Brand New") echo "selected"; ?>>Brand New</option>
+                                <option value="like New" <?php if ($item_condition == "like New") echo "selected"; ?>>Like New</option>
+                                <option value="Excellent" <?php if ($item_condition == "Excellent") echo "selected"; ?>>Excellent</option>
+                                <option value="Good" <?php if ($item_condition == "Good") echo "selected"; ?>>Good</option>
+                                <option value="Fair" <?php if ($item_condition == "Fair") echo "selected"; ?>>Fair</option>
+                                <option value="Poor" <?php if ($item_condition == "Poor") echo "selected"; ?>>Poor</option>
+                                <option value="Damaged" <?php if ($item_condition == "Damaged") echo "selected"; ?>>Damaged</option>
+                            </select>
                         </div>
                     </div>
                     <div class="col-md-6">

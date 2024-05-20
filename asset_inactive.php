@@ -35,26 +35,10 @@ $user_data = check_login($con);
                                 ?>
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label for="" class="control-label"><span style="color: red;">*</span> Borrower Name</label>
-                            <select name="employee_id" id="employee_id" class="custom-select custom-select-sm select2" oninvalid="this.setCustomValidity('Select Borrower Here')" oninput="setCustomValidity('')" required>
-                                <option value=""></option>
-                                <?php
-                                // Retrieve all records from the employee table ordered by full_name
-                                $sql = "SELECT employee_id, full_name FROM employee where employee_id != 195 ORDER BY full_name";
-                                $result = mysqli_query($con, $sql);
-
-                                // Check if query was successful
-                                if ($result) {
-                                    // Loop through each row of the result set and output the full_name value as an option in the select dropdown
-                                    while ($row = mysqli_fetch_assoc($result)) {
-                                        echo "<option value='" . $row["employee_id"] . "'>" . $row["full_name"] . "</option>";
-                                    }
-                                }
-                                ?>
-                            </select>
+                        <div class="form-group " style="display: none;">
+                            <label class="control-label">Prepared By</label>
+                            <input type="text" class="form-control form-control-sm" name="employee_id" value="195">
                         </div>
-
                         <div class="form-group">
                             <label for="" class="control-label">&nbsp;&nbsp;&nbsp;Available Quantity</label>
                             <input id="available_qty" type="text" class="form-control form-control-sm" disabled>
@@ -67,13 +51,13 @@ $user_data = check_login($con);
                             <label for="" class="control-label"><span style="color: red;">*</span> UOM</label>
                             <input id="item_uom" type="text" class="form-control form-control-sm" disabled>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <br />
                         <div class="form-group">
                             <label for="" class="control-label"><span style="color: red;">*</span> Date</label>
                             <input type="date" name="doc_date" id="doc_date" class="form-control form-control-sm" oninvalid="this.setCustomValidity('Enter Date Here')" oninput="setCustomValidity('')" required>
                         </div>
+                    </div>
+                    <div class="col-md-6">
+                        <br />
                         <div class="form-group">
                             <label for="" class="control-label"><span style="color: red;">*</span> Item Condition</label>
                             <select name="item_condition" id="item_condition" class="custom-select custom-select-sm select2" onchange="updateAvailableQty()" oninvalid="this.setCustomValidity('Select Item Condition Here')" oninput="setCustomValidity('')" required>

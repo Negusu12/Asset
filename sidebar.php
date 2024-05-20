@@ -67,6 +67,12 @@
               </a>
             </li>
             <li class="nav-item">
+              <a href="./index.php?page=asset_inactive" class="nav-link nav-asset_inactive tree-item">
+                <i class="fas fa-angle-right nav-icon"></i>
+                <p>Asset Inactive</p>
+              </a>
+            </li>
+            <li class="nav-item">
               <a href="./index.php?page=employee" class="nav-link nav-employee tree-item">
                 <i class="fas fa-angle-right nav-icon"></i>
                 <p>Register Borrower</p>
