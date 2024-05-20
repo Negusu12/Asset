@@ -37,7 +37,7 @@ $user_data = check_login($con);
                         </div>
                         <div class="form-group">
                             <label for="" class="control-label"><span style="color: red;">*</span> Item Condition</label>
-                            <select name="item_condition" id="item_condition" class="custom-select custom-select-sm select2" onchange="updateAvailableQty()" oninvalid="this.setCustomValidity('Select Item Here')" oninput="setCustomValidity('')" required>
+                            <select name="item_condition" id="item_condition" class="custom-select custom-select-sm select2" onchange="updateAvailableQty()" oninvalid="this.setCustomValidity('Select Item Condition Here')" oninput="setCustomValidity('')" required>
                                 <option value=""></option>
                                 <option value="New">Brand New</option>
                                 <option value="like New">Like New</option>

@@ -72,9 +72,16 @@
                                     </td>
                                     <td><b><?php echo $row['user_name'] ?></b></td>
 
-                                    <td>
-                                        <div>
-                                            <a class="custom-button" style="padding: 5px;" href="print_loan.php?loan_id=<?php echo $row['loan_id'] ?>" target="_blank">Print</a>
+                                    <td class="text-center">
+                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                                            Action
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <?php if ($user_data['role'] == 1 || $user_data['role'] == 3) : ?>
+                                                <a class="dropdown-item" href="./index.php?page=backend/edit_loan&loan_id=<?php echo $row['loan_id'] ?>">Edit</a>
+                                                <div class="dropdown-divider"></div>
+                                            <?php endif; ?>
+                                            <a class="dropdown-item" href="print_loan.php?loan_id=<?php echo $row['loan_id'] ?>" target="_blank">Print</a>
                                         </div>
                                     </td>
                                 </tr>
