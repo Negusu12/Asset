@@ -18,7 +18,7 @@ if (isset($_POST['category_total'])) {
                     GROUP BY 
                         item_code, item_name, brand, model 
                     ORDER BY 
-                        total_qty DESC";
+                        item_name ASC";
 
     $item_result = $con->query($item_query);
 

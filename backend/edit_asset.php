@@ -1,11 +1,11 @@
 <?php
-include 'backend/insert.php';
 include("connect.php");
 
 $user_data = check_login($con);
 
 $item_code = $item_c = $item_name = $model = $brand = $item_type = $item_category = $qty = $uom = $doc_date = $description = "";
 $error = $success = "";
+$u_user_name = $user_data['user_name'];
 
 if ($_SERVER["REQUEST_METHOD"] == 'GET') {
     if (!isset($_GET['item_code'])) {
@@ -44,11 +44,12 @@ if ($_SERVER["REQUEST_METHOD"] == 'GET') {
     $uom = $_POST["uom"];
     $doc_date = $_POST["doc_date"];
     $description = $_POST["description"];
+    $u_user_name = $_POST["u_user_name"];
 
     if (empty($error)) {
-        $sql = "UPDATE asset_record SET item_c=?, item_name=?, model=?, brand=?, item_type=?, item_category=?, qty=?, uom=?, doc_date=?, description=? WHERE item_code=?";
+        $sql = "UPDATE asset_record SET item_c=?, item_name=?, model=?, brand=?, item_type=?, item_category=?, qty=?, uom=?, doc_date=?, description=?, u_doc_date=NOW(), u_user_name=? WHERE item_code=?";
         $stmt = $con->prepare($sql);
-        $stmt->bind_param('ssssssissss', $item_c, $item_name, $model, $brand, $item_type, $item_category, $qty, $uom, $doc_date, $description, $item_code);
+        $stmt->bind_param('ssssssisssss', $item_c, $item_name, $model, $brand, $item_type, $item_category, $qty, $uom, $doc_date, $description, $u_user_name, $item_code);
 
         if (!$stmt->execute()) {
             $error = "Error: " . $stmt->error;
@@ -79,6 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'GET') {
             <form method="post" enctype="multipart/form-data">
                 <div class="row">
                     <input type="hidden" name="item_code" value="<?php echo $item_code; ?>">
+                    <input type="hidden" name="u_user_name" value="<?php echo $user_data['user_name']; ?>">
                     <div class="col-md-6">
                         <b class="text-muted">Edit Asset</b>
                         <div class="form-group">
@@ -93,7 +95,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'GET') {
                             <label for="" class="control-label">Brand</label>
                             <input type="text" name="brand" class="form-control form-control-sm" value="<?php echo $brand ?>">
                         </div>
-                        <div class=" form-group">
+                        <div class="form-group">
                             <label for="" class="control-label">Model</label>
                             <input type="text" name="model" class="form-control form-control-sm" value="<?php echo $model ?>">
                         </div>
