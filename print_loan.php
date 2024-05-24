@@ -60,6 +60,13 @@ $row = $result->fetch_assoc();
 
             }
 
+            @page {
+                size: A4;
+                /* Set the page size to A4 or any desired size */
+                margin-left: 10%;
+                /* Remove default margins */
+            }
+
         }
 
         /* Style the signature section */

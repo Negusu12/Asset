@@ -22,6 +22,8 @@
 								<th scope="col">Quantity</th>
 								<th scope="col">Description</th>
 								<th scope="col">Item Image</th>
+								<th scope="col">Last Update Date</th>
+								<th scope="col">Last Updated By</th>
 								<th scope="col">Action</th>
 							</tr>
 						</thead>
@@ -59,7 +61,8 @@
 										?>
 									</td>
 
-
+									<td><b><?php echo date('F d Y H:i:s', strtotime($row['u_doc_date'])) ?></b></td>
+									<td><b><?php echo $row['u_user_name'] ?></b></td>
 
 									<td class="text-center">
 										<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
@@ -129,7 +132,7 @@
 				[10, 25, 50, "All"]
 			],
 			columnDefs: [{
-					targets: [10], // index of the "Password" column (zero-based index)
+					targets: [10, 12, 13], // index of the "Password" column (zero-based index)
 					visible: false // set to false to hide the column by default
 				}
 				// Add similar blocks for other columns you want to hide by default
