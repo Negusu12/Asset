@@ -11,8 +11,8 @@
 						<thead>
 							<tr>
 								<th>#</th>
-								<th scope="col">Item Code</th>
-								<th scope="col">Item Code</th>
+								<th scope="col">System Item Code</th>
+								<th scope="col">ABH Item Code</th>
 								<th scope="col">Item Name</th>
 								<th scope="col">Brand</th>
 								<th scope="col">Model</th>

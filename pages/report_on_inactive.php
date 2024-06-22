@@ -33,7 +33,7 @@
                     $i = 1;
                     if (isset($_GET['item_code'])) {
                         $item_code = $_GET['item_code'];
-                        $qry = $con->prepare("SELECT * FROM asset_loan_v WHERE qty > 0 and department != 'damaged' AND item_code = ?");
+                        $qry = $con->prepare("SELECT * FROM asset_loan_v WHERE qty > 0 and department = 'damaged' AND item_code = ?");
                         $qry->bind_param("s", $item_code);
                         $qry->execute();
                         $result = $qry->get_result();
