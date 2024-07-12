@@ -11725,6 +11725,16 @@ body {
   background-repeat: no-repeat;
   /* Optional: prevent image from repeating */
   color: gray;
+  min-height: 100vh; /* Ensure the body covers the full viewport height */
+  height: 100%; /* Ensure the body covers the full viewport height */
+}
+@media (max-width: 768px) {
+  body {
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh; /* Ensure the body covers the full viewport height */
+    height: 100%; /* Ensure the body covers the full viewport height */
+  }
 }
 
 
