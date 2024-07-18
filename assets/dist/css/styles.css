@@ -454,3 +454,6 @@ li#mydatatable_last.paginate_button.page-item.last.disabled a.page-link {
   background-color: #86B235 !important;
   border-color: #4F7D2A;
 }
+tbody, td, b, strong{
+  font-weight: normal !important;
+}
