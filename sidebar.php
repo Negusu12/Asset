@@ -232,14 +232,22 @@
 <script>
   $(document).ready(function() {
     var page = '<?php echo isset($_GET['page']) ? $_GET['page'] : 'home' ?>';
-    if ($('.nav-link.nav-' + page).length > 0) {
-      $('.nav-link.nav-' + page).addClass('active')
-      console.log($('.nav-link.nav-' + page).hasClass('tree-item'))
-      if ($('.nav-link.nav-' + page).hasClass('tree-item') == true) {
-        $('.nav-link.nav-' + page).closest('.nav-treeview').siblings('a').addClass('active')
-        $('.nav-link.nav-' + page).closest('.nav-treeview').parent().addClass('menu-open')
+    var pageWithoutPath = page.split('/').pop(); // Get the file name from the path
+    if ($('.nav-link.nav-' + pageWithoutPath).length > 0) {
+      $('.nav-link.nav-' + pageWithoutPath).addClass('active')
+      if ($('.nav-link.nav-' + pageWithoutPath).hasClass('tree-item') == true) {
+        $('.nav-link.nav-' + pageWithoutPath).closest('.nav-treeview').siblings('a').addClass('active')
+        $('.nav-link.nav-' + pageWithoutPath).closest('.nav-treeview').parent().addClass('menu-open')
       }
     }
+
+    $('#search-nav').on('keyup', function() {
+      var value = $(this).val().toLowerCase();
+      $('.nav-item').filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+
     $('.manage_account').click(function() {
       uni_modal('Manage Account', 'manage_user.php?id=' + $(this).attr('data-id'))
     })
