@@ -24,7 +24,7 @@
                         <tbody>
                             <?php
                             $i = 1;
-                            $qry = $con->query("select * from drop_down_list");
+                            $qry = $con->query("select * from drop_down_list order by list_id desc");
                             while ($row = $qry->fetch_assoc()) :
                             ?>
                                 <tr>
@@ -40,10 +40,11 @@
                                                 Action
                                             </button>
                                             <div class="dropdown-menu">
+                                                <a class="dropdown-item" onclick='editRow(<?php echo json_encode($row); ?>)'>Edit</a>
                                                 <a class="dropdown-item" onclick='confirmDelete(<?php echo $row['list_id']; ?>)'>Delete</a>
-
                                             </div>
                                         </td>
+
                                     <?php endif; ?>
                                 </tr>
                             <?php endwhile; ?>
@@ -54,6 +55,44 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">Edit Row</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="editForm" method="post" action="backend/edit_list.php">
+                <div class="modal-body">
+                    <input type="hidden" name="list_id" id="edit-list_id">
+                    <div class="form-group">
+                        <label for="edit-department">Department</label>
+                        <input type="text" class="form-control" id="edit-department" name="department">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-category">Category</label>
+                        <input type="text" class="form-control" id="edit-category" name="category">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-uom">UOM</label>
+                        <input type="text" class="form-control" id="edit-uom" name="uom">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-location">Location</label>
+                        <input type="text" class="form-control" id="edit-location" name="location">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <script>
     $(document).ready(function() {
         // Check if DataTable is already initialized
@@ -135,5 +174,98 @@
                 window.location.href = 'backend/delete_list.php?list_id=' + userId;
             }
         });
+    }
+</script>
+<script>
+    function editRow(rowData) {
+        // Populate the modal with the current values
+        const listIdField = document.getElementById('edit-list_id');
+        const departmentField = document.getElementById('edit-department');
+        const categoryField = document.getElementById('edit-category');
+        const uomField = document.getElementById('edit-uom');
+        const locationField = document.getElementById('edit-location');
+
+        listIdField.value = rowData.list_id;
+        departmentField.value = rowData.department;
+        categoryField.value = rowData.category;
+        uomField.value = rowData.uom;
+        locationField.value = rowData.location;
+
+        // Enable all fields initially
+        departmentField.disabled = false;
+        categoryField.disabled = false;
+        uomField.disabled = false;
+        locationField.disabled = false;
+
+        // Disable fields based on current values
+        if (departmentField.value) {
+            categoryField.disabled = true;
+            uomField.disabled = true;
+            locationField.disabled = true;
+        } else if (categoryField.value) {
+            departmentField.disabled = true;
+            uomField.disabled = true;
+            locationField.disabled = true;
+        } else if (uomField.value) {
+            departmentField.disabled = true;
+            categoryField.disabled = true;
+            locationField.disabled = true;
+        } else if (locationField.value) {
+            departmentField.disabled = true;
+            categoryField.disabled = true;
+            uomField.disabled = true;
+        }
+
+        // Add event listeners to disable other fields when one field is filled
+        departmentField.addEventListener('input', () => {
+            if (departmentField.value) {
+                categoryField.disabled = true;
+                uomField.disabled = true;
+                locationField.disabled = true;
+            } else {
+                categoryField.disabled = false;
+                uomField.disabled = false;
+                locationField.disabled = false;
+            }
+        });
+
+        categoryField.addEventListener('input', () => {
+            if (categoryField.value) {
+                departmentField.disabled = true;
+                uomField.disabled = true;
+                locationField.disabled = true;
+            } else {
+                departmentField.disabled = false;
+                uomField.disabled = false;
+                locationField.disabled = false;
+            }
+        });
+
+        uomField.addEventListener('input', () => {
+            if (uomField.value) {
+                departmentField.disabled = true;
+                categoryField.disabled = true;
+                locationField.disabled = true;
+            } else {
+                departmentField.disabled = false;
+                categoryField.disabled = false;
+                locationField.disabled = false;
+            }
+        });
+
+        locationField.addEventListener('input', () => {
+            if (locationField.value) {
+                departmentField.disabled = true;
+                categoryField.disabled = true;
+                uomField.disabled = true;
+            } else {
+                departmentField.disabled = false;
+                categoryField.disabled = false;
+                uomField.disabled = false;
+            }
+        });
+
+        // Show the modal
+        $('#editModal').modal('show');
     }
 </script>
