@@ -41,6 +41,7 @@
                                             </button>
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item" onclick='editRow(<?php echo json_encode($row); ?>)'>Edit</a>
+                                                <div class="dropdown-divider"></div>
                                                 <a class="dropdown-item" onclick='confirmDelete(<?php echo $row['list_id']; ?>)'>Delete</a>
                                             </div>
                                         </td>
