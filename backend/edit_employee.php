@@ -4,7 +4,7 @@ include("connect.php");
 
 $user_data = check_login($con);
 
-$employee_id = $full_name = $department = "";
+$employee_id = $full_name = $department = $list_id = "";
 $error = $success = "";
 
 if ($_SERVER["REQUEST_METHOD"] == 'GET') {
@@ -14,7 +14,12 @@ if ($_SERVER["REQUEST_METHOD"] == 'GET') {
 	}
 
 	$employee_id = $_GET['employee_id'];
-	$sql = "SELECT employee_id, full_name, department FROM employee WHERE employee_id=?";
+	$sql = "SELECT e.employee_id as employee_id,
+e.full_name as full_name,
+e.department as department,
+li.list_id as list_id
+from employee e
+left join drop_down_list li on li.list_id = e.list_id WHERE employee_id=?";
 	$stmt = $con->prepare($sql);
 	$stmt->bind_param('i', $employee_id);
 
@@ -28,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'GET') {
 			exit;
 		}
 
-		$stmt->bind_result($employee_id, $full_name,  $department);
+		$stmt->bind_result($employee_id, $full_name, $department, $list_id);
 		$stmt->fetch();
 	}
 	$stmt->close();
@@ -36,13 +41,12 @@ if ($_SERVER["REQUEST_METHOD"] == 'GET') {
 	$employee_id = $_POST["employee_id"];
 	$full_name = $_POST["full_name"];
 	$department = $_POST["department"];
-
-
+	$list_id = $_POST["list_id"];
 
 	if (empty($error)) {
-		$sql = "UPDATE employee SET full_name=?, department=? WHERE employee_id=?";
+		$sql = "UPDATE employee SET full_name=?, department=?, list_id=? WHERE employee_id=?";
 		$stmt = $con->prepare($sql);
-		$stmt->bind_param('ssi', $full_name, $department, $employee_id);
+		$stmt->bind_param('sssi', $full_name, $department,  $list_id, $employee_id);
 
 		if (!$stmt->execute()) {
 			$error = "Error: " . $stmt->error;
@@ -89,6 +93,22 @@ if ($_SERVER["REQUEST_METHOD"] == 'GET') {
 									while ($row = mysqli_fetch_assoc($result)) {
 										$selected = ($row["department"] == $department) ? 'selected' : '';
 										echo "<option value='" . $row["department"] . "' $selected>" . $row["department"] . "</option>";
+									}
+								}
+								?>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="" class="control-label"><span style="color: red;">*</span> Location</label>
+							<select name="list_id" id="list_id" class="custom-select custom-select-sm select2" oninvalid="this.setCustomValidity('Enter Location Name Here')" oninput="setCustomValidity('')" required>
+								<option value=""></option>
+								<?php
+								$sql = "SELECT list_id, location FROM drop_down_list WHERE location IS NOT NULL AND location <> '' order by location ";
+								$result = mysqli_query($con, $sql);
+								if ($result) {
+									while ($row = mysqli_fetch_assoc($result)) {
+										$selected = ($row["list_id"] == $list_id) ? 'selected' : '';
+										echo "<option value='" . $row["list_id"] . "' $selected>" . $row["location"] . "</option>";
 									}
 								}
 								?>

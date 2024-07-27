@@ -79,9 +79,10 @@ if (isset($_POST['submit'])) {
 if (isset($_POST['submit_e'])) {
     $full_name = /*addlashes so it accept commas and sympols*/ addslashes($_POST['full_name']);
     $department = addslashes($_POST['department']);
+    $list_id = addslashes($_POST['list_id']);
 
-    $sql = "insert into `employee`(full_name,department)
-    values ('$full_name','$department')";
+    $sql = "insert into `employee`(full_name,department,list_id)
+    values ('$full_name','$department','$list_id')";
     $result = mysqli_query($con, $sql);
     if ($result) {
         echo "<script>
@@ -626,12 +627,13 @@ if (isset($_POST['submitp'])) {
 
 
 if (isset($_POST['submit_list'])) {
-    $department = /*addlashes so it accept commas and sympols*/ addslashes($_POST['department']);
-    $category = addslashes($_POST['category']);
-    $uom = addslashes($_POST['uom']);
+    $department = isset($_POST['department']) ? addslashes($_POST['department']) : '';
+    $category = isset($_POST['category']) ? addslashes($_POST['category']) : '';
+    $uom = isset($_POST['uom']) ? addslashes($_POST['uom']) : '';
+    $location = isset($_POST['location']) ? addslashes($_POST['location']) : '';
 
-    $sql = "insert into `drop_down_list`(department,category,uom)
-    values ('$department','$category','$uom')";
+    $sql = "INSERT INTO `drop_down_list` (department, category, uom, location)
+            VALUES ('$department', '$category', '$uom', '$location')";
     $result = mysqli_query($con, $sql);
     if ($result) {
         echo "<script>
@@ -662,6 +664,7 @@ if (isset($_POST['submit_list'])) {
      </script>";
     }
 }
+
 
 if (isset($_POST['submit_user'])) {
     $user_name = $_POST['user_name'];

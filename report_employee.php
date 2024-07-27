@@ -14,6 +14,7 @@
                                 <th scope="col">employee_id</th>
                                 <th scope="col">full_name</th>
                                 <th scope="col">department</th>
+                                <th scope="col">Location</th>
                                 <?php if ($user_data['role'] == 1 || $user_data['role'] == 3) : ?>
                                     <th scope="col">Action</th>
                                 <?php endif; ?>
@@ -22,7 +23,13 @@
                         <tbody>
                             <?php
                             $i = 1;
-                            $qry = $con->query("select * from employee order by employee_id desc");
+                            $qry = $con->query("select employee_id,
+e.list_id,
+e.full_name,
+e.department,
+li.location
+from employee e
+left join drop_down_list li on li.list_id = e.list_id order by employee_id desc");
                             while ($row = $qry->fetch_assoc()) :
                             ?>
                                 <tr>
@@ -30,6 +37,7 @@
                                     <td><b><?php echo $row['employee_id'] ?></b></td>
                                     <td><b><?php echo $row['full_name'] ?></b></td>
                                     <td><b><?php echo $row['department'] ?></b></td>
+                                    <td><b><?php echo $row['location'] ?></b></td>
                                     <?php if ($user_data['role'] == 1 || $user_data['role'] == 3) : ?>
                                         <td class="text-center">
                                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="true">

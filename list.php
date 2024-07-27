@@ -17,15 +17,19 @@ $user_data = check_login($con);
                         <b class="text-muted">Add List Choice</b>
                         <div class="form-group">
                             <label for="" class="control-label">Department</label>
-                            <input type="text" name="department" class="form-control form-control-sm">
+                            <input type="text" name="department" class="form-control form-control-sm" id="department">
                         </div>
                         <div class="form-group">
                             <label for="" class="control-label">Category</label>
-                            <input type="text" name="category" class="form-control form-control-sm">
+                            <input type="text" name="category" class="form-control form-control-sm" id="category">
                         </div>
                         <div class="form-group">
                             <label for="" class="control-label">UOM</label>
-                            <input type="text" name="uom" class="form-control form-control-sm">
+                            <input type="text" name="uom" class="form-control form-control-sm" id="uom">
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="control-label">Location</label>
+                            <input type="text" name="location" class="form-control form-control-sm" id="location">
                         </div>
                     </div>
                 </div>
@@ -38,3 +42,32 @@ $user_data = check_login($con);
         </div>
     </div>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const inputs = document.querySelectorAll('input[type="text"]');
+
+        inputs.forEach(input => {
+            input.addEventListener('input', function() {
+                if (this.value.trim() !== '') {
+                    inputs.forEach(otherInput => {
+                        if (otherInput !== this) {
+                            otherInput.disabled = true;
+                        }
+                    });
+                } else {
+                    let allEmpty = true;
+                    inputs.forEach(otherInput => {
+                        if (otherInput.value.trim() !== '') {
+                            allEmpty = false;
+                        }
+                    });
+                    if (allEmpty) {
+                        inputs.forEach(otherInput => {
+                            otherInput.disabled = false;
+                        });
+                    }
+                }
+            });
+        });
+    });
+</script>

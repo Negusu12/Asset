@@ -15,6 +15,7 @@
                                 <th scope="col">Department</th>
                                 <th scope="col">Category</th>
                                 <th scope="col">UOM</th>
+                                <th scope="col">Location</th>
                                 <?php if ($user_data['role'] == 1 || $user_data['role'] == 3) : ?>
                                     <th scope="col">Action</th>
                                 <?php endif; ?>
@@ -32,6 +33,7 @@
                                     <td><b><?php echo $row['department'] ?></b></td>
                                     <td><b><?php echo $row['category'] ?></b></td>
                                     <td><b><?php echo $row['uom'] ?></b></td>
+                                    <td><b><?php echo $row['location'] ?></b></td>
                                     <?php if ($user_data['role'] == 1 || $user_data['role'] == 3) : ?>
                                         <td class="text-center">
                                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
