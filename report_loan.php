@@ -93,7 +93,7 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th colspan="12" class="text-right">Total Quantity:</th>
+                                <th colspan="13" class="text-right">Total Quantity:</th>
                                 <th id="loanedQuantity"></th>
                                 <th id="onLoanQuantity"></th>
                                 <th colspan="5"></th>
@@ -191,7 +191,7 @@
     function calculateLoanedQuantity() {
         var loanedQuantity = 0;
         $('#mydatatable tbody tr').each(function() {
-            var qty_taken = parseFloat($(this).find('td:not(.hiddenColumn):eq(9)').text().trim());
+            var qty_taken = parseFloat($(this).find('td:not(.hiddenColumn):eq(8)').text().trim());
             if (!isNaN(qty_taken)) {
                 loanedQuantity += qty_taken;
             }
@@ -207,7 +207,7 @@
     function calculateOnLoanQuantity() {
         var onLoanQuantity = 0;
         $('#mydatatable tbody tr').each(function() {
-            var qty = parseFloat($(this).find('td:not(.hiddenColumn):eq(10)').text().trim());
+            var qty = parseFloat($(this).find('td:not(.hiddenColumn):eq(9)').text().trim());
             if (!isNaN(qty)) {
                 onLoanQuantity += qty;
             }
