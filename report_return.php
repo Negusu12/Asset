@@ -21,7 +21,8 @@
                                 <th scope="col">Borrower Name</th>
                                 <th scope="col">UOM</th>
                                 <th scope="col">Quantity</th>
-                                <th scope="col">Document Date</th>
+                                <th scope="col">loaned Date</th>
+                                <th scope="col">Return Date</th>
                                 <th scope="col">Description</th>
                                 <th scope="col">Prepared By</th>
                             </tr>
@@ -44,7 +45,8 @@
                                     <td><b><?php echo $row['full_name'] ?></b></td>
                                     <td><b><?php echo $row['uom'] ?></b></td>
                                     <td><b><?php echo $row['qty'] ?></b></td>
-                                    <td><b><?php echo date('F d Y', strtotime($row['doc_date'])) ?></b></td>
+                                    <td><b><?php echo date('F d Y', strtotime($row['loned_date'])) ?></b></td>
+                                    <td><b><?php echo date('F d Y', strtotime($row['return_date'])) ?></b></td>
                                     <td><b><?php echo $row['description'] ?></b></td>
                                     <td><b><?php echo $row['user_name'] ?></b></td>
                                 </tr>
