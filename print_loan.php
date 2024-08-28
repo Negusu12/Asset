@@ -150,10 +150,11 @@ $row = $result->fetch_assoc();
         }
 
         .img-thumbnail {
-            max-width: 100%;
-            height: auto;
+            max-width: 150px;
+            height: 150px;
             display: block;
             margin-top: -165px;
+            margin-left: 50px;
         }
     </style>
 </head>
