@@ -141,19 +141,16 @@
                 [10, 25, 50, "All"]
             ],
             columnDefs: [{
-                    targets: [0, 6, 7, 10, 11, 18], // index of the "Password" column (zero-based index)
-                    visible: false // set to false to hide the column by default
-                }
-                // Add similar blocks for other columns you want to hide by default
-            ]
+                targets: [0, 6, 7, 10, 11, 18], // indices of columns to hide by default
+                visible: false
+            }]
         });
-        // Custom filtering function for date range
-        // Add Date Range Filtering Inputs
-        $('#mydatatable thead th').each(function() {
-            var columnTitle = $(this).text().trim();
-            var that = table.column($(this).index());
 
-            // Check if the column title matches 'Date'
+        // Add filtering inputs
+        $('#mydatatable thead th').each(function(index) {
+            var columnTitle = $(this).text().trim();
+            var that = table.column(index);
+
             if (columnTitle === 'Document Date') {
                 var dateFilterHtml = `
                 <input type="text" id="minDate" class="form-control datepicker" placeholder="From Date" style="margin-bottom:5px;"/>
@@ -161,19 +158,20 @@
             `;
                 $(this).append(dateFilterHtml);
 
-                // Initialize jQuery UI Datepicker on both inputs
+                // Initialize jQuery UI Datepicker
                 $(".datepicker").datepicker({
-                    dateFormat: 'yy-mm-dd', // Set the format to match your database format
+                    dateFormat: 'yy-mm-dd', // Match your database format
                     onSelect: function() {
                         table.draw();
                     }
                 });
             } else {
-                // Create a regular text input element for other columns
+                // Regular filter input for other columns
                 $('<input type="text" class="form-control" placeholder="Filter"/>')
                     .appendTo($(this))
                     .on('keyup change', function() {
-                        that.search($(this).val()).draw();
+                        // Correctly reference the visible column index
+                        table.column($(this).parent().index() + ':visible').search($(this).val()).draw();
                     });
             }
         });
@@ -183,14 +181,7 @@
             function(settings, data, dataIndex) {
                 var min = $('#minDate').val();
                 var max = $('#maxDate').val();
-                var date = data[15]; // Assuming the date column index is 3
-
-                if (min && new Date(min).toString() === "Invalid Date") {
-                    min = null;
-                }
-                if (max && new Date(max).toString() === "Invalid Date") {
-                    max = null;
-                }
+                var date = data[15]; // Adjust this index based on the position in the data array, considering hidden columns
 
                 // Convert string to date for comparison
                 var dateValue = new Date(date);
@@ -208,16 +199,10 @@
                     return true; // Within the range
                 }
                 return false; // Outside the range or conditions not met
+            }
+        );
 
-
-                input = $('<input type="text" class="form-control" placeholder="Filter"/>')
-                    .appendTo($(this.header()))
-                    .on('keyup change', function() {
-                        that.search($(this).val()).draw();
-                    });
-
-            });
-
+        // Append buttons container
         table.buttons().container()
             .appendTo('#mydatatable_wrapper .col-md-6:eq(0)');
     });
