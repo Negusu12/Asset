@@ -38,7 +38,7 @@
                                     <td><b><?php echo $row['item_category'] ?></b></td>
                                     <td><b><?php echo $row['uom'] ?></b></td>
                                     <td><b><?php echo $row['qty'] ?></b></td>
-                                    <td><b><?php echo date('F d Y', strtotime($row['doc_date'])) ?></b></td>
+                                    <td><b><?php echo date('Y-m-d', strtotime($row['doc_date'])); ?></b></td>
                                     <td><b><?php echo $row['description'] ?></b></td>
                                     <td><b><?php echo $row['user_name'] ?></b></td>
                                 </tr>
@@ -93,25 +93,76 @@
                 [10, 25, 50, "All"]
             ]
         });
-        table.columns().every(function() {
-            var that = this;
-            var columnTitle = $(this.header()).text().trim();
 
-            // Create the input element based on the column title
-            var input;
-            {
+        // Add Date Range Filtering Inputs
+        $('#mydatatable thead th').each(function() {
+            var columnTitle = $(this).text().trim();
+            var that = table.column($(this).index());
+
+            // Check if the column title matches 'Date'
+            if (columnTitle === 'Document Date') {
+                var dateFilterHtml = `
+                <input type="text" id="minDate" class="form-control datepicker" placeholder="From Date" style="margin-bottom:5px;"/>
+                <input type="text" id="maxDate" class="form-control datepicker" placeholder="To Date"/>
+            `;
+                $(this).append(dateFilterHtml);
+
+                // Initialize jQuery UI Datepicker on both inputs
+                $(".datepicker").datepicker({
+                    dateFormat: 'yy-mm-dd', // Set the format to match your database format
+                    onSelect: function() {
+                        table.draw();
+                    }
+                });
+            } else {
                 // Create a regular text input element for other columns
-                input = $('<input type="text" class="form-control" placeholder="Filter"/>')
-                    .appendTo($(this.header()))
+                $('<input type="text" class="form-control" placeholder="Filter"/>')
+                    .appendTo($(this))
                     .on('keyup change', function() {
                         that.search($(this).val()).draw();
                     });
             }
         });
 
+        // Custom filtering function for date range
+        $.fn.dataTable.ext.search.push(
+            function(settings, data, dataIndex) {
+                var min = $('#minDate').val();
+                var max = $('#maxDate').val();
+                var date = data[8]; // Assuming the date column index is 3
+
+                if (min && new Date(min).toString() === "Invalid Date") {
+                    min = null;
+                }
+                if (max && new Date(max).toString() === "Invalid Date") {
+                    max = null;
+                }
+
+                // Convert string to date for comparison
+                var dateValue = new Date(date);
+
+                if ((min === "" || min === null) && (max === "" || max === null)) {
+                    return true; // No filtering if both min and max are empty
+                }
+                if ((min === "" || min === null) && dateValue <= new Date(max)) {
+                    return true; // Only max filter
+                }
+                if (min && !max && dateValue.toDateString() === new Date(min).toDateString()) {
+                    return true; // Only min filter with exact date match
+                }
+                if (dateValue >= new Date(min) && dateValue <= new Date(max)) {
+                    return true; // Within the range
+
+                    input = $('<input type="text" class="form-control" placeholder="Filter"/>')
+                        .appendTo($(this.header()))
+                        .on('keyup change', function() {
+                            that.search($(this).val()).draw();
+                        });
+                }
+            });
+
         table.buttons().container()
             .appendTo('#mydatatable_wrapper .col-md-6:eq(0)');
-
     });
 </script>
 <script>

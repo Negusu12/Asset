@@ -25,7 +25,7 @@
                                 <th scope="col">UOM</th>
                                 <th scope="col">Loaned Quantity</th>
                                 <th scope="col">Quantity on Loan</th>
-                                <th scope="col">Date</th>
+                                <th scope="col">Document Date</th>
                                 <th scope="col">Description</th>
                                 <th scope="col">Item Image</th>
                                 <th scope="col">Prepared By</th>
@@ -154,7 +154,7 @@
             var that = table.column($(this).index());
 
             // Check if the column title matches 'Date'
-            if (columnTitle === 'Date') {
+            if (columnTitle === 'Document Date') {
                 var dateFilterHtml = `
                 <input type="text" id="minDate" class="form-control datepicker" placeholder="From Date" style="margin-bottom:5px;"/>
                 <input type="text" id="maxDate" class="form-control datepicker" placeholder="To Date"/>
