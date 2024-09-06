@@ -96,55 +96,55 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="./index.php?page=report_total_summary" class="nav-link nav-report_total_summary tree-item">
+              <a href="./index.php?page=reports/report_total_summary" class="nav-link nav-report_total_summary tree-item">
                 <i class="fas fa-angle-right nav-icon"></i>
                 <p>Total Asset Summary</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="./index.php?page=report_asset_onhand" class="nav-link nav-report_asset_onhand tree-item">
+              <a href="./index.php?page=reports/report_asset_onhand" class="nav-link nav-report_asset_onhand tree-item">
                 <i class="fas fa-angle-right nav-icon"></i>
                 <p>Asset in Store</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="./index.php?page=report_loan" class="nav-link nav-report_loan tree-item">
+              <a href="./index.php?page=reports/report_loan" class="nav-link nav-report_loan tree-item">
                 <i class="fas fa-angle-right nav-icon"></i>
                 <p>Assets Loan</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="./index.php?page=report_return" class="nav-link nav-report_return tree-item">
+              <a href="./index.php?page=reports/report_return" class="nav-link nav-report_return tree-item">
                 <i class="fas fa-angle-right nav-icon"></i>
                 <p>Returned Assets</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="./index.php?page=report_damaged" class="nav-link nav-report_damaged tree-item">
+              <a href="./index.php?page=reports/report_damaged" class="nav-link nav-report_damaged tree-item">
                 <i class="fas fa-angle-right nav-icon"></i>
                 <p>Inactive Assets</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="./index.php?page=report_buy" class="nav-link nav-report_buy tree-item">
+              <a href="./index.php?page=reports/report_buy" class="nav-link nav-report_buy tree-item">
                 <i class="fas fa-angle-right nav-icon"></i>
                 <p>GRN</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="./index.php?page=report_register_asset" class="nav-link nav-report_register_asset tree-item">
+              <a href="./index.php?page=reports/report_register_asset" class="nav-link nav-report_register_asset tree-item">
                 <i class="fas fa-angle-right nav-icon"></i>
                 <p>Asset Log Record</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="./index.php?page=report_use" class="nav-link nav-report_use tree-item">
+              <a href="./index.php?page=reports/report_use" class="nav-link nav-report_use tree-item">
                 <i class="fas fa-angle-right nav-icon"></i>
                 <p>Consumption Record</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="./index.php?page=report_employee" class="nav-link nav-report_employee tree-item">
+              <a href="./index.php?page=reports/report_employee" class="nav-link nav-report_employee tree-item">
                 <i class="fas fa-angle-right nav-icon"></i>
                 <p>Borrowers List</p>
               </a>
@@ -174,7 +174,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index.php?page=report_list" class="nav-link nav-report_list tree-item">
+                <a href="./index.php?page=reports/report_list" class="nav-link nav-report_list tree-item">
                   <i class="fas fa-angle-right nav-icon"></i>
                   <p>List Choice</p>
                 </a>
@@ -205,7 +205,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index.php?page=report_list" class="nav-link nav-report_list tree-item">
+                <a href="./index.php?page=reports/report_list" class="nav-link nav-report_list tree-item">
                   <i class="fas fa-angle-right nav-icon"></i>
                   <p>List Choice</p>
                 </a>
@@ -217,7 +217,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index.php?page=report_record_adjustment" class="nav-link nav-report_record_adjustment tree-item">
+                <a href="./index.php?page=reports/report_record_adjustment" class="nav-link nav-report_record_adjustment tree-item">
                   <i class="fas fa-angle-right nav-icon"></i>
                   <p>Asset Adjustment Log</p>
                 </a>

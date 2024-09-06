@@ -16,7 +16,7 @@ if (isset($_GET["employee_id"])) {
                 showConfirmButton: true,
                 confirmButtonText: 'OK'
             }).then(function() {
-                window.location.href = '../index.php?page=report_employee';
+                window.location.href = '../index.php?page=reports/report_employee';
             });
         }
      </script>";
@@ -46,7 +46,7 @@ if (isset($_GET["employee_id"])) {
                     showDenyButton: true,
                     denyButtonText: 'OK'
                 }).then(function() {
-                    window.location.href = '../index.php?page=report_employee';
+                    window.location.href = '../index.php?page=reports/report_employee';
                 });
             }
          </script>";

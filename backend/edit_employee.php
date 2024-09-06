@@ -9,7 +9,7 @@ $error = $success = "";
 
 if ($_SERVER["REQUEST_METHOD"] == 'GET') {
 	if (!isset($_GET['employee_id'])) {
-		header('Location: ../report_employee.php');
+		header('Location: ../reports/report_employee.php');
 		exit;
 	}
 
@@ -29,7 +29,7 @@ left join drop_down_list li on li.list_id = e.list_id WHERE employee_id=?";
 		$stmt->store_result();
 
 		if ($stmt->num_rows == 0) {
-			header('Location: ../report_employee.php');
+			header('Location: ../reports/report_employee.php');
 			exit;
 		}
 
@@ -59,7 +59,7 @@ left join drop_down_list li on li.list_id = e.list_id WHERE employee_id=?";
                 showConfirmButton: true,
                 confirmButtonText: 'OK',
             }).then(function() {
-                window.location.href = 'index.php?page=report_employee';
+                window.location.href = 'index.php?page=reports/report_employee';
             });
         }
     </script>";

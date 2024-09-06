@@ -9,7 +9,7 @@ $u_user_name = $user_data['user_name'];
 
 if ($_SERVER["REQUEST_METHOD"] == 'GET') {
     if (!isset($_GET['item_code'])) {
-        header('Location: ../report_asset.php');
+        header('Location: ../reports/report_asset.php');
         exit;
     }
 
@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'GET') {
         $stmt->store_result();
 
         if ($stmt->num_rows == 0) {
-            header('Location: ../report_asset.php');
+            header('Location: ../reports/report_asset.php');
             exit;
         }
 
@@ -62,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'GET') {
                 showConfirmButton: true,
                 confirmButtonText: 'OK',
             }).then(function() {
-                window.location.href = 'index.php?page=report_asset_onhand';
+                window.location.href = 'index.php?page=reports/report_asset_onhand';
             });
         }
     </script>";

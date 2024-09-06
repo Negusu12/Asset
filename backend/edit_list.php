@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
     if (!$stmt->execute()) {
         echo "Error: " . $stmt->error;
     } else {
-        header('Location: ../index.php?page=report_list');
+        header('Location: ../index.php?page=reports/report_list');
     }
     $stmt->close();
 }

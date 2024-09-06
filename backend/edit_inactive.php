@@ -9,7 +9,7 @@ $error = $success = "";
 
 if ($_SERVER["REQUEST_METHOD"] == 'GET') {
     if (!isset($_GET['loan_id'])) {
-        header('Location: ../report_loan.php');
+        header('Location: ../reports/report_loan.php');
         exit;
     }
 
@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'GET') {
         $stmt->store_result();
 
         if ($stmt->num_rows == 0) {
-            header('Location: ../report_loan.php');
+            header('Location: ../reports/report_loan.php');
             exit;
         }
 
@@ -66,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'GET') {
                         showConfirmButton: true,
                         confirmButtonText: 'OK',
                     }).then(function() {
-                        window.location.href = 'index.php?page=report_damaged';
+                        window.location.href = 'index.php?page=reports/report_damaged';
                     });
                 }
             </script>";

@@ -3,7 +3,7 @@
 <div class="row">
 
   <div class="col-12 col-sm-6 col-md-3">
-    <a href="index.php?page=report_total_summary" class="info-box-link">
+    <a href="index.php?page=reports/report_total_summary" class="info-box-link">
       <div class="info-box">
         <span class="info-box-icon bg-info elevation-1"><i class="fas fa-globe-africa"></i></span>
         <div class="info-box-content">
@@ -35,7 +35,7 @@
     <!-- /.info-box -->
   </div>
   <div class="col-12 col-sm-6 col-md-3">
-    <a href="index.php?page=report_asset_onhand" class="info-box-link">
+    <a href="index.php?page=reports/report_asset_onhand" class="info-box-link">
       <div class="info-box">
         <span class="info-box-icon bg-info elevation-1"><i class="fas fa-warehouse"></i></i></span>
         <div class="info-box-content">
@@ -54,7 +54,7 @@
     <!-- /.info-box -->
   </div>
   <div class="col-12 col-sm-6 col-md-3">
-    <a href="index.php?page=report_loan" class="info-box-link">
+    <a href="index.php?page=reports/report_loan" class="info-box-link">
       <div class="info-box">
         <span class="info-box-icon bg-info elevation-1"><i class="far fa-credit-card"></i></i></span>
         <div class="info-box-content">
@@ -78,7 +78,7 @@
 
   </div>
   <div class="col-12 col-sm-6 col-md-3">
-    <a href="index.php?page=report_damaged" class="info-box-link">
+    <a href="index.php?page=reports/report_damaged" class="info-box-link">
       <div class="info-box">
         <span class="info-box-icon bg-info elevation-1"><i class="fas fa-dumpster-fire"></i></i></i></span>
         <div class="info-box-content">
@@ -264,10 +264,46 @@ while ($row = $buy_result->fetch_assoc()) {
 }
 
 $barColors = array(
-  "#03949B", "#26225B", "#4D7DBF", "#B2B435", "#414142", "#ff9800", "#795548", "#aa00ff", "#5bc0de", "#d9534f",
-  "#b84d4d", "#6082b6", "#de994d", "#5c5c8a", "#c19a5f", "#6497b1", "#a57f8d", "#4a8468", "#d09494", "#619b78",
-  "#ad6b88", "#7a9aa7", "#c7a685", "#5274ab", "#9f7b56", "#4f4f7f", "#ae6f7f", "#9b9b6b", "#5b8fa3", "#b29b75",
-  "#4b6584", "#936e4d", "#6b6b94", "#c4a493", "#497c87", "#a37356", "#4f7d6b", "#a69b6c", "#6d8b92", "#d8af8f"
+  "#03949B",
+  "#26225B",
+  "#4D7DBF",
+  "#B2B435",
+  "#414142",
+  "#ff9800",
+  "#795548",
+  "#aa00ff",
+  "#5bc0de",
+  "#d9534f",
+  "#b84d4d",
+  "#6082b6",
+  "#de994d",
+  "#5c5c8a",
+  "#c19a5f",
+  "#6497b1",
+  "#a57f8d",
+  "#4a8468",
+  "#d09494",
+  "#619b78",
+  "#ad6b88",
+  "#7a9aa7",
+  "#c7a685",
+  "#5274ab",
+  "#9f7b56",
+  "#4f4f7f",
+  "#ae6f7f",
+  "#9b9b6b",
+  "#5b8fa3",
+  "#b29b75",
+  "#4b6584",
+  "#936e4d",
+  "#6b6b94",
+  "#c4a493",
+  "#497c87",
+  "#a37356",
+  "#4f7d6b",
+  "#a69b6c",
+  "#6d8b92",
+  "#d8af8f"
 );
 
 ?>
