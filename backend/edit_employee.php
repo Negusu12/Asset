@@ -4,7 +4,7 @@ include("connect.php");
 
 $user_data = check_login($con);
 
-$employee_id = $full_name = $department = $list_id = "";
+$employee_id = $borrower_title = $full_name = $department = $list_id = "";
 $error = $success = "";
 
 if ($_SERVER["REQUEST_METHOD"] == 'GET') {
@@ -15,6 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'GET') {
 
 	$employee_id = $_GET['employee_id'];
 	$sql = "SELECT e.employee_id as employee_id,
+e.borrower_title as borrower_title,
 e.full_name as full_name,
 e.department as department,
 li.list_id as list_id
@@ -33,20 +34,21 @@ left join drop_down_list li on li.list_id = e.list_id WHERE employee_id=?";
 			exit;
 		}
 
-		$stmt->bind_result($employee_id, $full_name, $department, $list_id);
+		$stmt->bind_result($employee_id, $borrower_title, $full_name, $department, $list_id);
 		$stmt->fetch();
 	}
 	$stmt->close();
 } else {
 	$employee_id = $_POST["employee_id"];
+	$borrower_title = $_POST["borrower_title"];
 	$full_name = $_POST["full_name"];
 	$department = $_POST["department"];
 	$list_id = $_POST["list_id"];
 
 	if (empty($error)) {
-		$sql = "UPDATE employee SET full_name=?, department=?, list_id=? WHERE employee_id=?";
+		$sql = "UPDATE employee SET borrower_title=?, full_name=?, department=?, list_id=? WHERE employee_id=?";
 		$stmt = $con->prepare($sql);
-		$stmt->bind_param('sssi', $full_name, $department,  $list_id, $employee_id);
+		$stmt->bind_param('ssssi', $borrower_title, $full_name, $department,  $list_id, $employee_id);
 
 		if (!$stmt->execute()) {
 			$error = "Error: " . $stmt->error;
@@ -79,6 +81,18 @@ left join drop_down_list li on li.list_id = e.list_id WHERE employee_id=?";
 					<input type="hidden" name="employee_id" value="<?php echo $employee_id; ?>">
 					<div class="col-md-6">
 						<b class="text-muted">Add List Choice</b>
+						<div class="form-group">
+							<label for="" class="control-label"><span style="color: red;">*</span> Borrower Title</label>
+							<select name="borrower_title" class="custom-select custom-select-sm select2" oninvalid="this.setCustomValidity('Select Title Here')" oninput="setCustomValidity('')" required>
+								<option value="" <?php if ($borrower_title == '') echo 'selected'; ?>></option>
+								<option value="Mr." <?php if ($borrower_title == 'Mr.') echo 'selected'; ?>>Mr.</option>
+								<option value="Ms." <?php if ($borrower_title == 'Ms.') echo 'selected'; ?>>Ms.</option>
+								<option value="Dr." <?php if ($borrower_title == 'Dr.') echo 'selected'; ?>>Dr.</option>
+								<option value="Prof." <?php if ($borrower_title == 'Prof.') echo 'selected'; ?>>Prof.</option>
+								<option value="Eng." <?php if ($borrower_title == 'Eng.') echo 'selected'; ?>>Eng.</option>
+							</select>
+						</div>
+
 						<div class="form-group">
 							<label for="" class="control-label"><span style="color: red;">*</span> Borrower Name</label>
 							<input type="text" name="full_name" class="form-control form-control-sm" value="<?php echo $full_name ?>" oninvalid="this.setCustomValidity('Enter User Name Here')" oninput="setCustomValidity('')" required>

@@ -11,6 +11,7 @@
                         <thead>
                             <tr>
                                 <th scope="col">row_No</th>
+                                <th scope="col">Title</th>
                                 <th scope="col">employee_id</th>
                                 <th scope="col">full_name</th>
                                 <th scope="col">department</th>
@@ -25,6 +26,7 @@
                             $i = 1;
                             $qry = $con->query("select employee_id,
 e.list_id,
+e.borrower_title,
 e.full_name,
 e.department,
 li.location
@@ -35,6 +37,7 @@ left join drop_down_list li on li.list_id = e.list_id order by employee_id desc"
                                 <tr>
                                     <th class="text-center"><?php echo $i++ ?></th>
                                     <td><b><?php echo $row['employee_id'] ?></b></td>
+                                    <td><b><?php echo $row['borrower_title'] ?></b></td>
                                     <td><b><?php echo $row['full_name'] ?></b></td>
                                     <td><b><?php echo $row['department'] ?></b></td>
                                     <td><b><?php echo $row['location'] ?></b></td>

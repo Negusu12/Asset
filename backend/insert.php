@@ -80,9 +80,10 @@ if (isset($_POST['submit_e'])) {
     $full_name = /*addlashes so it accept commas and sympols*/ addslashes($_POST['full_name']);
     $department = addslashes($_POST['department']);
     $list_id = addslashes($_POST['list_id']);
+    $borrower_title = addslashes($_POST['borrower_title']);
 
-    $sql = "insert into `employee`(full_name,department,list_id)
-    values ('$full_name','$department','$list_id')";
+    $sql = "insert into `employee`(borrower_title,full_name,department,list_id)
+    values ('$borrower_title', '$full_name','$department','$list_id')";
     $result = mysqli_query($con, $sql);
     if ($result) {
         echo "<script>

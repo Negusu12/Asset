@@ -195,8 +195,9 @@ $row = $result->fetch_assoc();
             </tr>
             <tr>
                 <th>Borrower Name</th>
-                <td><?php echo $row['full_name']; ?></td>
+                <td><?php echo $row['borrower_title'] . ' ' . $row['full_name']; ?></td>
             </tr>
+
             <tr>
                 <th>Quantity</th>
                 <td><?php echo $row['qty']; ?></td>

@@ -16,6 +16,18 @@ $user_data = check_login($con);
                     <div class="col-md-6">
                         <b class="text-muted">Register Borrower</b>
                         <div class="form-group">
+                            <label for="" class="control-label"><span style="color: red;">*</span> Borrower Title</label>
+                            <select name="borrower_title" class="custom-select custom-select-sm select2" oninvalid="this.setCustomValidity('Select Title Here')" oninput="setCustomValidity('')" required>
+                                <option value=""></option>
+                                <option value="Mr.">Mr.</option>
+                                <option value="Ms.">Ms.</option>
+                                <option value="Dr.">Dr.</option>
+                                <option value="Prof.">Prof.</option>
+                                <option value="Eng.">Eng.</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
                             <label for="" class="control-label"><span style="color: red;">*</span> Borrower Name</label>
                             <input type="text" name="full_name" class="form-control form-control-sm" oninvalid="this.setCustomValidity('Enter Borrower Name Here')" oninput="setCustomValidity('')" required>
                         </div>
