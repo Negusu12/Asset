@@ -27,7 +27,6 @@
                                 <th scope="col">Quantity on Loan</th>
                                 <th scope="col">Document Date</th>
                                 <th scope="col">Description</th>
-                                <th scope="col">Item Image</th>
                                 <th scope="col">Prepared By</th>
                                 <th scope="col">Print</th>
                             </tr>
@@ -57,21 +56,6 @@
                                     <td><b><?php echo $row['qty'] ?></b></td>
                                     <td><b><?php echo date('Y-m-d', strtotime($row['doc_date'])); ?></b></td>
                                     <td><b><?php echo $row['description'] ?></b></td>
-                                    <td class="img_tbl">
-                                        <?php
-                                        $image_data = $row['item_image'];
-                                        if (!empty($image_data)) {
-                                            $base64_image = base64_encode($image_data);
-                                            if ($base64_image) {
-                                                echo '<img src="data:image/jpeg;base64,' . $base64_image . '" alt="Image" class="img-thumbnail" style="cursor: pointer;" onclick="openImageModal(\'' . $base64_image . '\')">';
-                                            } else {
-                                                echo '<p>Error: Unable to encode image data.</p>';
-                                            }
-                                        } else {
-                                            echo '<p></p>';
-                                        }
-                                        ?>
-                                    </td>
                                     <td><b><?php echo $row['user_name'] ?></b></td>
 
                                     <td class="text-center">
@@ -96,7 +80,7 @@
                                 <th colspan="13" class="text-right">Total Quantity:</th>
                                 <th id="loanedQuantity"></th>
                                 <th id="onLoanQuantity"></th>
-                                <th colspan="5"></th>
+                                <th colspan="4"></th>
                             </tr>
                         </tfoot>
                     </table>
