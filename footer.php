@@ -191,3 +191,31 @@
 			console.error(error);
 		});
 </script>
+
+<script>
+	document.querySelectorAll('.priceFormat').forEach(function(element) {
+		element.addEventListener('input', function(e) {
+			let value = e.target.value;
+
+			// Remove any non-digit characters, except the decimal point
+			let rawValue = value.replace(/[^0-9.]/g, '');
+
+			// Split the value on the decimal point
+			const parts = rawValue.split('.');
+			// Format the integer part with commas
+			parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+			// Join the parts back together for display
+			e.target.value = parts.join('.');
+
+			// Update the underlying hidden input with the raw value
+			if (element.name === 'projected_sales') {
+				document.getElementById('projected_sales_raw').value = rawValue;
+			} else if (element.name === 'price') {
+				document.getElementById('price_raw').value = rawValue;
+			} else if (element.name === 'wholesale_price') {
+				document.getElementById('wholesale_price_raw').value = rawValue;
+			}
+		});
+	});
+</script>

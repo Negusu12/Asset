@@ -710,3 +710,41 @@ if (isset($_POST['submit_user'])) {
         }
     }
 }
+
+if (isset($_POST['submit_charge'])) {
+    $charge = addslashes($_POST['charge']);
+    $price = addslashes($_POST['price']);
+    $description = addslashes($_POST['description']);
+
+    $sql = "INSERT INTO `charges` (charge, price, description)
+            VALUES ('$charge', '$price', '$description')";
+    $result = mysqli_query($con, $sql);
+    if ($result) {
+        echo "<script>
+        window.onload = function() {
+            // Display a success message using SweetAlert
+            Swal.fire({
+                icon: 'success',
+                title: 'Charge Has been Successfully Added',
+                showConfirmButton: true,
+                confirmButtonText: 'OK'
+            }).then(function() {
+                window.location.href = 'index.php?page=charge_record';
+            });
+        }
+     </script>";
+    } else {
+        echo "<script>
+        window.onload = function() {
+            // Display a success message using SweetAlert
+            Swal.fire({
+                icon: 'error',
+                title: 'Failed to record Charge Choice.',
+                showConfirmButton: false,
+                showDenyButton: true,
+                denyButtonText: 'OK'
+            });
+        }
+     </script>";
+    }
+}

@@ -225,6 +225,24 @@
             </ul>
           </li>
         <?php endif; ?>
+        <li class="nav-item">
+          <a href="#" class="nav-link nav-edit_staff">
+            <i class="nav-icon fas fa-user-cog"></i>
+            <p>
+              Ethio Tele
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="./index.php?page=charge_record" class="nav-link nav-charge_record tree-item">
+                <i class="fas fa-angle-right nav-icon"></i>
+                <p>Add Charge</p>
+              </a>
+            </li>
+
+          </ul>
+        </li>
       </ul>
     </nav>
   </div>
