@@ -748,3 +748,55 @@ if (isset($_POST['submit_charge'])) {
      </script>";
     }
 }
+
+
+if (isset($_POST['submit_transaction'])) {
+    $charge = intval($_POST['charge']); // Assuming charge is a numeric ID
+    $owner = intval($_POST['owner']); // Assuming owner is a numeric ID
+    $current_holder = intval($_POST['current_holder']); // Assuming current_holder is a numeric ID
+    $phone_number = addslashes($_POST['phone_number']);
+    $payment_period = addslashes($_POST['payment_period']);
+    $expire_date = !empty($_POST['expire_date']) ? "'" . addslashes($_POST['expire_date']) . "'" : "NULL";
+    $given_date = addslashes($_POST['given_date']);
+    $taken_date = !empty($_POST['taken_date']) ? "'" . addslashes($_POST['taken_date']) . "'" : "NULL"; // Allow NULL for taken_date
+    $payment_type = addslashes($_POST['payment_type']);
+    $status = addslashes($_POST['status']);
+    $description = addslashes($_POST['description']);
+
+    // SQL Query
+    $sql = "INSERT INTO `sim_card_transactions` 
+            (charge, owner, current_holder, phone_number, payment_period, expire_date, given_date, taken_date, payment_type, status, discription) 
+            VALUES 
+            ('$charge', '$owner', '$current_holder', '$phone_number', '$payment_period', $expire_date, '$given_date', $taken_date, '$payment_type', '$status', '$description')";
+
+    $result = mysqli_query($con, $sql);
+
+    // Success or Error Message
+    if ($result) {
+        echo "<script>
+        window.onload = function() {
+            Swal.fire({
+                icon: 'success',
+                title: 'SIM Card Transaction Successfully Added',
+                showConfirmButton: true,
+                confirmButtonText: 'OK'
+            }).then(function() {
+                window.location.href = 'index.php?page=ethiotele_transaction';
+            });
+        }
+        </script>";
+    } else {
+        echo "<script>
+        window.onload = function() {
+            Swal.fire({
+                icon: 'error',
+                title: 'Failed to Record SIM Card Transaction',
+                text: '" . mysqli_error($con) . "',
+                showConfirmButton: false,
+                showDenyButton: true,
+                denyButtonText: 'OK'
+            });
+        }
+        </script>";
+    }
+}

@@ -240,6 +240,12 @@
                 <p>Add Charge</p>
               </a>
             </li>
+            <li class="nav-item">
+              <a href="./index.php?page=ethiotele_transaction" class="nav-link nav-ethiotele_transaction tree-item">
+                <i class="fas fa-angle-right nav-icon"></i>
+                <p>Add Transaction</p>
+              </a>
+            </li>
 
           </ul>
         </li>
