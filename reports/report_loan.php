@@ -125,7 +125,7 @@
                 [10, 25, 50, "All"]
             ],
             columnDefs: [{
-                targets: [0, 6, 7, 10, 11, 18], // indices of columns to hide by default
+                targets: [0, 6, 7, 10, 11, 17], // indices of columns to hide by default
                 visible: false
             }]
         });
