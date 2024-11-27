@@ -33,7 +33,7 @@ CREATE TABLE `adjust_asset` (
   PRIMARY KEY (`u_asset`),
   KEY `item_code` (`item_code`),
   CONSTRAINT `adjust_asset_ibfk_1` FOREIGN KEY (`item_code`) REFERENCES `asset_record` (`item_code`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -59,7 +59,7 @@ CREATE TABLE `asset_loan` (
   KEY `employee_id` (`employee_id`),
   CONSTRAINT `asset_loan_ibfk_1` FOREIGN KEY (`item_code`) REFERENCES `asset_record` (`item_code`),
   CONSTRAINT `asset_loan_ibfk_2` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`employee_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=562 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=577 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -118,7 +118,7 @@ CREATE TABLE `asset_record` (
   `u_doc_date` datetime DEFAULT CURRENT_TIMESTAMP,
   `u_user_name` varchar(25) DEFAULT NULL,
   PRIMARY KEY (`item_code`)
-) ENGINE=InnoDB AUTO_INCREMENT=115 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=116 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -144,7 +144,7 @@ CREATE TABLE `asset_register_record` (
   `item_type` varchar(10) DEFAULT NULL,
   `item_image` longblob,
   PRIMARY KEY (`item_code`)
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -168,7 +168,7 @@ CREATE TABLE `asset_return` (
   KEY `item_code` (`item_code`),
   CONSTRAINT `asset_return_ibfk_1` FOREIGN KEY (`loan_id`) REFERENCES `asset_loan` (`loan_id`),
   CONSTRAINT `asset_return_ibfk_2` FOREIGN KEY (`item_code`) REFERENCES `asset_record` (`item_code`)
-) ENGINE=InnoDB AUTO_INCREMENT=146 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=165 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -232,7 +232,7 @@ CREATE TABLE `buy_asset` (
   PRIMARY KEY (`b_asset`),
   KEY `item_code` (`item_code`),
   CONSTRAINT `buy_asset_ibfk_1` FOREIGN KEY (`item_code`) REFERENCES `asset_record` (`item_code`)
-) ENGINE=InnoDB AUTO_INCREMENT=179 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=183 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -257,6 +257,22 @@ SET @saved_cs_client     = @@character_set_client;
  1 AS `description`,
  1 AS `user_name`*/;
 SET character_set_client = @saved_cs_client;
+
+--
+-- Table structure for table `charges`
+--
+
+DROP TABLE IF EXISTS `charges`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `charges` (
+  `charge_id` int NOT NULL AUTO_INCREMENT,
+  `Charge` varchar(100) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `description` longtext,
+  PRIMARY KEY (`charge_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `drop_down_list`
@@ -291,7 +307,7 @@ CREATE TABLE `employee` (
   PRIMARY KEY (`employee_id`),
   KEY `fk_location` (`list_id`),
   CONSTRAINT `fk_location` FOREIGN KEY (`list_id`) REFERENCES `drop_down_list` (`list_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=214 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=213 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -316,6 +332,36 @@ SET @saved_cs_client     = @@character_set_client;
  1 AS `description`,
  1 AS `user_name`*/;
 SET character_set_client = @saved_cs_client;
+
+--
+-- Table structure for table `sim_card_transactions`
+--
+
+DROP TABLE IF EXISTS `sim_card_transactions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `sim_card_transactions` (
+  `transaction_id` int NOT NULL AUTO_INCREMENT,
+  `charge` int DEFAULT NULL,
+  `owner` int DEFAULT NULL,
+  `current_holder` int DEFAULT NULL,
+  `phone_number` varchar(25) DEFAULT NULL,
+  `payment_period` varchar(25) NOT NULL,
+  `expire_date` date DEFAULT NULL,
+  `given_date` date NOT NULL,
+  `taken_date` date DEFAULT NULL,
+  `payment_type` varchar(50) NOT NULL,
+  `status` varchar(50) NOT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`transaction_id`),
+  KEY `charge` (`charge`),
+  KEY `owner` (`owner`),
+  KEY `current_holder` (`current_holder`),
+  CONSTRAINT `sim_card_transactions_ibfk_1` FOREIGN KEY (`charge`) REFERENCES `charges` (`charge_id`),
+  CONSTRAINT `sim_card_transactions_ibfk_2` FOREIGN KEY (`owner`) REFERENCES `employee` (`employee_id`),
+  CONSTRAINT `sim_card_transactions_ibfk_3` FOREIGN KEY (`current_holder`) REFERENCES `employee` (`employee_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Temporary view structure for view `store_loan_dash_v`
@@ -370,7 +416,7 @@ CREATE TABLE `use_asset` (
   PRIMARY KEY (`u_asset`),
   KEY `item_code` (`item_code`),
   CONSTRAINT `use_asset_ibfk_1` FOREIGN KEY (`item_code`) REFERENCES `asset_record` (`item_code`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -566,4 +612,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-10-14  6:15:11
+-- Dump completed on 2024-11-27  9:08:58

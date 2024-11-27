@@ -258,6 +258,12 @@
                 <p>Report Transaction</p>
               </a>
             </li>
+            <li class="nav-item">
+              <a href="./index.php?page=reports/report_past_tele_transactions" class="nav-link nav-report_past_tele_transactions tree-item">
+                <i class="fas fa-angle-right nav-icon"></i>
+                <p>Report inactive Transaction</p>
+              </a>
+            </li>
           </ul>
         </li>
       </ul>

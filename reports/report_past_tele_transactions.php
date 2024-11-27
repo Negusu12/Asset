@@ -46,8 +46,8 @@ FROM sim_card_transactions st
 LEFT JOIN charges c ON st.charge = c.charge_id
 LEFT JOIN employee ec ON st.current_holder = ec.employee_id
 LEFT JOIN employee eo ON st.owner = eo.employee_id 
-where st.status= 'Loaned'
-order by transaction_id desc");
+where st.status != 'Loaned'
+order by taken_date desc");
 							while ($row = $qry->fetch_assoc()) :
 							?>
 								<tr>
@@ -115,7 +115,7 @@ order by transaction_id desc");
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					<button type="submit" class="btn btn-primary" name="update_transaction">Save Changes</button>
+					<button type="submit" class="btn btn-primary" name="update_past_transaction">Save Changes</button>
 				</div>
 			</form>
 		</div>

@@ -88,6 +88,46 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header("Location: ../index.php?page=reports/report_tele_transactions&error=2");
             exit();
         }
+    } elseif (isset($_POST['update_past_transaction'])) {
+        $transaction_id = $_POST['transaction_id'];
+        $taken_date = !empty($_POST['taken_date']) ? $_POST['taken_date'] : null; // Allow null if not selected
+        $status = $_POST['status'];
+        $description = $_POST['description'];
+
+        try {
+            $sql = "UPDATE sim_card_transactions 
+                    SET taken_date = ?, status = ?, description = ? 
+                    WHERE transaction_id = ?";
+            $stmt = $con->prepare($sql);
+            $stmt->bind_param(
+                'sssi',
+                $taken_date, // This will be NULL if not selected
+                $status,
+                $description,
+                $transaction_id
+            );
+
+            if ($stmt->execute()) {
+                echo "<script>
+                window.onload = function() {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'SIM Card Transaction has been updated successfully',
+                        showConfirmButton: true,
+                        confirmButtonText: 'OK'
+                    }).then(function() {
+                        window.location.href = '../index.php?page=reports/report_past_tele_transactions';
+                    });
+                }
+                </script>";
+            } else {
+                header("Location: ../index.php?page=reports/report_tele_transactions&error=1");
+                exit();
+            }
+        } catch (Exception $e) {
+            header("Location: ../index.php?page=reports/report_tele_transactions&error=2");
+            exit();
+        }
     } else {
         echo "Invalid submission.";
     }
