@@ -38,8 +38,8 @@ include 'header.php'
 
   .notification-count {
     position: absolute;
-    top: -10px;
-    left: 50%;
+    top: 9px;
+    left: 15000%;
     transform: translateX(-50%);
     width: 30px;
     height: 30px;
