@@ -29,7 +29,23 @@
 						<tbody>
 							<?php
 							$i = 1;
-							$qry = $con->query("select * from sim_card_transactions order by transaction_id desc");
+							$qry = $con->query(" SELECT 
+    st.transaction_id,
+    c.charge AS charge,
+    eo.full_name AS owner,
+    ec.full_name AS current_holder,
+    st.phone_number,
+    st.payment_period,
+    st.expire_date,
+    st.given_date,
+    st.taken_date,
+    st.payment_type,
+    st.status,
+    st.description
+FROM sim_card_transactions st
+LEFT JOIN charges c ON st.charge = c.charge_id
+LEFT JOIN employee ec ON st.current_holder = ec.employee_id
+LEFT JOIN employee eo ON st.owner = eo.employee_id order by transaction_id desc");
 							while ($row = $qry->fetch_assoc()) :
 							?>
 								<tr>
@@ -82,8 +98,13 @@
 						<input type="date" class="form-control" id="takenDate" name="taken_date">
 					</div>
 					<div class="form-group">
-						<label for="status">Status</label>
-						<input type="text" class="form-control" id="status" name="status">
+						<label for="" class="control-label">Status</label>
+						<select name="status" id="status" class="custom-select custom-select-sm select2" oninvalid="this.setCustomValidity('Select status Here')" oninput="setCustomValidity('')" required>
+							<option value=""></option>
+							<option value="Returned">Returned</option>
+							<option value="Expired">Expired</option>
+							<option value="Loaned">Loaned</option>
+						</select>
 					</div>
 					<div class="form-group">
 						<label for="description">Description</label>
@@ -98,7 +119,6 @@
 		</div>
 	</div>
 </div>
-
 
 <script>
 	$(document).ready(function() {

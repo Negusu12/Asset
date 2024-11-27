@@ -73,8 +73,15 @@ $user_data = check_login($con);
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="" class="control-label">&nbsp;&nbsp;&nbsp;Phone Number</label>
-                            <input type="text" name="phone_number" class="form-control form-control-sm">
+                            <label for="phone_number" class="control-label">&nbsp;&nbsp;&nbsp;Phone Number</label>
+                            <input
+                                type="text"
+                                name="phone_number"
+                                id="phone_number"
+                                class="form-control form-control-sm"
+                                pattern="^(\+2519\d{8}|09\d{8})$"
+                                title="Please enter a valid Ethiopian phone number (e.g., +251911223344 or 0911223344)"
+                                required>
                         </div>
                         <div class="form-group">
                             <label for="" class="control-label"><span style="color: red;">*</span> Payment Period</label>
@@ -84,7 +91,7 @@ $user_data = check_login($con);
                                 <option value="Yearly">Yearly</option>
                             </select>
                         </div>
-                        <input type="hidden" name="status" value="Active" />
+                        <input type="hidden" name="status" value="Loaned" />
                     </div>
                     <div class="col-md-6">
                         <br />
