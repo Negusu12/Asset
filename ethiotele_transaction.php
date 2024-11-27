@@ -80,8 +80,7 @@ $user_data = check_login($con);
                                 id="phone_number"
                                 class="form-control form-control-sm"
                                 pattern="^(\+2519\d{8}|09\d{8})$"
-                                title="Please enter a valid Ethiopian phone number (e.g., +251911223344 or 0911223344)"
-                                required>
+                                title="Please enter a valid Ethiopian phone number (e.g., +251911223344 or 0911223344)">
                         </div>
                         <div class="form-group">
                             <label for="" class="control-label"><span style="color: red;">*</span> Payment Period</label>

@@ -713,8 +713,10 @@ if (isset($_POST['submit_user'])) {
 
 if (isset($_POST['submit_charge'])) {
     $charge = addslashes($_POST['charge']);
-    $price = addslashes($_POST['price']);
+    $price_raw = addslashes($_POST['price_raw']);
     $description = addslashes($_POST['description']);
+
+    $price = str_replace(',', '', $price_raw);
 
     $sql = "INSERT INTO `charges` (charge, price, description)
             VALUES ('$charge', '$price', '$description')";
