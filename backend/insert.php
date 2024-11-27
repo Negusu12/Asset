@@ -765,7 +765,7 @@ if (isset($_POST['submit_transaction'])) {
 
     // SQL Query
     $sql = "INSERT INTO `sim_card_transactions` 
-            (charge, owner, current_holder, phone_number, payment_period, expire_date, given_date, taken_date, payment_type, status, discription) 
+            (charge, owner, current_holder, phone_number, payment_period, expire_date, given_date, taken_date, payment_type, status, description) 
             VALUES 
             ('$charge', '$owner', '$current_holder', '$phone_number', '$payment_period', $expire_date, '$given_date', $taken_date, '$payment_type', '$status', '$description')";
 
