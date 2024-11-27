@@ -65,29 +65,29 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="editForm" method="post" action="backend/edit_list.php">
+            <form id="editDropdownForm" method="post" action="backend/edit_report.php">
+                <input type="hidden" name="list_id" id="edit-list_id">
                 <div class="modal-body">
-                    <input type="hidden" name="list_id" id="edit-list_id">
                     <div class="form-group">
                         <label for="edit-department">Department</label>
-                        <input type="text" class="form-control" id="edit-department" name="department">
+                        <input type="text" class="form-control" id="edit-department" name="department" required>
                     </div>
                     <div class="form-group">
                         <label for="edit-category">Category</label>
-                        <input type="text" class="form-control" id="edit-category" name="category">
+                        <input type="text" class="form-control" id="edit-category" name="category" required>
                     </div>
                     <div class="form-group">
                         <label for="edit-uom">UOM</label>
-                        <input type="text" class="form-control" id="edit-uom" name="uom">
+                        <input type="text" class="form-control" id="edit-uom" name="uom" required>
                     </div>
                     <div class="form-group">
                         <label for="edit-location">Location</label>
-                        <input type="text" class="form-control" id="edit-location" name="location">
+                        <input type="text" class="form-control" id="edit-location" name="location" required>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <button type="submit" name="list_model" class="btn btn-primary">Save changes</button>
                 </div>
             </form>
         </div>
@@ -172,7 +172,7 @@
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href = 'backend/delete_list.php?list_id=' + userId;
+                window.location.href = 'backend/delete_report.php?list_id=' + userId;
             }
         });
     }

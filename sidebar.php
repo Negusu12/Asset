@@ -247,6 +247,13 @@
               </a>
             </li>
 
+            <li class="nav-item">
+              <a href="./index.php?page=reports/report_charge" class="nav-link nav-report_charge tree-item">
+                <i class="fas fa-angle-right nav-icon"></i>
+                <p>Report Charge</p>
+              </a>
+            </li>
+
           </ul>
         </li>
       </ul>
