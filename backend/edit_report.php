@@ -43,8 +43,62 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             echo "Error: " . $stmt->error;
         }
+    }
+    // --------------  End edit Charge------------------------------
+
+    // --------------   edit sim_card_transactions------------------------------
+
+    elseif (isset($_POST['update_transaction'])) {
+        $transaction_id = $_POST['transaction_id'];
+        $taken_date = $_POST['taken_date'];
+        $status = $_POST['status'];
+        $description = $_POST['description'];
+
+        try {
+            $sql = "UPDATE sim_card_transactions 
+                    SET taken_date = ?, status = ?, description = ? 
+                    WHERE transaction_id = ?";
+            $stmt = $con->prepare($sql);
+            $stmt->bind_param('sssi', $taken_date, $status, $description, $transaction_id);
+
+            if ($stmt->execute()) {
+                echo "<script>
+        window.onload = function() {
+            Swal.fire({
+                icon: 'success',
+                title: 'SIM Card Transaction have been updated Successfully',
+                showConfirmButton: true,
+                confirmButtonText: 'OK'
+            }).then(function() {
+                window.location.href = '../index.php?page=reports/report_tele_transactions';
+            });
+        }
+        </script>";
+            } else {
+                header("Location: ../index.php?page=reports/report_tele_transactions&error=1");
+                exit();
+            }
+        } catch (Exception $e) {
+            header("Location: your_page.php?error=1");
+            exit();
+        }
     } else {
         echo "Invalid submission.";
     }
-    // --------------  End edit Charge------------------------------
 }
+// --------------   End edit sim_card_transactions------------------------------
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <link rel="stylesheet" href="../assets/dist/css/sweetalert2.min.css">
+</head>
+
+<body>
+    <script src="../assets/dist/js/sweetalert2.min.js"></script>
+</body>
+
+</html>
