@@ -71,7 +71,7 @@
                                             <?php endif; ?>
                                             <a class="dropdown-item" href="print_loan.php?loan_id=<?php echo $row['loan_id'] ?>" target="_blank">Print</a>
                                             <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" style="cursor: pointer;" onclick="viewItem('<?php echo $row['item_code']; ?>')">View</a>
+                                            <a class="dropdown-item" style="cursor: pointer;" onclick="viewItem('<?php echo $row['item_code']; ?>')">View Item Information</a>
                                         </div>
                                     </td>
                                 </tr>
@@ -129,7 +129,7 @@
                 [10, 25, 50, "All"]
             ],
             columnDefs: [{
-                targets: [0, 1, 6, 7, 10, 11, 17], // indices of columns to hide by default
+                targets: [0, 1, 7, 8, 11, 12, 18], // indices of columns to hide by default
                 visible: false
             }]
         });
