@@ -342,25 +342,43 @@ DROP TABLE IF EXISTS `sim_card_transactions`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sim_card_transactions` (
   `transaction_id` int NOT NULL AUTO_INCREMENT,
-  `charge` int DEFAULT NULL,
-  `owner` int DEFAULT NULL,
   `current_holder` int DEFAULT NULL,
-  `phone_number` varchar(25) DEFAULT NULL,
-  `payment_period` varchar(25) NOT NULL,
-  `expire_date` date DEFAULT NULL,
   `given_date` date NOT NULL,
-  `taken_date` date DEFAULT NULL,
-  `payment_type` varchar(50) NOT NULL,
   `status` varchar(50) NOT NULL,
   `description` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`transaction_id`),
+  KEY `current_holder` (`current_holder`),
+  CONSTRAINT `sim_card_transactions_ibfk_1` FOREIGN KEY (`current_holder`) REFERENCES `employee` (`employee_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `sim_card_transactions_line`
+--
+
+DROP TABLE IF EXISTS `sim_card_transactions_line`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `sim_card_transactions_line` (
+  `transaction_id_line` int NOT NULL AUTO_INCREMENT,
+  `transaction_id` int DEFAULT NULL,
+  `charge` int DEFAULT NULL,
+  `owner` int DEFAULT NULL,
+  `phone_number` varchar(25) DEFAULT NULL,
+  `payment_period` varchar(25) NOT NULL,
+  `expire_date` date DEFAULT NULL,
+  `taken_date` date DEFAULT NULL,
+  `payment_type` varchar(50) NOT NULL,
+  `status` varchar(50) NOT NULL,
+  `description_line` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`transaction_id_line`),
+  KEY `transaction_id` (`transaction_id`),
   KEY `charge` (`charge`),
   KEY `owner` (`owner`),
-  KEY `current_holder` (`current_holder`),
-  CONSTRAINT `sim_card_transactions_ibfk_1` FOREIGN KEY (`charge`) REFERENCES `charges` (`charge_id`),
-  CONSTRAINT `sim_card_transactions_ibfk_2` FOREIGN KEY (`owner`) REFERENCES `employee` (`employee_id`),
-  CONSTRAINT `sim_card_transactions_ibfk_3` FOREIGN KEY (`current_holder`) REFERENCES `employee` (`employee_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `sim_card_transactions_line_ibfk_1` FOREIGN KEY (`transaction_id`) REFERENCES `sim_card_transactions` (`transaction_id`),
+  CONSTRAINT `sim_card_transactions_line_ibfk_2` FOREIGN KEY (`charge`) REFERENCES `charges` (`charge_id`),
+  CONSTRAINT `sim_card_transactions_line_ibfk_3` FOREIGN KEY (`owner`) REFERENCES `employee` (`employee_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -612,4 +630,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-11-29  4:59:20
+-- Dump completed on 2024-11-29 11:29:53

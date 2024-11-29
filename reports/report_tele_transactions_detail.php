@@ -32,7 +32,10 @@
 						<tbody>
 							<?php
 							$i = 1;
-							$qry = $con->query(" SELECT 
+							$filter = isset($_GET['filter']) ? $_GET['filter'] : '';
+
+							// Default query
+							$sql = "SELECT 
     st.transaction_id,
     stl.transaction_id_line,
     c.charge AS charge,
@@ -53,37 +56,54 @@ LEFT JOIN sim_card_transactions_line stl ON st.transaction_id = stl.transaction_
 LEFT JOIN charges c ON stl.charge = c.charge_id
 LEFT JOIN employee ec ON st.current_holder = ec.employee_id
 LEFT JOIN employee eo ON stl.owner = eo.employee_id
-where st.status != 'Loaned'
-order by stl.taken_date desc");
-							while ($row = $qry->fetch_assoc()) :
-							?>
-								<tr>
-									<th class="text-center"><?php echo $i++ ?></th>
-									<td><b><?php echo $row['transaction_id_line'] ?></b></td>
-									<td><b><?php echo $row['charge'] ?></b></td>
-									<td><b><?php echo $row['owner'] ?></b></td>
-									<td><b><?php echo $row['current_holder'] ?></b></td>
-									<td><b><?php echo $row['phone_number'] ?></b></td>
-									<td><b><?php echo $row['payment_period'] ?></b></td>
-									<td><b><?php echo $row['expire_date'] ?></b></td>
-									<td><b><?php echo $row['given_date'] ?></b></td>
-									<td><b><?php echo $row['taken_date'] ?></b></td>
-									<td><b><?php echo $row['payment_type'] ?></b></td>
-									<td><b><?php echo $row['line_status'] ?></b></td>
-									<td><b><?php echo $row['line_description'] ?></b></td>
-									<td><b><?php echo $row['transaction_status'] ?></b></td>
-									<td><b><?php echo $row['transaction_description'] ?></b></td>
-									<td class="text-center">
-										<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-											Action
-										</button>
-										<div class="dropdown-menu">
-											<a class="dropdown-item" onclick='editRow(<?php echo json_encode($row); ?>)'>Edit</a>
-										</div>
-									</td>
+where st.status= 'Loaned'";
 
-								</tr>
-							<?php endwhile; ?>
+							// Apply the filter if `filter=approaching_deadline` is set
+							if ($filter === 'approaching_deadline') {
+								$current_date = date('Y-m-d');
+								$four_days_from_now = date('Y-m-d', strtotime('+7 days'));
+
+								$sql .= "AND st.expire_date BETWEEN '$current_date' AND '$four_days_from_now'";
+							}
+
+							$sql .= " order by st.transaction_id desc";
+
+							$result = mysqli_query($con, $sql);
+							$i = 1;
+
+							// Check if the query returned results
+							if ($result) {
+								while ($row = mysqli_fetch_assoc($result)) { ?>
+									<tr>
+										<th class="text-center"><?php echo $i++ ?></th>
+										<td><b><?php echo $row['transaction_id'] ?></b></td>
+										<td><b><?php echo $row['transaction_id_line'] ?></b></td>
+										<td><b><?php echo $row['charge'] ?></b></td>
+										<td><b><?php echo $row['owner'] ?></b></td>
+										<td><b><?php echo $row['current_holder'] ?></b></td>
+										<td><b><?php echo $row['phone_number'] ?></b></td>
+										<td><b><?php echo $row['payment_period'] ?></b></td>
+										<td><b><?php echo $row['expire_date'] ?></b></td>
+										<td><b><?php echo $row['given_date'] ?></b></td>
+										<td><b><?php echo $row['taken_date'] ?></b></td>
+										<td><b><?php echo $row['payment_type'] ?></b></td>
+										<td><b><?php echo $row['line_status'] ?></b></td>
+										<td><b><?php echo $row['line_description'] ?></b></td>
+										<td><b><?php echo $row['transaction_status'] ?></b></td>
+										<td><b><?php echo $row['transaction_description'] ?></b></td>
+										<td class="text-center">
+											<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+												Action
+											</button>
+											<div class="dropdown-menu">
+												<a class="dropdown-item" onclick='editRow(<?php echo json_encode($row); ?>)'>Edit</a>
+											</div>
+										</td>
+
+									</tr>
+							<?php } // Close the while loop
+							} // Close the if ($result) block
+							?>
 						</tbody>
 					</table>
 				</div>
@@ -124,7 +144,7 @@ order by stl.taken_date desc");
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					<button type="submit" class="btn btn-primary" name="update_past_transaction">Save Changes</button>
+					<button type="submit" class="btn btn-primary" name="update_transaction">Save Changes</button>
 				</div>
 			</form>
 		</div>

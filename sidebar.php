@@ -254,6 +254,12 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="./index.php?page=reports/report_tele_transactions_detail" class="nav-link nav-report_tele_transactions_detail tree-item">
+                  <i class="fas fa-angle-right nav-icon"></i>
+                  <p>Report Transaction Detail</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="./index.php?page=reports/report_tele_transactions" class="nav-link nav-report_tele_transactions tree-item">
                   <i class="fas fa-angle-right nav-icon"></i>
                   <p>Report Transaction</p>

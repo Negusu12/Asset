@@ -753,52 +753,68 @@ if (isset($_POST['submit_charge'])) {
 
 
 if (isset($_POST['submit_transaction'])) {
-    $charge = intval($_POST['charge']); // Assuming charge is a numeric ID
-    $owner = intval($_POST['owner']); // Assuming owner is a numeric ID
-    $current_holder = intval($_POST['current_holder']); // Assuming current_holder is a numeric ID
-    $phone_number = addslashes($_POST['phone_number']);
-    $payment_period = addslashes($_POST['payment_period']);
-    $expire_date = !empty($_POST['expire_date']) ? "'" . addslashes($_POST['expire_date']) . "'" : "NULL";
-    $given_date = addslashes($_POST['given_date']);
-    $taken_date = !empty($_POST['taken_date']) ? "'" . addslashes($_POST['taken_date']) . "'" : "NULL"; // Allow NULL for taken_date
-    $payment_type = addslashes($_POST['payment_type']);
-    $status = addslashes($_POST['status']);
-    $description = addslashes($_POST['description']);
+    $current_holder = intval($_POST['current_holder']);
+    $given_date = mysqli_real_escape_string($con, $_POST['given_date']);
+    $description = mysqli_real_escape_string($con, $_POST['description']);
 
-    // SQL Query
-    $sql = "INSERT INTO `sim_card_transactions` 
-            (charge, owner, current_holder, phone_number, payment_period, expire_date, given_date, taken_date, payment_type, status, description) 
-            VALUES 
-            ('$charge', '$owner', '$current_holder', '$phone_number', '$payment_period', $expire_date, '$given_date', $taken_date, '$payment_type', '$status', '$description')";
+    // Insert into sim_card_transactions
+    $sql_transaction = "INSERT INTO sim_card_transactions (current_holder, given_date, status, description) 
+                         VALUES ('$current_holder', '$given_date', 'Loaned', '$description')";
+    if (mysqli_query($con, $sql_transaction)) {
+        $transaction_id = mysqli_insert_id($con);
 
-    $result = mysqli_query($con, $sql);
+        // Validate and sanitize arrays
+        $charges = isset($_POST['charge']) ? $_POST['charge'] : [];
+        $owners = isset($_POST['owner']) ? $_POST['owner'] : [];
+        $phone_numbers = isset($_POST['phone_number']) ? $_POST['phone_number'] : [];
+        $payment_periods = isset($_POST['payment_period']) ? $_POST['payment_period'] : [];
+        $expire_dates = isset($_POST['expire_date']) ? $_POST['expire_date'] : [];
+        $payment_types = isset($_POST['payment_type']) ? $_POST['payment_type'] : [];
+        $description_lines = isset($_POST['description_line']) ? $_POST['description_line'] : [];
 
-    // Success or Error Message
-    if ($result) {
-        echo "<script>
-        window.onload = function() {
-            Swal.fire({
-                icon: 'success',
-                title: 'SIM Card Transaction Successfully Added',
-                showConfirmButton: true,
-                confirmButtonText: 'OK'
-            }).then(function() {
-                window.location.href = 'index.php?page=ethiotele_transaction';
-            });
+        // Ensure all arrays have the same length
+        $row_count = count($charges);
+
+        for ($i = 0; $i < $row_count; $i++) {
+            $charge = isset($charges[$i]) ? intval($charges[$i]) : 0;
+            $owner = isset($owners[$i]) ? intval($owners[$i]) : 0;
+            $phone_number = isset($phone_numbers[$i]) ? mysqli_real_escape_string($con, $phone_numbers[$i]) : '';
+            $payment_period = isset($payment_periods[$i]) ? mysqli_real_escape_string($con, $payment_periods[$i]) : '';
+            $expire_date = isset($expire_dates[$i]) && !empty($expire_dates[$i]) ? "'" . mysqli_real_escape_string($con, $expire_dates[$i]) . "'" : "NULL";
+            $payment_type = isset($payment_types[$i]) ? mysqli_real_escape_string($con, $payment_types[$i]) : '';
+            $description_line = isset($description_lines[$i]) ? mysqli_real_escape_string($con, $description_lines[$i]) : '';
+
+            // Insert into sim_card_transactions_line
+            $sql_line = "INSERT INTO sim_card_transactions_line 
+                         (transaction_id, charge, owner, phone_number, payment_period, expire_date, payment_type, description_line, status) 
+                         VALUES 
+                         ('$transaction_id', '$charge', '$owner', '$phone_number', '$payment_period', $expire_date, '$payment_type', '$description_line', 'Loaned')";
+
+            if (!mysqli_query($con, $sql_line)) {
+                echo "<script>alert('Failed to insert transaction line: " . mysqli_error($con) . "');</script>";
+            }
         }
+
+        // Success message
+        echo "<script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Transaction Successfully Saved!',
+            confirmButtonText: 'OK'
+        }).then(() => window.location.href = 'index.php?page=ethiotele_transaction');
         </script>";
     } else {
+        // Error message for transaction insert
         echo "<script>
-        window.onload = function() {
-            Swal.fire({
-                icon: 'error',
-                title: 'Failed to Record SIM Card Transaction',
-                text: '" . mysqli_error($con) . "',
-                showConfirmButton: false,
-                showDenyButton: true,
-                denyButtonText: 'OK'
-            });
-        }
+        Swal.fire({
+            icon: 'error',
+            title: 'Failed to Save Transaction',
+            text: '" . mysqli_error($con) . "',
+            confirmButtonText: 'OK'
+        });
         </script>";
     }
+
+    // Close the database connection
+    mysqli_close($con);
 }
