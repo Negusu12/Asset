@@ -37,7 +37,7 @@ $user_data = check_login($con);
                         <div class="form-group">
                             <label for="" class="control-label"><span style="color: red;">*</span> Owner</label>
                             <select name="owner" id="owner" class="custom-select custom-select-sm select2" oninvalid="this.setCustomValidity('Select Borrower Here')" oninput="setCustomValidity('')" required>
-                                <option value=""></option>
+                                <option value="213">ABH Partners</option>
                                 <?php
                                 // Retrieve all records from the employee table ordered by full_name
                                 $sql = "SELECT employee_id, full_name FROM employee where employee_id != 195 ORDER BY full_name";

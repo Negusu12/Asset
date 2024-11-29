@@ -24,6 +24,7 @@ $user_data = check_login($con);
                                 <option value="Dr.">Dr.</option>
                                 <option value="Prof.">Prof.</option>
                                 <option value="Eng.">Eng.</option>
+                                <option value="Not a Person">Not a Person</option>
                             </select>
                         </div>
 
