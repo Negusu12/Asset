@@ -11,6 +11,7 @@
                         <thead>
                             <tr>
                                 <th>Row No.</th>
+                                <th scope="col">System Item Code</th>
                                 <th scope="col">Loan ID</th>
                                 <th scope="col">Item Name</th>
                                 <th scope="col">Brand</th>
@@ -40,6 +41,7 @@
                             ?>
                                 <tr>
                                     <th class="text-center"><?php echo $i++ ?></th>
+                                    <td><b><?php echo $row['item_code'] ?></b></td>
                                     <td><b><?php echo $row['loan_id'] ?></b></td>
                                     <td><b><?php echo ucwords($row['item_name']) ?></b></td>
                                     <td><b><?php echo $row['brand'] ?></b></td>
@@ -68,6 +70,8 @@
                                                 <div class="dropdown-divider"></div>
                                             <?php endif; ?>
                                             <a class="dropdown-item" href="print_loan.php?loan_id=<?php echo $row['loan_id'] ?>" target="_blank">Print</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" style="cursor: pointer;" onclick="viewItem('<?php echo $row['item_code']; ?>')">View</a>
                                         </div>
                                     </td>
                                 </tr>
@@ -77,7 +81,7 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th colspan="13" class="text-right">Total Quantity:</th>
+                                <th colspan="14" class="text-right">Total Quantity:</th>
                                 <th id="loanedQuantity"></th>
                                 <th id="onLoanQuantity"></th>
                                 <th colspan="4"></th>
@@ -125,7 +129,7 @@
                 [10, 25, 50, "All"]
             ],
             columnDefs: [{
-                targets: [0, 6, 7, 10, 11, 17], // indices of columns to hide by default
+                targets: [0, 1, 6, 7, 10, 11, 17], // indices of columns to hide by default
                 visible: false
             }]
         });
@@ -165,7 +169,7 @@
             function(settings, data, dataIndex) {
                 var min = $('#minDate').val();
                 var max = $('#maxDate').val();
-                var date = data[15]; // Adjust this index based on the position in the data array, considering hidden columns
+                var date = data[16]; // Adjust this index based on the position in the data array, considering hidden columns
 
                 // Convert string to date for comparison
                 var dateValue = new Date(date);
@@ -243,4 +247,30 @@
     $('#mydatatable').on('draw.dt', function() {
         calculateOnLoanQuantity(); // Recalculate total quantity when the DataTable is redrawn (e.g., page change)
     });
+</script>
+<script>
+    function viewItem(itemCode) {
+        fetch('item_detail_card.php?item_code=' + itemCode)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.text(); // Change to text() to receive plain text response
+            })
+            .then(data => {
+                // Display the plain text response directly
+                Swal.fire({
+                    title: 'Item Details',
+                    html: data // Display the plain text response
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching item details:', error);
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Failed to fetch item details. Please try again later.',
+                    icon: 'error'
+                });
+            });
+    }
 </script>

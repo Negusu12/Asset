@@ -225,47 +225,49 @@
             </ul>
           </li>
         <?php endif; ?>
-        <li class="nav-item">
-          <a href="#" class="nav-link nav-edit_staff">
-            <i class="nav-icon fas fa-user-cog"></i>
-            <p>
-              Ethio Tele
-              <i class="right fas fa-angle-left"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="./index.php?page=charge_record" class="nav-link nav-charge_record tree-item">
-                <i class="fas fa-angle-right nav-icon"></i>
-                <p>Add Charge</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="./index.php?page=ethiotele_transaction" class="nav-link nav-ethiotele_transaction tree-item">
-                <i class="fas fa-angle-right nav-icon"></i>
-                <p>Add Transaction</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="./index.php?page=reports/report_charge" class="nav-link nav-report_charge tree-item">
-                <i class="fas fa-angle-right nav-icon"></i>
-                <p>Report Charge</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="./index.php?page=reports/report_tele_transactions" class="nav-link nav-report_tele_transactions tree-item">
-                <i class="fas fa-angle-right nav-icon"></i>
-                <p>Report Transaction</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="./index.php?page=reports/report_past_tele_transactions" class="nav-link nav-report_past_tele_transactions tree-item">
-                <i class="fas fa-angle-right nav-icon"></i>
-                <p>Report inactive Transaction</p>
-              </a>
-            </li>
-          </ul>
-        </li>
+        <?php if (in_array($user_data['role'], [1])) : ?>
+          <li class="nav-item">
+            <a href="#" class="nav-link nav-edit_staff">
+              <i class="nav-icon fas fa-user-cog"></i>
+              <p>
+                Ethio Tele
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="./index.php?page=charge_record" class="nav-link nav-charge_record tree-item">
+                  <i class="fas fa-angle-right nav-icon"></i>
+                  <p>Add Charge</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="./index.php?page=ethiotele_transaction" class="nav-link nav-ethiotele_transaction tree-item">
+                  <i class="fas fa-angle-right nav-icon"></i>
+                  <p>Add Transaction</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="./index.php?page=reports/report_charge" class="nav-link nav-report_charge tree-item">
+                  <i class="fas fa-angle-right nav-icon"></i>
+                  <p>Report Charge</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="./index.php?page=reports/report_tele_transactions" class="nav-link nav-report_tele_transactions tree-item">
+                  <i class="fas fa-angle-right nav-icon"></i>
+                  <p>Report Transaction</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="./index.php?page=reports/report_past_tele_transactions" class="nav-link nav-report_past_tele_transactions tree-item">
+                  <i class="fas fa-angle-right nav-icon"></i>
+                  <p>Report inactive Transaction</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+        <?php endif; ?>
       </ul>
     </nav>
   </div>

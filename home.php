@@ -77,52 +77,79 @@
     <!-- /.info-box -->
 
   </div>
-  <div class="col-12 col-sm-6 col-md-3">
-    <a href="index.php?page=reports/report_tele_transactions&filter=approaching_deadline" class="info-box-link">
+  <?php if (in_array($user_data['role'], [1, 3])) : ?>
+    <div class="col-12 col-sm-6 col-md-3">
+      <a href="index.php?page=reports/report_damaged" class="info-box-link">
+        <div class="info-box">
+          <span class="info-box-icon bg-info elevation-1"><i class="fas fa-dumpster-fire"></i></i></i></span>
+          <div class="info-box-content">
+            <span class="info-box-text">Inactive Assets</span>
+            <span class="info-box-number">
+              <?php
+              // Assuming $con is your database connection object
 
-      <div class="info-box mb-3">
-        <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-bullhorn"></i></span>
-        <div class="info-box-content">
-          <span class="info-box-text">EthioTele Packages Approaching Deadline</span>
-          <span class="info-box-number">
-            <?php
-            // Calculate the current date
-            $current_date = date('Y-m-d');
+              $result = $con->query("SELECT SUM(qty) AS total_qty FROM asset_loan_v where department = 'damaged'");
+              $row = $result->fetch_assoc();
+              $total_qty = $row['total_qty'];
 
-            // Calculate the date four days from now
-            $four_days_from_now = date('Y-m-d', strtotime('+7 days'));
+              echo "" . $total_qty;
+              ?>
+            </span>
+          </div>
+          <!-- /.info-box-content -->
+        </div>
+      </a>
+      <!-- /.info-box -->
 
-            // Construct the SQL query to count the number of records where the deadline is approaching within four days
-            $query = "SELECT COUNT(*) as num_records             
+    </div>
+  <?php endif; ?>
+  <?php if (in_array($user_data['role'], [1])) : ?>
+    <div class="col-12 col-sm-6 col-md-3">
+      <a href="index.php?page=reports/report_tele_transactions&filter=approaching_deadline" class="info-box-link">
+
+        <div class="info-box mb-3">
+          <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-bullhorn"></i></span>
+          <div class="info-box-content">
+            <span class="info-box-text">EthioTele Packages Approaching Deadline</span>
+            <span class="info-box-number">
+              <?php
+              // Calculate the current date
+              $current_date = date('Y-m-d');
+
+              // Calculate the date four days from now
+              $four_days_from_now = date('Y-m-d', strtotime('+7 days'));
+
+              // Construct the SQL query to count the number of records where the deadline is approaching within four days
+              $query = "SELECT COUNT(*) as num_records             
                     FROM sim_card_transactions
                     WHERE expire_date BETWEEN '$current_date' AND '$four_days_from_now'";
 
-            // Execute the query and fetch the result
-            $result = $con->query($query);
+              // Execute the query and fetch the result
+              $result = $con->query($query);
 
-            // Check if the query was successful
-            if ($result) {
-              // Fetch the row as an associative array
-              $row = $result->fetch_assoc();
+              // Check if the query was successful
+              if ($result) {
+                // Fetch the row as an associative array
+                $row = $result->fetch_assoc();
 
-              // Get the number of records from the 'num_records' column
-              $num_records = $row['num_records'];
+                // Get the number of records from the 'num_records' column
+                $num_records = $row['num_records'];
 
-              echo $num_records;
-            } else {
-              // If the query fails, output an error message or handle the error as needed
-              echo "Error executing query: " . $con->error;
-            }
-            ?>
-          </span>
+                echo $num_records;
+              } else {
+                // If the query fails, output an error message or handle the error as needed
+                echo "Error executing query: " . $con->error;
+              }
+              ?>
+            </span>
+          </div>
+          <!-- /.info-box-content -->
         </div>
-        <!-- /.info-box-content -->
-      </div>
-    </a>
-    <!-- /.info-box -->
+      </a>
+      <!-- /.info-box -->
 
-  </div>
-
+    </div>
+  <?php endif; ?>
 
 </div>
 <div class="containerr">
