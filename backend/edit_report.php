@@ -50,40 +50,48 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     elseif (isset($_POST['update_transaction'])) {
         $transaction_id = $_POST['transaction_id'];
-        $taken_date = !empty($_POST['taken_date']) ? $_POST['taken_date'] : null; // Allow null if not selected
         $status = $_POST['status'];
         $description = $_POST['description'];
 
         try {
-            $sql = "UPDATE sim_card_transactions 
-                    SET  status = ?, description = ? 
-                    WHERE transaction_id = ?";
-            $stmt = $con->prepare($sql);
-            $stmt->bind_param(
-                'ssi', // This will be NULL if not selected
-                $status,
-                $description,
-                $transaction_id
-            );
+            // Begin a transaction
+            $con->begin_transaction();
 
-            if ($stmt->execute()) {
-                echo "<script>
-                window.onload = function() {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'SIM Card Transaction has been updated successfully',
-                        showConfirmButton: true,
-                        confirmButtonText: 'OK'
-                    }).then(function() {
-                        window.location.href = '../index.php?page=reports/report_tele_transactions';
-                    });
-                }
-                </script>";
-            } else {
-                header("Location: ../index.php?page=reports/report_tele_transactions&error=1");
-                exit();
+            // Update the main sim_card_transactions table
+            $sql1 = "UPDATE sim_card_transactions 
+                     SET status = ?, description = ? 
+                     WHERE transaction_id = ?";
+            $stmt1 = $con->prepare($sql1);
+            $stmt1->bind_param('ssi', $status, $description, $transaction_id);
+            $stmt1->execute();
+
+            // Update the related sim_card_transactions_line table
+            $sql2 = "UPDATE sim_card_transactions_line 
+                     SET status = ? 
+                     WHERE transaction_id = ?";
+            $stmt2 = $con->prepare($sql2);
+            $stmt2->bind_param('si', $status, $transaction_id);
+            $stmt2->execute();
+
+            // Commit the transaction
+            $con->commit();
+
+            // Show success message
+            echo "<script>
+            window.onload = function() {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'SIM Card Transaction and related records have been updated successfully',
+                    showConfirmButton: true,
+                    confirmButtonText: 'OK'
+                }).then(function() {
+                    window.location.href = '../index.php?page=reports/report_tele_transactions';
+                });
             }
+            </script>";
         } catch (Exception $e) {
+            // Rollback the transaction in case of an error
+            $con->rollback();
             header("Location: ../index.php?page=reports/report_tele_transactions&error=2");
             exit();
         }
