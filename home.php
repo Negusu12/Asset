@@ -105,7 +105,7 @@
   <?php endif; ?>
   <?php if (in_array($user_data['role'], [1])) : ?>
     <div class="col-12 col-sm-6 col-md-3">
-      <a href="index.php?page=reports/report_tele_transactions&filter=approaching_deadline" class="info-box-link">
+      <a href="index.php?page=reports/report_tele_transactions_detail&filter=approaching_deadline" class="info-box-link">
 
         <div class="info-box mb-3">
           <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-bullhorn"></i></span>
@@ -121,7 +121,7 @@
 
               // Construct the SQL query to count the number of records where the deadline is approaching within four days
               $query = "SELECT COUNT(*) as num_records             
-                    FROM sim_card_transactions
+                    FROM sim_card_transactions_line
                     WHERE expire_date BETWEEN '$current_date' AND '$four_days_from_now'";
 
               // Execute the query and fetch the result

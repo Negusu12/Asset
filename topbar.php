@@ -11,7 +11,7 @@
       </a>
     </li>
     <div style="max-height: 2px; max-width: 2px;">
-      <a href="index.php?page=reports/report_tele_transactions&filter=approaching_deadline" class="info-box-link">
+      <a href="index.php?page=reports/report_tele_transactions_detail&filter=approaching_deadline" class="info-box-link">
 
         <div class="row mb-2">
           <div class="col-sm-6 bell row">

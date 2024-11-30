@@ -26,7 +26,6 @@
 								<th scope="col">Line Description</th>
 								<th scope="col">Status</th>
 								<th scope="col">Description</th>
-								<th scope="col">Action</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -53,12 +52,13 @@ LEFT JOIN sim_card_transactions_line stl ON st.transaction_id = stl.transaction_
 LEFT JOIN charges c ON stl.charge = c.charge_id
 LEFT JOIN employee ec ON st.current_holder = ec.employee_id
 LEFT JOIN employee eo ON stl.owner = eo.employee_id
-where st.status != 'Loaned'
+where stl.status != 'Loaned'
 order by stl.taken_date desc");
 							while ($row = $qry->fetch_assoc()) :
 							?>
 								<tr>
 									<th class="text-center"><?php echo $i++ ?></th>
+									<td><b><?php echo $row['transaction_id'] ?></b></td>
 									<td><b><?php echo $row['transaction_id_line'] ?></b></td>
 									<td><b><?php echo $row['charge'] ?></b></td>
 									<td><b><?php echo $row['owner'] ?></b></td>
@@ -73,14 +73,6 @@ order by stl.taken_date desc");
 									<td><b><?php echo $row['line_description'] ?></b></td>
 									<td><b><?php echo $row['transaction_status'] ?></b></td>
 									<td><b><?php echo $row['transaction_description'] ?></b></td>
-									<td class="text-center">
-										<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-											Action
-										</button>
-										<div class="dropdown-menu">
-											<a class="dropdown-item" onclick='editRow(<?php echo json_encode($row); ?>)'>Edit</a>
-										</div>
-									</td>
 
 								</tr>
 							<?php endwhile; ?>
@@ -88,45 +80,6 @@ order by stl.taken_date desc");
 					</table>
 				</div>
 			</div>
-		</div>
-	</div>
-</div>
-<!-- Edit Modal -->
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<form action="backend/edit_report.php" method="POST">
-				<div class="modal-header">
-					<h5 class="modal-title" id="editModalLabel">Edit Record</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<input type="hidden" id="transactionId" name="transaction_id">
-					<div class="form-group">
-						<label for="takenDate">Taken Date</label>
-						<input type="date" class="form-control" id="takenDate" name="taken_date">
-					</div>
-					<div class="form-group">
-						<label for="" class="control-label">Status</label>
-						<select name="status" id="status" class="custom-select custom-select-sm select2" oninvalid="this.setCustomValidity('Select status Here')" oninput="setCustomValidity('')" required>
-							<option value=""></option>
-							<option value="Returned">Returned</option>
-							<option value="Expired">Expired</option>
-							<option value="Loaned">Loaned</option>
-						</select>
-					</div>
-					<div class="form-group">
-						<label for="description">Description</label>
-						<textarea class="form-control" id="description" name="description"></textarea>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					<button type="submit" class="btn btn-primary" name="update_past_transaction">Save Changes</button>
-				</div>
-			</form>
 		</div>
 	</div>
 </div>
@@ -193,14 +146,4 @@ order by stl.taken_date desc");
 			.appendTo('#mydatatable_wrapper .col-md-6:eq(0)');
 
 	});
-</script>
-
-<script>
-	function editRow(row) {
-		$('#transactionId').val(row.transaction_id);
-		$('#takenDate').val(row.taken_date);
-		$('#status').val(row.status);
-		$('#description').val(row.description);
-		$('#editModal').modal('show');
-	}
 </script>

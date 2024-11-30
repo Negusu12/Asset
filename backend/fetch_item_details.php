@@ -28,7 +28,7 @@ LEFT JOIN employee e ON stl.owner = e.employee_id
     if ($result) {
         while ($row = mysqli_fetch_assoc($result)) {
             echo "<tr>";
-            echo "<td>{$row['transaction_id_line']} - {$row['transaction_id_line']}</td>";
+            echo "<td>{$row['transaction_id_line']}</td>";
             echo "<td>{$row['charge']}</td>";
             echo "<td>{$row['owner']}</td>";
             echo "<td>{$row['phone_number']}</td>";
@@ -38,6 +38,14 @@ LEFT JOIN employee e ON stl.owner = e.employee_id
             echo "<td>{$row['payment_type']}</td>";
             echo "<td>{$row['status']}</td>";
             echo "<td>{$row['description_line']}</td>";
+            echo "<td class='text-center'>
+                    <button type='button' class='btn btn-default dropdown-toggle' data-toggle='dropdown' aria-expanded='true'>
+                        Action
+                    </button>
+                    <div class='dropdown-menu'>
+                        <a class='dropdown-item' onclick='editRowLine(" . json_encode($row) . ")'>Edit</a>
+                    </div>
+                  </td>";
             echo "</tr>";
         }
     }

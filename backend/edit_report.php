@@ -56,12 +56,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         try {
             $sql = "UPDATE sim_card_transactions 
-                    SET taken_date = ?, status = ?, description = ? 
+                    SET  status = ?, description = ? 
                     WHERE transaction_id = ?";
             $stmt = $con->prepare($sql);
             $stmt->bind_param(
-                'sssi',
-                $taken_date, // This will be NULL if not selected
+                'ssi', // This will be NULL if not selected
                 $status,
                 $description,
                 $transaction_id
@@ -87,6 +86,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } catch (Exception $e) {
             header("Location: ../index.php?page=reports/report_tele_transactions&error=2");
             exit();
+        }
+    } elseif (isset($_POST['update_transaction_line'])) {
+        $transaction_id_line = $_POST['transaction_id_line'];
+        $taken_date = !empty($_POST['taken_date']) ? $_POST['taken_date'] : null;
+        $status = $_POST['status'];
+        $description_line = $_POST['description_line'];
+
+        try {
+            $sql = "UPDATE sim_card_transactions_line 
+                    SET taken_date = ?, status = ?, description_line = ? 
+                    WHERE transaction_id_line = ?";
+            $stmt = $con->prepare($sql);
+            $stmt->bind_param('sssi', $taken_date, $status, $description_line, $transaction_id_line);
+
+            if ($stmt->execute()) { {
+                    echo "<script>
+                    window.onload = function() {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'SIM Card Transaction Line has been updated successfully',
+                            showConfirmButton: true,
+                            confirmButtonText: 'OK'
+                        }).then(function() {
+                            window.location.href = '../index.php?page=reports/report_tele_transactions';
+                        });
+                    }
+                    </script>";
+                }
+            } else {
+                echo "Error: " . $stmt->error;
+            }
+        } catch (Exception $e) {
+            echo "Exception: " . $e->getMessage();
         }
     } elseif (isset($_POST['update_past_transaction'])) {
         $transaction_id = $_POST['transaction_id'];
