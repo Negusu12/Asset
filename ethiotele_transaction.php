@@ -81,7 +81,7 @@ $user_data = check_login($con);
                             </div>
                         </div>
                         <button type="button" class="btn btn-success" onclick="addItemRow()">Add Item</button>
-                        <hr>
+
                         <button type="button" class="btn btn-primary" onclick="copyItemRow()">Copy Item</button>
                     </div>
                     <div class="col-md-6">

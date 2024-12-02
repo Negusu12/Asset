@@ -32,7 +32,7 @@ st.given_date,
 st.status,
 st.description
 from sim_card_transactions st
-LEFT JOIN employee e ON st.current_holder = e.employee_id";
+LEFT JOIN employee e ON st.current_holder = e.employee_id where st.status = 'Loaned'";
 
 							// Append condition for payment_type if specified
 							if ($status === 'Loaned') {
@@ -93,6 +93,7 @@ LEFT JOIN employee e ON st.current_holder = e.employee_id";
 								<table class="table table-hover table-bordered" id="mydatatablemodel">
 									<thead>
 										<tr>
+											<th>#</th>
 											<th>Transaction Id Line</th>
 											<th>Charge</th>
 											<th>Owner</th>
@@ -370,78 +371,11 @@ LEFT JOIN employee e ON st.current_holder = e.employee_id";
 							],
 							pagingType: 'full_numbers',
 							lengthMenu: [
-								[10, 25, 50, -1],
-								[10, 25, 50, "All"]
+								[30, 50, -1],
+								[30, 50, "All"]
 							]
 						});
 
-
-						// Add Date Range Filtering Inputs
-						$('#mydatatable thead th').each(function() {
-							var columnTitle = $(this).text().trim();
-							var that = table.column($(this).index());
-
-							// Check if the column title matches 'Date'
-							if (columnTitle === 'Expire Date') {
-								var dateFilterHtml = `
-                <input type="text" id="minDate" class="form-control datepicker" placeholder="From Date" style="margin-bottom:5px;"/>
-                <input type="text" id="maxDate" class="form-control datepicker" placeholder="To Date"/>
-            `;
-								$(this).append(dateFilterHtml);
-
-								// Initialize jQuery UI Datepicker on both inputs
-								$(".datepicker").datepicker({
-									dateFormat: 'yy-mm-dd', // Set the format to match your database format
-									onSelect: function() {
-										table.draw();
-									}
-								});
-							} else {
-								// Create a regular text input element for other columns
-								$('<input type="text" class="form-control" placeholder="Filter"/>')
-									.appendTo($(this))
-									.on('keyup change', function() {
-										that.search($(this).val()).draw();
-									});
-							}
-						});
-
-						// Custom filtering function for date range
-						$.fn.dataTable.ext.search.push(
-							function(settings, data, dataIndex) {
-								var min = $('#minDate').val();
-								var max = $('#maxDate').val();
-								var date = data[5]; // Assuming the date column index is 3
-
-								if (min && new Date(min).toString() === "Invalid Date") {
-									min = null;
-								}
-								if (max && new Date(max).toString() === "Invalid Date") {
-									max = null;
-								}
-
-								// Convert string to date for comparison
-								var dateValue = new Date(date);
-
-								if ((min === "" || min === null) && (max === "" || max === null)) {
-									return true; // No filtering if both min and max are empty
-								}
-								if ((min === "" || min === null) && dateValue <= new Date(max)) {
-									return true; // Only max filter
-								}
-								if (min && !max && dateValue.toDateString() === new Date(min).toDateString()) {
-									return true; // Only min filter with exact date match
-								}
-								if (dateValue >= new Date(min) && dateValue <= new Date(max)) {
-									return true; // Within the range
-
-									input = $('<input type="text" class="form-control" placeholder="Filter"/>')
-										.appendTo($(this.header()))
-										.on('keyup change', function() {
-											that.search($(this).val()).draw();
-										});
-								}
-							});
 					}
 				});
 

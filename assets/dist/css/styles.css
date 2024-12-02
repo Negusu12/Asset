@@ -474,6 +474,8 @@ tbody, td, b, strong{
 /* Table container with horizontal scroll */
 .modal-body {
   overflow-x: auto;
+  overflow-y: auto;
+  max-height: 800px !important;
   padding: 1rem;
 }
 
