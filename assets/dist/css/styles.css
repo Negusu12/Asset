@@ -479,27 +479,6 @@ tbody, td, b, strong{
   padding: 1rem;
 }
 
-.table {
-  margin-bottom: 0; /* Remove extra margin for better alignment */
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.table thead th {
-  text-align: left;
-  font-weight: bold;
-  white-space: nowrap; /* Prevent headers from wrapping */
-}
-
-.table tbody td {
-  white-space: nowrap; /* Prevent cell content from wrapping */
-}
-
-.table th,
-.table td {
-  padding: 0.75rem;
-  vertical-align: middle;
-}
 .modal-lg, .modal-xl {
   max-width: 70% !important;
 }

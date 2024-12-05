@@ -223,7 +223,7 @@ $row = $result->fetch_assoc();
             <form>
                 <label>
                     <span>Borrower Name:</span>
-                    <input type="text" name="name" value="<?php echo $row['full_name']; ?>" required readonly>
+                    <input type="text" name="name" value="<?php echo $row['borrower_title'] . ' ' . $row['full_name']; ?>" required readonly>
                 </label>
                 <label>
                     <span>Borrowed Date:</span>
