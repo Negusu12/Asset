@@ -167,6 +167,10 @@ LEFT JOIN employee e ON st.current_holder = e.employee_id where st.status = 'Loa
 							<div class="modal-body">
 								<input type="hidden" id="transactionIdLine" name="transaction_id_line">
 								<div class="form-group">
+									<label for="expireDate">Expire Date</label>
+									<input type="date" class="form-control" id="expireDate" name="expire_date">
+								</div>
+								<div class="form-group">
 									<label for="takenDate">Taken Date</label>
 									<input type="date" class="form-control" id="takenDate" name="taken_date">
 								</div>
@@ -329,6 +333,7 @@ LEFT JOIN employee e ON st.current_holder = e.employee_id where st.status = 'Loa
 		<script>
 			function editRowLine(row) {
 				$('#transactionIdLine').val(row.transaction_id_line);
+				$('#expireDate').val(row.expire_date);
 				$('#takenDate').val(row.taken_date);
 				$('#statuss').val(row.status).trigger('change'); // Use .trigger('change') to update select2
 				$('#description_line').val(row.description_line);

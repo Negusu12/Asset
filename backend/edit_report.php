@@ -97,16 +97,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     } elseif (isset($_POST['update_transaction_line'])) {
         $transaction_id_line = $_POST['transaction_id_line'];
+        $expire_date = !empty($_POST['expire_date']) ? $_POST['expire_date'] : null;
         $taken_date = !empty($_POST['taken_date']) ? $_POST['taken_date'] : null;
         $status = $_POST['status'];
         $description_line = $_POST['description_line'];
 
         try {
             $sql = "UPDATE sim_card_transactions_line 
-                    SET taken_date = ?, status = ?, description_line = ? 
+                    SET taken_date = ?, expire_date = ?, status = ?, description_line = ? 
                     WHERE transaction_id_line = ?";
             $stmt = $con->prepare($sql);
-            $stmt->bind_param('sssi', $taken_date, $status, $description_line, $transaction_id_line);
+            $stmt->bind_param('ssssi', $taken_date, $expire_date, $status, $description_line, $transaction_id_line);
 
             if ($stmt->execute()) { {
                     echo "<script>
