@@ -129,40 +129,47 @@
                 [10, 25, 50, "All"]
             ],
             columnDefs: [{
-                targets: [0, 1, 7, 8, 11, 12, 18], // indices of columns to hide by default
+                targets: [0, 1, 7, 8, 11, 12, 18], // Indices of columns to hide by default
                 visible: false
             }]
         });
 
-        // Add filtering inputs
-        $('#mydatatable thead th').each(function(index) {
-            var columnTitle = $(this).text().trim();
-            var that = table.column(index);
+        // Function to add filter inputs dynamically
+        function addFilterInputs() {
+            $('#mydatatable thead th').each(function(index) {
+                var columnTitle = $(this).text().trim();
+                var that = table.column(index);
 
-            if (columnTitle === 'Document Date') {
-                var dateFilterHtml = `
-                <input type="text" id="minDate" class="form-control datepicker" placeholder="From Date" style="margin-bottom:5px;"/>
-                <input type="text" id="maxDate" class="form-control datepicker" placeholder="To Date"/>
-            `;
-                $(this).append(dateFilterHtml);
+                if ($(this).find('input').length === 0) { // Avoid duplicating inputs
+                    if (columnTitle === 'Document Date') {
+                        var dateFilterHtml = `
+                            <input type="text" id="minDate" class="form-control datepicker" placeholder="From Date" style="margin-bottom:5px;"/>
+                            <input type="text" id="maxDate" class="form-control datepicker" placeholder="To Date"/>
+                        `;
+                        $(this).append(dateFilterHtml);
 
-                // Initialize jQuery UI Datepicker
-                $(".datepicker").datepicker({
-                    dateFormat: 'yy-mm-dd', // Match your database format
-                    onSelect: function() {
-                        table.draw();
+                        // Initialize jQuery UI Datepicker
+                        $(".datepicker").datepicker({
+                            dateFormat: 'yy-mm-dd', // Match your database format
+                            onSelect: function() {
+                                table.draw();
+                            }
+                        });
+                    } else {
+                        // Regular filter input for other columns
+                        $('<input type="text" class="form-control" placeholder="Filter"/>')
+                            .appendTo($(this))
+                            .on('keyup change', function() {
+                                // Correctly reference the visible column index
+                                table.column($(this).parent().index() + ':visible').search($(this).val()).draw();
+                            });
                     }
-                });
-            } else {
-                // Regular filter input for other columns
-                $('<input type="text" class="form-control" placeholder="Filter"/>')
-                    .appendTo($(this))
-                    .on('keyup change', function() {
-                        // Correctly reference the visible column index
-                        table.column($(this).parent().index() + ':visible').search($(this).val()).draw();
-                    });
-            }
-        });
+                }
+            });
+        }
+
+        // Add initial filter inputs
+        addFilterInputs();
 
         // Custom filtering function for date range
         $.fn.dataTable.ext.search.push(
@@ -193,6 +200,13 @@
         // Append buttons container
         table.buttons().container()
             .appendTo('#mydatatable_wrapper .col-md-6:eq(0)');
+
+        // Handle column visibility toggling
+        table.on('column-visibility', function(e, settings, column, state) {
+            if (state) { // Column is now visible
+                addFilterInputs(); // Re-add filter inputs
+            }
+        });
     });
 </script>
 <script>
