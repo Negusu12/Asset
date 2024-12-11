@@ -149,6 +149,12 @@
                 <p>Borrowers List</p>
               </a>
             </li>
+            <li class="nav-item">
+              <a href="./index.php?page=reports/report_generate" class="nav-link nav-report_generate tree-item">
+                <i class="fas fa-angle-right nav-icon"></i>
+                <p>Generate Responsibility Form</p>
+              </a>
+            </li>
           </ul>
         </li>
         <?php if ($user_data['role'] == 1) : ?>
