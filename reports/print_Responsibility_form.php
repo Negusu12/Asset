@@ -159,10 +159,10 @@ $employeesResult = $con->query($employeesQuery);
         $employee = $employeeResult->fetch_assoc();
 
         // Fetch asset loan details for the employee
-        $assetsQuery = "SELECT al.item_code, ar.item_name, ar.brand, ar.model, al.serial_no, al.qty, al.description 
+        $assetsQuery = "SELECT al.item_code, ar.item_name, ar.brand, ar.model, al.serial_no, al.qty, al.description, ar.item_condition 
                         FROM asset_loan al 
                         JOIN asset_record ar ON al.item_code = ar.item_code 
-                        WHERE al.employee_id = $employeeId and al.qty > 0";
+                        WHERE al.employee_id = $employeeId and al.qty > 0 and ar.item_condition = 'None Moveable'";
         $assetsResult = $con->query($assetsQuery);
     ?>
         <div id="responsibility-form">

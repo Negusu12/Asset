@@ -149,6 +149,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'GET') {
                         <div class="form-group">
                             <label for="" class="control-label"><span style="color: red;">*</span> Item Mobility</label>
                             <select name="item_condition" id="item_condition" class="custom-select custom-select-sm select2" oninvalid="this.setCustomValidity('Select Item Mobility Here')" oninput="setCustomValidity('')" required>
+                                <option value=""></option>
                                 <option value="Moveable" <?php if ($item_condition == "Moveable") echo "selected"; ?>>Moveable</option>
                                 <option value="None Moveable" <?php if ($item_condition == "None Moveable") echo "selected"; ?>>None Moveable</option>
                             </select>
