@@ -25,8 +25,24 @@ $row = $result->fetch_assoc();
         }
 
         .container {
-            max-width: 800px;
-            margin: 0 auto;
+            width: 210mm;
+            /* A4 width */
+            height: 290mm;
+            /* A4 height */
+            margin: 20px auto;
+            /* Center the container on the page */
+            background-image: url('assets/dist/img/letter_heading.png');
+            /* Set your image */
+            background-size: contain;
+            /* Scale the image to fit the container */
+            background-repeat: no-repeat;
+            /* Prevent the image from repeating */
+            background-position: center;
+            /* Optional: Add a border for clarity */
+            padding: 20px;
+            /* Optional: Add shadow for aesthetics */
+            overflow: hidden;
+            /* Prevent content overflow */
         }
 
         .table {
@@ -49,7 +65,7 @@ $row = $result->fetch_assoc();
         }
 
         .table th {
-            background-color: #f7f7f7;
+            background-color: transparent;
             text-align: left;
         }
 
@@ -63,7 +79,7 @@ $row = $result->fetch_assoc();
             @page {
                 size: A4;
                 /* Set the page size to A4 or any desired size */
-                margin-left: 10%;
+                margin-left: -10%;
                 /* Remove default margins */
             }
 
@@ -88,6 +104,7 @@ $row = $result->fetch_assoc();
             border: none;
             border-bottom: 1px solid #ccc;
             margin-bottom: 10px;
+            background-color: transparent;
         }
 
         .signature-section label span {
@@ -111,6 +128,7 @@ $row = $result->fetch_assoc();
             font-size: 41px;
             font-weight: 600;
             font-family: sans-serif;
+            padding-bottom: 15px;
         }
 
         .text_box {
@@ -156,102 +174,108 @@ $row = $result->fetch_assoc();
             margin-top: -165px;
             margin-left: 50px;
         }
+
+        .content {
+            margin-top: 15%;
+            margin-bottom: 10%;
+            margin-left: 5%;
+            margin-right: 5%;
+        }
     </style>
 </head>
 
 <body>
-    <div class="text_box">
-        <div class="text">
-            <span style="font-size: 41px;">ABH IT Item Borrowing Form</span>
-        </div>
-        &nbsp;&nbsp;&nbsp;<img src="assets/dist/img/logo.png" alt="Logo" style="height: 61px;">
-    </div>
 
     <div class="container">
-        <table class="table">
-            <tr>
-                <th>Loan ID</th>
-                <td><?php echo $row['loan_id']; ?></td>
-            </tr>
-            <tr>
-                <th>Item Name</th>
-                <td><?php echo $row['item_name']; ?></td>
-            </tr>
-            <tr>
-                <th>Item Condition</th>
-                <td><?php echo $row['item_condition']; ?></td>
-            </tr>
-            <tr>
-                <th>Brand</th>
-                <td><?php echo $row['brand']; ?></td>
-            </tr>
-            <tr>
-                <th>Model</th>
-                <td><?php echo $row['model']; ?></td>
-            </tr>
-            <tr>
-                <th>Serial No.</th>
-                <td><?php echo $row['serial_no']; ?></td>
-            </tr>
-            <tr>
-                <th>Borrower Name</th>
-                <td><?php echo $row['borrower_title'] . ' ' . $row['full_name']; ?></td>
-            </tr>
+        <div class="content">
+            <div class="text">
+                <span style="font-size: 20px; text-decoration: underline;"><b>ABH IT Item Borrowing Form</b></span>
+            </div>
+            <table class="table">
+                <tr>
+                    <th>Loan ID</th>
+                    <td><?php echo $row['loan_id']; ?></td>
+                </tr>
+                <tr>
+                    <th>Item Name</th>
+                    <td><?php echo $row['item_name']; ?></td>
+                </tr>
+                <tr>
+                    <th>Item Condition</th>
+                    <td><?php echo $row['item_condition']; ?></td>
+                </tr>
+                <tr>
+                    <th>Brand</th>
+                    <td><?php echo $row['brand']; ?></td>
+                </tr>
+                <tr>
+                    <th>Model</th>
+                    <td><?php echo $row['model']; ?></td>
+                </tr>
+                <tr>
+                    <th>Serial No.</th>
+                    <td><?php echo $row['serial_no']; ?></td>
+                </tr>
+                <tr>
+                    <th>Borrower Name</th>
+                    <td><?php echo $row['borrower_title'] . ' ' . $row['full_name']; ?></td>
+                </tr>
 
-            <tr>
-                <th>Quantity</th>
-                <td><?php echo $row['qty']; ?></td>
-            </tr>
-            <tr>
-                <th>Document Date</th>
-                <td><?php echo date('F j Y', strtotime($row['doc_date'])); ?></td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td><?php echo $row['description']; ?></td>
-            </tr>
-        </table>
-        <div class="signature-section">
-            <h13>I acknowledge:</h13>
-            <p>
-                • I will ensure the borrowed item(s) are used properly and safely, kept in good condition, and returned on time.</p>
-            <p>
-                • I understand that I am responsible for the cost of repair or replacement in case of any damage or loss to the item(s) while in my possession.
-            </p>
-        </div>
-        <div class="signature-section">
-            <form>
-                <label>
-                    <span>Borrower Name:</span>
-                    <input type="text" name="name" value="<?php echo $row['borrower_title'] . ' ' . $row['full_name']; ?>" required readonly>
-                </label>
-                <label>
-                    <span>Borrowed Date:</span>
-                    <input type="text" name="name" value="<?php echo date('F j Y', strtotime($row['doc_date'])); ?>" required readonly>
-                </label>
-                <label>
-                    <span>Borrower signature :</span>
-                    <input type="text" name="date" required readonly>
-                </label>
-            </form>
-        </div>
-        <div class="img-container">
-            <?php
-            $image_data = $row['item_image'];
-            if (!empty($image_data)) {
-                $base64_image = base64_encode($image_data);
-                if ($base64_image) {
-                    echo '<img src="data:image/jpeg;base64,' . $base64_image . '" alt="Image" class="img-thumbnail" style="cursor: pointer;">';
+                <tr>
+                    <th>Quantity</th>
+                    <td><?php echo $row['qty']; ?></td>
+                </tr>
+                <tr>
+                    <th>Document Date</th>
+                    <td><?php echo date('F j Y', strtotime($row['doc_date'])); ?></td>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <td><?php echo $row['description']; ?></td>
+                </tr>
+            </table>
+            <div class="signature-section">
+                <h13>I acknowledge:</h13>
+                <p>
+                    • I will ensure the borrowed item(s) are used properly and safely, kept in good condition, and returned on time.</p>
+                <p>
+                    • I understand that I am responsible for the cost of repair or replacement in case of any damage or loss to the item(s) while in my possession.
+                </p>
+            </div>
+            <div class="signature-section">
+                <form>
+                    <label>
+                        <span>Borrower Name:</span>
+                        <input type="text" name="name" value="<?php echo $row['borrower_title'] . ' ' . $row['full_name']; ?>" required readonly>
+                    </label>
+                    <label>
+                        <span>Borrowed Date:</span>
+                        <input type="text" name="name" value="<?php echo date('F j Y', strtotime($row['doc_date'])); ?>" required readonly>
+                    </label>
+                    <label>
+                        <span>Borrower signature :</span>
+                        <input type="text" name="date" required readonly>
+                    </label>
+                </form>
+            </div>
+            <div class="img-container">
+                <?php
+                $image_data = $row['item_image'];
+                if (!empty($image_data)) {
+                    $base64_image = base64_encode($image_data);
+                    if ($base64_image) {
+                        echo '<img src="data:image/jpeg;base64,' . $base64_image . '" alt="Image" class="img-thumbnail" style="cursor: pointer;">';
+                    } else {
+                        echo '<p>Error: Unable to encode image data.</p>';
+                    }
                 } else {
-                    echo '<p>Error: Unable to encode image data.</p>';
+                    echo '<p></p>';
                 }
-            } else {
-                echo '<p></p>';
-            }
-            ?>
-        </div>
+                ?>
+            </div>
 
-        <button class="print-button" onclick="window.print()"><i class="fa-solid fa-print fa-2xl"></i></button>
+            <button class="print-button" onclick="window.print()"><i class="fa-solid fa-print fa-2xl"></i></button>
+        </div>
     </div>
 
 
