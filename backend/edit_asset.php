@@ -3,7 +3,7 @@ include("connect.php");
 
 $user_data = check_login($con);
 
-$item_code = $item_c = $item_name = $model = $brand = $item_type = $item_category = $qty = $uom = $doc_date = $description = "";
+$item_code = $item_c = $item_name = $model = $brand = $item_type = $item_category = $item_condition = $qty = $uom = $doc_date = $description = "";
 $error = $success = "";
 $u_user_name = $user_data['user_name'];
 
@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'GET') {
     }
 
     $item_code = $_GET['item_code'];
-    $sql = "SELECT item_code, item_c, item_name, model, brand, item_type, item_category, qty, uom, doc_date, description FROM asset_record WHERE item_code=?";
+    $sql = "SELECT item_code, item_c, item_name, model, brand, item_type, item_category, item_condition, qty, uom, doc_date, description FROM asset_record WHERE item_code=?";
     $stmt = $con->prepare($sql);
     $stmt->bind_param('s', $item_code);
 
@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'GET') {
             exit;
         }
 
-        $stmt->bind_result($item_code, $item_c, $item_name, $model, $brand, $item_type, $item_category, $qty, $uom, $doc_date, $description);
+        $stmt->bind_result($item_code, $item_c, $item_name, $model, $brand, $item_type, $item_category, $item_condition, $qty, $uom, $doc_date, $description);
         $stmt->fetch();
     }
     $stmt->close();
@@ -40,6 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'GET') {
     $brand = $_POST["brand"];
     $item_type = $_POST["item_type"];
     $item_category = $_POST["item_category"];
+    $item_condition = $_POST["item_condition"];
     $qty = $_POST["qty"];
     $uom = $_POST["uom"];
     $doc_date = $_POST["doc_date"];
@@ -47,9 +48,9 @@ if ($_SERVER["REQUEST_METHOD"] == 'GET') {
     $u_user_name = $_POST["u_user_name"];
 
     if (empty($error)) {
-        $sql = "UPDATE asset_record SET item_c=?, item_name=?, model=?, brand=?, item_type=?, item_category=?, qty=?, uom=?, doc_date=?, description=?, u_doc_date=NOW(), u_user_name=? WHERE item_code=?";
+        $sql = "UPDATE asset_record SET item_c=?, item_name=?, model=?, brand=?, item_type=?, item_category=?, item_condition=?, qty=?, uom=?, doc_date=?, description=?, u_doc_date=NOW(), u_user_name=? WHERE item_code=?";
         $stmt = $con->prepare($sql);
-        $stmt->bind_param('ssssssisssss', $item_c, $item_name, $model, $brand, $item_type, $item_category, $qty, $uom, $doc_date, $description, $u_user_name, $item_code);
+        $stmt->bind_param('sssssssisssss', $item_c, $item_name, $model, $brand, $item_type, $item_category, $item_condition, $qty, $uom, $doc_date, $description, $u_user_name, $item_code);
 
         if (!$stmt->execute()) {
             $error = "Error: " . $stmt->error;
@@ -145,7 +146,13 @@ if ($_SERVER["REQUEST_METHOD"] == 'GET') {
                                 ?>
                             </select>
                         </div>
-
+                        <div class="form-group">
+                            <label for="" class="control-label"><span style="color: red;">*</span> Item Mobility</label>
+                            <select name="item_condition" id="item_condition" class="custom-select custom-select-sm select2" oninvalid="this.setCustomValidity('Select Item Mobility Here')" oninput="setCustomValidity('')" required>
+                                <option value="Moveable" <?php if ($item_condition == "Moveable") echo "selected"; ?>>Moveable</option>
+                                <option value="None Moveable" <?php if ($item_condition == "None Moveable") echo "selected"; ?>>None Moveable</option>
+                            </select>
+                        </div>
                         <div class="form-group">
                             <label for="" class="control-label"><span style="color: red;">*</span> Date</label>
                             <input type="date" name="doc_date" id="doc_date" class="form-control form-control-sm" value="<?php echo $doc_date ?>" oninvalid="this.setCustomValidity('Enter Date Here')" oninput="setCustomValidity('')" required>

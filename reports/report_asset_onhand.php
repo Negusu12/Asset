@@ -18,6 +18,7 @@
 								<th scope="col">Model</th>
 								<th scope="col">Item Category</th>
 								<th scope="col">Item Type</th>
+								<th scope="col">Item Mobility</th>
 								<th scope="col">UOM</th>
 								<th scope="col">Quantity</th>
 								<th scope="col">Description</th>
@@ -42,6 +43,7 @@
 									<td><b><?php echo $row['model'] ?></b></td>
 									<td><b><?php echo $row['item_category'] ?></b></td>
 									<td><b><?php echo $row['item_type'] ?></b></td>
+									<td><b><?php echo $row['item_condition'] ?></b></td>
 									<td><b><?php echo $row['uom'] ?></b></td>
 									<td><b><?php echo $row['qty'] ?></b></td>
 									<td><b><?php echo $row['description'] ?></b></td>
@@ -85,7 +87,7 @@
 						</tbody>
 						<tfoot>
 							<tr>
-								<th colspan="9" class="text-right">Total Quantity:</th>
+								<th colspan="10" class="text-right">Total Quantity:</th>
 								<th id="totalQuantity"></th>
 								<th colspan="3"></th>
 							</tr>
@@ -132,7 +134,7 @@
 				[10, 25, 50, "All"]
 			],
 			columnDefs: [{
-					targets: [10, 12, 13], // index of the "Password" column (zero-based index)
+					targets: [8, 11, 13, 14], // index of the "Password" column (zero-based index)
 					visible: false // set to false to hide the column by default
 				}
 				// Add similar blocks for other columns you want to hide by default

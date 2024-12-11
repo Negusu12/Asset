@@ -74,6 +74,14 @@ $user_data = check_login($con);
                             </select>
                         </div>
                         <div class="form-group">
+                            <label for="" class="control-label"><span style="color: red;">*</span> Item Mobility</label>
+                            <select name="item_condition" id="item_condition" class="custom-select custom-select-sm select2" oninvalid="this.setCustomValidity('Select Item Mobility Here')" oninput="setCustomValidity('')" required>
+                                <option value=""></option>
+                                <option value="Moveable">Moveable</option>
+                                <option value="None Moveable">None Moveable</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label class="control-label"><span style="color: red;">*</span> Quantity</label>
                             <input type="number" class="form-control form-control-sm" name="qty" min="0" value="0" oninvalid="this.setCustomValidity('Enter Quantity Here')" oninput="setCustomValidity('')" required>
                         </div>
