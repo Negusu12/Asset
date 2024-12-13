@@ -11,8 +11,8 @@
                         <thead>
                             <tr>
                                 <th scope="col">row_No</th>
-                                <th scope="col">Title</th>
                                 <th scope="col">employee_id</th>
+                                <th scope="col">Title</th>
                                 <th scope="col">full_name</th>
                                 <th scope="col">department</th>
                                 <th scope="col">Location</th>
