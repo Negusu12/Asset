@@ -60,7 +60,7 @@ $row = $result->fetch_assoc();
 
         .table td,
         .table th {
-            padding: 10px;
+            padding: 7px;
             border: 1px solid #ccc;
         }
 
@@ -176,7 +176,7 @@ $row = $result->fetch_assoc();
         }
 
         .content {
-            margin-top: 15%;
+            margin-top: 10%;
             margin-bottom: 10%;
             margin-left: 5%;
             margin-right: 5%;
