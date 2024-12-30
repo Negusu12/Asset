@@ -151,7 +151,7 @@ $row = $result->fetch_assoc();
         }
 
         p {
-            font-size: 16px;
+            font-size: 14px;
             font-family: sans-serif;
             line-height: 25px;
         }
