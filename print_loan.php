@@ -64,6 +64,12 @@ $row = $result->fetch_assoc();
             border: 1px solid #ccc;
         }
 
+        .table td p {
+            font-size: 14px;
+            line-height: 12px;
+            font-family: Verdana;
+        }
+
         .table th {
             background-color: transparent;
             text-align: left;
