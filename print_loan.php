@@ -66,7 +66,7 @@ $row = $result->fetch_assoc();
 
         .table td p {
             font-size: 14px;
-            line-height: 12px;
+            line-height: 25px;
             font-family: Verdana;
         }
 
