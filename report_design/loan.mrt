@@ -41,15 +41,14 @@
         <Name>asset_loan_v</Name>
         <NameInSource>it_asset</NameInSource>
         <Parameters isList="true" count="0" />
-        <SqlCommand>SELECT * FROM asset_loan_v where loan_id = {record_id}</SqlCommand>
+        <SqlCommand>SELECT * FROM asset_loan_v
+</SqlCommand>
       </asset_loan_v>
     </DataSources>
     <Relations isList="true" count="0" />
     <Report isRef="0" />
     <Resources isList="true" count="0" />
-    <Variables isList="true" count="1">
-      <value>,record_id,record_id,,System.Int32,,False,False,True,False,_x003C__x003F_xml_x0020_version_x003D__x0022_1.0_x0022__x0020_encoding_x003D__x0022_utf-16_x0022__x0020_standalone_x003D__x0022_yes_x0022__x003F__x003E__x003C_StiSerializer_x0020_version_x003D__x0022_1.02_x0022__x0020_type_x003D__x0022_Net_x0022__x0020_application_x003D__x0022_State_x0022__x003E__x003C_SortDirection_x003E_None_x003C__x002F_SortDirection_x003E__x003C_BindingVariable_x0020_isNull_x003D__x0022_true_x0022__x0020__x002F__x003E__x003C_Keys_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C_Values_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C_CheckedStates_x0020_isList_x003D__x0022_true_x0022__x0020_count_x003D__x0022_0_x0022__x0020__x002F__x003E__x003C__x002F_StiSerializer_x003E_,_x0031_f90cadcaab84399bc9f06ad73e21843</value>
-    </Variables>
+    <Variables isList="true" count="0" />
   </Dictionary>
   <EngineVersion>EngineV2</EngineVersion>
   <GlobalizationStrings isList="true" count="0" />
@@ -153,10 +152,10 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>1/1/2025 10:43:42 AM</ReportChanged>
+  <ReportChanged>1/3/2025 10:58:40 AM</ReportChanged>
   <ReportCreated>1/1/2025 7:25:21 AM</ReportCreated>
   <ReportFile>C:\xampp\htdocs\Asset\report_design\loan.mrt</ReportFile>
-  <ReportGuid>8ad78d99c14e4c809dbf920af6ffb6e0</ReportGuid>
+  <ReportGuid>16857548406144de94b059e64086de7a</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Inches</ReportUnit>
   <ReportVersion>2023.1.1.0</ReportVersion>
