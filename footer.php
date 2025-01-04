@@ -181,6 +181,7 @@
 <script src="assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 
 <script src="assets/plugins/ckeditor/ckeditor.js"></script>
+<!-- description description description 
 <script>
 	ClassicEditor
 		.create(document.querySelector('#description'))
@@ -190,7 +191,8 @@
 		.catch(error => {
 			console.error(error);
 		});
-</script>
+</script> -->
+<!-- end description end description-->
 
 <script>
 	document.querySelectorAll('.priceFormat').forEach(function(element) {
