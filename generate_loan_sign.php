@@ -1,5 +1,6 @@
 <?php
 require_once 'stimulsoft/vendor/autoload.php';
+require_once 'connect.php'; // Include the database connection file
 
 use Stimulsoft\Events\StiDataEventArgs;
 use Stimulsoft\Report\StiReport;
@@ -15,9 +16,16 @@ $viewer->options->toolbar->showSaveButton = false;
 $viewer->options->toolbar->showOpenButton = false;
 
 // Define the data event handler
-$viewer->onBeginProcessData = function (StiDataEventArgs $args) use ($loan_id) {
+$viewer->onBeginProcessData = function (StiDataEventArgs $args) use ($loan_id, $con) {
     if ($args->connection == 'MyConnectionName') {
-        $args->connectionString = 'Server=localhost; Database=it_asset; UserId=root; Pwd=;';
+        // Use the connection details from connect.php
+        $args->connectionString = sprintf(
+            'Server=%s; Database=%s; UserId=%s; Pwd=%s;',
+            'localhost', // Update with $con->host_info if needed
+            'it_asset',
+            'root',
+            '' // Add password if needed
+        );
     }
 
     // Modify the query to filter by loan_id

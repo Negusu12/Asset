@@ -64,7 +64,28 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     <link rel="stylesheet" href="assets/dist/css/login.css">
     <link rel="stylesheet" href="assets/dist/css/sweetalert2.min.css">
+    <style>
+        .password-container {
+            position: relative;
+            width: 100%;
+        }
 
+        .form-control {
+            width: 100%;
+            padding-right: 40px;
+        }
+
+        .toggle-password {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+        }
+    </style>
 </head>
 
 <body>
@@ -95,8 +116,23 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                                 <input type="text" name="user_name" class="form-control rounded-left" placeholder="Username" onkeyup="lettersOnly(this)" required>
                             </div>
                             <div class="form-group">
-                                <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-lock"></span></div>
-                                <input type="password" name="password" class="form-control rounded-left" placeholder="Password" required>
+                                <div class="password-container">
+                                    <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-lock"></span></div>
+
+                                    <input
+                                        type="password"
+                                        name="password"
+                                        class="form-control rounded-left"
+                                        placeholder="Password"
+                                        required
+                                        id="password-field">
+                                    <button
+                                        type="button"
+                                        class="toggle-password"
+                                        onclick="togglePassword()">
+                                        👁️
+                                    </button>
+                                </div>
                             </div>
                             <div class="form-group d-flex align-items-center">
                                 <div class="w-100">
@@ -121,6 +157,20 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/main.js"></script>
     <script src="assets/dist/js/sweetalert2.min.js"></script>
+    <script>
+        function togglePassword() {
+            const passwordField = document.getElementById('password-field');
+            const toggleButton = document.querySelector('.toggle-password');
+
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                toggleButton.textContent = '🙈'; // Change icon to "Hide" state
+            } else {
+                passwordField.type = 'password';
+                toggleButton.textContent = '👁️'; // Change icon to "Show" state
+            }
+        }
+    </script>
 </body>
 
 </html>

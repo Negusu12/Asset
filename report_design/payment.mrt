@@ -65,7 +65,7 @@
           <Components isList="true" count="4">
             <Text1 Ref="6" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>0.6,0.3,0.6,0.2</ClientRectangle>
+              <ClientRectangle>3.1,0.3,0.6,0.2</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Expressions isList="true" count="0" />
               <Font>Arial,8</Font>
@@ -151,10 +151,10 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>1/2/2025 7:54:04 AM</ReportChanged>
+  <ReportChanged>1/4/2025 6:20:55 AM</ReportChanged>
   <ReportCreated>1/1/2025 7:25:21 AM</ReportCreated>
   <ReportFile>C:\xampp\htdocs\Asset\report_design\payment.mrt</ReportFile>
-  <ReportGuid>5384dab28ed148f194888f184b012b78</ReportGuid>
+  <ReportGuid>46a016e05cf042319607156ceb4012d3</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Inches</ReportUnit>
   <ReportVersion>2023.1.1.0</ReportVersion>
