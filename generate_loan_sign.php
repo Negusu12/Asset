@@ -17,14 +17,13 @@ $viewer->options->toolbar->showOpenButton = false;
 
 // Define the data event handler
 $viewer->onBeginProcessData = function (StiDataEventArgs $args) use ($loan_id, $con) {
-    if ($args->connection == 'MyConnectionName') {
-        // Use the connection details from connect.php
+    if ($args->connection == 'it_asset') { // Ensure the connection name matches the .mrt file
+        // Use the database connection directly from connect.php
         $args->connectionString = sprintf(
-            'Server=%s; Database=%s; UserId=%s; Pwd=%s;',
-            'localhost', // Update with $con->host_info if needed
-            'it_asset',
-            'root',
-            '' // Add password if needed
+            'Server=localhost; Database=%s; UserId=%s; Pwd=%s;',
+            $con->query("SELECT DATABASE()")->fetch_row()[0], // Get the selected database name
+            $con->user, // Use username from the mysqli connection object
+            $con->passwd // Use password from the mysqli connection object
         );
     }
 

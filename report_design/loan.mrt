@@ -5,7 +5,6 @@
     <Databases isList="true" count="1">
       <it_asset Ref="2" type="Stimulsoft.Report.Dictionary.StiMySqlDatabase" isKey="true">
         <Alias>it_asset</Alias>
-        <ConnectionStringEncrypted>48hpa0hdMTVsWvlY5wQ0Y7padaFNWlqE82Gh+GhE4Ge9evuhT1mj9W9Jub1jJaRji8TLK0gD04VGGKXcwxjsP5BWacs=</ConnectionStringEncrypted>
         <Key>0207a17eb5224ba3b5ed4a05651954e0</Key>
         <Name>it_asset</Name>
       </it_asset>
@@ -5037,7 +5036,7 @@ e/ZNsB2ti/x/s3wqNwxs+5cAAAAASUVORK5CYII=</ImageBytes>
   <ReportChanged>1/8/2025 9:33:00 AM</ReportChanged>
   <ReportCreated>1/1/2025 7:25:21 AM</ReportCreated>
   <ReportFile>C:\xampp\htdocs\Asset\report_design\loan.mrt</ReportFile>
-  <ReportGuid>4aff71d6fb1245b7848ffa288c7a01d7</ReportGuid>
+  <ReportGuid>30d1be1890964a7d85351e4fb0bb4179</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Inches</ReportUnit>
   <ReportVersion>2023.1.1.0</ReportVersion>

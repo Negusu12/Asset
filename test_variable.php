@@ -5,35 +5,33 @@ use Stimulsoft\Events\StiDataEventArgs;
 use Stimulsoft\Report\StiReport;
 use Stimulsoft\Viewer\StiViewer;
 
-// Set the path to the license file
-// Creating a viewer object and set the necessary javascript options
+// Creating a viewer object and set the necessary JavaScript options
 $viewer = new StiViewer();
 $viewer->javascript->relativePath = './stimulsoft/';
 
-// Disable the "Save" button on the toolbar
+// Disable the "Save" and "Open" buttons on the toolbar
+$viewer->options->toolbar->showSaveButton = false;
+$viewer->options->toolbar->showOpenButton = false;
 
+// Dynamically handle the database connection
 $viewer->onBeginProcessData = function (StiDataEventArgs $args) {
-    if ($args->connection == 'MyConnectionName')
-        $args->connectionString = 'Server=localhost; Database=it_asset; UserId=root; Pwd=;';
-
-    // You can change the SQL query
-    if ($args->dataSource == 'MyDataSource')
-        $args->queryString = 'SELECT * FROM MyTable';
-
-    if ($args->dataSource == 'MyDataSourceWithParams') {
-        $args->parameters['Parameter1']->value = 'TableName';
-        $args->parameters['Parameter2']->value = 10;
-        $args->parameters['Parameter3']->value = '2019-01-20';
+    // Override the connection string dynamically in PHP
+    if ($args->connection == 'it_asset') { // Match the Alias used in the .mrt file
+        $args->connectionString = 'Server=localhost;Database=it_asset;UserId=root;Pwd=;';
     }
 };
-
-$viewer->process();
 
 // Creating a report object
 $report = new StiReport();
 
+// Load the report template (.mrt file)
 $report->loadFile('report_design/payment.mrt');
 
+// Bind the report to the viewer
 $viewer->report = $report;
 
+// Process the viewer
+$viewer->process();
+
+// Print the viewer as HTML
 $viewer->printHtml();
