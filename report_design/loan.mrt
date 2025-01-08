@@ -3730,7 +3730,7 @@ gg==</ImageBytes>
         </PageHeaderBand1>
         <PageFooterBand1 Ref="8" type="PageFooterBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,10.11,7.49,0.8</ClientRectangle>
+          <ClientRectangle>0,14.47,7.49,0.8</ClientRectangle>
           <Components isList="true" count="1">
             <Image4 Ref="9" type="Image" isKey="true">
               <Brush>Transparent</Brush>
@@ -5034,10 +5034,10 @@ e/ZNsB2ti/x/s3wqNwxs+5cAAAAASUVORK5CYII=</ImageBytes>
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>1/4/2025 4:57:35 AM</ReportChanged>
+  <ReportChanged>1/8/2025 9:33:00 AM</ReportChanged>
   <ReportCreated>1/1/2025 7:25:21 AM</ReportCreated>
   <ReportFile>C:\xampp\htdocs\Asset\report_design\loan.mrt</ReportFile>
-  <ReportGuid>8c4a042c6947428dabc9f6b647509293</ReportGuid>
+  <ReportGuid>4aff71d6fb1245b7848ffa288c7a01d7</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Inches</ReportUnit>
   <ReportVersion>2023.1.1.0</ReportVersion>

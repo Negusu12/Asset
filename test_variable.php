@@ -11,8 +11,6 @@ $viewer = new StiViewer();
 $viewer->javascript->relativePath = './stimulsoft/';
 
 // Disable the "Save" button on the toolbar
-$viewer->options->toolbar->showSaveButton = false;
-$viewer->options->toolbar->showOpenButton = false;
 
 $viewer->onBeginProcessData = function (StiDataEventArgs $args) {
     if ($args->connection == 'MyConnectionName')
