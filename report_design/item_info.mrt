@@ -11,38 +11,34 @@
       </it_asset>
     </Databases>
     <DataSources isList="true" count="1">
-      <asset_loan_v Ref="3" type="Stimulsoft.Report.Dictionary.StiMySqlSource" isKey="true">
-        <Alias>asset_loan_v</Alias>
-        <Columns isList="true" count="20">
-          <value>ORIGINAL,loan_id,loan_id,loan_id,System.Int32,_x0034_77abace7fe045ac8ea0ae96b1d8ae2d</value>
-          <value>ORIGINAL,item_code,item_code,item_code,System.Int32,_x0034_4a01c181cfc46258de367fe395bcc0a</value>
-          <value>ORIGINAL,item_name,item_name,item_name,System.String,_x0034_b2b091581ef421da94239ab1ca7c5fa</value>
-          <value>ORIGINAL,model,model,model,System.String,f7b00b7c6ed8400383dd17e60562db41</value>
-          <value>ORIGINAL,brand,brand,brand,System.String,_x0037_d91ed7f36e742e8a625e7719bacd9de</value>
-          <value>ORIGINAL,item_type,item_type,item_type,System.String,_x0034_a1b7a2cd2d94950b86efd2bd4ae409f</value>
-          <value>ORIGINAL,item_category,item_category,item_category,System.String,fc6b20e5e95a4f2d8a3ed025b6b92c10</value>
-          <value>ORIGINAL,item_condition,item_condition,item_condition,System.String,c5705a3e66ed412b93779ddd448635f6</value>
-          <value>ORIGINAL,serial_no,serial_no,serial_no,System.String,_x0030_c170aa3a24542e6b869a31edee2fa4e</value>
-          <value>ORIGINAL,borrower_title,borrower_title,borrower_title,System.String,e6c1b085e3f14bfa8966097ec95b02d0</value>
-          <value>ORIGINAL,full_name,full_name,full_name,System.String,cfba3e40f91244f4882da9c3a1648bd6</value>
-          <value>ORIGINAL,department,department,department,System.String,_x0038_22c3f97815645c999450e3c4981ca12</value>
-          <value>ORIGINAL,location,location,location,System.String,_x0034_d809d4d32274988a0e92e4d058d0845</value>
-          <value>ORIGINAL,uom,uom,uom,System.String,_x0030_ad8bfc28c5c4c89b81c665ed75cf8a8</value>
-          <value>ORIGINAL,qty,qty,qty,System.Int32,c3286baac3a546e98d288475fd70a998</value>
-          <value>ORIGINAL,qty_taken,qty_taken,qty_taken,System.Int32,_x0037_4898a98e720435784c381cdac664e4a</value>
-          <value>ORIGINAL,doc_date,doc_date,doc_date,System.DateTime,_x0039_93129668db7457c9dc09e68a9e1af7f</value>
-          <value>ORIGINAL,description,description,description,System.String,_x0037_957e4af08564932b799ad19e7b14869</value>
-          <value>ORIGINAL,item_image,item_image,item_image,System.String,_x0036_1a2232063264d0395bf50775eca11fc</value>
-          <value>ORIGINAL,user_name,user_name,user_name,System.String,_x0039_dd9a88476ab4e59bf0eb22aa0ebbbf8</value>
+      <asset_record Ref="3" type="Stimulsoft.Report.Dictionary.StiMySqlSource" isKey="true">
+        <Alias>asset_record</Alias>
+        <Columns isList="true" count="16">
+          <value>item_code,System.Int32</value>
+          <value>item_c,System.String</value>
+          <value>item_name,System.String</value>
+          <value>item_condition,System.String</value>
+          <value>qty,System.Int32</value>
+          <value>doc_date,System.DateTime</value>
+          <value>description,System.String</value>
+          <value>user_name,System.String</value>
+          <value>uom,System.String</value>
+          <value>item_category,System.String</value>
+          <value>model,System.String</value>
+          <value>brand,System.String</value>
+          <value>item_type,System.String</value>
+          <value>item_image,System.Byte[]</value>
+          <value>u_doc_date,System.DateTime</value>
+          <value>u_user_name,System.String</value>
         </Columns>
         <CommandTimeout>30</CommandTimeout>
         <Dictionary isRef="1" />
-        <Key>f8d8cdb2cfac4697a9a996ad07a13ded</Key>
-        <Name>asset_loan_v</Name>
+        <Key>3698a425cc58468c8afb18179bd0b232</Key>
+        <Name>asset_record</Name>
         <NameInSource>it_asset</NameInSource>
         <Parameters isList="true" count="0" />
-        <SqlCommand>SELECT * FROM asset_loan_v</SqlCommand>
-      </asset_loan_v>
+        <SqlCommand>select * from asset_record</SqlCommand>
+      </asset_record>
     </DataSources>
     <Relations isList="true" count="0" />
     <Report isRef="0" />
@@ -57,7 +53,7 @@
     <Page1 Ref="4" type="Page" isKey="true">
       <Border>None;Black;2;Solid;False;4;Black</Border>
       <Brush>Transparent</Brush>
-      <Components isList="true" count="5">
+      <Components isList="true" count="4">
         <PageHeaderBand1 Ref="5" type="PageHeaderBand" isKey="true">
           <Brush>Transparent</Brush>
           <ClientRectangle>0,0.2,7.49,0.8</ClientRectangle>
@@ -3730,7 +3726,7 @@ gg==</ImageBytes>
         </PageHeaderBand1>
         <PageFooterBand1 Ref="8" type="PageFooterBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,14.47,7.49,0.8</ClientRectangle>
+          <ClientRectangle>0,9.31,7.49,0.8</ClientRectangle>
           <Components isList="true" count="1">
             <Image4 Ref="9" type="Image" isKey="true">
               <Brush>Transparent</Brush>
@@ -4439,7 +4435,7 @@ e/ZNsB2ti/x/s3wqNwxs+5cAAAAASUVORK5CYII=</ImageBytes>
           <Components isList="true" count="1">
             <Text4 Ref="11" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>0.5,0,7,0.4</ClientRectangle>
+              <ClientRectangle>0,0,7.5,0.4</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Expressions isList="true" count="0" />
               <Font>Averia Serif,18,Bold| Underline</Font>
@@ -4448,7 +4444,7 @@ e/ZNsB2ti/x/s3wqNwxs+5cAAAAASUVORK5CYII=</ImageBytes>
               <Name>Text4</Name>
               <Page isRef="4" />
               <Parent isRef="10" />
-              <Text>ABH IT Item Borrowing Form</Text>
+              <Text>Item ID {asset_record.item_code}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
@@ -4462,381 +4458,309 @@ e/ZNsB2ti/x/s3wqNwxs+5cAAAAASUVORK5CYII=</ImageBytes>
         </GroupHeaderBand1>
         <DataBand1 Ref="12" type="DataBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,2.2,7.49,4.8</ClientRectangle>
-          <Components isList="true" count="20">
+          <ClientRectangle>0,2.2,7.49,4.7</ClientRectangle>
+          <Components isList="true" count="19">
             <Text1 Ref="13" type="Text" isKey="true">
-              <Border>All;[0:0:0];1;Solid;False;1;[0:0:0]</Border>
-              <Brush>White</Brush>
-              <ClientRectangle>0.5,0.5,2,0.4</ClientRectangle>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.1,0.1,1,0.3</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Expressions isList="true" count="0" />
-              <Font>Averia Serif,13</Font>
-              <HorAlignment>Center</HorAlignment>
-              <LineSpacing>1.15</LineSpacing>
+              <Font>Arial,14</Font>
               <Margins>0,0,0,0</Margins>
               <Name>Text1</Name>
               <Page isRef="4" />
               <Parent isRef="12" />
-              <Text>Item Name</Text>
-              <TextBrush>[0:0:0]</TextBrush>
+              <Text>Item Code:</Text>
+              <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
+              <VertAlignment>Bottom</VertAlignment>
             </Text1>
             <Text2 Ref="14" type="Text" isKey="true">
-              <Border>All;[0:0:0];1;Solid;True;1;[0:0:0]</Border>
-              <Brush>White</Brush>
-              <ClientRectangle>0.5,0.9,2,0.4</ClientRectangle>
+              <Border>Bottom;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>1.2,0.1,2.2,0.3</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Expressions isList="true" count="0" />
-              <Font>Averia Serif,13</Font>
-              <HorAlignment>Center</HorAlignment>
-              <LineSpacing>1.15</LineSpacing>
+              <Font>Arial,14</Font>
               <Margins>0,0,0,0</Margins>
               <Name>Text2</Name>
               <Page isRef="4" />
               <Parent isRef="12" />
-              <Text>Item Condition</Text>
-              <TextBrush>[0:0:0]</TextBrush>
+              <Text>{asset_record.item_c}</Text>
+              <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
+              <VertAlignment>Bottom</VertAlignment>
             </Text2>
             <Text3 Ref="15" type="Text" isKey="true">
-              <Border>All;[0:0:0];1;Solid;True;1;[0:0:0]</Border>
-              <Brush>White</Brush>
-              <ClientRectangle>0.5,1.3,2,0.4</ClientRectangle>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>3.5,0.1,1,0.3</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Expressions isList="true" count="0" />
-              <Font>Averia Serif,13</Font>
-              <HorAlignment>Center</HorAlignment>
-              <LineSpacing>1.15</LineSpacing>
+              <Font>Arial,14</Font>
               <Margins>0,0,0,0</Margins>
               <Name>Text3</Name>
               <Page isRef="4" />
               <Parent isRef="12" />
-              <Text>Brand</Text>
-              <TextBrush>[0:0:0]</TextBrush>
+              <Text>Item Name:</Text>
+              <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
+              <VertAlignment>Bottom</VertAlignment>
             </Text3>
             <Text5 Ref="16" type="Text" isKey="true">
-              <Border>All;[0:0:0];1;Solid;False;1;[0:0:0]</Border>
-              <Brush>White</Brush>
-              <ClientRectangle>0.5,3.7,2,1.1</ClientRectangle>
+              <Border>Bottom;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>4.6,0.1,2.9,0.3</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Expressions isList="true" count="0" />
-              <Font>Averia Serif,13</Font>
-              <HorAlignment>Center</HorAlignment>
-              <LineSpacing>1.15</LineSpacing>
+              <Font>Arial,14</Font>
               <Margins>0,0,0,0</Margins>
               <Name>Text5</Name>
               <Page isRef="4" />
               <Parent isRef="12" />
-              <Text>Description</Text>
-              <TextBrush>[0:0:0]</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
+              <Text>{asset_record.item_name}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>DataColumn</Type>
+              <VertAlignment>Bottom</VertAlignment>
             </Text5>
             <Text6 Ref="17" type="Text" isKey="true">
-              <Border>All;[0:0:0];1;Solid;False;1;[0:0:0]</Border>
-              <Brush>White</Brush>
-              <ClientRectangle>0.5,0.1,2,0.4</ClientRectangle>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>2.3,0.95,0.6,0.3</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Expressions isList="true" count="0" />
-              <Font>Averia Serif,13</Font>
-              <HorAlignment>Center</HorAlignment>
-              <LineSpacing>1.15</LineSpacing>
+              <Font>Arial,14</Font>
               <Margins>0,0,0,0</Margins>
               <Name>Text6</Name>
               <Page isRef="4" />
               <Parent isRef="12" />
-              <Text>Loan ID</Text>
-              <TextBrush>[0:0:0]</TextBrush>
+              <Text>Model:</Text>
+              <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
+              <VertAlignment>Bottom</VertAlignment>
             </Text6>
             <Text7 Ref="18" type="Text" isKey="true">
-              <Border>All;[0:0:0];1;Solid;True;1;[0:0:0]</Border>
-              <Brush>White</Brush>
-              <ClientRectangle>0.5,1.7,2,0.4</ClientRectangle>
+              <Border>Bottom;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>3,0.95,1.4,0.3</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Expressions isList="true" count="0" />
-              <Font>Averia Serif,13</Font>
-              <HorAlignment>Center</HorAlignment>
-              <LineSpacing>1.15</LineSpacing>
+              <Font>Arial,14</Font>
               <Margins>0,0,0,0</Margins>
               <Name>Text7</Name>
               <Page isRef="4" />
               <Parent isRef="12" />
-              <Text>Model</Text>
-              <TextBrush>[0:0:0]</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
+              <Text>{asset_record.model}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>DataColumn</Type>
+              <VertAlignment>Bottom</VertAlignment>
             </Text7>
             <Text8 Ref="19" type="Text" isKey="true">
-              <Border>All;[0:0:0];1;Solid;True;1;[0:0:0]</Border>
-              <Brush>White</Brush>
-              <ClientRectangle>0.5,2.1,2,0.4</ClientRectangle>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.1,0.95,0.6,0.3</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Expressions isList="true" count="0" />
-              <Font>Averia Serif,13</Font>
-              <HorAlignment>Center</HorAlignment>
-              <LineSpacing>1.15</LineSpacing>
+              <Font>Arial,14</Font>
               <Margins>0,0,0,0</Margins>
               <Name>Text8</Name>
               <Page isRef="4" />
               <Parent isRef="12" />
-              <Text>Serial No.</Text>
-              <TextBrush>[0:0:0]</TextBrush>
+              <Text>Brand:
+</Text>
+              <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
+              <VertAlignment>Bottom</VertAlignment>
             </Text8>
             <Text9 Ref="20" type="Text" isKey="true">
-              <Border>All;[0:0:0];1;Solid;True;1;[0:0:0]</Border>
-              <Brush>White</Brush>
-              <ClientRectangle>0.5,2.5,2,0.4</ClientRectangle>
+              <Border>Bottom;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.8,0.95,1.4,0.3</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Expressions isList="true" count="0" />
-              <Font>Averia Serif,13</Font>
-              <HorAlignment>Center</HorAlignment>
-              <LineSpacing>1.15</LineSpacing>
+              <Font>Arial,14</Font>
               <Margins>0,0,0,0</Margins>
               <Name>Text9</Name>
               <Page isRef="4" />
               <Parent isRef="12" />
-              <Text>Borrower Name</Text>
-              <TextBrush>[0:0:0]</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
+              <Text>{asset_record.brand}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>DataColumn</Type>
+              <VertAlignment>Bottom</VertAlignment>
             </Text9>
             <Text10 Ref="21" type="Text" isKey="true">
-              <Border>All;[0:0:0];1;Solid;True;1;[0:0:0]</Border>
-              <Brush>White</Brush>
-              <ClientRectangle>0.5,2.9,2,0.4</ClientRectangle>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>4.5,0.95,1.3,0.3</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Expressions isList="true" count="0" />
-              <Font>Averia Serif,13</Font>
-              <HorAlignment>Center</HorAlignment>
-              <LineSpacing>1.15</LineSpacing>
+              <Font>Arial,14</Font>
               <Margins>0,0,0,0</Margins>
               <Name>Text10</Name>
               <Page isRef="4" />
               <Parent isRef="12" />
-              <Text>Quantity</Text>
-              <TextBrush>[0:0:0]</TextBrush>
+              <Text>Item Category:</Text>
+              <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
+              <VertAlignment>Bottom</VertAlignment>
             </Text10>
             <Text11 Ref="22" type="Text" isKey="true">
-              <Border>All;[0:0:0];1;Solid;False;1;[0:0:0]</Border>
-              <Brush>White</Brush>
-              <ClientRectangle>0.5,3.3,2,0.4</ClientRectangle>
+              <Border>Bottom;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>5.9,0.95,1.4,0.3</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Expressions isList="true" count="0" />
-              <Font>Averia Serif,13</Font>
-              <HorAlignment>Center</HorAlignment>
-              <LineSpacing>1.15</LineSpacing>
+              <Font>Arial,14</Font>
               <Margins>0,0,0,0</Margins>
               <Name>Text11</Name>
               <Page isRef="4" />
               <Parent isRef="12" />
-              <Text>Document Date</Text>
-              <TextBrush>[0:0:0]</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text11>
-            <Text12 Ref="23" type="Text" isKey="true">
-              <Border>All;[0:0:0];1;Solid;False;1;[0:0:0]</Border>
-              <Brush>White</Brush>
-              <ClientRectangle>2.5,0.5,4.8,0.4</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
-              <Font>DIN Light,14</Font>
-              <HorAlignment>Center</HorAlignment>
-              <LineSpacing>1.15</LineSpacing>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text12</Name>
-              <Page isRef="4" />
-              <Parent isRef="12" />
-              <Text>{asset_loan_v.item_name}</Text>
-              <TextBrush>[0:0:0]</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text12>
-            <Text13 Ref="24" type="Text" isKey="true">
-              <Border>All;[0:0:0];1;Solid;False;1;[0:0:0]</Border>
-              <Brush>White</Brush>
-              <ClientRectangle>2.5,0.9,4.8,0.4</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
-              <Font>DIN Light,14</Font>
-              <HorAlignment>Center</HorAlignment>
-              <LineSpacing>1.15</LineSpacing>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text13</Name>
-              <Page isRef="4" />
-              <Parent isRef="12" />
-              <Text>{asset_loan_v.item_condition}</Text>
-              <TextBrush>[0:0:0]</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text13>
-            <Text14 Ref="25" type="Text" isKey="true">
-              <AllowHtmlTags>True</AllowHtmlTags>
-              <Border>All;[0:0:0];1;Solid;False;1;[0:0:0]</Border>
-              <Brush>White</Brush>
-              <CanBreak>True</CanBreak>
-              <CanShrink>True</CanShrink>
-              <ClientRectangle>2.5,3.7,4.8,1.1</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
-              <Font>DIN Light,14</Font>
-              <GrowToHeight>True</GrowToHeight>
-              <HideZeros>True</HideZeros>
-              <HorAlignment>Width</HorAlignment>
-              <LineSpacing>1.15</LineSpacing>
-              <Margins>10,10,0,0</Margins>
-              <MaxNumberOfLines>10</MaxNumberOfLines>
-              <Name>Text14</Name>
-              <Page isRef="4" />
-              <Parent isRef="12" />
-              <ShrinkFontToFit>True</ShrinkFontToFit>
-              <ShrinkFontToFitMinimumSize>10</ShrinkFontToFitMinimumSize>
-              <Text>{asset_loan_v.description}</Text>
-              <TextBrush>[0:0:0]</TextBrush>
-              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
-              <TextQuality>Wysiwyg</TextQuality>
+              <Text>{asset_record.item_category}</Text>
+              <TextBrush>Black</TextBrush>
               <Type>DataColumn</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text14>
-            <Text15 Ref="26" type="Text" isKey="true">
-              <Border>All;[0:0:0];1;Solid;False;1;[0:0:0]</Border>
-              <Brush>White</Brush>
-              <ClientRectangle>2.5,0.1,4.8,0.4</ClientRectangle>
+              <VertAlignment>Bottom</VertAlignment>
+            </Text11>
+            <Text18 Ref="23" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.1,3.2,1.1,0.3</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Expressions isList="true" count="0" />
-              <Font>DIN Light,14</Font>
-              <HorAlignment>Center</HorAlignment>
-              <LineSpacing>1.15</LineSpacing>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text15</Name>
-              <Page isRef="4" />
-              <Parent isRef="12" />
-              <Text>{asset_loan_v.loan_id}</Text>
-              <TextBrush>[0:0:0]</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text15>
-            <Text16 Ref="27" type="Text" isKey="true">
-              <Border>All;[0:0:0];1;Solid;False;1;[0:0:0]</Border>
-              <Brush>White</Brush>
-              <ClientRectangle>2.5,1.7,4.8,0.4</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
-              <Font>DIN Light,14</Font>
-              <HorAlignment>Center</HorAlignment>
-              <LineSpacing>1.15</LineSpacing>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text16</Name>
-              <Page isRef="4" />
-              <Parent isRef="12" />
-              <Text>{asset_loan_v.model}</Text>
-              <TextBrush>[0:0:0]</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text16>
-            <Text17 Ref="28" type="Text" isKey="true">
-              <Border>All;[0:0:0];1;Solid;False;1;[0:0:0]</Border>
-              <Brush>White</Brush>
-              <ClientRectangle>2.5,2.1,4.8,0.4</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
-              <Font>DIN Light,14</Font>
-              <HorAlignment>Center</HorAlignment>
-              <LineSpacing>1.15</LineSpacing>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text17</Name>
-              <Page isRef="4" />
-              <Parent isRef="12" />
-              <Text>{asset_loan_v.serial_no}</Text>
-              <TextBrush>[0:0:0]</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text17>
-            <Text18 Ref="29" type="Text" isKey="true">
-              <Border>All;[0:0:0];1;Solid;False;1;[0:0:0]</Border>
-              <Brush>White</Brush>
-              <ClientRectangle>2.5,2.5,4.8,0.4</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
-              <Font>DIN Light,14</Font>
-              <HorAlignment>Center</HorAlignment>
-              <LineSpacing>1.15</LineSpacing>
+              <Font>Arial,14</Font>
               <Margins>0,0,0,0</Margins>
               <Name>Text18</Name>
               <Page isRef="4" />
               <Parent isRef="12" />
-              <Text>{asset_loan_v.borrower_title} {asset_loan_v.full_name}</Text>
-              <TextBrush>[0:0:0]</TextBrush>
+              <Text>Description:</Text>
+              <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
+              <VertAlignment>Bottom</VertAlignment>
             </Text18>
-            <Text19 Ref="30" type="Text" isKey="true">
-              <Border>All;[0:0:0];1;Solid;False;1;[0:0:0]</Border>
-              <Brush>White</Brush>
-              <ClientRectangle>2.5,2.9,4.8,0.4</ClientRectangle>
+            <Text19 Ref="24" type="Text" isKey="true">
+              <Border>Bottom;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <CanBreak>True</CanBreak>
+              <ClientRectangle>1.3,2.4,3.6,2.2</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Expressions isList="true" count="0" />
-              <Font>DIN Light,14</Font>
-              <HorAlignment>Center</HorAlignment>
-              <LineSpacing>1.15</LineSpacing>
+              <Font>Arial,14</Font>
+              <HorAlignment>Width</HorAlignment>
+              <LineSpacing>1.5</LineSpacing>
               <Margins>0,0,0,0</Margins>
               <Name>Text19</Name>
               <Page isRef="4" />
               <Parent isRef="12" />
-              <Text>{asset_loan_v.qty}</Text>
-              <TextBrush>[0:0:0]</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
+              <ShrinkFontToFit>True</ShrinkFontToFit>
+              <ShrinkFontToFitMinimumSize>12</ShrinkFontToFitMinimumSize>
+              <Text>{asset_record.description}</Text>
+              <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
+              <Type>DataColumn</Type>
+              <VertAlignment>Bottom</VertAlignment>
             </Text19>
-            <Text20 Ref="31" type="Text" isKey="true">
-              <Border>All;[0:0:0];1;Solid;False;1;[0:0:0]</Border>
-              <Brush>White</Brush>
-              <ClientRectangle>2.5,3.3,4.8,0.4</ClientRectangle>
+            <Text20 Ref="25" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>2.8,1.8,0.6,0.3</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Expressions isList="true" count="0" />
-              <Font>DIN Light,14</Font>
-              <HorAlignment>Center</HorAlignment>
-              <LineSpacing>1.15</LineSpacing>
+              <Font>Arial,14</Font>
               <Margins>0,0,0,0</Margins>
               <Name>Text20</Name>
               <Page isRef="4" />
               <Parent isRef="12" />
-              <Text>{asset_loan_v.doc_date}</Text>
-              <TextBrush>[0:0:0]</TextBrush>
-              <TextFormat Ref="32" type="DateFormat" isKey="true">
-                <StringFormat>D</StringFormat>
-              </TextFormat>
+              <Text>UOM:</Text>
+              <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
+              <VertAlignment>Bottom</VertAlignment>
             </Text20>
-            <Text21 Ref="33" type="Text" isKey="true">
-              <Border>All;[0:0:0];1;Solid;False;1;[0:0:0]</Border>
-              <Brush>White</Brush>
-              <ClientRectangle>2.5,1.3,4.8,0.4</ClientRectangle>
+            <Text21 Ref="26" type="Text" isKey="true">
+              <Border>Bottom;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>3.5,1.8,1.4,0.3</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Expressions isList="true" count="0" />
-              <Font>DIN Light,14</Font>
-              <HorAlignment>Center</HorAlignment>
-              <LineSpacing>1.15</LineSpacing>
+              <Font>Arial,14</Font>
               <Margins>0,0,0,0</Margins>
               <Name>Text21</Name>
               <Page isRef="4" />
               <Parent isRef="12" />
-              <Text>{asset_loan_v.brand}</Text>
-              <TextBrush>[0:0:0]</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
+              <Text>{asset_record.uom}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>DataColumn</Type>
+              <VertAlignment>Bottom</VertAlignment>
             </Text21>
+            <Text22 Ref="27" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.1,1.8,1,0.3</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,14</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text22</Name>
+              <Page isRef="4" />
+              <Parent isRef="12" />
+              <Text>Item Type:
+</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Bottom</VertAlignment>
+            </Text22>
+            <Text23 Ref="28" type="Text" isKey="true">
+              <Border>Bottom;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>1.2,1.8,1.4,0.3</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,14</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text23</Name>
+              <Page isRef="4" />
+              <Parent isRef="12" />
+              <Text>{asset_record.item_type}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>DataColumn</Type>
+              <VertAlignment>Bottom</VertAlignment>
+            </Text23>
+            <Text24 Ref="29" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>5,1.8,0.8,0.3</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,14</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text24</Name>
+              <Page isRef="4" />
+              <Parent isRef="12" />
+              <Text>Quantity:</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Bottom</VertAlignment>
+            </Text24>
+            <Text25 Ref="30" type="Text" isKey="true">
+              <Border>Bottom;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>5.9,1.8,1.4,0.3</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Arial,14</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text25</Name>
+              <Page isRef="4" />
+              <Parent isRef="12" />
+              <Text>{asset_record.qty}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>DataColumn</Type>
+              <VertAlignment>Bottom</VertAlignment>
+            </Text25>
+            <Image3 Ref="31" type="Image" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>5,2.4,2.3,2.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <DataColumn>asset_record.item_image</DataColumn>
+              <Expressions isList="true" count="0" />
+              <IconColor>68, 114, 196</IconColor>
+              <Margins>0,0,0,0</Margins>
+              <Name>Image3</Name>
+              <Page isRef="4" />
+              <Parent isRef="12" />
+              <Stretch>True</Stretch>
+              <VertAlignment>Bottom</VertAlignment>
+            </Image3>
           </Components>
           <Conditions isList="true" count="0" />
           <Expressions isList="true" count="0" />
@@ -4846,178 +4770,13 @@ e/ZNsB2ti/x/s3wqNwxs+5cAAAAASUVORK5CYII=</ImageBytes>
           <Parent isRef="4" />
           <Sort isList="true" count="0" />
         </DataBand1>
-        <GroupFooterBand1 Ref="34" type="GroupFooterBand" isKey="true">
-          <Brush>Transparent</Brush>
-          <ClientRectangle>0,7.4,7.49,3.8</ClientRectangle>
-          <Components isList="true" count="9">
-            <Text22 Ref="35" type="Text" isKey="true">
-              <Brush>Transparent</Brush>
-              <ClientRectangle>0.7,0.5,6.5,1.2</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
-              <Font>DIN Light,12</Font>
-              <HorAlignment>Width</HorAlignment>
-              <LineSpacing>1.5</LineSpacing>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text22</Name>
-              <Page isRef="4" />
-              <Parent isRef="34" />
-              <Text>• I will ensure the borrowed item(s) are used properly and safely, kept in good condition, and returned on time.
-• I understand that I am responsible for the cost of repair or replacement in case of any damage or loss to the item(s) while in my possession.
-</Text>
-              <TextBrush>[0:0:0]</TextBrush>
-              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
-              <Type>Expression</Type>
-            </Text22>
-            <Text23 Ref="36" type="Text" isKey="true">
-              <Brush>Transparent</Brush>
-              <ClientRectangle>0.5,0.1,2.3,0.3</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
-              <Font>Averia Serif,13,Bold</Font>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text23</Name>
-              <Page isRef="4" />
-              <Parent isRef="34" />
-              <Text>I acknowledge:</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-            </Text23>
-            <Image3 Ref="37" type="Image" isKey="true">
-              <Border>All;[0:0:0];1;None;False;1;[0:0:0]</Border>
-              <Brush>White</Brush>
-              <ClientRectangle>5.5,1.9,1.7,1.4</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <DataColumn>asset_loan_v.item_image</DataColumn>
-              <Expressions isList="true" count="0" />
-              <HorAlignment>Center</HorAlignment>
-              <IconColor>68, 114, 196</IconColor>
-              <Margins>0,0,0,0</Margins>
-              <Name>Image3</Name>
-              <Page isRef="4" />
-              <Parent isRef="34" />
-              <Smoothing>False</Smoothing>
-              <Stretch>True</Stretch>
-              <VertAlignment>Center</VertAlignment>
-            </Image3>
-            <Text24 Ref="38" type="Text" isKey="true">
-              <Brush>Transparent</Brush>
-              <ClientRectangle>0.5,2.1,1.6,0.4</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
-              <Font>Averia Serif,13</Font>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text24</Name>
-              <Page isRef="4" />
-              <Parent isRef="34" />
-              <Text>Borrower Name :</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text24>
-            <Text25 Ref="39" type="Text" isKey="true">
-              <Brush>Transparent</Brush>
-              <ClientRectangle>0.5,2.7,1.6,0.4</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
-              <Font>Averia Serif,13</Font>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text25</Name>
-              <Page isRef="4" />
-              <Parent isRef="34" />
-              <Text>Borrowed Date :</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text25>
-            <Text26 Ref="40" type="Text" isKey="true">
-              <Brush>Transparent</Brush>
-              <ClientRectangle>0.5,3.3,1.6,0.4</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
-              <Font>Averia Serif,13</Font>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text26</Name>
-              <Page isRef="4" />
-              <Parent isRef="34" />
-              <Text>Borrower signature :</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text26>
-            <Text27 Ref="41" type="Text" isKey="true">
-              <Border>Bottom;Black;1;Solid;False;4;Black</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>2.2,2,3,0.4</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
-              <Font>DIN Light,13</Font>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text27</Name>
-              <Page isRef="4" />
-              <Parent isRef="34" />
-              <Text>{asset_loan_v.borrower_title} {asset_loan_v.full_name}</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Bottom</VertAlignment>
-            </Text27>
-            <Text28 Ref="42" type="Text" isKey="true">
-              <Border>Bottom;Black;1;Solid;False;4;Black</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>2.2,2.6,3,0.4</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
-              <Font>DIN Light,13</Font>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text28</Name>
-              <Page isRef="4" />
-              <Parent isRef="34" />
-              <Text>{asset_loan_v.doc_date}</Text>
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="43" type="DateFormat" isKey="true">
-                <StringFormat>D</StringFormat>
-              </TextFormat>
-              <Type>Expression</Type>
-              <VertAlignment>Bottom</VertAlignment>
-            </Text28>
-            <Text29 Ref="44" type="Text" isKey="true">
-              <Border>Bottom;Black;1;Solid;False;4;Black</Border>
-              <Brush>Transparent</Brush>
-              <ClientRectangle>2.2,3.2,3,0.4</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
-              <Font>Arial,13</Font>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text29</Name>
-              <Page isRef="4" />
-              <Parent isRef="34" />
-              <TextBrush>Black</TextBrush>
-              <TextFormat Ref="45" type="DateFormat" isKey="true">
-                <StringFormat>D</StringFormat>
-              </TextFormat>
-              <Type>Expression</Type>
-              <VertAlignment>Bottom</VertAlignment>
-            </Text29>
-          </Components>
-          <Conditions isList="true" count="0" />
-          <Expressions isList="true" count="0" />
-          <Name>GroupFooterBand1</Name>
-          <Page isRef="4" />
-          <Parent isRef="4" />
-        </GroupFooterBand1>
       </Components>
       <Conditions isList="true" count="0" />
       <Expressions isList="true" count="0" />
       <Guid>3814927eff7a42c7bcecc2c4d7a38991</Guid>
       <Margins>0.39,0.39,0.39,0.39</Margins>
       <Name>Page1</Name>
-      <PageHeight>11.69</PageHeight>
+      <PageHeight>8</PageHeight>
       <PageWidth>8.27</PageWidth>
       <PaperSize>A4</PaperSize>
       <Report isRef="0" />
@@ -5034,10 +4793,10 @@ e/ZNsB2ti/x/s3wqNwxs+5cAAAAASUVORK5CYII=</ImageBytes>
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>1/10/2025 3:14:26 AM</ReportChanged>
+  <ReportChanged>1/10/2025 10:40:38 AM</ReportChanged>
   <ReportCreated>1/1/2025 7:25:21 AM</ReportCreated>
-  <ReportFile>C:\xampp\htdocs\Asset\report_design\loan.mrt</ReportFile>
-  <ReportGuid>2ee6201f72664e02b999a2a56fab21f1</ReportGuid>
+  <ReportFile>C:\xampp\htdocs\Asset\report_design\item_info.mrt</ReportFile>
+  <ReportGuid>e3e9f984aa114d959a212300cd8903f2</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Inches</ReportUnit>
   <ReportVersion>2023.1.1.0</ReportVersion>
