@@ -5,16 +5,21 @@ require_once '../connect.php'; // Include the database connection file
 use Stimulsoft\Events\StiDataEventArgs;
 use Stimulsoft\Report\StiReport;
 use Stimulsoft\Viewer\StiViewer;
-
+use Stimulsoft\Viewer\Enums\StiViewerTheme;
+use Stimulsoft\Viewer\StiViewerOptions;
 // Get the item_code from the URL
 $item_code = isset($_GET['item_code']) ? intval($_GET['item_code']) : 0;
 
 // Set up the viewer
 $viewer = new StiViewer();
 $viewer->javascript->relativePath = '../stimulsoft/';
+$viewer->options = new StiViewerOptions();
+
+
 $viewer->options->toolbar->showSaveButton = false;
 $viewer->options->toolbar->showOpenButton = false;
 
+$viewer->options->appearance->theme = StiViewerTheme::Office2022BlackBlue;
 // Define the data event handler
 $viewer->onBeginProcessData = function (StiDataEventArgs $args) use ($item_code, $con) {
     if ($args->connection == 'it_asset') { // Ensure the connection name matches the .mrt file
