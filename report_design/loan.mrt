@@ -4902,7 +4902,7 @@ e/ZNsB2ti/x/s3wqNwxs+5cAAAAASUVORK5CYII=</ImageBytes>
             </Image3>
             <Text24 Ref="38" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>0.5,2.1,1.6,0.4</ClientRectangle>
+              <ClientRectangle>0.5,2.1,1.7,0.4</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Expressions isList="true" count="0" />
               <Font>Averia Serif,13</Font>
@@ -4918,7 +4918,7 @@ e/ZNsB2ti/x/s3wqNwxs+5cAAAAASUVORK5CYII=</ImageBytes>
             </Text24>
             <Text25 Ref="39" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>0.5,2.7,1.6,0.4</ClientRectangle>
+              <ClientRectangle>0.5,2.7,1.7,0.4</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Expressions isList="true" count="0" />
               <Font>Averia Serif,13</Font>
@@ -4934,7 +4934,7 @@ e/ZNsB2ti/x/s3wqNwxs+5cAAAAASUVORK5CYII=</ImageBytes>
             </Text25>
             <Text26 Ref="40" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>0.5,3.3,1.6,0.4</ClientRectangle>
+              <ClientRectangle>0.5,3.3,1.7,0.4</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Expressions isList="true" count="0" />
               <Font>Averia Serif,13</Font>
@@ -4951,7 +4951,7 @@ e/ZNsB2ti/x/s3wqNwxs+5cAAAAASUVORK5CYII=</ImageBytes>
             <Text27 Ref="41" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>2.2,2,3,0.4</ClientRectangle>
+              <ClientRectangle>2.3,2,3,0.4</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Expressions isList="true" count="0" />
               <Font>DIN Light,13</Font>
@@ -4968,7 +4968,7 @@ e/ZNsB2ti/x/s3wqNwxs+5cAAAAASUVORK5CYII=</ImageBytes>
             <Text28 Ref="42" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>2.2,2.6,3,0.4</ClientRectangle>
+              <ClientRectangle>2.3,2.6,3,0.4</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Expressions isList="true" count="0" />
               <Font>DIN Light,13</Font>
@@ -4988,7 +4988,7 @@ e/ZNsB2ti/x/s3wqNwxs+5cAAAAASUVORK5CYII=</ImageBytes>
             <Text29 Ref="44" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>2.2,3.2,3,0.4</ClientRectangle>
+              <ClientRectangle>2.3,3.2,3,0.4</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Expressions isList="true" count="0" />
               <Font>Arial,13</Font>
@@ -5034,10 +5034,10 @@ e/ZNsB2ti/x/s3wqNwxs+5cAAAAASUVORK5CYII=</ImageBytes>
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>1/10/2025 3:14:26 AM</ReportChanged>
+  <ReportChanged>1/11/2025 5:57:06 AM</ReportChanged>
   <ReportCreated>1/1/2025 7:25:21 AM</ReportCreated>
   <ReportFile>C:\xampp\htdocs\Asset\report_design\loan.mrt</ReportFile>
-  <ReportGuid>2ee6201f72664e02b999a2a56fab21f1</ReportGuid>
+  <ReportGuid>3ca6f39139044031bd3becaf4dd11257</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Inches</ReportUnit>
   <ReportVersion>2023.1.1.0</ReportVersion>

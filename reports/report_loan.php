@@ -71,7 +71,7 @@
                                             <?php endif; ?>
                                             <a class="dropdown-item" href="generate_loan_sign.php?loan_id=<?php echo $row['loan_id'] ?>" target="_blank">Print</a>
                                             <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" style="cursor: pointer;" onclick="viewItem('<?php echo $row['item_code']; ?>')">View Item Information</a>
+                                            <a class="dropdown-item" style="cursor: pointer;" onclick="viewReport(<?php echo $row['item_code']; ?>)">View Item Information</a>
                                         </div>
                                     </td>
                                 </tr>
@@ -93,6 +93,43 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="reportModal" tabindex="-1" aria-labelledby="reportModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="reportModalLabel">Item Information</h5>
+            </div>
+            <div class="modal-body">
+                <iframe id="reportIframe" src="" frameborder="0" style="width: 100%; height: 900px;" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    function viewReport(itemCode) {
+        console.log("Loan ID received in viewReport:", itemCode); // Debugging log
+
+        // Check if the loanId is valid
+        if (!itemCode || isNaN(itemCode)) {
+            console.error("Invalid Loan ID:", itemCode);
+            return;
+        }
+
+        // Generate the report URL
+        const reportUrl = `report_design/view_item_info.php?item_code=${itemCode}`;
+        console.log("Generated Report URL:", reportUrl); // Debugging log
+
+        // Set the iframe source
+        $('#reportIframe').attr('src', reportUrl);
+
+        // Show the modal
+        $('#reportModal').modal('show');
+    }
+</script>
 <script>
     $(document).ready(function() {
         // Check if DataTable is already initialized
@@ -261,30 +298,4 @@
     $('#mydatatable').on('draw.dt', function() {
         calculateOnLoanQuantity(); // Recalculate total quantity when the DataTable is redrawn (e.g., page change)
     });
-</script>
-<script>
-    function viewItem(itemCode) {
-        fetch('item_detail_card.php?item_code=' + itemCode)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.text(); // Change to text() to receive plain text response
-            })
-            .then(data => {
-                // Display the plain text response directly
-                Swal.fire({
-                    title: 'Item Details',
-                    html: data // Display the plain text response
-                });
-            })
-            .catch(error => {
-                console.error('Error fetching item details:', error);
-                Swal.fire({
-                    title: 'Error!',
-                    text: 'Failed to fetch item details. Please try again later.',
-                    icon: 'error'
-                });
-            });
-    }
 </script>

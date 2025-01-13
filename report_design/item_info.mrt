@@ -4444,7 +4444,7 @@ e/ZNsB2ti/x/s3wqNwxs+5cAAAAASUVORK5CYII=</ImageBytes>
               <Name>Text4</Name>
               <Page isRef="4" />
               <Parent isRef="10" />
-              <Text>Item ID {asset_record.item_code}</Text>
+              <Text>Item ID: {asset_record.item_code}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
@@ -4478,7 +4478,7 @@ e/ZNsB2ti/x/s3wqNwxs+5cAAAAASUVORK5CYII=</ImageBytes>
             <Text2 Ref="14" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>1.2,0.1,2.2,0.3</ClientRectangle>
+              <ClientRectangle>1.2,0,2.2,0.4</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Expressions isList="true" count="0" />
               <Font>Arial,14</Font>
@@ -4486,8 +4486,11 @@ e/ZNsB2ti/x/s3wqNwxs+5cAAAAASUVORK5CYII=</ImageBytes>
               <Name>Text2</Name>
               <Page isRef="4" />
               <Parent isRef="12" />
+              <ShrinkFontToFit>True</ShrinkFontToFit>
+              <ShrinkFontToFitMinimumSize>12</ShrinkFontToFitMinimumSize>
               <Text>{asset_record.item_c}</Text>
               <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Bottom</VertAlignment>
             </Text2>
@@ -4540,7 +4543,7 @@ e/ZNsB2ti/x/s3wqNwxs+5cAAAAASUVORK5CYII=</ImageBytes>
             <Text7 Ref="18" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>3,0.95,1.4,0.3</ClientRectangle>
+              <ClientRectangle>3,0.85,1.4,0.4</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Expressions isList="true" count="0" />
               <Font>Arial,14</Font>
@@ -4548,8 +4551,11 @@ e/ZNsB2ti/x/s3wqNwxs+5cAAAAASUVORK5CYII=</ImageBytes>
               <Name>Text7</Name>
               <Page isRef="4" />
               <Parent isRef="12" />
+              <ShrinkFontToFit>True</ShrinkFontToFit>
+              <ShrinkFontToFitMinimumSize>12</ShrinkFontToFitMinimumSize>
               <Text>{asset_record.model}</Text>
               <TextBrush>Black</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>DataColumn</Type>
               <VertAlignment>Bottom</VertAlignment>
             </Text7>
@@ -4618,7 +4624,7 @@ e/ZNsB2ti/x/s3wqNwxs+5cAAAAASUVORK5CYII=</ImageBytes>
             </Text11>
             <Text18 Ref="23" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>0.1,3.2,1.1,0.3</ClientRectangle>
+              <ClientRectangle>0.1,3.3,1.1,0.3</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Expressions isList="true" count="0" />
               <Font>Arial,14</Font>
@@ -4626,13 +4632,13 @@ e/ZNsB2ti/x/s3wqNwxs+5cAAAAASUVORK5CYII=</ImageBytes>
               <Name>Text18</Name>
               <Page isRef="4" />
               <Parent isRef="12" />
-              <Text>Description:</Text>
+              <Text>Description:-</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Bottom</VertAlignment>
             </Text18>
             <Text19 Ref="24" type="Text" isKey="true">
-              <Border>Bottom;Black;1;Solid;False;4;Black</Border>
+              <Border>None;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <CanBreak>True</CanBreak>
               <ClientRectangle>1.3,2.4,3.6,2.2</ClientRectangle>
@@ -4646,12 +4652,12 @@ e/ZNsB2ti/x/s3wqNwxs+5cAAAAASUVORK5CYII=</ImageBytes>
               <Page isRef="4" />
               <Parent isRef="12" />
               <ShrinkFontToFit>True</ShrinkFontToFit>
-              <ShrinkFontToFitMinimumSize>12</ShrinkFontToFitMinimumSize>
+              <ShrinkFontToFitMinimumSize>10</ShrinkFontToFitMinimumSize>
               <Text>{asset_record.description}</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <Type>DataColumn</Type>
-              <VertAlignment>Bottom</VertAlignment>
+              <VertAlignment>Center</VertAlignment>
             </Text19>
             <Text20 Ref="25" type="Text" isKey="true">
               <Brush>Transparent</Brush>
@@ -4793,10 +4799,10 @@ e/ZNsB2ti/x/s3wqNwxs+5cAAAAASUVORK5CYII=</ImageBytes>
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>1/10/2025 10:40:38 AM</ReportChanged>
+  <ReportChanged>1/11/2025 3:16:08 AM</ReportChanged>
   <ReportCreated>1/1/2025 7:25:21 AM</ReportCreated>
   <ReportFile>C:\xampp\htdocs\Asset\report_design\item_info.mrt</ReportFile>
-  <ReportGuid>e3e9f984aa114d959a212300cd8903f2</ReportGuid>
+  <ReportGuid>3034840e5e4d47ad98b8a8c192cfa2f4</ReportGuid>
   <ReportName>Report</ReportName>
   <ReportUnit>Inches</ReportUnit>
   <ReportVersion>2023.1.1.0</ReportVersion>
