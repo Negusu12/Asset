@@ -1,6 +1,6 @@
 <?php
-require_once 'stimulsoft/vendor/autoload.php';
-require_once 'connect.php'; // Include the database connection file
+require_once '../stimulsoft/vendor/autoload.php';
+require_once '../connect.php'; // Include the database connection file
 
 use Stimulsoft\Events\StiDataEventArgs;
 use Stimulsoft\Report\StiReport;
@@ -11,7 +11,7 @@ $loan_id = isset($_GET['loan_id']) ? intval($_GET['loan_id']) : 0;
 
 // Set up the viewer
 $viewer = new StiViewer();
-$viewer->javascript->relativePath = './stimulsoft/';
+$viewer->javascript->relativePath = '../stimulsoft/';
 $viewer->options->toolbar->showSaveButton = false;
 $viewer->options->toolbar->showOpenButton = false;
 
@@ -38,7 +38,7 @@ $viewer->process();
 
 // Load the report design
 $report = new StiReport();
-$report->loadFile('report_design/loan.mrt');
+$report->loadFile('../report_design/loan.mrt');
 
 // Assign the report to the viewer
 $viewer->report = $report;
