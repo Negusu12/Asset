@@ -181,18 +181,21 @@
 <script src="assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 
 <script src="assets/plugins/ckeditor/ckeditor.js"></script>
-<!-- description description description 
 <script>
-	ClassicEditor
-		.create(document.querySelector('#description'))
-		.then(editor => {
-			console.log(editor);
-		})
-		.catch(error => {
-			console.error(error);
+	document.addEventListener("DOMContentLoaded", function() {
+		document.querySelectorAll('#description, #description1, #description2, #description3, #description4, #description5').forEach(element => {
+			ClassicEditor
+				.create(element)
+				.then(editor => {
+					console.log(editor);
+				})
+				.catch(error => {
+					console.error(error);
+				});
 		});
-</script> -->
-<!-- end description end description-->
+	});
+</script>
+
 
 <script>
 	document.querySelectorAll('.priceFormat').forEach(function(element) {
