@@ -5,6 +5,7 @@ require_once '../connect.php'; // Include the database connection file
 use Stimulsoft\Events\StiDataEventArgs;
 use Stimulsoft\Report\StiReport;
 use Stimulsoft\Viewer\StiViewer;
+use Stimulsoft\Viewer\Enums\StiViewerTheme;
 
 // Get the loan_id from the URL
 $loan_id = isset($_GET['loan_id']) ? intval($_GET['loan_id']) : 0;
@@ -13,6 +14,13 @@ $loan_id = isset($_GET['loan_id']) ? intval($_GET['loan_id']) : 0;
 $viewer = new StiViewer();
 $viewer->javascript->relativePath = '../stimulsoft/';
 
+$viewer->options->toolbar->showOpenButton = false;
+$viewer->options->toolbar->showBookmarksButton = false;
+$viewer->options->toolbar->showAboutButton = false;
+$viewer->options->toolbar->showResourcesButton = false;
+$viewer->options->toolbar->showParametersButton = false;
+
+$viewer->options->appearance->theme = StiViewerTheme::Office2022BlackBlue;
 // Define the data event handler
 $viewer->onBeginProcessData = function (StiDataEventArgs $args) use ($loan_id, $con) {
     if ($args->connection == 'it_asset') { // Ensure the connection name matches the .mrt file
