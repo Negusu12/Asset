@@ -12,8 +12,6 @@ $loan_id = isset($_GET['loan_id']) ? intval($_GET['loan_id']) : 0;
 // Set up the viewer
 $viewer = new StiViewer();
 $viewer->javascript->relativePath = '../stimulsoft/';
-$viewer->options->toolbar->showSaveButton = false;
-$viewer->options->toolbar->showOpenButton = false;
 
 // Define the data event handler
 $viewer->onBeginProcessData = function (StiDataEventArgs $args) use ($loan_id, $con) {
