@@ -20,7 +20,8 @@ $viewer->options->toolbar->showAboutButton = false;
 $viewer->options->toolbar->showResourcesButton = false;
 $viewer->options->toolbar->showParametersButton = false;
 
-$viewer->options->appearance->theme = StiViewerTheme::Office2022BlackBlue;
+
+$viewer->options->appearance->theme = StiViewerTheme::Office2022BlackGreen;
 // Define the data event handler
 $viewer->onBeginProcessData = function (StiDataEventArgs $args) use ($loan_id, $con) {
     if ($args->connection == 'it_asset') { // Ensure the connection name matches the .mrt file

@@ -19,8 +19,6 @@ $viewer->options = new StiViewerOptions();
 $viewer->options->toolbar->showOpenButton = false;
 $viewer->options->toolbar->showBookmarksButton = false;
 $viewer->options->toolbar->showAboutButton = false;
-$viewer->options->toolbar->showResourcesButton = false;
-$viewer->options->toolbar->showParametersButton = false;
 
 $viewer->options->appearance->theme = StiViewerTheme::Office2022BlackBlue;
 // Define the data event handler
