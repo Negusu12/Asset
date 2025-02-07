@@ -47,8 +47,8 @@
                                     <td><b><?php echo $row['full_name'] ?></b></td>
                                     <td><b><?php echo $row['uom'] ?></b></td>
                                     <td><b><?php echo $row['qty'] ?></b></td>
-                                    <td><b><?php echo date('F d Y', strtotime($row['loned_date'])) ?></b></td>
-                                    <td><b><?php echo date('F d Y', strtotime($row['return_date'])) ?></b></td>
+                                    <td><b><?php echo date('Y-m-d', strtotime($row['loned_date'])); ?></b></td>
+                                    <td><b><?php echo date('Y-m-d', strtotime($row['return_date'])); ?></b></td>
                                     <td><b><?php echo $row['description'] ?></b></td>
                                     <td><b><?php echo $row['user_name'] ?></b></td>
                                 </tr>
@@ -102,25 +102,80 @@
                 // Add similar blocks for other columns you want to hide by default
             ]
         });
-        table.columns().every(function() {
-            var that = this;
-            var columnTitle = $(this.header()).text().trim();
 
-            // Create the input element based on the column title
-            var input;
-            {
-                // Create a regular text input element for other columns
-                input = $('<input type="text" class="form-control" placeholder="Filter"/>')
-                    .appendTo($(this.header()))
-                    .on('keyup change', function() {
-                        that.search($(this).val()).draw();
-                    });
+        // Function to add filter inputs dynamically
+        function addFilterInputs() {
+            $('#mydatatable thead th').each(function(index) {
+                var columnTitle = $(this).text().trim();
+                var that = table.column(index);
+
+                if ($(this).find('input').length === 0) { // Avoid duplicating inputs
+                    if (columnTitle === 'Return Date') {
+                        var dateFilterHtml = `
+                            <input type="text" id="minDate" class="form-control datepicker" placeholder="From Date" style="margin-bottom:5px;"/>
+                            <input type="text" id="maxDate" class="form-control datepicker" placeholder="To Date"/>
+                        `;
+                        $(this).append(dateFilterHtml);
+
+                        // Initialize jQuery UI Datepicker
+                        $(".datepicker").datepicker({
+                            dateFormat: 'yy-mm-dd', // Match your database format
+                            onSelect: function() {
+                                table.draw();
+                            }
+                        });
+                    } else {
+                        // Regular filter input for other columns
+                        $('<input type="text" class="form-control" placeholder="Filter"/>')
+                            .appendTo($(this))
+                            .on('keyup change', function() {
+                                // Correctly reference the visible column index
+                                table.column($(this).parent().index() + ':visible').search($(this).val()).draw();
+                            });
+                    }
+                }
+            });
+        }
+
+        // Add initial filter inputs
+        addFilterInputs();
+
+        // Custom filtering function for date range
+        $.fn.dataTable.ext.search.push(
+            function(settings, data, dataIndex) {
+                var min = $('#minDate').val();
+                var max = $('#maxDate').val();
+                var date = data[13]; // Adjust this index based on the position in the data array, considering hidden columns
+
+                // Convert string to date for comparison
+                var dateValue = new Date(date);
+
+                if ((min === "" || min === null) && (max === "" || max === null)) {
+                    return true; // No filtering if both min and max are empty
+                }
+                if ((min === "" || min === null) && dateValue <= new Date(max)) {
+                    return true; // Only max filter
+                }
+                if (min && !max && dateValue.toDateString() === new Date(min).toDateString()) {
+                    return true; // Only min filter with exact date match
+                }
+                if (dateValue >= new Date(min) && dateValue <= new Date(max)) {
+                    return true; // Within the range
+                }
+                return false; // Outside the range or conditions not met
             }
-        });
+        );
 
+        // Append buttons container
         table.buttons().container()
             .appendTo('#mydatatable_wrapper .col-md-6:eq(0)');
 
+        // Handle column visibility toggling
+        table.on('column-visibility', function(e, settings, column, state) {
+            if (state) { // Column is now visible
+                addFilterInputs(); // Re-add filter inputs
+            }
+        });
     });
 </script>
 <script>
