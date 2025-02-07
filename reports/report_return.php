@@ -110,11 +110,10 @@
                 var that = table.column(index);
 
                 if ($(this).find('input').length === 0) { // Avoid duplicating inputs
-                    if (columnTitle === 'Return Date') {
-                        var dateFilterHtml = `
-                            <input type="text" id="minDate" class="form-control datepicker" placeholder="From Date" style="margin-bottom:5px;"/>
-                            <input type="text" id="maxDate" class="form-control datepicker" placeholder="To Date"/>
-                        `;
+                    if (columnTitle === 'Return Date' || columnTitle === 'loaned Date') {
+                        var dateFilterHtml =
+                            '<input type="text" id="min' + columnTitle.replace(/\s+/g, '') + '" class="form-control datepicker" placeholder="From Date" style="margin-bottom:5px;"/>' +
+                            '<input type="text" id="max' + columnTitle.replace(/\s+/g, '') + '" class="form-control datepicker" placeholder="To Date"/>';
                         $(this).append(dateFilterHtml);
 
                         // Initialize jQuery UI Datepicker
@@ -143,29 +142,47 @@
         // Custom filtering function for date range
         $.fn.dataTable.ext.search.push(
             function(settings, data, dataIndex) {
-                var min = $('#minDate').val();
-                var max = $('#maxDate').val();
-                var date = data[13]; // Adjust this index based on the position in the data array, considering hidden columns
+                var minReturnDate = $('#minReturnDate').val();
+                var maxReturnDate = $('#maxReturnDate').val();
+                var returnDate = data[13];
 
-                // Convert string to date for comparison
-                var dateValue = new Date(date);
+                var minLoanedDate = $('#minloanedDate').val();
+                var maxLoanedDate = $('#maxloanedDate').val();
+                var loanedDate = data[12];
 
-                if ((min === "" || min === null) && (max === "" || max === null)) {
-                    return true; // No filtering if both min and max are empty
-                }
-                if ((min === "" || min === null) && dateValue <= new Date(max)) {
+                var returnDateValue = new Date(returnDate);
+                var loanedDateValue = new Date(loanedDate);
+
+                // Filter for Return Date
+                if ((minReturnDate === "" || minReturnDate === null) && (maxReturnDate === "" || maxReturnDate === null)) {
+                    // No filtering if both min and max are empty
+                } else if ((minReturnDate === "" || minReturnDate === null) && returnDateValue <= new Date(maxReturnDate)) {
                     return true; // Only max filter
-                }
-                if (min && !max && dateValue.toDateString() === new Date(min).toDateString()) {
+                } else if (minReturnDate && !maxReturnDate && returnDateValue.toDateString() === new Date(minReturnDate).toDateString()) {
                     return true; // Only min filter with exact date match
-                }
-                if (dateValue >= new Date(min) && dateValue <= new Date(max)) {
+                } else if (returnDateValue >= new Date(minReturnDate) && returnDateValue <= new Date(maxReturnDate)) {
                     return true; // Within the range
+                } else {
+                    return false; // Outside the range or conditions not met
                 }
-                return false; // Outside the range or conditions not met
+
+
+                // Filter for Loaned Date -  Same logic as Return Date
+                if ((minLoanedDate === "" || minLoanedDate === null) && (maxLoanedDate === "" || maxLoanedDate === null)) {
+                    // No filtering if both min and max are empty
+                } else if ((minLoanedDate === "" || minLoanedDate === null) && loanedDateValue <= new Date(maxLoanedDate)) {
+                    return true; // Only max filter
+                } else if (minLoanedDate && !maxLoanedDate && loanedDateValue.toDateString() === new Date(minLoanedDate).toDateString()) {
+                    return true; // Only min filter with exact date match
+                } else if (loanedDateValue >= new Date(minLoanedDate) && loanedDateValue <= new Date(maxLoanedDate)) {
+                    return true; // Within the range
+                } else {
+                    return false; // Outside the range or conditions not met
+                }
+
+                return true; // Return true only if BOTH date filters pass
             }
         );
-
         // Append buttons container
         table.buttons().container()
             .appendTo('#mydatatable_wrapper .col-md-6:eq(0)');
