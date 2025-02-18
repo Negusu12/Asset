@@ -451,7 +451,7 @@
               <ClientRectangle>2.5,3.25,4.8,1.65</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Expressions isList="true" count="0" />
-              <Font>Averia Serif,13</Font>
+              <Font>DIN Light,14</Font>
               <HorAlignment>Width</HorAlignment>
               <LineSpacing>1.15</LineSpacing>
               <Margins>5,5,5,5</Margins>
@@ -6562,12 +6562,13 @@ AAAASUVORK5CYII=</ImageBytes>
     <value>Stimulsoft.Base.Dll</value>
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
-  <ReportAlias>Report</ReportAlias>
-  <ReportChanged>1/31/2025 11:23:32 AM</ReportChanged>
+  <ReportAlias>Item Borrowing Form</ReportAlias>
+  <ReportAuthor>ABH Partners</ReportAuthor>
+  <ReportChanged>2/14/2025 9:26:33 AM</ReportChanged>
   <ReportCreated>1/1/2025 7:25:21 AM</ReportCreated>
   <ReportFile>C:\xampp\htdocs\Asset\report_design\loan.mrt</ReportFile>
-  <ReportGuid>69d780343b2b4bfabef5165ef5f3130b</ReportGuid>
-  <ReportName>Report</ReportName>
+  <ReportGuid>8c632039f011478491534bd52f5fd134</ReportGuid>
+  <ReportName>Item Borrowing Form</ReportName>
   <ReportUnit>Inches</ReportUnit>
   <ReportVersion>2023.1.1.0</ReportVersion>
   <Script>using System;
@@ -6582,9 +6583,9 @@ using Stimulsoft.Report.Components;
 
 namespace Reports
 {
-    public class Report : Stimulsoft.Report.StiReport
+    public class Item_Borrowing_Form : Stimulsoft.Report.StiReport
     {
-        public Report()        {
+        public Item_Borrowing_Form()        {
             this.InitializeComponent();
         }
 
