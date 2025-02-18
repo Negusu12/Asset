@@ -69,10 +69,6 @@ left join drop_down_list li on li.list_id = e.list_id WHERE employee_id=?";
 	}
 }
 ?>
-<div class="navigation_arrow">
-	<button class="navigation-btn" onclick="goBack()"><i class="fas fa-arrow-left"></i></button>
-	<button class="navigation-btn" onclick="goForward()"><i class="fas fa-arrow-right"></i></button>
-</div>
 <div class="col-lg-12">
 	<div class="card">
 		<div class="card-body">
