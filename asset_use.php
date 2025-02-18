@@ -4,10 +4,7 @@ include("connect.php");
 
 $user_data = check_login($con);
 ?>
-<div class="navigation_arrow">
-    <button class="navigation-btn" onclick="goBack()"><i class="fas fa-arrow-left"></i></button>
-    <button class="navigation-btn" onclick="goForward()"><i class="fas fa-arrow-right"></i></button>
-</div>
+
 <div class="col-lg-12">
     <div class="card">
         <div class="card-body">

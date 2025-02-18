@@ -71,10 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == 'GET') {
     }
 }
 ?>
-<div class="navigation_arrow">
-    <button class="navigation-btn" onclick="goBack()"><i class="fas fa-arrow-left"></i></button>
-    <button class="navigation-btn" onclick="goForward()"><i class="fas fa-arrow-right"></i></button>
-</div>
+
 <div class="col-lg-12">
     <div class="card">
         <div class="card-body">
