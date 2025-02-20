@@ -462,6 +462,7 @@
               <ShrinkFontToFitMinimumSize>7</ShrinkFontToFitMinimumSize>
               <Text>{asset_loan_v.description}</Text>
               <TextBrush>[0:0:0]</TextBrush>
+              <TextOptions>,,,,WordWrap=True,A=0</TextOptions>
               <TextQuality>Wysiwyg</TextQuality>
               <Type>DataColumn</Type>
               <VertAlignment>Center</VertAlignment>
@@ -6564,10 +6565,10 @@ AAAASUVORK5CYII=</ImageBytes>
   </ReferencedAssemblies>
   <ReportAlias>Item Borrowing Form</ReportAlias>
   <ReportAuthor>ABH Partners</ReportAuthor>
-  <ReportChanged>2/14/2025 9:26:33 AM</ReportChanged>
+  <ReportChanged>2/19/2025 2:48:22 AM</ReportChanged>
   <ReportCreated>1/1/2025 7:25:21 AM</ReportCreated>
   <ReportFile>C:\xampp\htdocs\Asset\report_design\loan.mrt</ReportFile>
-  <ReportGuid>8c632039f011478491534bd52f5fd134</ReportGuid>
+  <ReportGuid>1e1fd7ad1a654b9f98d86e79054ba418</ReportGuid>
   <ReportName>Item Borrowing Form</ReportName>
   <ReportUnit>Inches</ReportUnit>
   <ReportVersion>2023.1.1.0</ReportVersion>
