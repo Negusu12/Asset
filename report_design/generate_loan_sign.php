@@ -20,6 +20,9 @@ $viewer->options->toolbar->showAboutButton = false;
 $viewer->options->toolbar->showResourcesButton = false;
 $viewer->options->toolbar->showParametersButton = false;
 $viewer->options->exports->showExportToPdf = false;
+$viewer->options->exports->showExportToDocument = false;
+$viewer->options->exports->showExportToRtf = false;
+$viewer->options->exports->showExportToOpenDocumentWriter = false;
 
 $viewer->options->appearance->theme = StiViewerTheme::Office2022BlackGreen;
 // Define the data event handler
