@@ -19,7 +19,6 @@ $viewer->options->toolbar->showOpenButton = false;
 $viewer->options->toolbar->showBookmarksButton = false;
 $viewer->options->toolbar->showAboutButton = false;
 $viewer->options->toolbar->showResourcesButton = false;
-$viewer->options->toolbar->showParametersButton = false;
 $viewer->options->exports->showExportToPdf = false;
 $viewer->options->exports->showExportToDocument = false;
 $viewer->options->exports->showExportToRtf = false;

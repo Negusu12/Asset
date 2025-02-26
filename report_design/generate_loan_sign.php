@@ -14,15 +14,7 @@ $loan_id = isset($_GET['loan_id']) ? intval($_GET['loan_id']) : 0;
 $viewer = new StiViewer();
 $viewer->javascript->relativePath = '../stimulsoft/';
 
-$viewer->options->toolbar->showOpenButton = false;
-$viewer->options->toolbar->showBookmarksButton = false;
-$viewer->options->toolbar->showAboutButton = false;
-$viewer->options->toolbar->showResourcesButton = false;
-$viewer->options->toolbar->showParametersButton = false;
-$viewer->options->exports->showExportToPdf = false;
-$viewer->options->exports->showExportToDocument = false;
-$viewer->options->exports->showExportToRtf = false;
-$viewer->options->exports->showExportToOpenDocumentWriter = false;
+
 
 $viewer->options->appearance->theme = StiViewerTheme::Office2022BlackGreen;
 // Define the data event handler
