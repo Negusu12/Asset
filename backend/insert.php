@@ -178,7 +178,7 @@ if (isset($_POST['submit_l'])) {
                         confirmButtonText: 'OK',
                         timer: 2000
                     }).then(function() {
-                        window.location.href = 'index.php?page=asset_loan';
+                        window.location.href = 'index.php?page=asset_inactive';
                     });
                 }
              </script>";
