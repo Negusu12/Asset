@@ -84,7 +84,7 @@ $user_data = check_login($con);
                 </div>
                 <hr>
                 <div class="col-lg-12 text-right justify-content-center d-flex">
-                    <button class="btn btn-primary mr-2" type="submit" name="submit_l">Save</button>
+                    <button class="btn btn-primary mr-2" type="submit" name="submit_inactive">Save</button>
                     <button class="btn btn-secondary" type="reset">Clear</button>
                 </div>
             </form>

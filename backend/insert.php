@@ -178,7 +178,7 @@ if (isset($_POST['submit_l'])) {
                         confirmButtonText: 'OK',
                         timer: 2000
                     }).then(function() {
-                        window.location.href = 'index.php?page=asset_inactive';
+                        window.location.href = 'index.php?page=asset_loan';
                     });
                 }
              </script>";
@@ -218,7 +218,101 @@ if (isset($_POST['submit_l'])) {
     }
 }
 
+if (isset($_POST['submit_inactive'])) {
+    $item_code = /*addslashes so it accept commas and symbols*/ addslashes($_POST['item_code']);
+    $item_condition = addslashes($_POST['item_condition']);
+    $employee_id = addslashes($_POST['employee_id']);
+    $qty = addslashes($_POST['qty']);
+    $qty_taken = addslashes($_POST['qty']);
+    $doc_date = addslashes($_POST['doc_date']);
+    $serial_no = addslashes($_POST['serial_no']);
+    $description = addslashes($_POST['description']);
+    $user_name = addslashes($_POST['user_name']);
 
+    // Retrieve the current quantity for the selected item_code from the asset_record table
+    $sql = "SELECT qty FROM asset_record WHERE item_code='$item_code'";
+    $result = mysqli_query($con, $sql);
+    $row = mysqli_fetch_assoc($result);
+    $current_qty = $row['qty'];
+
+    // Calculate the new quantity
+    $new_qty = $current_qty - $qty;
+
+    // Check if the new quantity is less than 0
+    if ($new_qty < 0) {
+        echo "<script>
+                window.onload = function() {
+                    // Display a success message using SweetAlert
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'The Selected Item is out of Stock.',
+                        showConfirmButton: false,
+                        showDenyButton: true,
+                        denyButtonText: 'OK'
+                    });
+                }
+             </script>";
+    } else {
+        // Update the qty column in the asset_record table with the new quantity
+        $update_sql = "UPDATE asset_record SET qty='$new_qty' WHERE item_code='$item_code'";
+        $update_result = mysqli_query($con, $update_sql);
+
+        if ($update_result) {
+            // Insert the data into the asset_loan table
+            $insert_sql = "INSERT INTO asset_loan (item_code, item_condition, employee_id, qty, qty_taken,doc_date,serial_no, user_name, description)
+                           VALUES ('$item_code', '$item_condition', '$employee_id', '$qty', '$qty_taken', '$doc_date','$serial_no', '$user_name', '$description')";
+            $insert_result = mysqli_query($con, $insert_sql);
+
+            if ($insert_result) {
+                echo "<script>
+                window.onload = function() {
+                    // Display a success message using SweetAlert
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Loan Submitted successfully',
+                        showConfirmButton: true,
+                        confirmButtonText: 'OK',
+                        timer: 2000
+                    }).then(function() {
+                        window.location.href = 'index.php?page=asset_inactive';
+                    });
+                }
+             </script>";
+            } else {
+                echo "<script>
+                window.onload = function() {
+                    // Display a success message using SweetAlert
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Failed to insert data into the asset_loan table.',
+                        showConfirmButton: false,
+                        showDenyButton: true,
+                        denyButtonText: 'OK'
+                    });
+                }
+             </script>";
+            }
+        } else {
+            echo "<script>
+            window.onload = function() {
+                // Display a success message using SweetAlert
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Failed to update the asset_record table.',
+                    showConfirmButton: false,
+                    showDenyButton: true,
+                    denyButtonText: 'OK'
+                });
+            }
+         </script>";
+        }
+    }
+
+    // Display the error message, if any
+    if (isset($error_message)) {
+        echo $error_message;
+    }
+}
 
 // End Asset Loan
 
