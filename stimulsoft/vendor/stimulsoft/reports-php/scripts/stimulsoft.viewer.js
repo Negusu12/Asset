@@ -6408,9 +6408,7 @@ License: https://www.stimulsoft.com/en/licensing/reports
         this.options.serverMode ||
         this.options.standaloneJsMode ||
         !1 !== this.options.alternateValid ||
-        console.warn(
-          "You are using a trial version of the Stimulsoft product!"
-        );
+        console.warn("");
     }),
     (T.prototype.hatchData = [
       "000000FF00000000",

@@ -1997,9 +1997,7 @@ License: https://www.stimulsoft.com/en/licensing/reports
       exportOds(i, r, t) {
         if (
           (null == Z.Base[["St", "iL", "ic", "en", "se"].join("")].key &&
-            console.warn(
-              "You are using a trial version of the Stimulsoft product!"
-            ),
+            console.warn(""),
           J.a.StiLogService.write(
             this[Z.System.StiObject.stimulsoft]().getType(),
             "Export report to ODT format"
@@ -3813,9 +3811,7 @@ License: https://www.stimulsoft.com/en/licensing/reports
       exportOdt(i, r, t) {
         if (
           (null == Z.Base[["St", "iL", "ic", "en", "se"].join("")].key &&
-            console.warn(
-              "You are using a trial version of the Stimulsoft product!"
-            ),
+            console.warn(""),
           J.a.StiLogService.write(
             this[Z.System.StiObject.stimulsoft]().getType(),
             "Export report to ODT format"
@@ -6226,9 +6222,7 @@ License: https://www.stimulsoft.com/en/licensing/reports
             "Export report to Rtf format"
           ),
           null == Z.Base[["St", "iL", "ic", "en", "se"].join("")].key &&
-            console.warn(
-              "You are using a trial version of the Stimulsoft product!"
-            ),
+            console.warn(""),
           null == e)
         )
           throw "The 'settings' argument cannot be equal in null.";
@@ -7008,9 +7002,7 @@ License: https://www.stimulsoft.com/en/licensing/reports
       exportTxt(t, e, i) {
         if (
           (null == Z.Base[["St", "iL", "ic", "en", "se"].join("")].key &&
-            console.warn(
-              "You are using a trial version of the Stimulsoft product!"
-            ),
+            console.warn(""),
           J.a.StiLogService.write(
             this[Z.System.StiObject.stimulsoft]().getType(),
             "Export report to Text format"
@@ -8775,9 +8767,7 @@ License: https://www.stimulsoft.com/en/licensing/reports
       exportXps(e, t, i) {
         if (
           (null == Z.Base[["St", "iL", "ic", "en", "se"].join("")].key &&
-            console.warn(
-              "You are using a trial version of the Stimulsoft product!"
-            ),
+            console.warn(""),
           J.a.StiLogService.write(
             this[Z.System.StiObject.stimulsoft]().getType(),
             "Export report to Microsoft XML Paper Specification format"
@@ -8959,9 +8949,7 @@ License: https://www.stimulsoft.com/en/licensing/reports
           "Export report to Csv format"
         ),
         null == Z.Base[["St", "iL", "ic", "en", "se"].join("")].key &&
-          console.warn(
-            "You are using a trial version of the Stimulsoft product!"
-          ),
+          console.warn(""),
         !i.isDocument && i.getCurrentPage().is(Ft))
       )
         return;
@@ -9108,9 +9096,7 @@ License: https://www.stimulsoft.com/en/licensing/reports
       }
       exportData(e, i, r) {
         null == Z.Base[["St", "iL", "ic", "en", "se"].join("")].key &&
-          console.warn(
-            "You are using a trial version of the Stimulsoft product!"
-          );
+          console.warn("");
         let t =
           null != (this.exportSettings = r) ? r.dataType : J.c.StiDataType.Csv;
         if (t == J.c.StiDataType.Dbf || r.is2(J.c.StiDbfExportSettings)) {
@@ -9198,9 +9184,7 @@ License: https://www.stimulsoft.com/en/licensing/reports
             "Export report to Dbf format"
           ),
           null == Z.Base[["St", "iL", "ic", "en", "se"].join("")].key &&
-            console.warn(
-              "You are using a trial version of the Stimulsoft product!"
-            ),
+            console.warn(""),
           !t.isDocument && t.getCurrentPage().is(Ft))
         )
           return;
@@ -9473,9 +9457,7 @@ License: https://www.stimulsoft.com/en/licensing/reports
           "Export report to Dif format"
         ),
         null == Z.Base[["St", "iL", "ic", "en", "se"].join("")].key &&
-          console.warn(
-            "You are using a trial version of the Stimulsoft product!"
-          ),
+          console.warn(""),
         !t.isDocument && t.getCurrentPage().is(Ft))
       )
         return;
@@ -9609,9 +9591,7 @@ License: https://www.stimulsoft.com/en/licensing/reports
             "Export report to Json format"
           ),
           null == Z.Base[["St", "iL", "ic", "en", "se"].join("")].key &&
-            console.warn(
-              "You are using a trial version of the Stimulsoft product!"
-            ),
+            console.warn(""),
           null == i)
         )
           throw "The 'settings' argument cannot be equal in null.";
@@ -9815,9 +9795,7 @@ License: https://www.stimulsoft.com/en/licensing/reports
             "Export report to Sylk format"
           ),
           null == Z.Base[["St", "iL", "ic", "en", "se"].join("")].key &&
-            console.warn(
-              "You are using a trial version of the Stimulsoft product!"
-            ),
+            console.warn(""),
           !t.isDocument && t.getCurrentPage().is(Ft))
         )
           return;
@@ -10180,9 +10158,7 @@ License: https://www.stimulsoft.com/en/licensing/reports
           "Export report to Xml format"
         ),
         null == Z.Base[["St", "iL", "ic", "en", "se"].join("")].key &&
-          console.warn(
-            "You are using a trial version of the Stimulsoft product!"
-          ),
+          console.warn(""),
         !t.isDocument && t.getCurrentPage().is(Ft))
       )
         return;
@@ -12034,9 +12010,7 @@ License: https://www.stimulsoft.com/en/licensing/reports
         exportHtml(e, i, t) {
           if (
             (null == Z.Base[["St", "iL", "ic", "en", "se"].join("")].key &&
-              console.warn(
-                "You are using a trial version of the Stimulsoft product!"
-              ),
+              console.warn(""),
             J.a.StiLogService.write(
               this[Z.System.StiObject.stimulsoft]().getType(),
               "Export report to Html format"
@@ -14753,9 +14727,7 @@ License: https://www.stimulsoft.com/en/licensing/reports
       exportExcel(h, s, t) {
         var o;
         null == Z.Base[["St", "iL", "ic", "en", "se"].join("")].key &&
-          console.warn(
-            "You are using a trial version of the Stimulsoft product!"
-          ),
+          console.warn(""),
           J.a.StiLogService.write(
             this[Z.System.StiObject.stimulsoft]().getType(),
             "Export report to Excel 2007 format"
@@ -17506,9 +17478,7 @@ License: https://www.stimulsoft.com/en/licensing/reports
       }
       exportPowerPoint(e, n, t) {
         null == Z.Base[["St", "iL", "ic", "en", "se"].join("")].key &&
-          console.warn(
-            "You are using a trial version of the Stimulsoft product!"
-          ),
+          console.warn(""),
           J.a.StiLogService.write(
             this[Z.System.StiObject.stimulsoft]().getType(),
             "Export report to PowerPoint 2007 format"
@@ -20946,9 +20916,7 @@ License: https://www.stimulsoft.com/en/licensing/reports
       exportWord(s, o, t) {
         if (
           (null == Z.Base[["St", "iL", "ic", "en", "se"].join("")].key &&
-            console.warn(
-              "You are using a trial version of the Stimulsoft product!"
-            ),
+            console.warn(""),
           J.a.StiLogService.write(
             this[Z.System.StiObject.stimulsoft]().getType(),
             "Export report to Word 2007 format"
@@ -24674,9 +24642,7 @@ License: https://www.stimulsoft.com/en/licensing/reports
         var a, l, r, p, d, w;
         if (
           (null == Z.Base[["St", "iL", "ic", "en", "se"].join("")].key &&
-            console.warn(
-              "You are using a trial version of the Stimulsoft product!"
-            ),
+            console.warn(""),
           J.a.StiLogService.write(
             this[Z.System.StiObject.stimulsoft]().getType(),
             "Export report to Pdf format"
