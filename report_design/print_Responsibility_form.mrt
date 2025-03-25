@@ -77,7 +77,7 @@
       <Components isList="true" count="7">
         <PageHeaderBand1 Ref="6" type="PageHeaderBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,0.2,7.49,1.1</ClientRectangle>
+          <ClientRectangle>0,0.2,7.49,0.9</ClientRectangle>
           <Components isList="true" count="1">
             <Image1 Ref="7" type="Image" isKey="true">
               <Brush>Transparent</Brush>
@@ -99,7 +99,7 @@
         </PageHeaderBand1>
         <PageFooterBand1 Ref="8" type="PageFooterBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,14.47,7.49,0.8</ClientRectangle>
+          <ClientRectangle>0,10.51,7.49,0.4</ClientRectangle>
           <Components isList="true" count="0" />
           <Conditions isList="true" count="0" />
           <Expressions isList="true" count="0" />
@@ -109,7 +109,7 @@
         </PageFooterBand1>
         <DataBand1 Ref="9" type="DataBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,1.7,7.49,0.6</ClientRectangle>
+          <ClientRectangle>0,1.5,7.49,0.6</ClientRectangle>
           <Components isList="true" count="1">
             <Text1 Ref="10" type="Text" isKey="true">
               <Border>None;Black;2;Solid;False;4;Black</Border>
@@ -140,15 +140,15 @@
         </DataBand1>
         <DataBand2 Ref="11" type="DataBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,2.7,7.49,4.6</ClientRectangle>
+          <ClientRectangle>0,2.5,7.49,4.5</ClientRectangle>
           <Components isList="true" count="1">
             <Text2 Ref="12" type="Text" isKey="true">
               <Border>None;Black;2;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>0,0,7.5,4.9</ClientRectangle>
+              <ClientRectangle>0,0,7.5,4.5</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Expressions isList="true" count="0" />
-              <Font>DIN Light,12</Font>
+              <Font>DIN Light,11.8</Font>
               <HorAlignment>Width</HorAlignment>
               <LineSpacing>1.5</LineSpacing>
               <Margins>0,0,0,0</Margins>
@@ -179,14 +179,14 @@ By signing below, employee acknowledges that he/she has reviewed this equipment 
         </DataBand2>
         <DataBand3 Ref="13" type="DataBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,7.7,7.49,1</ClientRectangle>
-          <Components isList="true" count="4">
+          <ClientRectangle>0,7.4,7.49,1</ClientRectangle>
+          <Components isList="true" count="5">
             <Text3 Ref="14" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>0,0.2,1,0.3</ClientRectangle>
+              <ClientRectangle>0,-0.1,1,0.3</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Expressions isList="true" count="0" />
-              <Font>Averia Serif,12</Font>
+              <Font>Averia Serif,11.8</Font>
               <Margins>0,0,0,0</Margins>
               <Name>Text3</Name>
               <Page isRef="5" />
@@ -195,26 +195,12 @@ By signing below, employee acknowledges that he/she has reviewed this equipment 
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text3>
-            <Text4 Ref="15" type="Text" isKey="true">
+            <Text5 Ref="15" type="Text" isKey="true">
               <Brush>Transparent</Brush>
-              <ClientRectangle>1.1,0.2,2,0.3</ClientRectangle>
+              <ClientRectangle>0,0.3,1.7,0.3</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Expressions isList="true" count="0" />
-              <Font>DIN Light,12</Font>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text4</Name>
-              <Page isRef="5" />
-              <Parent isRef="13" />
-              <Text>{employee.department}</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-            </Text4>
-            <Text5 Ref="16" type="Text" isKey="true">
-              <Brush>Transparent</Brush>
-              <ClientRectangle>0,0.6,1.8,0.3</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Expressions isList="true" count="0" />
-              <Font>Averia Serif,12</Font>
+              <Font>Averia Serif,11.8</Font>
               <Margins>0,0,0,0</Margins>
               <Name>Text5</Name>
               <Page isRef="5" />
@@ -223,12 +209,13 @@ By signing below, employee acknowledges that he/she has reviewed this equipment 
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text5>
-            <Text6 Ref="17" type="Text" isKey="true">
+            <Text6 Ref="16" type="Text" isKey="true">
+              <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <ClientRectangle>1.9,0.6,2.3,0.3</ClientRectangle>
+              <ClientRectangle>1.68,0.18,2.3,0.3</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Expressions isList="true" count="0" />
-              <Font>DIN Light,12</Font>
+              <Font>DIN Light,11.8</Font>
               <Margins>0,0,0,0</Margins>
               <Name>Text6</Name>
               <Page isRef="5" />
@@ -236,7 +223,38 @@ By signing below, employee acknowledges that he/she has reviewed this equipment 
               <Text>{employee.borrower_title} {employee.full_name}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
+              <VertAlignment>Bottom</VertAlignment>
             </Text6>
+            <Text11 Ref="17" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0,0.8,1,0.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>Averia Serif,12</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text11</Name>
+              <Page isRef="5" />
+              <Parent isRef="13" />
+              <Text>Equipment</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+            </Text11>
+            <Text4 Ref="18" type="Text" isKey="true">
+              <Border>Bottom;Black;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.96,-0.12,2,0.2</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Expressions isList="true" count="0" />
+              <Font>DIN Light,11.8</Font>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text4</Name>
+              <Page isRef="5" />
+              <Parent isRef="13" />
+              <Text>{employee.department}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Bottom</VertAlignment>
+            </Text4>
           </Components>
           <Conditions isList="true" count="0" />
           <DataRelationName isNull="true" />
@@ -247,46 +265,46 @@ By signing below, employee acknowledges that he/she has reviewed this equipment 
           <Parent isRef="5" />
           <Sort isList="true" count="0" />
         </DataBand3>
-        <Tableasset_loan Ref="18" type="Stimulsoft.Report.Components.Table.StiTable" isKey="true">
+        <Tableasset_loan Ref="19" type="Stimulsoft.Report.Components.Table.StiTable" isKey="true">
           <Brush>Transparent</Brush>
           <BusinessObjectGuid isNull="true" />
-          <ClientRectangle>0,9.1,7.49,0.6</ClientRectangle>
+          <ClientRectangle>0,8.8,7.49,0.6</ClientRectangle>
           <ColumnCount>6</ColumnCount>
           <Components isList="true" count="12">
-            <Tableasset_loan_Cell1 Ref="19" type="TableCell" isKey="true">
+            <Tableasset_loan_Cell1 Ref="20" type="TableCell" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0,0,0.5,0.45</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Expressions isList="true" count="0" />
-              <Font>Averia Serif,12</Font>
+              <Font>Averia Serif,11.8</Font>
               <HorAlignment>Center</HorAlignment>
               <ID>0</ID>
               <JoinCells isList="true" count="0" />
               <Margins>0,0,0,0</Margins>
               <Name>Tableasset_loan_Cell1</Name>
               <Page isRef="5" />
-              <Parent isRef="18" />
+              <Parent isRef="19" />
               <Restrictions>AllowMove, AllowSelect, AllowChange</Restrictions>
               <Text>No</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Tableasset_loan_Cell1>
-            <Tableasset_loan_Cell2 Ref="20" type="TableCell" isKey="true">
+            <Tableasset_loan_Cell2 Ref="21" type="TableCell" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0.5,0,1.9,0.45</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Expressions isList="true" count="0" />
-              <Font>Averia Serif,12</Font>
+              <Font>Averia Serif,11.8</Font>
               <HorAlignment>Center</HorAlignment>
               <ID>1</ID>
               <JoinCells isList="true" count="0" />
               <Margins>0,0,0,0</Margins>
               <Name>Tableasset_loan_Cell2</Name>
               <Page isRef="5" />
-              <Parent isRef="18" />
+              <Parent isRef="19" />
               <Restrictions>AllowMove, AllowSelect, AllowChange</Restrictions>
               <Text>Equipment Description/Type</Text>
               <TextBrush>Black</TextBrush>
@@ -294,121 +312,119 @@ By signing below, employee acknowledges that he/she has reviewed this equipment 
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Tableasset_loan_Cell2>
-            <Tableasset_loan_Cell3 Ref="21" type="TableCell" isKey="true">
+            <Tableasset_loan_Cell3 Ref="22" type="TableCell" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>2.4,0,1.4,0.45</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Expressions isList="true" count="0" />
-              <Font>Averia Serif,12</Font>
+              <Font>Averia Serif,11.8</Font>
               <HorAlignment>Center</HorAlignment>
               <ID>2</ID>
               <JoinCells isList="true" count="0" />
               <Margins>0,0,0,0</Margins>
               <Name>Tableasset_loan_Cell3</Name>
               <Page isRef="5" />
-              <Parent isRef="18" />
+              <Parent isRef="19" />
               <Restrictions>AllowMove, AllowSelect, AllowChange</Restrictions>
               <Text>Model</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Tableasset_loan_Cell3>
-            <Tableasset_loan_Cell4 Ref="22" type="TableCell" isKey="true">
+            <Tableasset_loan_Cell4 Ref="23" type="TableCell" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>3.8,0,1.2,0.45</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Expressions isList="true" count="0" />
-              <Font>Averia Serif,12</Font>
+              <Font>Averia Serif,11.8</Font>
               <HorAlignment>Center</HorAlignment>
               <ID>3</ID>
               <JoinCells isList="true" count="0" />
               <Margins>0,0,0,0</Margins>
               <Name>Tableasset_loan_Cell4</Name>
               <Page isRef="5" />
-              <Parent isRef="18" />
+              <Parent isRef="19" />
               <Restrictions>AllowMove, AllowSelect, AllowChange</Restrictions>
               <Text>Serial#</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Tableasset_loan_Cell4>
-            <Tableasset_loan_Cell5 Ref="23" type="TableCell" isKey="true">
+            <Tableasset_loan_Cell5 Ref="24" type="TableCell" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>5,0,0.5,0.45</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Expressions isList="true" count="0" />
-              <Font>Averia Serif,12</Font>
+              <Font>Averia Serif,11.8</Font>
               <HorAlignment>Center</HorAlignment>
               <ID>4</ID>
               <JoinCells isList="true" count="0" />
               <Margins>0,0,0,0</Margins>
               <Name>Tableasset_loan_Cell5</Name>
               <Page isRef="5" />
-              <Parent isRef="18" />
+              <Parent isRef="19" />
               <Restrictions>AllowMove, AllowSelect, AllowChange</Restrictions>
               <Text>Qty</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Tableasset_loan_Cell5>
-            <Tableasset_loan_Cell6 Ref="24" type="TableCell" isKey="true">
+            <Tableasset_loan_Cell6 Ref="25" type="TableCell" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>5.5,0,1.99,0.45</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Expressions isList="true" count="0" />
-              <Font>Averia Serif,12</Font>
+              <Font>Averia Serif,11.8</Font>
               <HorAlignment>Center</HorAlignment>
               <ID>5</ID>
               <JoinCells isList="true" count="0" />
               <Margins>0,0,0,0</Margins>
               <Name>Tableasset_loan_Cell6</Name>
               <Page isRef="5" />
-              <Parent isRef="18" />
+              <Parent isRef="19" />
               <Restrictions>AllowMove, AllowSelect, AllowChange</Restrictions>
               <Text>Remark</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Tableasset_loan_Cell6>
-            <Tableasset_loan_Cell7 Ref="25" type="TableCell" isKey="true">
+            <Tableasset_loan_Cell7 Ref="26" type="TableCell" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0,0.45,0.5,0.35</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Expressions isList="true" count="0" />
               <Font>DIN Light,12</Font>
-              <GrowToHeight>True</GrowToHeight>
               <HorAlignment>Center</HorAlignment>
               <ID>6</ID>
               <JoinCells isList="true" count="0" />
               <Margins>3,0,0,0</Margins>
               <Name>Tableasset_loan_Cell7</Name>
               <Page isRef="5" />
-              <Parent isRef="18" />
+              <Parent isRef="19" />
               <Restrictions>AllowMove, AllowSelect, AllowChange</Restrictions>
               <Text>{Line}</Text>
               <TextBrush>Black</TextBrush>
               <Type>SystemVariables</Type>
               <VertAlignment>Center</VertAlignment>
             </Tableasset_loan_Cell7>
-            <Tableasset_loan_Cell8 Ref="26" type="TableCell" isKey="true">
+            <Tableasset_loan_Cell8 Ref="27" type="TableCell" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0.5,0.45,1.9,0.35</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Expressions isList="true" count="0" />
-              <Font>DIN Light,12</Font>
-              <GrowToHeight>True</GrowToHeight>
+              <Font>DIN Light,11.8</Font>
               <ID>7</ID>
               <JoinCells isList="true" count="0" />
               <Margins>3,0,0,0</Margins>
               <Name>Tableasset_loan_Cell8</Name>
               <Page isRef="5" />
-              <Parent isRef="18" />
+              <Parent isRef="19" />
               <Restrictions>AllowMove, AllowSelect, AllowChange</Restrictions>
               <ShrinkFontToFit>True</ShrinkFontToFit>
               <ShrinkFontToFitMinimumSize>9</ShrinkFontToFitMinimumSize>
@@ -418,20 +434,19 @@ By signing below, employee acknowledges that he/she has reviewed this equipment 
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Tableasset_loan_Cell8>
-            <Tableasset_loan_Cell9 Ref="27" type="TableCell" isKey="true">
+            <Tableasset_loan_Cell9 Ref="28" type="TableCell" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>2.4,0.45,1.4,0.35</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Expressions isList="true" count="0" />
-              <Font>DIN Light,12</Font>
-              <GrowToHeight>True</GrowToHeight>
+              <Font>DIN Light,11.8</Font>
               <ID>8</ID>
               <JoinCells isList="true" count="0" />
               <Margins>3,0,0,0</Margins>
               <Name>Tableasset_loan_Cell9</Name>
               <Page isRef="5" />
-              <Parent isRef="18" />
+              <Parent isRef="19" />
               <Restrictions>AllowMove, AllowSelect, AllowChange</Restrictions>
               <ShrinkFontToFit>True</ShrinkFontToFit>
               <ShrinkFontToFitMinimumSize>9</ShrinkFontToFitMinimumSize>
@@ -441,20 +456,19 @@ By signing below, employee acknowledges that he/she has reviewed this equipment 
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Tableasset_loan_Cell9>
-            <Tableasset_loan_Cell10 Ref="28" type="TableCell" isKey="true">
+            <Tableasset_loan_Cell10 Ref="29" type="TableCell" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>3.8,0.45,1.2,0.35</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Expressions isList="true" count="0" />
-              <Font>DIN Light,12</Font>
-              <GrowToHeight>True</GrowToHeight>
+              <Font>DIN Light,11.8</Font>
               <ID>9</ID>
               <JoinCells isList="true" count="0" />
               <Margins>3,0,0,0</Margins>
               <Name>Tableasset_loan_Cell10</Name>
               <Page isRef="5" />
-              <Parent isRef="18" />
+              <Parent isRef="19" />
               <Restrictions>AllowMove, AllowSelect, AllowChange</Restrictions>
               <ShrinkFontToFit>True</ShrinkFontToFit>
               <ShrinkFontToFitMinimumSize>9</ShrinkFontToFitMinimumSize>
@@ -464,21 +478,20 @@ By signing below, employee acknowledges that he/she has reviewed this equipment 
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Tableasset_loan_Cell10>
-            <Tableasset_loan_Cell11 Ref="29" type="TableCell" isKey="true">
+            <Tableasset_loan_Cell11 Ref="30" type="TableCell" isKey="true">
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>5,0.45,0.5,0.35</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Expressions isList="true" count="0" />
-              <Font>DIN Light,12</Font>
-              <GrowToHeight>True</GrowToHeight>
+              <Font>DIN Light,11.8</Font>
               <HorAlignment>Center</HorAlignment>
               <ID>10</ID>
               <JoinCells isList="true" count="0" />
               <Margins>3,0,0,0</Margins>
               <Name>Tableasset_loan_Cell11</Name>
               <Page isRef="5" />
-              <Parent isRef="18" />
+              <Parent isRef="19" />
               <Restrictions>AllowMove, AllowSelect, AllowChange</Restrictions>
               <ShrinkFontToFit>True</ShrinkFontToFit>
               <ShrinkFontToFitMinimumSize>9</ShrinkFontToFitMinimumSize>
@@ -488,22 +501,21 @@ By signing below, employee acknowledges that he/she has reviewed this equipment 
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Tableasset_loan_Cell11>
-            <Tableasset_loan_Cell12 Ref="30" type="TableCell" isKey="true">
+            <Tableasset_loan_Cell12 Ref="31" type="TableCell" isKey="true">
               <AllowHtmlTags>True</AllowHtmlTags>
               <Border>All;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
-              <CanGrow>True</CanGrow>
+              <CanShrink>True</CanShrink>
               <ClientRectangle>5.5,0.45,1.99,0.35</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Expressions isList="true" count="0" />
-              <Font>DIN Light,12</Font>
-              <GrowToHeight>True</GrowToHeight>
+              <Font>DIN Light,11.8</Font>
               <ID>11</ID>
               <JoinCells isList="true" count="0" />
               <Margins>3,0,0,0</Margins>
               <Name>Tableasset_loan_Cell12</Name>
               <Page isRef="5" />
-              <Parent isRef="18" />
+              <Parent isRef="19" />
               <Restrictions>AllowMove, AllowSelect, AllowChange</Restrictions>
               <ShrinkFontToFit>True</ShrinkFontToFit>
               <ShrinkFontToFitMinimumSize>9</ShrinkFontToFitMinimumSize>
@@ -529,11 +541,11 @@ By signing below, employee acknowledges that he/she has reviewed this equipment 
           <RowCount>2</RowCount>
           <Sort isList="true" count="0" />
         </Tableasset_loan>
-        <FooterBand1 Ref="31" type="FooterBand" isKey="true">
+        <FooterBand1 Ref="32" type="FooterBand" isKey="true">
           <Brush>Transparent</Brush>
-          <ClientRectangle>0,10.1,7.49,1.2</ClientRectangle>
+          <ClientRectangle>0,9.8,7.49,1.2</ClientRectangle>
           <Components isList="true" count="4">
-            <Text7 Ref="32" type="Text" isKey="true">
+            <Text7 Ref="33" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,0.4,0.5,0.3</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -542,12 +554,12 @@ By signing below, employee acknowledges that he/she has reviewed this equipment 
               <Margins>0,0,0,0</Margins>
               <Name>Text7</Name>
               <Page isRef="5" />
-              <Parent isRef="31" />
+              <Parent isRef="32" />
               <Text>Date:</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text7>
-            <Text8 Ref="33" type="Text" isKey="true">
+            <Text8 Ref="34" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0.5,0.28,2.6,0.3</ClientRectangle>
@@ -557,16 +569,16 @@ By signing below, employee acknowledges that he/she has reviewed this equipment 
               <Margins>15,0,0,0</Margins>
               <Name>Text8</Name>
               <Page isRef="5" />
-              <Parent isRef="31" />
+              <Parent isRef="32" />
               <Text>{Today}</Text>
               <TextBrush>Black</TextBrush>
-              <TextFormat Ref="34" type="DateFormat" isKey="true">
+              <TextFormat Ref="35" type="DateFormat" isKey="true">
                 <StringFormat>D</StringFormat>
               </TextFormat>
               <Type>SystemVariables</Type>
               <VertAlignment>Bottom</VertAlignment>
             </Text8>
-            <Text9 Ref="35" type="Text" isKey="true">
+            <Text9 Ref="36" type="Text" isKey="true">
               <Brush>Transparent</Brush>
               <ClientRectangle>0,0.9,0.8,0.3</ClientRectangle>
               <Conditions isList="true" count="0" />
@@ -575,12 +587,12 @@ By signing below, employee acknowledges that he/she has reviewed this equipment 
               <Margins>0,0,0,0</Margins>
               <Name>Text9</Name>
               <Page isRef="5" />
-              <Parent isRef="31" />
+              <Parent isRef="32" />
               <Text>Signature:</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text9>
-            <Text10 Ref="36" type="Text" isKey="true">
+            <Text10 Ref="37" type="Text" isKey="true">
               <Border>Bottom;Black;1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>0.9,0.78,3,0.3</ClientRectangle>
@@ -590,7 +602,7 @@ By signing below, employee acknowledges that he/she has reviewed this equipment 
               <Margins>0,0,0,0</Margins>
               <Name>Text10</Name>
               <Page isRef="5" />
-              <Parent isRef="31" />
+              <Parent isRef="32" />
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
             </Text10>
@@ -611,7 +623,7 @@ By signing below, employee acknowledges that he/she has reviewed this equipment 
       <PageWidth>8.27</PageWidth>
       <PaperSize>A4</PaperSize>
       <Report isRef="0" />
-      <Watermark Ref="37" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
+      <Watermark Ref="38" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
         <Font>Arial,100</Font>
         <ImageBytes>iVBORw0KGgoAAAANSUhEUgAAAv8AAAQ2CAYAAACkzNJkAAAACXBIWXMAAC4jAAAuIwF4pT92AALI
 cUlEQVR4nOy9d4BcV333/Tnnlukz24vqqvdiucsNY4wxGDDGcZxCKAESkhBCCJDnIQRIeVIg4XlC
@@ -3844,12 +3856,12 @@ BBH/giAIgiAIgjAm/P8B5aNfl9hFz08AAAAASUVORK5CYII=</ImageBytes>
     <value>Stimulsoft.Base.Dll</value>
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
-  <ReportAlias>Report</ReportAlias>
-  <ReportChanged>3/25/2025 4:30:50 AM</ReportChanged>
+  <ReportAlias>Equipment Responsibility Form</ReportAlias>
+  <ReportChanged>3/25/2025 8:34:46 AM</ReportChanged>
   <ReportCreated>1/1/2025 7:25:21 AM</ReportCreated>
   <ReportFile>C:\xampp\htdocs\Asset\report_design\print_Responsibility_form.mrt</ReportFile>
-  <ReportGuid>aa5d21b442c7423e933f3e2e4660ec7d</ReportGuid>
-  <ReportName>Report</ReportName>
+  <ReportGuid>c14be5ab45884ea597c1d7f724373e55</ReportGuid>
+  <ReportName>Equipment Responsibility Form</ReportName>
   <ReportUnit>Inches</ReportUnit>
   <ReportVersion>2023.1.1.0</ReportVersion>
   <Script>using System;
@@ -3864,9 +3876,9 @@ using Stimulsoft.Report.Components;
 
 namespace Reports
 {
-    public class Report : Stimulsoft.Report.StiReport
+    public class Equipment_Responsibility_Form : Stimulsoft.Report.StiReport
     {
-        public Report()        {
+        public Equipment_Responsibility_Form()        {
             this.InitializeComponent();
         }
 

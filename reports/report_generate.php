@@ -3,7 +3,7 @@
 include 'connect.php';
 
 // Fetch all employees for the dropdown
-$sql = "SELECT DISTINCT full_name FROM employee";
+$sql = "SELECT DISTINCT full_name FROM employee order by full_name";
 $result = $con->query($sql);
 $employees = [];
 while ($row = $result->fetch_assoc()) {
