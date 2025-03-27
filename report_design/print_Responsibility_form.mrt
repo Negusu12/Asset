@@ -3857,10 +3857,10 @@ BBH/giAIgiAIgjAm/P8B5aNfl9hFz08AAAAASUVORK5CYII=</ImageBytes>
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Equipment Responsibility Form</ReportAlias>
-  <ReportChanged>3/25/2025 8:34:46 AM</ReportChanged>
+  <ReportChanged>3/27/2025 4:45:45 AM</ReportChanged>
   <ReportCreated>1/1/2025 7:25:21 AM</ReportCreated>
   <ReportFile>C:\xampp\htdocs\Asset\report_design\print_Responsibility_form.mrt</ReportFile>
-  <ReportGuid>c14be5ab45884ea597c1d7f724373e55</ReportGuid>
+  <ReportGuid>c81ac70bea4b477e84c825fa07e814e9</ReportGuid>
   <ReportName>Equipment Responsibility Form</ReportName>
   <ReportUnit>Inches</ReportUnit>
   <ReportVersion>2023.1.1.0</ReportVersion>
