@@ -30,7 +30,7 @@
             // Construct the SQL query to count the number of records where the deadline is approaching within four days
             $query = "SELECT COUNT(*) as num_records             
                     FROM sim_card_transactions_line
-                    WHERE expire_date BETWEEN '$current_date' AND '$four_days_from_now'";
+                    WHERE expire_date BETWEEN '$current_date' AND '$four_days_from_now' and status = 'Loaned'";
 
             // Execute the query and fetch the result
             $result = $con->query($query);
