@@ -76,7 +76,7 @@ $user_data = check_login($con);
                         </div>
                         <div class="form-group">
                             <label class="control-label"><span style="color: red;">*</span> Quantity</label>
-                            <input type="number" class="form-control form-control-sm" name="qty" min="0" oninvalid="this.setCustomValidity('Enter Quantity Here')" oninput="setCustomValidity('')" required>
+                            <input type="number" id="loanedd_qty" class="form-control form-control-sm" name="qty" min="0" oninvalid="this.setCustomValidity('Enter Quantity Here')" oninput="setCustomValidity('')" required>
                         </div>
                         <div class="form-group">
                             <label for="" class="control-label"><span style="color: red;">*</span> Date</label>
@@ -106,6 +106,8 @@ $user_data = check_login($con);
         var selectedItem = document.getElementById("loan_id");
         var selectedOption = selectedItem.options[selectedItem.selectedIndex];
         var unreturnedQtyInput = document.getElementById("loaned_qty");
+        unreturnedQtyInput.value = selectedOption.getAttribute("data-qty");
+        var unreturnedQtyInput = document.getElementById("loanedd_qty");
         unreturnedQtyInput.value = selectedOption.getAttribute("data-qty");
         var borrowerNameInput = document.getElementById("borrower_name");
         borrowerNameInput.value = selectedOption.getAttribute("data-full_name");
