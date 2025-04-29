@@ -66,9 +66,7 @@
                                                 <a class="dropdown-item" href="./index.php?page=backend/edit_loan&loan_id=<?php echo $row['loan_id'] ?>">Edit</a>
                                                 <div class="dropdown-divider"></div>
                                             <?php endif; ?>
-                                            <a class="dropdown-item" href="report_design/generate_loan_sign.php?loan_id=<?php echo $row['loan_id'] ?>" target="_blank">Print</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" style="cursor: pointer;" onclick="viewReport(<?php echo $row['item_code']; ?>)">View Item Information</a>
+                                            <a class="dropdown-item" href="print_loan.php?loan_id=<?php echo $row['loan_id'] ?>" target="_blank">Print</a>
                                         </div>
                                     </td>
                                 </tr>

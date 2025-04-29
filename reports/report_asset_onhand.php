@@ -72,8 +72,6 @@
 												<div class="dropdown-divider"></div>
 											<?php endif; ?>
 											<a class="dropdown-item" href="./index.php?page=backend/edit_image&item_code=<?php echo $row['item_code'] ?>">Change Image</a>
-											<div class="dropdown-divider"></div>
-											<a class="dropdown-item" style="cursor: pointer;" onclick="viewReport(<?php echo $row['item_code']; ?>)">View Item Information</a>
 										</div>
 									</td>
 
