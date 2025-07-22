@@ -67,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     <div class="inventory-container">
         <div class="inventory-hero">
             <div class="hero-content">
-                <img src="assets/dist/img/logo.png" alt="EMU Logo" class="logo" style="height: 200px;">
+                <img src="assets/dist/img/ABH LOGO white.png" alt="EMU Logo" class="logo" style="height: 200px; margin-bottom: 30px;">
                 <h1 class="inventory-title">ABH Inventory System</h1>
                 <p class="inventory-subtitle">Comprehensive inventory management solution with advanced features for GRN, asset tracking, and stock control.</p>
 

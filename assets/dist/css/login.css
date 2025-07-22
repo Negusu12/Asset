@@ -20,13 +20,16 @@
 
 body {
   font-family: "Poppins", sans-serif;
-  background: linear-gradient(135deg, #26225b, #4d7dbf);
+  background-image: url("../img/bg1.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow-x: hidden;
-  color: var(--dark);
+  color: var(--light);
 }
 
 .inventory-particles {
@@ -472,7 +475,7 @@ body {
   }
 
   .inventory-hero {
-    padding: 2rem;
+    display: none;
   }
 }
 
